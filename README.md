@@ -1,7 +1,9 @@
 # Chicano Park history app
+
 Programming I and Programming II Chicano Park collaborative History app. Basic single page app prepped for production.
 
-# Team Members
+## Team Members
+
 - Rajan Phadnis
 - Sloane McGuire
 - Evan Mickelson
@@ -9,4 +11,3 @@ Programming I and Programming II Chicano Park collaborative History app. Basic s
 - Matthew Peng
 - Jordan Wood
 - Ishan Seendripu
-
