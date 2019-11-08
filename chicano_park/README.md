@@ -1,4 +1,4 @@
-# chicano_park
+# Chicano Park app
 
 A new Flutter project.
 
