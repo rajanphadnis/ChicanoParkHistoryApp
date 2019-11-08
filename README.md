@@ -1,6 +1,10 @@
 # Chicano Park history app
 
-Programming I and Programming II Chicano Park collaborative History app. Basic single page app prepped for production.
+Programming I and Programming II Chicano Park collaborative History app. Basic single page app prepped for production. WRITE SOMETHING HERE //TODO
+
+## Timeline
+
+High-level app prototype by March. Final production-ready version by Global Travel.
 
 ## Team Members
 
@@ -84,27 +88,25 @@ Who will almost always be the user for the application, unless otherwise stated.
     - Very feasible
     - A guided audio tour that will guide visitors around the park in a predetermined route
 - Medium priority
-Predetermined tour routes
-Why: Once again accessibility and ease of usage. By having a predetermined route, users can feel less overwhelmed by the park. 
-Feasible, but difficult. Harder than AR
-App theming:
-Why: To make the app “feel,” good for the user. 
-Very feasible. 
-Clean color palettes 
-Provide different themes that users can switch between, such as dark and light mode, in order to improve user satisfaction and enjoyability while using the app
-Map
-Why: Ease of use, accessibility, way to navigate park. 
-Feasible. Describe technology
-Gallery Feature
-Why: Consistent easier way to access knowledge about the park. 
-Ability to look through all the murals and their information 
-Low Priority
-Scavenger hunt mode
-Feasible, but harder AR, easier than a walking tour
-Social media share integration
-Very easy. Native share API
-Loot boxes (GACHA PLEASE)
-
-
-Popularity and view history
-Medium feasibility. Relies on syncing to database
+  - Predetermined tour routes
+    - Why: Accessibility and ease of usage. By having a predetermined route, users can feel less overwhelmed by the park.
+    - Feasible, but difficult. Harder than AR
+  - App theming
+    - Why: To make the app “feel,” good for the user.
+    - Very feasible
+    - Clean color palettes
+    - Provide different themes that users can switch between, such as dark and light mode, in order to improve user satisfaction and enjoyability while using the app
+  - Map
+    - Why: Ease of use, accessibility, way to navigate park.
+    - Feasible. Uses Google Maps API and a view to display location on map
+  - Gallery Feature
+    - Why: Consistent easier way to access knowledge about the park
+    - Ability to look through all the murals and their information
+- Low Priority
+  - Scavenger hunt mode
+    - Feasible, but harder AR, easier than a walking tour
+  - Social media share integration
+    - Very easy. Native share API
+  - Loot boxes (GACHA PLEASE)
+  - Popularity and view history
+    - Medium feasibility. Relies on syncing to database
