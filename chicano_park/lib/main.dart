@@ -39,8 +39,10 @@ class MainHomePage extends StatefulWidget {
 }
 
 class _MainHomePageState extends State<MainHomePage> {
+  // setup basic variables
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   CameraController controller;
+  // set app behavior when app initializes from cold start
   @override
   void initState() {
     super.initState();
@@ -52,7 +54,7 @@ class _MainHomePageState extends State<MainHomePage> {
       setState(() {});
     });
   }
-
+  // get rid of camera controller when app is no longer in focus
   @override
   void dispose() {
     controller?.dispose();
@@ -108,27 +110,7 @@ class _MainHomePageState extends State<MainHomePage> {
     return MaterialApp(
       home: Scaffold(
         key: _scaffoldKey,
-        // appBar: AppBar(
-        //   title: const Text('Persistent bottom sheet')
-        // ),
-        body: 
-        // Column(
-        //   children: <Widget>[
-            Center(
-              child: RaisedButton(
-                onPressed: _showBottomSheetCallback,
-                child: const Text('Show Persistent Bottom Sheet'),
-              ),
-            ),
-            // if (!controller.value.isInitialized) {
-            //   new Container()
-            // }
-            // else {
-            //   AspectRatio(
-            //     aspectRatio: controller.value.aspectRatio,
-            //     child: CameraPreview(controller),),}
-          // ],
-        // ),
+        // body: 
         // Get rid of fab onpress: https://medium.com/flutter-community/flutter-beginners-guide-to-using-the-bottom-sheet-b8025573c433
         floatingActionButton: FloatingActionButton(
       onPressed: _showBottomSheetCallback,
