@@ -54,6 +54,7 @@ class _MainHomePageState extends State<MainHomePage> {
       setState(() {});
     });
   }
+
   // get rid of camera controller when app is no longer in focus
   @override
   void dispose() {
@@ -110,15 +111,33 @@ class _MainHomePageState extends State<MainHomePage> {
     return MaterialApp(
       home: Scaffold(
         key: _scaffoldKey,
-        // body: 
+        body: _cameraPreviewWidget(),
         // Get rid of fab onpress: https://medium.com/flutter-community/flutter-beginners-guide-to-using-the-bottom-sheet-b8025573c433
         floatingActionButton: FloatingActionButton(
-      onPressed: _showBottomSheetCallback,
-      child: Icon(Icons.navigation),
-      backgroundColor: Colors.green,
-    ),
+          onPressed: _showBottomSheetCallback,
+          child: Icon(Icons.navigation),
+          backgroundColor: Colors.green,
+        ),
       ),
     );
+  }
+
+  Widget _cameraPreviewWidget() {
+    if (controller == null || !controller.value.isInitialized) {
+      return const Text(
+        'Tap a camera',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 24.0,
+          fontWeight: FontWeight.w900,
+        ),
+      );
+    } else {
+      return AspectRatio(
+        aspectRatio: controller.value.aspectRatio,
+        child: CameraPreview(controller),
+      );
+    }
   }
 }
 
