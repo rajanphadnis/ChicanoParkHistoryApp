@@ -8,6 +8,7 @@ List<CameraDescription> cameras;
 // void main() => runApp(MyApp());
 void logError(String code, String message) =>
     print('Error: $code\nError Message: $message');
+// String title;
 // Create the main page element
 class MyApp extends StatelessWidget {
   // build the main page element (render)
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         fontFamily: 'Baskerville',
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.orange,
         brightness: Brightness.dark,
       ),
       // set home page content to be the MainHomePage element defined in another class. You could get rid of the class and just add it here, but its easier to organize if you split into classes
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 Future<void> main() async {
   // Fetch the available cameras before initializing the app.
   try {
@@ -35,11 +37,14 @@ Future<void> main() async {
   } on CameraException catch (e) {
     logError(e.code, e.description);
   }
+  // Run the actual app
   runApp(MyApp());
 }
+
 // Create a "redirect" element
 class MainHomePage extends StatefulWidget {
   MainHomePage({Key key, this.title}) : super(key: key);
+  // String title = this.title;
   final String title;
   @override
   _MainHomePageState createState() => _MainHomePageState();
@@ -123,6 +128,7 @@ class _FabFunctionToCallJustToCleanThingsUpAndMakeItEasierToSeeStuff
             // child: Icon(Icons.filter_list),
             child: Icon(Icons.explore),
             // child: Icon(Icons.search),
+            backgroundColor: Colors.orangeAccent,
           )
         : Container();
   }
@@ -143,7 +149,7 @@ class _MainHomePageState extends State<MainHomePage> {
   @override
   void initState() {
     super.initState();
-    controller = CameraController(cameras[0], ResolutionPreset.medium);
+    controller = CameraController(cameras[0], ResolutionPreset.ultraHigh);
     controller.initialize().then((_) {
       if (!mounted) {
         return;
@@ -164,7 +170,16 @@ class _MainHomePageState extends State<MainHomePage> {
     return MaterialApp(
       home: Scaffold(
         key: _scaffoldKey,
-        body: _cameraPreviewWidget(),
+        appBar: AppBar(
+          backgroundColor: Colors.orangeAccent,
+          title: Center(
+            child: Text(widget.title),
+          ),
+        ),
+        body: new Container(
+          child: _cameraPreviewWidget(),
+        ),
+        // _cameraPreviewWidget(),
         // Get rid of fab onpress: https://medium.com/flutter-community/flutter-beginners-guide-to-using-the-bottom-sheet-b8025573c433
         floatingActionButton:
             FabFunctionToCallJustToCleanThingsUpAndMakeItEasierToSeeStuff(),
@@ -182,7 +197,7 @@ class _MainHomePageState extends State<MainHomePage> {
   Widget _cameraPreviewWidget() {
     if (controller == null || !controller.value.isInitialized) {
       return const Text(
-        'Tap a camera',
+        'No Camera found',
         style: TextStyle(
           color: Colors.white,
           fontSize: 24.0,

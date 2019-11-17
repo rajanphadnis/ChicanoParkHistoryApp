@@ -41,5 +41,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>Need to use camera to view pictures and determine location of mural</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Use mic because camera requires mic even though not using it.</string>
 </dict>
 </plist>
