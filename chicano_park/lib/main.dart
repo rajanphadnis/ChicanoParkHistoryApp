@@ -1,6 +1,7 @@
 // Import required packages
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 List<CameraDescription> cameras;
 // set app starting page and then run app
@@ -8,6 +9,7 @@ List<CameraDescription> cameras;
 // void main() => runApp(MyApp());
 void logError(String code, String message) =>
     print('Error: $code\nError Message: $message');
+
 // String title;
 // Create the main page element
 class MyApp extends StatelessWidget {
@@ -80,6 +82,7 @@ class _FabFunctionToCallJustToCleanThingsUpAndMakeItEasierToSeeStuff
                               ),
                               color: Colors.grey),
                           child: Column(
+                            // TODO: throws "hassize error here for some reason"
                             children: <Widget>[
                               new Padding(
                                 padding: const EdgeInsets.all(10),
@@ -99,16 +102,50 @@ class _FabFunctionToCallJustToCleanThingsUpAndMakeItEasierToSeeStuff
                                 ),
                               ),
                               new Padding(
-                                padding: const EdgeInsets.all(30.0),
-                                child: Text(
-                                  'Drag to dismiss',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 24.0,
-                                    fontFamily: "Baskerville",
+                                  padding: const EdgeInsets.all(30.0),
+                                  child: StreamBuilder<QuerySnapshot>(
+                                    stream: Firestore.instance
+                                        .collection('text')
+                                        .snapshots(),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                                      if (snapshot.hasError)
+                                        return new Text(
+                                            'Error: ${snapshot.error}');
+                                      switch (snapshot.connectionState) {
+                                        case ConnectionState.waiting:
+                                          return new Text('Loading...');
+                                        default:
+                                        // TODO: throws "hassize error here for some reason"
+                                          return Column(
+                                            children: <Widget>[
+                                              ListView(
+                                                children: snapshot
+                                                    .data.documents
+                                                    .map((DocumentSnapshot
+                                                        document) {
+                                                  return new ListTile(
+                                                    title: new Text(
+                                                        document['title']),
+                                                    subtitle: new Text(
+                                                        document['content']),
+                                                  );
+                                                }).toList(),
+                                              )
+                                            ],
+                                          );
+                                      }
+                                    },
+                                  )
+                                  // Text(
+                                  //   'Drag to dismiss',
+                                  //   textAlign: TextAlign.center,
+                                  //   style: TextStyle(
+                                  //     fontSize: 24.0,
+                                  //     fontFamily: "Baskerville",
+                                  //   ),
+                                  // ),
                                   ),
-                                ),
-                              ),
                             ],
                           ),
                         ),
