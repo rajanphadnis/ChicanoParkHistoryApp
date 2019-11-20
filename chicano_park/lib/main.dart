@@ -267,3 +267,12 @@ class PaintSomeRandomShapeThatIsProbablyARectangleWithSomeRadius
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
+
+
+
+// List of stuff to do:
+// 1: design icons
+// 2: set up database
+// 3: refine UI
+
+
