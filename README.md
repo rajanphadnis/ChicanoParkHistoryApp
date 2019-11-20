@@ -31,6 +31,7 @@ As an exercise in the app development process and cycle
 - To make information about Chicano Park more accessible
 - Inform the public about tradition/culture of the area
 - Inform the public about oppressed groups
+- We get experience developing cross-platform apps
 
 ## Who
 
@@ -72,10 +73,10 @@ Who will almost always be the user for the application, unless otherwise stated.
 
 - High priority
 
-  - Offline support
+  - Provide Offline support to the user in the event the user has no internet connection
     - Why: To stay true to our goal of accessibility
     - Difficulty and Feasibility: Medium-difficulty. Feasible. Using caching and pre-written text, the ability to display information on each mural even when the user is not connected to WiFi, which increases accessibility
-  - Image Recognition
+  - Have the user use their camera (Image Recognition) to capture, identify and pull up info for a specific mural
     - Why: For an easy, user friendly way of accessing information about the murals.
     - You scan the murals, and it will display information about the scanned mural, maybe in a pop-up type of display.
     - medium difficulty to implement

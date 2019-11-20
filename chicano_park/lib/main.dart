@@ -1,111 +1,278 @@
+// Import required packages
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-void main() => runApp(MyApp());
+List<CameraDescription> cameras;
+// set app starting page and then run app
 
+// void main() => runApp(MyApp());
+void logError(String code, String message) =>
+    print('Error: $code\nError Message: $message');
+
+// String title;
+// Create the main page element
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  // build the main page element (render)
   @override
   Widget build(BuildContext context) {
+    // set to use material theming
     return MaterialApp(
+      // Set title and theme data
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        fontFamily: 'Baskerville',
+        primarySwatch: Colors.orange,
+        brightness: Brightness.dark,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      // set home page content to be the MainHomePage element defined in another class. You could get rid of the class and just add it here, but its easier to organize if you split into classes
+      home: MainHomePage(title: 'Chicano Park History App Thingy'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
+Future<void> main() async {
+  // Fetch the available cameras before initializing the app.
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    cameras = await availableCameras();
+  } on CameraException catch (e) {
+    logError(e.code, e.description);
+  }
+  // Run the actual app
+  runApp(MyApp());
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+// Create a "redirect" element
+class MainHomePage extends StatefulWidget {
+  MainHomePage({Key key, this.title}) : super(key: key);
+  // String title = this.title;
+  final String title;
+  @override
+  _MainHomePageState createState() => _MainHomePageState();
+}
 
-  void _incrementCounter() {
+class FabFunctionToCallJustToCleanThingsUpAndMakeItEasierToSeeStuff
+    extends StatefulWidget {
+  _FabFunctionToCallJustToCleanThingsUpAndMakeItEasierToSeeStuff
+      createState() =>
+          _FabFunctionToCallJustToCleanThingsUpAndMakeItEasierToSeeStuff();
+}
+
+class _FabFunctionToCallJustToCleanThingsUpAndMakeItEasierToSeeStuff
+    extends State<
+        FabFunctionToCallJustToCleanThingsUpAndMakeItEasierToSeeStuff> {
+  bool showFab = true;
+  @override
+  Widget build(BuildContext context) {
+    return showFab
+        ? FloatingActionButton(
+            onPressed: () {
+              var bottomSheetController = showBottomSheet(
+                  context: context,
+                  builder: (context) => Container(
+                        color: Colors.transparent,
+                        width: double.infinity,
+                        height: MediaQuery.of(context).size.height * 0.9,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: new BorderRadius.only(
+                                topLeft: new Radius.circular(10),
+                                topRight: new Radius.circular(10),
+                              ),
+                              color: Colors.grey),
+                          child: Column(
+                            // TODO: throws "hassize error here for some reason"
+                            children: <Widget>[
+                              new Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: new CustomPaint(
+                                  painter:
+                                      PaintSomeRandomShapeThatIsProbablyARectangleWithSomeRadius(),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        border:
+                                            new Border.all(color: Colors.grey),
+                                        borderRadius: new BorderRadius.all(
+                                            Radius.circular(2.5)),
+                                        color: Colors.white),
+                                    height: 5,
+                                    width: 40,
+                                  ),
+                                ),
+                              ),
+                              new Padding(
+                                  padding: const EdgeInsets.all(30.0),
+                                  child: StreamBuilder<QuerySnapshot>(
+                                    stream: Firestore.instance
+                                        .collection('text')
+                                        .snapshots(),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                                      if (snapshot.hasError)
+                                        return new Text(
+                                            'Error: ${snapshot.error}');
+                                      switch (snapshot.connectionState) {
+                                        case ConnectionState.waiting:
+                                          return new Text('Loading...');
+                                        default:
+                                        // TODO: throws "hassize error here for some reason"
+                                          return Column(
+                                            children: <Widget>[
+                                              ListView(
+                                                children: snapshot
+                                                    .data.documents
+                                                    .map((DocumentSnapshot
+                                                        document) {
+                                                  return new ListTile(
+                                                    title: new Text(
+                                                        document['title']),
+                                                    subtitle: new Text(
+                                                        document['content']),
+                                                  );
+                                                }).toList(),
+                                              )
+                                            ],
+                                          );
+                                      }
+                                    },
+                                  )
+                                  // Text(
+                                  //   'Drag to dismiss',
+                                  //   textAlign: TextAlign.center,
+                                  //   style: TextStyle(
+                                  //     fontSize: 24.0,
+                                  //     fontFamily: "Baskerville",
+                                  //   ),
+                                  // ),
+                                  ),
+                            ],
+                          ),
+                        ),
+                      ));
+              showFAB(false);
+              bottomSheetController.closed.then((value) {
+                showFAB(true);
+              });
+            },
+            // child: Icon(Icons.apps),
+            // child: Icon(Icons.art_track),
+            // child: Icon(Icons.assistant),
+            // child: Icon(Icons.burst_mode),
+            // child: Icon(Icons.camera_enhance),
+            // child: Icon(Icons.dashboard),
+            // child: Icon(Icons.dns),
+            // child: Icon(Icons.filter_list),
+            child: Icon(Icons.explore),
+            // child: Icon(Icons.search),
+            backgroundColor: Colors.orangeAccent,
+          )
+        : Container();
+  }
+
+  void showFAB(bool value) {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      showFab = value;
+    });
+  }
+}
+
+class _MainHomePageState extends State<MainHomePage> {
+  // setup basic variables
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  CameraController controller;
+  bool showFab = true;
+  // set app behavior when app initializes from cold start
+  @override
+  void initState() {
+    super.initState();
+    controller = CameraController(cameras[0], ResolutionPreset.ultraHigh);
+    controller.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {});
     });
   }
 
+  // get rid of camera controller when app is no longer in focus
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+    return MaterialApp(
+      home: Scaffold(
+        key: _scaffoldKey,
+        appBar: AppBar(
+          backgroundColor: Colors.orangeAccent,
+          title: Center(
+            child: Text(widget.title),
+          ),
         ),
+        body: new Container(
+          child: _cameraPreviewWidget(),
+        ),
+        // _cameraPreviewWidget(),
+        // Get rid of fab onpress: https://medium.com/flutter-community/flutter-beginners-guide-to-using-the-bottom-sheet-b8025573c433
+        floatingActionButton:
+            FabFunctionToCallJustToCleanThingsUpAndMakeItEasierToSeeStuff(),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+    // )
+  }
+
+  void showFAB(bool value) {
+    setState(() {
+      showFab = value;
+    });
+  }
+
+  Widget _cameraPreviewWidget() {
+    if (controller == null || !controller.value.isInitialized) {
+      return const Text(
+        'No Camera found',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 24.0,
+          fontWeight: FontWeight.w900,
+        ),
+      );
+    } else {
+      return AspectRatio(
+        aspectRatio: controller.value.aspectRatio,
+        child: CameraPreview(controller),
+      );
+    }
   }
 }
+
+class PaintSomeRandomShapeThatIsProbablyARectangleWithSomeRadius
+    extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Create a paint element
+    final paint = Paint();
+    // set the paint color to be white (background)
+    paint.color = Colors.grey;
+    // Create a rectangle with size and width same as parent
+    var rect = Rect.fromLTWH(0, 0, size.width, size.height);
+    // draw the rectangle
+    canvas.drawRect(rect, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
+}
+
+
+
+// List of stuff to do:
+// 1: design icons
+// 2: set up database
+// 3: refine UI
+
+
