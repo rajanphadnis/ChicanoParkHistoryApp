@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:camera/camera.dart';
 
+// List<CameraDescription> cameras;
+// Future<void> main() async {
+//   cameras = await availableCameras();
+//   runApp(MyApp());
+// }
 void main() => runApp(MyApp());
-
+var found = "";
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -28,8 +34,15 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            TextField(
+              onChanged: (text) {
+                found = text;
+              },
+              decoration: InputDecoration(
+                  border: InputBorder.none, hintText: "name of Mural"),
+            ),
             RaisedButton(
-              child: Text('Show'),
+              child: Text('Recognize'),
               onPressed: () => showTheModalThingWhenTheButtonIsPressed(),
             ),
           ],
@@ -67,7 +80,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
               child: StreamBuilder(
                 stream: Firestore.instance
                     .collection("Murals")
-                    .document("Mural1")
+                    .document(found)
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
@@ -76,20 +89,52 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                   return Center(
                     child: Column(
                       children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: CustomPaint(
+                            painter:
+                                PaintSomeRandomShapeThatIsProbablyARectangleWithSomeRadius(),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: new Border.all(color: Colors.white),
+                                  borderRadius: new BorderRadius.all(
+                                      Radius.circular(2.5)),
+                                  color: Colors.grey),
+                              height: 5,
+                              width: 40,
+                            ),
+                          ),
+                        ),
                         Text(snapshot.data["title"]),
                         Text(snapshot.data["desc"]),
                         Text("Picture will go here eventually"),
-                        Text("share buttons, carousel of actions will go here with some nice cupertino icons"),
+                        Text(
+                            "share buttons, carousel of actions will go here with some nice cupertino icons"),
                       ],
                     ),
                   );
-                  //
                 },
-              )
-              // Text("gonna fill this out with firebase stuff for ish to fill out later"),
-              )
+              )),
         ],
       ),
     );
   }
+}
+
+class PaintSomeRandomShapeThatIsProbablyARectangleWithSomeRadius
+    extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Create a paint element
+    final paint = Paint();
+    // set the paint color to be white (background)
+    paint.color = Colors.white;
+    // Create a rectangle with size and width same as parent
+    var rect = Rect.fromLTWH(0, 0, size.width, size.height);
+    // draw the rectangle
+    canvas.drawRect(rect, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
