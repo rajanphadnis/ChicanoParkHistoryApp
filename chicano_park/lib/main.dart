@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:camera/camera.dart';
+import 'package:camera/camera.dart';
+import 'dart:async';
 
-// List<CameraDescription> cameras;
-// Future<void> main() async {
-//   cameras = await availableCameras();
-//   runApp(MyApp());
-// }
-void main() => runApp(MyApp());
+List<CameraDescription> cameras;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
+  runApp(MyApp());
+}
+
 var found = "";
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -27,27 +30,84 @@ class TheMainAppHomePage extends StatefulWidget {
 }
 
 class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
+  CameraController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = CameraController(cameras[0], ResolutionPreset.medium);
+    controller.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              onChanged: (text) {
-                found = text;
-              },
-              decoration: InputDecoration(
-                  border: InputBorder.none, hintText: "name of Mural"),
-            ),
-            RaisedButton(
-              child: Text('Recognize'),
-              onPressed: () => showTheModalThingWhenTheButtonIsPressed(),
-            ),
-          ],
+    if (!controller.value.isInitialized) {
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                  "You must enable camera and recording/audio persmissions in order to use this app")
+            ],
+          ),
         ),
-      ),
+      );
+    }
+    return Column(
+      children: <Widget>[
+        AspectRatio(
+          aspectRatio: controller.value.aspectRatio,
+          child: CameraPreview(controller),
+        ),
+        Container(
+          child: Column(
+            children: <Widget>[
+              // Material(
+              //   child: TextField(
+              //     onChanged: (text) {
+              //       found = text;
+              //     },
+              //     decoration: InputDecoration(
+              //         border: InputBorder.none, hintText: "name of Mural"),
+              //   ),
+              // ),
+              RaisedButton(
+                child: Text('Mural1'),
+                onPressed: () => {
+                  found = "Mural1",
+                  showTheModalThingWhenTheButtonIsPressed(),
+                },
+              ),
+              RaisedButton(
+                child: Text('Mural2'),
+                onPressed: () => {
+                  found = "Mural2",
+                  showTheModalThingWhenTheButtonIsPressed(),
+                },
+              ),
+              RaisedButton(
+                child: Text('Error'),
+                onPressed: () => {
+                  found = "Mural3",
+                  showTheModalThingWhenTheButtonIsPressed(),
+                },
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
