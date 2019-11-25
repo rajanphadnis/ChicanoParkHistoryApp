@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:camera/camera.dart';
 import 'dart:async';
+import 'package:transparent_image/transparent_image.dart';
+import 'package:share/share.dart';
 
 List<CameraDescription> cameras;
 Future<void> main() async {
@@ -91,14 +93,14 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                 },
               ),
               RaisedButton(
-                child: Text('Mural2'),
+                child: Text('img error'),
                 onPressed: () => {
                   found = "Mural2",
                   showTheModalThingWhenTheButtonIsPressed(),
                 },
               ),
               RaisedButton(
-                child: Text('Error'),
+                child: Text('DB Error'),
                 onPressed: () => {
                   found = "Mural3",
                   showTheModalThingWhenTheButtonIsPressed(),
@@ -165,11 +167,47 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                             ),
                           ),
                         ),
-                        Text(snapshot.data["title"]),
-                        Text(snapshot.data["desc"]),
-                        Text("Picture will go here eventually"),
                         Text(
-                            "share buttons, carousel of actions will go here with some nice cupertino icons"),
+                          snapshot.data["title"],
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 30),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Stack(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(25),
+                                child:
+                                    Center(child: CircularProgressIndicator()),
+                              ),
+                              Center(
+                                child: FadeInImage.memoryNetwork(
+                                  placeholder: kTransparentImage,
+                                  image: snapshot.data["picURL"],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          
+                          child: SingleChildScrollView(
+                            child: Padding(
+                              padding: const EdgeInsets.all(15),
+                              child: Text(snapshot.data["desc"]),
+                            ), 
+                          ),
+                        ),
+                        RaisedButton.icon(
+                          icon: Icon(Icons.share),
+                          label: Text("Share"),
+                          onPressed: () {
+                            Share.share("Hello there!");
+                          },
+                        ),
                       ],
                     ),
                   );
