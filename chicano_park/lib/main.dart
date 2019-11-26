@@ -113,12 +113,45 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     );
   }
 
+  String testString(DocumentSnapshot doc, String val) {
+    if (doc == null) {
+      return "error! DB not found!";
+    }
+    return doc[val];
+  }
+
+  Widget testImage(DocumentSnapshot docs) {
+    if (docs["picURL"] == null) {
+      return Stack(
+        children: <Widget>[
+          Center(
+            child: Text("Error: Picture not found"),
+          ),
+        ],
+      );
+    }
+    return Stack(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(25),
+          child: Center(child: CircularProgressIndicator()),
+        ),
+        Center(
+          child: FadeInImage.memoryNetwork(
+            placeholder: kTransparentImage,
+            image: docs["picURL"],
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget buildAListViewItem(BuildContext context, DocumentSnapshot document) {
     return ListTile(
       title: Column(
         children: <Widget>[
-          Text(document["title"]),
-          Text(document["desc"]),
+          Text(testString(document, "title")),
+          Text(testString(document, "desc")),
         ],
       ),
     );
@@ -140,13 +173,22 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
           Container(
               height: MediaQuery.of(context).size.height * 0.9,
               child: StreamBuilder(
-                stream: Firestore.instance
-                    .collection("Murals")
-                    .document(found)
-                    .snapshots(),
+                stream: 
+                // testStream(),
+                Firestore.instance
+                      .collection("Murals")
+                      .document(found)
+                      .snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return const Text("Loading data...");
+                  }
+                  if (snapshot.hasError) {
+                    return const Text("error!");
+                  }
+                  if (snapshot == null || snapshot.data == null) {
+                    return const Text(
+                        "Can't find mural in our database! Sorry!");
                   }
                   return Center(
                     child: Column(
@@ -168,7 +210,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                           ),
                         ),
                         Text(
-                          snapshot.data["title"],
+                          testString(snapshot.data, "title"),
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -176,29 +218,14 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(15),
-                          child: Stack(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.all(25),
-                                child:
-                                    Center(child: CircularProgressIndicator()),
-                              ),
-                              Center(
-                                child: FadeInImage.memoryNetwork(
-                                  placeholder: kTransparentImage,
-                                  image: snapshot.data["picURL"],
-                                ),
-                              ),
-                            ],
-                          ),
+                          child: testImage(snapshot.data),
                         ),
                         Expanded(
-                          
                           child: SingleChildScrollView(
                             child: Padding(
                               padding: const EdgeInsets.all(15),
-                              child: Text(snapshot.data["desc"]),
-                            ), 
+                              child: Text(testString(snapshot.data, "desc")),
+                            ),
                           ),
                         ),
                         RaisedButton.icon(
