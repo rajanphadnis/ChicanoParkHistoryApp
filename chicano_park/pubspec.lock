@@ -85,6 +85,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.1+5"
+  firebase_livestream_ml_vision:
+    dependency: "direct main"
+    description:
+      name: firebase_livestream_ml_vision
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   firebase_storage:
     dependency: "direct main"
     description:
@@ -205,6 +212,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.5"
+  tflite:
+    dependency: "direct main"
+    description:
+      name: tflite
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   transparent_image:
     dependency: "direct main"
     description:

@@ -22,6 +22,12 @@
 @import firebase_core;
 #endif
 
+#if __has_include(<firebase_livestream_ml_vision/FirebaseLivestreamMlVisionPlugin.h>)
+#import <firebase_livestream_ml_vision/FirebaseLivestreamMlVisionPlugin.h>
+#else
+@import firebase_livestream_ml_vision;
+#endif
+
 #if __has_include(<firebase_storage/FirebaseStoragePlugin.h>)
 #import <firebase_storage/FirebaseStoragePlugin.h>
 #else
@@ -34,14 +40,22 @@
 @import share;
 #endif
 
+#if __has_include(<tflite/TflitePlugin.h>)
+#import <tflite/TflitePlugin.h>
+#else
+@import tflite;
+#endif
+
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
   [CameraPlugin registerWithRegistrar:[registry registrarForPlugin:@"CameraPlugin"]];
   [FLTCloudFirestorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTCloudFirestorePlugin"]];
   [FLTFirebaseCorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseCorePlugin"]];
+  [FLTFirebaseLivestreamMlVisionPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseLivestreamMlVisionPlugin"]];
   [FLTFirebaseStoragePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseStoragePlugin"]];
   [FLTSharePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTSharePlugin"]];
+  [TflitePlugin registerWithRegistrar:[registry registrarForPlugin:@"TflitePlugin"]];
 }
 
 @end

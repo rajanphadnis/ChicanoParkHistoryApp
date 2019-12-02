@@ -28,13 +28,18 @@ dependencies:
   firebase_storage: ^3.0.8
   transparent_image: ^1.0.0
   share: ^0.6.3+1
+  firebase_livestream_ml_vision: ^1.0.1
+  tflite: ^1.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 flutter:
   uses-material-design: true
-
+  assets:
+    - assets/ml/model.tflite
+    - assets/ml/dict.txt
+    - assets/ml/manifest.json
   fonts:
     - family: Baskerville
       fonts:
