@@ -1,4 +1,5 @@
 // First, you want to import all of the packages. Material is standard.
+import 'package:firebase_livestream_ml_vision/firebase_livestream_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:camera/camera.dart';
@@ -17,7 +18,8 @@ Future<void> main() async {
 
 // This variable is a string that will contain a descriptor for the mural we found when scanned
 var found = "";
-
+String textl = "quite literally nothing";
+double confidence = 0.0;
 // Create the app class and basic Material design structure
 class MyApp extends StatelessWidget {
   @override
@@ -42,23 +44,39 @@ class TheMainAppHomePage extends StatefulWidget {
 class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   // Define a camera controller. This determines which camera we want to use and when
   CameraController controller;
+  FirebaseVision _vision;
+  dynamic _scanResults;
+  // Detector _currentDetector = Detector.barcode;
   // initialize camera when the app is initialized
   @override
   void initState() {
     super.initState();
-    controller = CameraController(cameras[0], ResolutionPreset.medium);
-    controller.initialize().then((_) {
+    _initializeCamera();
+    // controller = CameraController(cameras[0], ResolutionPreset.medium);
+    // controller.initialize().then((_) {
+    //   if (!mounted) {
+    //     return;
+    //   }
+    //   setState(() {});
+    // });
+  }
+  void _initializeCamera() async {
+    List<FirebaseCameraDescription> cameras = await camerasAvailable();
+    _vision = FirebaseVision(cameras[0], ResolutionSetting.high);
+    _vision.initialize().then((_) {
       if (!mounted) {
         return;
       }
       setState(() {});
     });
   }
-
   // Get rid of the camera controller and access to the camera when the app is closed
   @override
   void dispose() {
     controller.dispose();
+    _vision.dispose().then((_) {
+      _vision.visionEdgeImageLabeler.close();
+    });
     super.dispose();
   }
 
@@ -66,7 +84,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   @override
   Widget build(BuildContext context) {
     // First, make sure that we have initialized the camera and the app (corner case: some devices run slower, so this makes sure that the camera is running before we show the camera to the user)
-    if (!controller.value.isInitialized) {
+    if (_vision == null) {
       // If its not initialized, we let the user know with the following helpful message
       return Scaffold(
         body: Center(
@@ -88,8 +106,8 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
         // Display the camera viewfinder
         AspectRatio(
           // Make sure it has the right aspect ratio
-          aspectRatio: controller.value.aspectRatio,
-          child: CameraPreview(controller),
+          aspectRatio: _vision.value.aspectRatio,
+          child: FirebaseCameraPreview(_vision),
         ),
         Container(
           child: Column(
@@ -108,33 +126,56 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
               RaisedButton(
                 child: Text('Mural1'),
                 onPressed: () => {
+                  runDetector(),
+                  
                   // when the button is pressed, set the "found" string to the name if the mural that was "found"
                   found = "Mural1",
                   // Then, show the slide up modal
-                  showTheModalThingWhenTheButtonIsPressed(),
+                  // showTheModalThingWhenTheButtonIsPressed(),
                 },
               ),
-              RaisedButton(
-                child: Text('img error'),
-                onPressed: () => {
-                  found = "Mural2",
-                  showTheModalThingWhenTheButtonIsPressed(),
-                },
-              ),
-              RaisedButton(
-                child: Text('DB Error'),
-                onPressed: () => {
-                  found = "Mural3",
-                  showTheModalThingWhenTheButtonIsPressed(),
-                },
-              ),
+              Text("Label: " + textl + ", confidence: " + confidence.toString()),
+              // RaisedButton(
+              //   child: Text('img error'),
+              //   onPressed: () => {
+              //     found = "Mural2",
+              //     showTheModalThingWhenTheButtonIsPressed(),
+              //   },
+              // ),
+              // RaisedButton(
+              //   child: Text('DB Error'),
+              //   onPressed: () => {
+              //     found = "Mural3",
+              //     showTheModalThingWhenTheButtonIsPressed(),
+              //   },
+              // ),
             ],
           ),
         ),
       ],
     );
   }
-
+  
+  void runDetector() {
+    print("Got Some Data1");
+    _vision.addVisionEdgeImageLabeler('ml', ModelLocation.Local, VisionEdgeImageLabelerOptions(confidenceThreshold: 0.6)).then((onValue){
+          onValue.listen((onData){
+            // print("Got Some Data");
+            setState(() {
+              // print(onData);
+              _scanResults = onData;
+            });
+          });
+        });
+        for (VisionEdgeImageLabel label in _scanResults) {
+          textl = label.text;
+          confidence = label.confidence;
+          print(textl + confidence.toString());
+        }
+        // _vision.removeVisionEdgeImageLabeler();
+        // if (_scanResults is! List<VisionEdgeImageLabel>) return "noResultsText";
+        // return _scanResults.toString();
+  }
   // Make sure that all of the strings return a string from the database, and show an error if the entry doesn't exist in the database
   String testString(DocumentSnapshot doc, String val) {
     if (doc == null) {
@@ -142,7 +183,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     }
     return doc[val];
   }
-
+  
   // Same thing as the string version, but instead with a loading circle and images
   Widget testImage(DocumentSnapshot docs) {
     if (docs["picURL"] == null) {
