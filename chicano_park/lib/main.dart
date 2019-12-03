@@ -2,17 +2,17 @@
 import 'package:firebase_livestream_ml_vision/firebase_livestream_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:camera/camera.dart';
+// import 'package:camera/camera.dart';
 import 'dart:async';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:share/share.dart';
 
 // Next, create a list of cameras so that we know which one is the "back" one
-List<CameraDescription> cameras;
+// List<CameraDescription> cameras;
 // Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a cmera feed to the user
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  cameras = await availableCameras();
+  // cameras = await availableCameras();
   runApp(MyApp());
 }
 
@@ -43,7 +43,7 @@ class TheMainAppHomePage extends StatefulWidget {
 
 class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   // Define a camera controller. This determines which camera we want to use and when
-  CameraController controller;
+  // CameraController controller;
   FirebaseVision _vision;
   dynamic _scanResults;
   // Detector _currentDetector = Detector.barcode;
@@ -73,7 +73,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   // Get rid of the camera controller and access to the camera when the app is closed
   @override
   void dispose() {
-    controller.dispose();
+    // controller.dispose();
     _vision.dispose().then((_) {
       _vision.visionEdgeImageLabeler.close();
     });
@@ -126,12 +126,13 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
               RaisedButton(
                 child: Text('Mural1'),
                 onPressed: () => {
-                  runDetector(),
+                  // runDetector(),
                   
                   // when the button is pressed, set the "found" string to the name if the mural that was "found"
                   found = "Mural1",
+                  // found = _scanResults,
                   // Then, show the slide up modal
-                  // showTheModalThingWhenTheButtonIsPressed(),
+                  showTheModalThingWhenTheButtonIsPressed(),
                 },
               ),
               Text("Label: " + textl + ", confidence: " + confidence.toString()),
