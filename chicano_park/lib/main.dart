@@ -110,7 +110,10 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
           child: FirebaseCameraPreview(_vision),
         ),
         Container(
+          color: Colors.white,
+          
           child: Column(
+            
             // Center the rest of the widgets in a column
             children: <Widget>[
               // Material(
@@ -125,8 +128,15 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
               // Here are a bunch of buttons to trigger different states whil we are testing without ml
               RaisedButton(
                 child: Text('Mural1'),
+                /*child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: onPressed,
+                    
+                  )
+                ),*/
                 onPressed: () => {
-                  // runDetector(),
+                  runDetector(),
                   
                   // when the button is pressed, set the "found" string to the name if the mural that was "found"
                   found = "Mural1",
@@ -135,7 +145,8 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                   showTheModalThingWhenTheButtonIsPressed(),
                 },
               ),
-              Text("Label: " + textl + ", confidence: " + confidence.toString()),
+              // Text("Label: " + textl + ", confidence: " + confidence.toString()),
+              
               // RaisedButton(
               //   child: Text('img error'),
               //   onPressed: () => {
@@ -156,24 +167,32 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
       ],
     );
   }
-  
+  void listenT(List<VisionEdgeImageLabel> data) {
+    print("Listened");
+    for (VisionEdgeImageLabel label in data) {
+      textl = label.text;
+      confidence = label.confidence;
+      print(textl + confidence.toString());
+    }
+    setState(() {
+      _scanResults = data;
+    });
+  }
   void runDetector() {
     print("Got Some Data1");
-    _vision.addVisionEdgeImageLabeler('ml', ModelLocation.Local, VisionEdgeImageLabelerOptions(confidenceThreshold: 0.6)).then((onValue){
-          onValue.listen((onData){
-            // print("Got Some Data");
-            setState(() {
-              // print(onData);
-              _scanResults = onData;
-            });
-          });
+    //This is the actual machine learning algorithm
+    _vision.addVisionEdgeImageLabeler('ml', ModelLocation.Local, VisionEdgeImageLabelerOptions(confidenceThreshold: 0.65)).then((onValue){
+          onValue.listen((onData) => 
+            listenT(onData),
+          );
         });
-        for (VisionEdgeImageLabel label in _scanResults) {
-          textl = label.text;
-          confidence = label.confidence;
-          print(textl + confidence.toString());
-        }
-        // _vision.removeVisionEdgeImageLabeler();
+
+        // 
+        // .then((_) {
+          _vision.visionEdgeImageLabeler.close();
+        // });
+        
+  
         // if (_scanResults is! List<VisionEdgeImageLabel>) return "noResultsText";
         // return _scanResults.toString();
   }
