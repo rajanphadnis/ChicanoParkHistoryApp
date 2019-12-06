@@ -9,7 +9,6 @@
 #import <firebase_livestream_ml_vision/FirebaseLivestreamMlVisionPlugin.h>
 #import <firebase_storage/FirebaseStoragePlugin.h>
 #import <share/SharePlugin.h>
-#import <tflite/TflitePlugin.h>
 
 @implementation GeneratedPluginRegistrant
 
@@ -20,7 +19,6 @@
   [FLTFirebaseLivestreamMlVisionPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseLivestreamMlVisionPlugin"]];
   [FLTFirebaseStoragePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseStoragePlugin"]];
   [FLTSharePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTSharePlugin"]];
-  [TflitePlugin registerWithRegistrar:[registry registrarForPlugin:@"TflitePlugin"]];
 }
 
 @end

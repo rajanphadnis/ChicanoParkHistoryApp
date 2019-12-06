@@ -7,7 +7,6 @@ import io.flutter.plugins.firebase.core.FirebaseCorePlugin;
 import io.flutter.plugins.firebaselivestreammlvision.FirebaseLivestreamMlVisionPlugin;
 import io.flutter.plugins.firebase.storage.FirebaseStoragePlugin;
 import io.flutter.plugins.share.SharePlugin;
-import sq.flutter.tflite.TflitePlugin;
 
 /**
  * Generated file. Do not edit.
@@ -23,7 +22,6 @@ public final class GeneratedPluginRegistrant {
     FirebaseLivestreamMlVisionPlugin.registerWith(registry.registrarFor("io.flutter.plugins.firebaselivestreammlvision.FirebaseLivestreamMlVisionPlugin"));
     FirebaseStoragePlugin.registerWith(registry.registrarFor("io.flutter.plugins.firebase.storage.FirebaseStoragePlugin"));
     SharePlugin.registerWith(registry.registrarFor("io.flutter.plugins.share.SharePlugin"));
-    TflitePlugin.registerWith(registry.registrarFor("sq.flutter.tflite.TflitePlugin"));
   }
 
   private static boolean alreadyRegisteredWith(PluginRegistry registry) {
