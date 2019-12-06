@@ -44,8 +44,8 @@
 30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 30-->[androidx.core:core:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\c1da7862c7abb8e426855a3f78caf221\core-1.0.0\AndroidManifest.xml:22:18-86
 31        android:debuggable="true"
-32        android:icon="@mipmap/ic_launcher"
-32-->C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:12:9-43
+32        android:icon="@mipmap/launcher_icon"
+32-->C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:12:9-45
 33        android:label="chicano_park" >
 33-->C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:11:9-37
 34        <activity
