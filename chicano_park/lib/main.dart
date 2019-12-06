@@ -7,6 +7,7 @@ import 'dart:async';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:share/share.dart';
 import 'dart:convert';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 // Next, create a list of cameras so that we know which one is the "back" one
 // Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a cmera feed to the user
@@ -23,7 +24,8 @@ bool differentMural = true;
 var jsonData =
     '{ "roses" : "Mural1", "daisy" : "Mural2", "tulips" : "Mural3"  }';
 var parsedJson = json.decode(jsonData);
-
+String data = "no error";
+final double confidenceThresh = 0.6;
 // Create the app class and basic Material design structure
 class MyApp extends StatelessWidget {
   @override
@@ -48,11 +50,68 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   // Define a camera controller. This determines which camera we want to use and when
   FirebaseVision _vision;
   dynamic _scanResults;
+  bool dialVisible = true;
+  BuildContext _scaffoldContext;
   // initialize camera when the app is initialized
   @override
   void initState() {
     super.initState();
     _initializeCamera();
+  }
+
+  void setDialVisible(bool value) {
+    setState(() {
+      dialVisible = value;
+    });
+  }
+
+  // Find icons from here: https://api.flutter.dev/flutter/material/Icons-class.html
+  SpeedDial buildSpeedDial() {
+    return SpeedDial(
+      animatedIcon: AnimatedIcons.menu_close,
+      animatedIconTheme: IconThemeData(size: 22.0),
+      child: Icon(Icons.add),
+      onOpen: () {
+        // print('OPENING DIAL');
+        setState(() {
+          differentMural = false;
+        });
+      },
+      onClose: () {
+        // print('DIAL CLOSED');
+        setState(() {
+          differentMural = true;
+        });
+      },
+      visible: dialVisible,
+      curve: Curves.bounceIn,
+      children: [
+        SpeedDialChild(
+          child: Icon(Icons.history, color: Colors.white),
+          backgroundColor: Colors.deepOrange,
+          onTap: () {
+            // print('FIRST CHILD');
+            found = "History";
+            showTheModalThingWhenTheButtonIsPressed();
+          },
+          label: 'History',
+          labelStyle: TextStyle(fontWeight: FontWeight.w500),
+          labelBackgroundColor: Colors.deepOrangeAccent,
+        ),
+        SpeedDialChild(
+          child: Icon(Icons.explore, color: Colors.white),
+          backgroundColor: Colors.green,
+          onTap: () {
+            setState(() {
+              data = "opened tours";
+            });
+          },
+          label: 'Tours',
+          labelStyle: TextStyle(fontWeight: FontWeight.w500),
+          labelBackgroundColor: Colors.green,
+        ),
+      ],
+    );
   }
 
   void _initializeCamera() async {
@@ -79,6 +138,8 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   // OK, now for the meaty stuff. The main widget here (called "build") is the main homepage widget in the "TheMainAppHomePage" class
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var deviceRatio = size.width / size.height;
     // First, make sure that we have initialized the camera and the app (corner case: some devices run slower, so this makes sure that the camera is running before we show the camera to the user)
     if (_vision == null) {
       // If its not initialized, we let the user know with the following helpful message
@@ -95,35 +156,40 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
         ),
       );
     }
+    double scale() {
+      // print(_vision.value.aspectRatio);
+      // print(deviceRatio);
+      // print(size.height);
+return (_vision.value.aspectRatio / deviceRatio) * (size.height / 391.332);
+    }
     // When the camera is initialized (Stateful widget, so it is constantly re-checking the state), show the main app ui
-    return Column(
-      // Center things with a "Column" widget
-      children: <Widget>[
-        // Stack(
-        //       fit: StackFit.expand,
-        //       children: <Widget>[
-        //         FirebaseCameraPreview(_vision),
-        //       ],
-        //     ),
-        // Display the camera viewfinder
-        AspectRatio(
-          // Make sure it has the right aspect ratio
-          aspectRatio: _vision.value.aspectRatio,
-          child: FirebaseCameraPreview(_vision),
-        ),
-        Container(
-          color: Colors.white,
-          child: Column(
-            // Center the rest of the widgets in a column
-            children: <Widget>[
-              Text(
-                textl + ":" + (confidence * 100).toStringAsPrecision(3) + "%",
-                style: TextStyle(fontSize: 20),
-              ),
-            ],
+    return Scaffold(
+      body: Column(
+        // Center things with a "Column" widget
+        children: <Widget>[
+          Transform.scale(
+            scale: scale(),
+            child: new AspectRatio(
+              aspectRatio: _vision.value.aspectRatio,
+              child: new FirebaseCameraPreview(_vision),
+            ),
           ),
-        ),
-      ],
+          Container(
+            color: Colors.white,
+            child: Column(
+              // Center the rest of the widgets in a column
+              children: <Widget>[
+                // Text(
+                //   textl + ":" + (confidence * 100).toStringAsPrecision(3) + "%",
+                //   style: TextStyle(fontSize: 20),
+                // ),
+                // Text(data)
+              ],
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton: buildSpeedDial(),
     );
   }
 
@@ -132,7 +198,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   }
 
   void listenForModelCalls(List<VisionEdgeImageLabel> data) {
-    print("Listened: " + data.toString());
+    // print("Listened: " + data.toString());
     setState(() {
       if (data.toList().length == 0) {
         textl = "none";
@@ -144,7 +210,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
           confidence = label.confidence;
           print(textl + confidence.toString());
         }
-        if (confidence >= 0.7) {
+        if (confidence >= confidenceThresh) {
           if (differentMural) {
             found = dictLookUp(textl);
             showTheModalThingWhenTheButtonIsPressed();
@@ -164,7 +230,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     //This is the actual machine learning algorithm
     _vision
         .addVisionEdgeImageLabeler('ml', ModelLocation.Local,
-            VisionEdgeImageLabelerOptions(confidenceThreshold: 0.65))
+            VisionEdgeImageLabelerOptions(confidenceThreshold: confidenceThresh))
         .then((onValue) {
       onValue.listen(
         (onData) => listenForModelCalls(onData),

@@ -5,16 +5,14 @@ INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:1:1-33:12
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:1:1-33:12
 MERGED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:1:1-33:12
-MERGED from [:tflite] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\tflite\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-7:12
 MERGED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-10:12
 MERGED from [:share] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\share\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-7:12
 MERGED from [:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-17:12
 MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-15:12
-MERGED from [com.google.firebase:firebase-ml-vision-automl:16.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\afa2d7704c893fe3bf4ad7a3d3f99bf5\jetified-firebase-ml-vision-automl-16.0.0\AndroidManifest.xml:2:1-8:12
-MERGED from [org.tensorflow:tensorflow-lite:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\d9cafdcc6114672e044efaca8d3f86fc\tensorflow-lite-2.0.0\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:2:1-24:12
+MERGED from [com.google.firebase:firebase-ml-vision-automl:16.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\afa2d7704c893fe3bf4ad7a3d3f99bf5\jetified-firebase-ml-vision-automl-16.0.0\AndroidManifest.xml:2:1-8:12
 MERGED from [com.google.firebase:firebase-ml-vision:20.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\7617fe454bc74cc319b92de00f027691\jetified-firebase-ml-vision-20.0.0\AndroidManifest.xml:2:1-8:12
 MERGED from [com.google.firebase:firebase-storage:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\203aa8cbed927de0913ff7dd637ff428\jetified-firebase-storage-17.0.0\AndroidManifest.xml:15:1-37:12
 MERGED from [com.google.firebase:firebase-auth-interop:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\21823c2ee3e3eb901b5ca6c9fc8bd5d1\jetified-firebase-auth-interop-17.0.0\AndroidManifest.xml:2:1-10:12
@@ -62,6 +60,7 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Rajan Phadni
 MERGED from [com.google.firebase:firebase-database-collection:16.0.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\609761c2a34cdc1a820592b58b1ac85f\firebase-database-collection-16.0.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:protolite-well-known-types:16.0.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\9502245c4b92bc115ef1338b48aa7ca4\protolite-well-known-types-16.0.1\AndroidManifest.xml:2:1-11:12
 MERGED from [io.grpc:grpc-android:1.16.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\034529098476943be10d6e515cca9cbe\grpc-android-1.16.1\AndroidManifest.xml:2:1-13:12
+MERGED from [org.tensorflow:tensorflow-lite:1.13.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\47b48cb23b1690534143f1cd77ac1bab\tensorflow-lite-1.13.1\AndroidManifest.xml:2:1-11:12
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\profile\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\profile\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\profile\AndroidManifest.xml:1:1-7:12
@@ -89,8 +88,6 @@ MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryAp
 MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:7:5-13:19
-MERGED from [org.tensorflow:tensorflow-lite:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\d9cafdcc6114672e044efaca8d3f86fc\tensorflow-lite-2.0.0\AndroidManifest.xml:8:5-20
-MERGED from [org.tensorflow:tensorflow-lite:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\d9cafdcc6114672e044efaca8d3f86fc\tensorflow-lite-2.0.0\AndroidManifest.xml:8:5-20
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:16:5-22:19
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:16:5-22:19
 MERGED from [com.google.firebase:firebase-storage:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\203aa8cbed927de0913ff7dd637ff428\jetified-firebase-storage-17.0.0\AndroidManifest.xml:29:5-35:19
@@ -125,6 +122,8 @@ MERGED from [androidx.core:core:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\tra
 MERGED from [androidx.core:core:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\c1da7862c7abb8e426855a3f78caf221\core-1.0.0\AndroidManifest.xml:22:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\2ae0f4532ce9c2b2540e7c7daff54826\versionedparcelable-1.0.0\AndroidManifest.xml:22:5-23:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\2ae0f4532ce9c2b2540e7c7daff54826\versionedparcelable-1.0.0\AndroidManifest.xml:22:5-23:19
+MERGED from [org.tensorflow:tensorflow-lite:1.13.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\47b48cb23b1690534143f1cd77ac1bab\tensorflow-lite-1.13.1\AndroidManifest.xml:9:5-20
+MERGED from [org.tensorflow:tensorflow-lite:1.13.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\47b48cb23b1690534143f1cd77ac1bab\tensorflow-lite-1.13.1\AndroidManifest.xml:9:5-20
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\c1da7862c7abb8e426855a3f78caf221\core-1.0.0\AndroidManifest.xml:22:18-86
 	android:label
@@ -167,8 +166,6 @@ uses-sdk
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml
-MERGED from [:tflite] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\tflite\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
-MERGED from [:tflite] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\tflite\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
 MERGED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
 MERGED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
 MERGED from [:share] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\share\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
@@ -181,12 +178,10 @@ MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryAp
 MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-ml-vision-automl:16.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\afa2d7704c893fe3bf4ad7a3d3f99bf5\jetified-firebase-ml-vision-automl-16.0.0\AndroidManifest.xml:6:5-44
-MERGED from [com.google.firebase:firebase-ml-vision-automl:16.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\afa2d7704c893fe3bf4ad7a3d3f99bf5\jetified-firebase-ml-vision-automl-16.0.0\AndroidManifest.xml:6:5-44
-MERGED from [org.tensorflow:tensorflow-lite:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\d9cafdcc6114672e044efaca8d3f86fc\tensorflow-lite-2.0.0\AndroidManifest.xml:5:5-6:41
-MERGED from [org.tensorflow:tensorflow-lite:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\d9cafdcc6114672e044efaca8d3f86fc\tensorflow-lite-2.0.0\AndroidManifest.xml:5:5-6:41
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:firebase-ml-vision-automl:16.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\afa2d7704c893fe3bf4ad7a3d3f99bf5\jetified-firebase-ml-vision-automl-16.0.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.firebase:firebase-ml-vision-automl:16.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\afa2d7704c893fe3bf4ad7a3d3f99bf5\jetified-firebase-ml-vision-automl-16.0.0\AndroidManifest.xml:6:5-44
 MERGED from [com.google.firebase:firebase-ml-vision:20.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\7617fe454bc74cc319b92de00f027691\jetified-firebase-ml-vision-20.0.0\AndroidManifest.xml:6:5-44
 MERGED from [com.google.firebase:firebase-ml-vision:20.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\7617fe454bc74cc319b92de00f027691\jetified-firebase-ml-vision-20.0.0\AndroidManifest.xml:6:5-44
 MERGED from [com.google.firebase:firebase-storage:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\203aa8cbed927de0913ff7dd637ff428\jetified-firebase-storage-17.0.0\AndroidManifest.xml:20:5-22:41
@@ -281,6 +276,8 @@ MERGED from [com.google.firebase:protolite-well-known-types:16.0.1] C:\Users\Raj
 MERGED from [com.google.firebase:protolite-well-known-types:16.0.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\9502245c4b92bc115ef1338b48aa7ca4\protolite-well-known-types-16.0.1\AndroidManifest.xml:7:5-9:41
 MERGED from [io.grpc:grpc-android:1.16.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\034529098476943be10d6e515cca9cbe\grpc-android-1.16.1\AndroidManifest.xml:7:5-9:41
 MERGED from [io.grpc:grpc-android:1.16.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\034529098476943be10d6e515cca9cbe\grpc-android-1.16.1\AndroidManifest.xml:7:5-9:41
+MERGED from [org.tensorflow:tensorflow-lite:1.13.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\47b48cb23b1690534143f1cd77ac1bab\tensorflow-lite-1.13.1\AndroidManifest.xml:5:5-7:41
+MERGED from [org.tensorflow:tensorflow-lite:1.13.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\47b48cb23b1690534143f1cd77ac1bab\tensorflow-lite-1.13.1\AndroidManifest.xml:5:5-7:41
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\profile\AndroidManifest.xml
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\profile\AndroidManifest.xml
 	android:targetSdkVersion
@@ -288,7 +285,6 @@ INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\
 		INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\profile\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml
-		MERGED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\profile\AndroidManifest.xml
 		INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\profile\AndroidManifest.xml
 uses-permission#android.permission.INTERNET
 ADDED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\profile\AndroidManifest.xml:6:5-66

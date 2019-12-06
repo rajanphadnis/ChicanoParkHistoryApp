@@ -29,7 +29,8 @@ dependencies:
   transparent_image: ^1.0.0
   share: ^0.6.3+1
   firebase_livestream_ml_vision: ^1.0.1
-  tflite: ^1.0.4
+  # tflite: ^1.0.4
+  flutter_speed_dial: ^1.2.4
 
 dev_dependencies:
   flutter_launcher_icons: ^0.7.3

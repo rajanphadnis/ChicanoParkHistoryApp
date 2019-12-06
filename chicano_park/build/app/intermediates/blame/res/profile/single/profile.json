@@ -44,12 +44,12 @@
         "source": "C:\\Users\\Rajan Phadnis\\.gradle\\caches\\transforms-2\\files-2.1\\f2d3ac2de04261631794640388fe54f7\\jetified-play-services-base-16.0.1\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
-        "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\layout_notification_template_part_chronometer.xml.flat",
-        "source": "C:\\Users\\Rajan Phadnis\\.gradle\\caches\\transforms-2\\files-2.1\\c1da7862c7abb8e426855a3f78caf221\\core-1.0.0\\res\\layout\\notification_template_part_chronometer.xml"
-    },
-    {
         "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\mipmap-hdpi_launcher_icon.png.flat",
         "source": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\android\\app\\src\\main\\res\\mipmap-hdpi\\launcher_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\layout_notification_template_part_chronometer.xml.flat",
+        "source": "C:\\Users\\Rajan Phadnis\\.gradle\\caches\\transforms-2\\files-2.1\\c1da7862c7abb8e426855a3f78caf221\\core-1.0.0\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
         "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\layout_notification_template_part_time.xml.flat",
@@ -120,12 +120,12 @@
         "source": "C:\\Users\\Rajan Phadnis\\.gradle\\caches\\transforms-2\\files-2.1\\c1da7862c7abb8e426855a3f78caf221\\core-1.0.0\\res\\drawable-xhdpi-v4\\notification_bg_normal.9.png"
     },
     {
-        "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\drawable-mdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "C:\\Users\\Rajan Phadnis\\.gradle\\caches\\transforms-2\\files-2.1\\f2d3ac2de04261631794640388fe54f7\\jetified-play-services-base-16.0.1\\res\\drawable-mdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
-    },
-    {
         "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\mipmap-xxxhdpi_launcher_icon.png.flat",
         "source": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\launcher_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\drawable-mdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
+        "source": "C:\\Users\\Rajan Phadnis\\.gradle\\caches\\transforms-2\\files-2.1\\f2d3ac2de04261631794640388fe54f7\\jetified-play-services-base-16.0.1\\res\\drawable-mdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\drawable-hdpi-v4_notification_bg_normal.9.png.flat",
@@ -212,16 +212,16 @@
         "source": "C:\\Users\\Rajan Phadnis\\.gradle\\caches\\transforms-2\\files-2.1\\f2d3ac2de04261631794640388fe54f7\\jetified-play-services-base-16.0.1\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
     },
     {
+        "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\mipmap-xxhdpi_launcher_icon.png.flat",
+        "source": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\launcher_icon.png"
+    },
+    {
         "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\drawable-xhdpi-v4_googleg_standard_color_18.png.flat",
         "source": "C:\\Users\\Rajan Phadnis\\.gradle\\caches\\transforms-2\\files-2.1\\f2d3ac2de04261631794640388fe54f7\\jetified-play-services-base-16.0.1\\res\\drawable-xhdpi-v4\\googleg_standard_color_18.png"
     },
     {
         "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\mipmap-mdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\mipmap-xxhdpi_launcher_icon.png.flat",
-        "source": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\launcher_icon.png"
     },
     {
         "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
@@ -276,12 +276,12 @@
         "source": "C:\\Users\\Rajan Phadnis\\.gradle\\caches\\transforms-2\\files-2.1\\f2d3ac2de04261631794640388fe54f7\\jetified-play-services-base-16.0.1\\res\\drawable-mdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
-        "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\drawable-xxhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "C:\\Users\\Rajan Phadnis\\.gradle\\caches\\transforms-2\\files-2.1\\f2d3ac2de04261631794640388fe54f7\\jetified-play-services-base-16.0.1\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
-    },
-    {
         "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\mipmap-xhdpi_launcher_icon.png.flat",
         "source": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\android\\app\\src\\main\\res\\mipmap-xhdpi\\launcher_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\drawable-xxhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
+        "source": "C:\\Users\\Rajan Phadnis\\.gradle\\caches\\transforms-2\\files-2.1\\f2d3ac2de04261631794640388fe54f7\\jetified-play-services-base-16.0.1\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "C:\\Users\\Rajan Phadnis\\Desktop\\ChicanoParkHistoryApp\\chicano_park\\build\\app\\intermediates\\res\\merged\\profile\\drawable_common_google_signin_btn_icon_dark_normal.xml.flat",

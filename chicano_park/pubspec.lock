@@ -111,6 +111,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.4"
+  flutter_speed_dial:
+    dependency: "direct main"
+    description:
+      name: flutter_speed_dial
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.4"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -219,13 +226,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.5"
-  tflite:
-    dependency: "direct main"
-    description:
-      name: tflite
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.4"
   transparent_image:
     dependency: "direct main"
     description:
