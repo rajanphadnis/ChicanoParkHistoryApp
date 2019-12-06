@@ -32,6 +32,8 @@ dependencies:
   tflite: ^1.0.4
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.7.3
+  
   flutter_test:
     sdk: flutter
 flutter:
@@ -45,3 +47,7 @@ flutter:
       fonts:
         - asset: fonts/baskerville.ttf
           style: normal
+flutter_icons:
+    android: "launcher_icon" 
+    ios: true
+    image_path: "assets/icons/icon.png"
