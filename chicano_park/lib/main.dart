@@ -6,13 +6,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:share/share.dart';
+import 'dart:convert';
 
 // Next, create a list of cameras so that we know which one is the "back" one
-// List<CameraDescription> cameras;
 // Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a cmera feed to the user
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // cameras = await availableCameras();
   runApp(MyApp());
 }
 
@@ -20,12 +19,16 @@ Future<void> main() async {
 var found = "";
 String textl = "quite literally nothing";
 double confidence = 0.0;
+bool differentMural = true;
+var jsonData =
+    '{ "roses" : "Mural1", "daisy" : "Mural2", "tulips" : "Mural3"  }';
+var parsedJson = json.decode(jsonData);
+
 // Create the app class and basic Material design structure
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // title: 'Flutter Demo',
       theme: ThemeData(
         // We can end up changing a bunch of values in here
         primarySwatch: Colors.blue,
@@ -43,23 +46,15 @@ class TheMainAppHomePage extends StatefulWidget {
 
 class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   // Define a camera controller. This determines which camera we want to use and when
-  // CameraController controller;
   FirebaseVision _vision;
   dynamic _scanResults;
-  // Detector _currentDetector = Detector.barcode;
   // initialize camera when the app is initialized
   @override
   void initState() {
     super.initState();
     _initializeCamera();
-    // controller = CameraController(cameras[0], ResolutionPreset.medium);
-    // controller.initialize().then((_) {
-    //   if (!mounted) {
-    //     return;
-    //   }
-    //   setState(() {});
-    // });
   }
+
   void _initializeCamera() async {
     List<FirebaseCameraDescription> cameras = await camerasAvailable();
     _vision = FirebaseVision(cameras[0], ResolutionSetting.high);
@@ -68,12 +63,13 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
         return;
       }
       setState(() {});
+      runDetector();
     });
   }
+
   // Get rid of the camera controller and access to the camera when the app is closed
   @override
   void dispose() {
-    // controller.dispose();
     _vision.dispose().then((_) {
       _vision.visionEdgeImageLabeler.close();
     });
@@ -103,6 +99,12 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     return Column(
       // Center things with a "Column" widget
       children: <Widget>[
+        // Stack(
+        //       fit: StackFit.expand,
+        //       children: <Widget>[
+        //         FirebaseCameraPreview(_vision),
+        //       ],
+        //     ),
         // Display the camera viewfinder
         AspectRatio(
           // Make sure it has the right aspect ratio
@@ -111,91 +113,65 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
         ),
         Container(
           color: Colors.white,
-          
           child: Column(
-            
             // Center the rest of the widgets in a column
             children: <Widget>[
-              // Material(
-              //   child: TextField(
-              //     onChanged: (text) {
-              //       found = text;
-              //     },
-              //     decoration: InputDecoration(
-              //         border: InputBorder.none, hintText: "name of Mural"),
-              //   ),
-              // ),
-              // Here are a bunch of buttons to trigger different states whil we are testing without ml
-              RaisedButton(
-                child: Text('Mural1'),
-                /*child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: onPressed,
-                    
-                  )
-                ),*/
-                onPressed: () => {
-                  runDetector(),
-                  
-                  // when the button is pressed, set the "found" string to the name if the mural that was "found"
-                  found = "Mural1",
-                  // found = _scanResults,
-                  // Then, show the slide up modal
-                  showTheModalThingWhenTheButtonIsPressed(),
-                },
+              Text(
+                textl + ":" + (confidence * 100).toStringAsPrecision(3) + "%",
+                style: TextStyle(fontSize: 20),
               ),
-              // Text("Label: " + textl + ", confidence: " + confidence.toString()),
-              
-              // RaisedButton(
-              //   child: Text('img error'),
-              //   onPressed: () => {
-              //     found = "Mural2",
-              //     showTheModalThingWhenTheButtonIsPressed(),
-              //   },
-              // ),
-              // RaisedButton(
-              //   child: Text('DB Error'),
-              //   onPressed: () => {
-              //     found = "Mural3",
-              //     showTheModalThingWhenTheButtonIsPressed(),
-              //   },
-              // ),
             ],
           ),
         ),
       ],
     );
   }
-  void listenT(List<VisionEdgeImageLabel> data) {
-    print("Listened");
-    for (VisionEdgeImageLabel label in data) {
-      textl = label.text;
-      confidence = label.confidence;
-      print(textl + confidence.toString());
-    }
+
+  String dictLookUp(String label) {
+    return parsedJson[label];
+  }
+
+  void listenForModelCalls(List<VisionEdgeImageLabel> data) {
+    print("Listened: " + data.toString());
     setState(() {
-      _scanResults = data;
+      if (data.toList().length == 0) {
+        textl = "none";
+        confidence = 0;
+        print("none");
+      } else {
+        for (VisionEdgeImageLabel label in data) {
+          textl = label.text;
+          confidence = label.confidence;
+          print(textl + confidence.toString());
+        }
+        if (confidence >= 0.7) {
+          if (differentMural) {
+            found = dictLookUp(textl);
+            showTheModalThingWhenTheButtonIsPressed();
+            differentMural = false;
+          } else {
+            print("Found a Mural but not showing modal");
+          }
+        } else {
+          print("confidence level not met");
+        }
+      }
     });
   }
+
   void runDetector() {
     print("Got Some Data1");
     //This is the actual machine learning algorithm
-    _vision.addVisionEdgeImageLabeler('ml', ModelLocation.Local, VisionEdgeImageLabelerOptions(confidenceThreshold: 0.65)).then((onValue){
-          onValue.listen((onData) => 
-            listenT(onData),
-          );
-        });
-
-        // 
-        // .then((_) {
-          _vision.visionEdgeImageLabeler.close();
-        // });
-        
-  
-        // if (_scanResults is! List<VisionEdgeImageLabel>) return "noResultsText";
-        // return _scanResults.toString();
+    _vision
+        .addVisionEdgeImageLabeler('ml', ModelLocation.Local,
+            VisionEdgeImageLabelerOptions(confidenceThreshold: 0.65))
+        .then((onValue) {
+      onValue.listen(
+        (onData) => listenForModelCalls(onData),
+      );
+    });
   }
+
   // Make sure that all of the strings return a string from the database, and show an error if the entry doesn't exist in the database
   String testString(DocumentSnapshot doc, String val) {
     if (doc == null) {
@@ -203,7 +179,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     }
     return doc[val];
   }
-  
+
   // Same thing as the string version, but instead with a loading circle and images
   Widget testImage(DocumentSnapshot docs) {
     if (docs["picURL"] == null) {
@@ -352,7 +328,11 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
           ),
         ],
       ),
-    );
+    ).whenComplete(() {
+      Future.delayed(const Duration(milliseconds: 500), () {
+        differentMural = true;
+      });
+    });
   }
 }
 
