@@ -26,6 +26,7 @@ var jsonData =
 var parsedJson = json.decode(jsonData);
 String data = "no error";
 final double confidenceThresh = 0.6;
+
 // Create the app class and basic Material design structure
 class MyApp extends StatelessWidget {
   @override
@@ -91,8 +92,12 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
           backgroundColor: Colors.deepOrange,
           onTap: () {
             // print('FIRST CHILD');
-            found = "History";
-            showTheModalThingWhenTheButtonIsPressed();
+            // found = "History";
+            setState(() {
+              differentMural = false;
+            });
+            // differentMural = false;
+            showHistoryBottomSheet();
           },
           label: 'History',
           labelStyle: TextStyle(fontWeight: FontWeight.w500),
@@ -160,8 +165,10 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
       // print(_vision.value.aspectRatio);
       // print(deviceRatio);
       // print(size.height);
-return (_vision.value.aspectRatio / deviceRatio) * (size.height / 391.332);
+      return (_vision.value.aspectRatio / deviceRatio) *
+          (size.height / 391.332);
     }
+
     // When the camera is initialized (Stateful widget, so it is constantly re-checking the state), show the main app ui
     return Scaffold(
       body: Column(
@@ -172,19 +179,6 @@ return (_vision.value.aspectRatio / deviceRatio) * (size.height / 391.332);
             child: new AspectRatio(
               aspectRatio: _vision.value.aspectRatio,
               child: new FirebaseCameraPreview(_vision),
-            ),
-          ),
-          Container(
-            color: Colors.white,
-            child: Column(
-              // Center the rest of the widgets in a column
-              children: <Widget>[
-                // Text(
-                //   textl + ":" + (confidence * 100).toStringAsPrecision(3) + "%",
-                //   style: TextStyle(fontSize: 20),
-                // ),
-                // Text(data)
-              ],
             ),
           ),
         ],
@@ -229,8 +223,11 @@ return (_vision.value.aspectRatio / deviceRatio) * (size.height / 391.332);
     print("Got Some Data1");
     //This is the actual machine learning algorithm
     _vision
-        .addVisionEdgeImageLabeler('ml', ModelLocation.Local,
-            VisionEdgeImageLabelerOptions(confidenceThreshold: confidenceThresh))
+        .addVisionEdgeImageLabeler(
+            'ml',
+            ModelLocation.Local,
+            VisionEdgeImageLabelerOptions(
+                confidenceThreshold: confidenceThresh))
         .then((onValue) {
       onValue.listen(
         (onData) => listenForModelCalls(onData),
@@ -400,6 +397,246 @@ return (_vision.value.aspectRatio / deviceRatio) * (size.height / 391.332);
       });
     });
   }
+
+  void showHistoryBottomSheet() {
+    // Obviously show the bottom sheet
+    showModalBottomSheet(
+      // we want it be dismissable when you swipe down
+      isScrollControlled: true,
+      // Add the corner radii
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10.0),
+          topRight: Radius.circular(10.0),
+        ),
+      ),
+      // Background color of the bottom sheet
+      backgroundColor: Colors.white,
+      // Choose which "navigator" to put the modal in. We just choose the general "context", which is the main, root navigator
+      context: context,
+      // now we supply the modal with the widget inside of the modal
+      builder: (context) => Wrap(
+        // Wrap the text and stuff so that nothing gets cut off
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height * 0.9,
+            child: StreamBuilder(
+              // now add firebase integration. "subscribe" to the data from the firestore database
+              stream: Firestore.instance
+                  .collection("History")
+                  // get the document that has the title of the mural that was just scanned: "found"
+                  .document("index")
+                  .snapshots(),
+              builder: (context, snapshot) {
+                // Do some basic error processing
+                if (!snapshot.hasData) {
+                  return const Text("Loading data...");
+                }
+                if (snapshot == null || snapshot.data == null) {
+                  return const Text("Something went seriously wrong! Sorry!");
+                }
+                if (snapshot.hasError) {
+                  return const Text("error!");
+                }
+                // If there is no error, continue building the widgets
+                return Center(
+                  child: Column(
+                    children: <Widget>[
+                      // This is the "pill" shape at the top of the modal. See the class at the bottom of the file.
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: CustomPaint(
+                          painter:
+                              PaintSomeRandomShapeThatIsProbablyARectangleWithSomeRadius(),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: new Border.all(color: Colors.white),
+                                borderRadius:
+                                    new BorderRadius.all(Radius.circular(2.5)),
+                                color: Colors.grey),
+                            height: 5,
+                            width: 40,
+                          ),
+                        ),
+                      ),
+                      // This is the title for the modal. get the data from the database
+                      Text(
+                        "Chicano Park: History",
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 30),
+                      ),
+                      SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Text(
+                              testString(snapshot.data, "basicDescription"),textAlign: TextAlign.center,),
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          "Timeline:",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ),
+                      Container(
+                        height: 200,
+                        child: ListView(
+                          padding: const EdgeInsets.all(8),
+                          scrollDirection: Axis.horizontal,
+                          children: <Widget>[
+                            Container(
+                              width: 200,
+                              child: Column(
+                                children: <Widget>[
+                                  Card(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Column(
+                                        children: <Widget>[
+                                          Text(
+                                          "Year Range:"),
+                                          Text("The Takeover")
+                                        ],)
+                                        
+                                    ),
+                                    elevation: 3,
+                                  ),
+                                  CustomPaint(
+                                    painter: ShapesPainter(),
+                                    child: Container(
+                                      width: 200,
+                                      height: 80,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 200,
+                              child: Column(
+                                children: <Widget>[
+                                  Card(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Column(
+                                        children: <Widget>[
+                                          Text(
+                                          "Year Range:"),
+                                          Text("Murals Appeared")
+                                        ],)
+                                    ),
+                                    elevation: 3,
+                                  ),
+                                  CustomPaint(
+                                    painter: ShapesPainter(),
+                                    child: Container(
+                                      width: 200,
+                                      height: 80,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 200,
+                              child: Column(
+                                children: <Widget>[
+                                  Card(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Column(
+                                        children: <Widget>[
+                                          Text(
+                                          "Year Range:"),
+                                          Text("Restoration")
+                                        ],)
+                                    ),
+                                    elevation: 3,
+                                  ),
+                                  CustomPaint(
+                                    painter: ShapesPainter(),
+                                    child: Container(
+                                      width: 200,
+                                      height: 80,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 200,
+                              child: Column(
+                                children: <Widget>[
+                                  Card(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Column(
+                                        children: <Widget>[
+                                          Text(
+                                          "Year Range:"),
+                                          Text("Present Day")
+                                        ],)
+                                    ),
+                                    elevation: 3,
+                                  ),
+                                  CustomPaint(
+                                    painter: ShapesPainter(),
+                                    child: Container(
+                                      width: 200,
+                                      height: 80,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: RaisedButton.icon(
+                              icon: Icon(Icons.share),
+                              label: Text("Share"),
+                              onPressed: () {
+                                // The message that will be shared. This can be a link, some text or contact or anything really
+                                Share.share("Hello there!");
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: RaisedButton.icon(
+                              icon: Icon(Icons.explore),
+                              label: Text("Tour Guide"),
+                              onPressed: () {
+                                // Remember navigator? We just "pop" it to get rid of it.
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    ).whenComplete(() {
+      Future.delayed(const Duration(milliseconds: 500), () {
+        differentMural = true;
+      });
+    });
+  }
 }
 
 // This is a custom painter that literally paints a shape on the screen. We call it when we draw the modal above.
@@ -415,6 +652,33 @@ class PaintSomeRandomShapeThatIsProbablyARectangleWithSomeRadius
     var rect = Rect.fromLTWH(0, 0, size.width, size.height);
     // draw the rectangle
     canvas.drawRect(rect, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
+}
+
+class ShapesPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+    // set the paint color to be white
+    paint.color = Colors.red;
+    double circleRadius = 10;
+    double rectRad = 5;
+    double timelineShapeWidth = 200;
+    // Create a rectangle with size and width same as the canvas
+    // var rect = Rect.fromLTWH(0, 0, 10, size.height / 3);
+    var rect = Rect.fromLTRB(0, (size.height / 2) - (rectRad / 2),
+        timelineShapeWidth, (size.height / 2) + (rectRad / 2));
+    // draw the rectangle using the paint
+    canvas.drawRect(rect, paint);
+    // set the color property of the paint
+    paint.color = Colors.red;
+    // center of the canvas is (x,y) => (width/2, height/2)
+    var center = Offset(timelineShapeWidth / 2, size.height / 2);
+    // draw the circle with center having radius 15.0
+    canvas.drawCircle(center, circleRadius, paint);
   }
 
   @override
