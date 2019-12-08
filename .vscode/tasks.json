@@ -7,7 +7,11 @@
             "label": "profile",
             "type": "shell",
             "command": "cd chicano_park && flutter run --profile",
-            "problemMatcher": []
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }

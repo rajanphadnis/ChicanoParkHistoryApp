@@ -8,6 +8,7 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:share/share.dart';
 import 'dart:convert';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+part 'infoPage.dart';
 
 // Next, create a list of cameras so that we know which one is the "back" one
 // Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a cmera feed to the user
@@ -25,7 +26,7 @@ var jsonData =
     '{ "roses" : "Mural1", "daisy" : "Mural2", "tulips" : "Mural3"  }';
 var parsedJson = json.decode(jsonData);
 String data = "no error";
-final double confidenceThresh = 0.6;
+final double confidenceThresh = 0.7;
 
 // Create the app class and basic Material design structure
 class MyApp extends StatelessWidget {
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        // We can end up changing a bunch of values in here
+        // We can end up changing a bunch of values in here: https://api.flutter.dev/flutter/material/Colors-class.html
         primarySwatch: Colors.blue,
       ),
       // Tell the app that the homepage is TheMainAppHomePage()
@@ -80,9 +81,10 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
       },
       onClose: () {
         // print('DIAL CLOSED');
-        setState(() {
-          differentMural = true;
-        });
+        // setState(() {
+
+        differentMural = true;
+        // });
       },
       visible: dialVisible,
       curve: Curves.bounceIn,
@@ -94,7 +96,10 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
             // print('FIRST CHILD');
             // found = "History";
             setState(() {
-              differentMural = false;
+              Future.delayed(const Duration(milliseconds: 500), () {
+                differentMural = false;
+              });
+              // differentMural = false;
             });
             // differentMural = false;
             showHistoryBottomSheet();
@@ -108,6 +113,9 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
           backgroundColor: Colors.green,
           onTap: () {
             setState(() {
+              Future.delayed(const Duration(milliseconds: 500), () {
+                differentMural = false;
+              });
               data = "opened tours";
             });
           },
@@ -193,27 +201,24 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
 
   void listenForModelCalls(List<VisionEdgeImageLabel> data) {
     // print("Listened: " + data.toString());
+    print(differentMural);
     setState(() {
       if (data.toList().length == 0) {
         textl = "none";
         confidence = 0;
         print("none");
       } else {
-        for (VisionEdgeImageLabel label in data) {
-          textl = label.text;
-          confidence = label.confidence;
-          print(textl + confidence.toString());
-        }
-        if (confidence >= confidenceThresh) {
-          if (differentMural) {
-            found = dictLookUp(textl);
-            showTheModalThingWhenTheButtonIsPressed();
-            differentMural = false;
-          } else {
-            print("Found a Mural but not showing modal");
+        if (differentMural) {
+          for (VisionEdgeImageLabel label in data) {
+            textl = label.text;
+            confidence = label.confidence;
+            print(textl + confidence.toString());
           }
+          found = dictLookUp(textl);
+          showTheModalThingWhenTheButtonIsPressed();
+          differentMural = false;
         } else {
-          print("confidence level not met");
+          print("Found a Mural but not showing modal");
         }
       }
     });
@@ -430,7 +435,11 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
               builder: (context, snapshot) {
                 // Do some basic error processing
                 if (!snapshot.hasData) {
-                  return const Text("Loading data...");
+                  return Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: Text("Getting Data..."),
+                  );
                 }
                 if (snapshot == null || snapshot.data == null) {
                   return const Text("Something went seriously wrong! Sorry!");
@@ -471,7 +480,9 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                         child: Padding(
                           padding: const EdgeInsets.all(15),
                           child: Text(
-                              testString(snapshot.data, "basicDescription"),textAlign: TextAlign.center,),
+                            testString(snapshot.data, "basicDescription"),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                       Center(
@@ -481,115 +492,161 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
                       ),
+                      Center(
+                        child: Text(
+                          "Tap a date to learn more",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 10),
+                        ),
+                      ),
                       Container(
                         height: 200,
                         child: ListView(
                           padding: const EdgeInsets.all(8),
                           scrollDirection: Axis.horizontal,
                           children: <Widget>[
-                            Container(
-                              width: 200,
-                              child: Column(
-                                children: <Widget>[
-                                  Card(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Column(
-                                        children: <Widget>[
-                                          Text(
-                                          "Year Range:"),
-                                          Text("The Takeover")
-                                        ],)
-                                        
-                                    ),
-                                    elevation: 3,
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        InfoPage("Part 1: The Takeover", 1),
                                   ),
-                                  CustomPaint(
-                                    painter: ShapesPainter(),
-                                    child: Container(
-                                      width: 200,
-                                      height: 80,
+                                );
+                              },
+                              child: Container(
+                                width: 200,
+                                child: Column(
+                                  children: <Widget>[
+                                    Card(
+                                      child: Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Column(
+                                            children: <Widget>[
+                                              Text("1800s - 1972:"),
+                                              Text("The Takeover")
+                                            ],
+                                          )),
+                                      elevation: 3,
                                     ),
-                                  ),
-                                ],
+                                    CustomPaint(
+                                      painter: ShapesPainter(),
+                                      child: Container(
+                                        width: 200,
+                                        height: 80,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                            Container(
-                              width: 200,
-                              child: Column(
-                                children: <Widget>[
-                                  Card(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Column(
-                                        children: <Widget>[
-                                          Text(
-                                          "Year Range:"),
-                                          Text("Murals Appeared")
-                                        ],)
-                                    ),
-                                    elevation: 3,
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        InfoPage("Part 2: Murals Appeared", 2),
                                   ),
-                                  CustomPaint(
-                                    painter: ShapesPainter(),
-                                    child: Container(
-                                      width: 200,
-                                      height: 80,
+                                );
+                              },
+                              child: Container(
+                                width: 200,
+                                child: Column(
+                                  children: <Widget>[
+                                    Card(
+                                      child: Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Column(
+                                            children: <Widget>[
+                                              Text("1960 - 1983:"),
+                                              Text("Murals Appeared")
+                                            ],
+                                          )),
+                                      elevation: 3,
                                     ),
-                                  ),
-                                ],
+                                    CustomPaint(
+                                      painter: ShapesPainter(),
+                                      child: Container(
+                                        width: 200,
+                                        height: 80,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                            Container(
-                              width: 200,
-                              child: Column(
-                                children: <Widget>[
-                                  Card(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Column(
-                                        children: <Widget>[
-                                          Text(
-                                          "Year Range:"),
-                                          Text("Restoration")
-                                        ],)
-                                    ),
-                                    elevation: 3,
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        InfoPage("Part 3: Restoration", 3),
                                   ),
-                                  CustomPaint(
-                                    painter: ShapesPainter(),
-                                    child: Container(
-                                      width: 200,
-                                      height: 80,
+                                );
+                              },
+                              child: Container(
+                                width: 200,
+                                child: Column(
+                                  children: <Widget>[
+                                    Card(
+                                      child: Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Column(
+                                            children: <Widget>[
+                                              Text("1986 - Present:"),
+                                              Text("Restoration")
+                                            ],
+                                          )),
+                                      elevation: 3,
                                     ),
-                                  ),
-                                ],
+                                    CustomPaint(
+                                      painter: ShapesPainter(),
+                                      child: Container(
+                                        width: 200,
+                                        height: 80,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                            Container(
-                              width: 200,
-                              child: Column(
-                                children: <Widget>[
-                                  Card(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Column(
-                                        children: <Widget>[
-                                          Text(
-                                          "Year Range:"),
-                                          Text("Present Day")
-                                        ],)
-                                    ),
-                                    elevation: 3,
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        InfoPage("Part 4: Present Day", 4),
                                   ),
-                                  CustomPaint(
-                                    painter: ShapesPainter(),
-                                    child: Container(
-                                      width: 200,
-                                      height: 80,
+                                );
+                              },
+                              child: Container(
+                                width: 200,
+                                child: Column(
+                                  children: <Widget>[
+                                    Card(
+                                      child: Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Column(
+                                            children: <Widget>[
+                                              Text("Present Day:"),
+                                              Text("Current State")
+                                            ],
+                                          )),
+                                      elevation: 3,
                                     ),
-                                  ),
-                                ],
+                                    CustomPaint(
+                                      painter: ShapesPainter(),
+                                      child: Container(
+                                        width: 200,
+                                        height: 80,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -607,17 +664,6 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                               onPressed: () {
                                 // The message that will be shared. This can be a link, some text or contact or anything really
                                 Share.share("Hello there!");
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: RaisedButton.icon(
-                              icon: Icon(Icons.explore),
-                              label: Text("Tour Guide"),
-                              onPressed: () {
-                                // Remember navigator? We just "pop" it to get rid of it.
-                                Navigator.pop(context);
                               },
                             ),
                           ),
