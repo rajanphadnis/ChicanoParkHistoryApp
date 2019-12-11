@@ -6,7 +6,7 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-9        android:targetSdkVersion="28" />
+9        android:targetSdkVersion="29" />
 10    <!--
 11         Flutter needs it to communicate with the running application
 12         to allow setting breakpoints, to provide hot reload, etc.
@@ -22,8 +22,8 @@
 16-->[:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-68
 17    <!-- <uses-sdk android:minSdkVersion="14" /> -->
 18    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-18-->[com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:13:5-79
-18-->[com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:13:22-76
+18-->[com.google.firebase:firebase-firestore:21.3.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b14d5c3d384de18cc2a1f5a941c5084e\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:13:5-79
+18-->[com.google.firebase:firebase-firestore:21.3.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b14d5c3d384de18cc2a1f5a941c5084e\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:13:22-76
 19    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
 19-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:24:5-68
 19-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:24:22-65
@@ -46,7 +46,7 @@
 31        android:debuggable="true"
 32        android:icon="@mipmap/launcher_icon"
 32-->C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:12:9-45
-33        android:label="chicano_park" >
+33        android:label="Chicano Park" >
 33-->C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:11:9-37
 34        <activity
 34-->C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:13:9-31:20
@@ -92,94 +92,96 @@
 59-->[:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 60            android:name="com.google.firebase.components.ComponentDiscoveryService"
 60-->[:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-89
-61            android:exported="false" >
-61-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:31:13-37
-62            <meta-data
-62-->[:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
-63                android:name="com.google.firebase.components:io.flutter.plugins.firebase.cloudfirestore.FlutterFirebaseAppRegistrar"
-63-->[:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-133
-64                android:value="com.google.firebase.components.ComponentRegistrar" />
-64-->[:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
-65            <meta-data
-65-->[:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-13:85
-66                android:name="com.google.firebase.components:io.flutter.plugins.firebaselivestreammlvision.FlutterFirebaseAppRegistrar"
-66-->[:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\debug\AndroidManifest.xml:12:17-136
-67                android:value="com.google.firebase.components.ComponentRegistrar" />
-67-->[:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\debug\AndroidManifest.xml:13:17-82
-68            <meta-data
-68-->[:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
-69                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar"
-69-->[:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-123
-70                android:value="com.google.firebase.components.ComponentRegistrar" />
-70-->[:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
-71            <meta-data
-71-->[:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
-72                android:name="com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar"
-72-->[:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-126
-73                android:value="com.google.firebase.components.ComponentRegistrar" />
-73-->[:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
-74            <meta-data
-74-->[com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:18:13-20:85
-75                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-75-->[com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:19:17-111
-76                android:value="com.google.firebase.components.ComponentRegistrar" />
-76-->[com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:20:17-82
-77            <meta-data
-77-->[com.google.firebase:firebase-storage:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\203aa8cbed927de0913ff7dd637ff428\jetified-firebase-storage-17.0.0\AndroidManifest.xml:31:13-33:85
-78                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
-78-->[com.google.firebase:firebase-storage:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\203aa8cbed927de0913ff7dd637ff428\jetified-firebase-storage-17.0.0\AndroidManifest.xml:32:17-107
-79                android:value="com.google.firebase.components.ComponentRegistrar" />
-79-->[com.google.firebase:firebase-storage:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\203aa8cbed927de0913ff7dd637ff428\jetified-firebase-storage-17.0.0\AndroidManifest.xml:33:17-82
-80            <meta-data
-80-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:32:13-34:85
-81                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
-81-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:33:17-96
-82                android:value="com.google.firebase.components.ComponentRegistrar" />
-82-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:34:17-82
-83        </service>
-84
-85        <receiver
-85-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:37:9-44:20
-86            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-86-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:38:13-78
-87            android:exported="true"
-87-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:39:13-36
-88            android:permission="com.google.android.c2dm.permission.SEND" >
-88-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:40:13-73
-89            <intent-filter>
-89-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:41:13-43:29
-90                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-90-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:42:17-81
-90-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:42:25-78
-91            </intent-filter>
-92        </receiver>
-93
-94        <provider
-94-->[com.google.firebase:firebase-common:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\54e1013a8e5541c1f6defe7dfb293923\jetified-firebase-common-17.0.0\AndroidManifest.xml:12:9-16:39
-95            android:name="com.google.firebase.provider.FirebaseInitProvider"
-95-->[com.google.firebase:firebase-common:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\54e1013a8e5541c1f6defe7dfb293923\jetified-firebase-common-17.0.0\AndroidManifest.xml:13:13-77
-96            android:authorities="com.rodojo.chicano_park.firebaseinitprovider"
-96-->[com.google.firebase:firebase-common:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\54e1013a8e5541c1f6defe7dfb293923\jetified-firebase-common-17.0.0\AndroidManifest.xml:14:13-72
+61            android:directBootAware="true"
+61-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\fa20e961dbd38af4951acf2e8cd23739\jetified-firebase-common-19.3.0\AndroidManifest.xml:34:13-43
+62            android:exported="false" >
+62-->[com.google.firebase:firebase-firestore:21.3.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b14d5c3d384de18cc2a1f5a941c5084e\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:19:13-37
+63            <meta-data
+63-->[:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+64                android:name="com.google.firebase.components:io.flutter.plugins.firebase.cloudfirestore.FlutterFirebaseAppRegistrar"
+64-->[:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-133
+65                android:value="com.google.firebase.components.ComponentRegistrar" />
+65-->[:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+66            <meta-data
+66-->[:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+67                android:name="com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar"
+67-->[:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-126
+68                android:value="com.google.firebase.components.ComponentRegistrar" />
+68-->[:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+69            <meta-data
+69-->[:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+70                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar"
+70-->[:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-123
+71                android:value="com.google.firebase.components.ComponentRegistrar" />
+71-->[:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+72            <meta-data
+72-->[:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-13:85
+73                android:name="com.google.firebase.components:io.flutter.plugins.firebaselivestreammlvision.FlutterFirebaseAppRegistrar"
+73-->[:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\debug\AndroidManifest.xml:12:17-136
+74                android:value="com.google.firebase.components.ComponentRegistrar" />
+74-->[:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\debug\AndroidManifest.xml:13:17-82
+75            <meta-data
+75-->[com.google.firebase:firebase-firestore:21.3.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b14d5c3d384de18cc2a1f5a941c5084e\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:20:13-22:85
+76                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+76-->[com.google.firebase:firebase-firestore:21.3.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b14d5c3d384de18cc2a1f5a941c5084e\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:21:17-111
+77                android:value="com.google.firebase.components.ComponentRegistrar" />
+77-->[com.google.firebase:firebase-firestore:21.3.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b14d5c3d384de18cc2a1f5a941c5084e\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:22:17-82
+78            <meta-data
+78-->[com.google.firebase:firebase-storage:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\203aa8cbed927de0913ff7dd637ff428\jetified-firebase-storage-17.0.0\AndroidManifest.xml:31:13-33:85
+79                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+79-->[com.google.firebase:firebase-storage:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\203aa8cbed927de0913ff7dd637ff428\jetified-firebase-storage-17.0.0\AndroidManifest.xml:32:17-107
+80                android:value="com.google.firebase.components.ComponentRegistrar" />
+80-->[com.google.firebase:firebase-storage:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\203aa8cbed927de0913ff7dd637ff428\jetified-firebase-storage-17.0.0\AndroidManifest.xml:33:17-82
+81            <meta-data
+81-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:32:13-34:85
+82                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+82-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:33:17-96
+83                android:value="com.google.firebase.components.ComponentRegistrar" />
+83-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:34:17-82
+84        </service>
+85
+86        <receiver
+86-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:37:9-44:20
+87            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+87-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:38:13-78
+88            android:exported="true"
+88-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:39:13-36
+89            android:permission="com.google.android.c2dm.permission.SEND" >
+89-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:40:13-73
+90            <intent-filter>
+90-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:41:13-43:29
+91                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+91-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:42:17-81
+91-->[com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:42:25-78
+92            </intent-filter>
+93        </receiver>
+94
+95        <activity
+95-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c0b774c09d5393feb013f0dbe753af3\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+96            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+96-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c0b774c09d5393feb013f0dbe753af3\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
 97            android:exported="false"
-97-->[com.google.firebase:firebase-common:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\54e1013a8e5541c1f6defe7dfb293923\jetified-firebase-common-17.0.0\AndroidManifest.xml:15:13-37
-98            android:initOrder="100" />
-98-->[com.google.firebase:firebase-common:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\54e1013a8e5541c1f6defe7dfb293923\jetified-firebase-common-17.0.0\AndroidManifest.xml:16:13-36
+97-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c0b774c09d5393feb013f0dbe753af3\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+98            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+98-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c0b774c09d5393feb013f0dbe753af3\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
 99
-100        <activity
-100-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\f2d3ac2de04261631794640388fe54f7\jetified-play-services-base-16.0.1\AndroidManifest.xml:23:9-26:75
-101            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-101-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\f2d3ac2de04261631794640388fe54f7\jetified-play-services-base-16.0.1\AndroidManifest.xml:24:13-79
-102            android:exported="false"
-102-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\f2d3ac2de04261631794640388fe54f7\jetified-play-services-base-16.0.1\AndroidManifest.xml:25:13-37
-103            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-103-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\f2d3ac2de04261631794640388fe54f7\jetified-play-services-base-16.0.1\AndroidManifest.xml:26:13-72
-104
-105        <meta-data
-105-->[com.google.android.gms:play-services-basement:16.1.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\71d210f277c70bece63c284bb511ea03\jetified-play-services-basement-16.1.0\AndroidManifest.xml:23:9-25:69
-106            android:name="com.google.android.gms.version"
-106-->[com.google.android.gms:play-services-basement:16.1.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\71d210f277c70bece63c284bb511ea03\jetified-play-services-basement-16.1.0\AndroidManifest.xml:24:13-58
-107            android:value="@integer/google_play_services_version" />
-107-->[com.google.android.gms:play-services-basement:16.1.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\71d210f277c70bece63c284bb511ea03\jetified-play-services-basement-16.1.0\AndroidManifest.xml:25:13-66
-108    </application>
-109
-110</manifest>
+100        <provider
+100-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\fa20e961dbd38af4951acf2e8cd23739\jetified-firebase-common-19.3.0\AndroidManifest.xml:26:9-30:39
+101            android:name="com.google.firebase.provider.FirebaseInitProvider"
+101-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\fa20e961dbd38af4951acf2e8cd23739\jetified-firebase-common-19.3.0\AndroidManifest.xml:27:13-77
+102            android:authorities="com.rodojo.chicano_park.firebaseinitprovider"
+102-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\fa20e961dbd38af4951acf2e8cd23739\jetified-firebase-common-19.3.0\AndroidManifest.xml:28:13-72
+103            android:exported="false"
+103-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\fa20e961dbd38af4951acf2e8cd23739\jetified-firebase-common-19.3.0\AndroidManifest.xml:29:13-37
+104            android:initOrder="100" />
+104-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\fa20e961dbd38af4951acf2e8cd23739\jetified-firebase-common-19.3.0\AndroidManifest.xml:30:13-36
+105
+106        <meta-data
+106-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\a386b11e115ec47a231b3be4967fce3f\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+107            android:name="com.google.android.gms.version"
+107-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\a386b11e115ec47a231b3be4967fce3f\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+108            android:value="@integer/google_play_services_version" />
+108-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\a386b11e115ec47a231b3be4967fce3f\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+109    </application>
+110
+111</manifest>

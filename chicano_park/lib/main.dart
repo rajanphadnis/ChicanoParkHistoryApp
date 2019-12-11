@@ -2,7 +2,7 @@
 import 'package:firebase_livestream_ml_vision/firebase_livestream_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:camera/camera.dart';
+import 'package:flutter/material.dart' as prefix0;
 import 'dart:async';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:share/share.dart';
@@ -26,7 +26,7 @@ var jsonData =
     '{ "roses" : "Mural1", "daisy" : "Mural2", "tulips" : "Mural3"  }';
 var parsedJson = json.decode(jsonData);
 String data = "no error";
-final double confidenceThresh = 0.7;
+final double confidenceThresh = 0.6;
 
 // Create the app class and basic Material design structure
 class MyApp extends StatelessWidget {
@@ -70,6 +70,8 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   // Find icons from here: https://api.flutter.dev/flutter/material/Icons-class.html
   SpeedDial buildSpeedDial() {
     return SpeedDial(
+      overlayColor: Colors.transparent,
+      overlayOpacity: 0,
       animatedIcon: AnimatedIcons.menu_close,
       animatedIconTheme: IconThemeData(size: 22.0),
       child: Icon(Icons.add),
@@ -249,8 +251,8 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   }
 
   // Same thing as the string version, but instead with a loading circle and images
-  Widget testImage(DocumentSnapshot docs) {
-    if (docs["picURL"] == null) {
+  Widget getImage(DocumentSnapshot docs, String url) {
+    if (docs[url] == null) {
       return Stack(
         children: <Widget>[
           Center(
@@ -268,7 +270,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
         Center(
           child: FadeInImage.memoryNetwork(
             placeholder: kTransparentImage,
-            image: docs["picURL"],
+            image: docs[url],
           ),
         ),
       ],
@@ -348,7 +350,11 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                       // Add the image
                       Padding(
                         padding: const EdgeInsets.all(15),
-                        child: testImage(snapshot.data),
+                        child: getImage(snapshot.data, "picUrl"),
+                      ),
+                      Text(
+                        "By: Artist Name",
+                        style: TextStyle(fontSize: 20),
                       ),
                       // add scrollable description that fills up the rest of the available space in the modal
                       Expanded(
@@ -476,15 +482,15 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 30),
                       ),
-                      SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Text(
-                            testString(snapshot.data, "basicDescription"),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
+                      // SingleChildScrollView(
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.all(15),
+                      //     child: Text(
+                      //       testString(snapshot.data, "basicDescription"),
+                      //       textAlign: TextAlign.center,
+                      //     ),
+                      //   ),
+                      // ),
                       Center(
                         child: Text(
                           "Timeline:",
@@ -499,176 +505,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                               fontWeight: FontWeight.bold, fontSize: 10),
                         ),
                       ),
-                      Container(
-                        height: 200,
-                        child: ListView(
-                          padding: const EdgeInsets.all(8),
-                          scrollDirection: Axis.horizontal,
-                          children: <Widget>[
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        InfoPage("Part 1: The Takeover", 1),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                width: 200,
-                                child: Column(
-                                  children: <Widget>[
-                                    Card(
-                                      child: Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Column(
-                                            children: <Widget>[
-                                              Text("1800s - 1972:"),
-                                              Text("The Takeover")
-                                            ],
-                                          )),
-                                      elevation: 3,
-                                    ),
-                                    CustomPaint(
-                                      painter: ShapesPainter(),
-                                      child: Container(
-                                        width: 200,
-                                        height: 80,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        InfoPage("Part 2: Murals Appeared", 2),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                width: 200,
-                                child: Column(
-                                  children: <Widget>[
-                                    Card(
-                                      child: Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Column(
-                                            children: <Widget>[
-                                              Text("1960 - 1983:"),
-                                              Text("Murals Appeared")
-                                            ],
-                                          )),
-                                      elevation: 3,
-                                    ),
-                                    CustomPaint(
-                                      painter: ShapesPainter(),
-                                      child: Container(
-                                        width: 200,
-                                        height: 80,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        InfoPage("Part 3: Restoration", 3),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                width: 200,
-                                child: Column(
-                                  children: <Widget>[
-                                    Card(
-                                      child: Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Column(
-                                            children: <Widget>[
-                                              Text("1986 - Present:"),
-                                              Text("Restoration")
-                                            ],
-                                          )),
-                                      elevation: 3,
-                                    ),
-                                    CustomPaint(
-                                      painter: ShapesPainter(),
-                                      child: Container(
-                                        width: 200,
-                                        height: 80,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        InfoPage("Part 4: Present Day", 4),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                width: 200,
-                                child: Column(
-                                  children: <Widget>[
-                                    Card(
-                                      child: Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Column(
-                                            children: <Widget>[
-                                              Text("Present Day:"),
-                                              Text("Current State")
-                                            ],
-                                          )),
-                                      elevation: 3,
-                                    ),
-                                    CustomPaint(
-                                      painter: ShapesPainter(),
-                                      child: Container(
-                                        width: 200,
-                                        height: 80,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: RaisedButton.icon(
-                              icon: Icon(Icons.share),
-                              label: Text("Share"),
-                              onPressed: () {
-                                // The message that will be shared. This can be a link, some text or contact or anything really
-                                Share.share("Hello there!");
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
+                      timeline(context),
                     ],
                   ),
                 );
@@ -682,6 +519,175 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
         differentMural = true;
       });
     });
+  }
+
+  Widget gridThing() {
+    return GridView.count(
+      crossAxisCount: 2,
+      children: List.generate(
+        4,
+        (iter) {
+          return Center(
+            child: Text(
+              'Item $iter',
+              style: Theme.of(context).textTheme.headline,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget timeline(BuildContext context) {
+    return Container(
+      height: 200,
+      child: ListView(
+        padding: const EdgeInsets.all(8),
+        scrollDirection: Axis.horizontal,
+        children: <Widget>[
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => InfoPage("Part 1: The Takeover", 1),
+                ),
+              );
+            },
+            child: Container(
+              width: 200,
+              child: Column(
+                children: <Widget>[
+                  Card(
+                    child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          children: <Widget>[
+                            Text("1800s - 1972:"),
+                            Text("The Takeover")
+                          ],
+                        )),
+                    elevation: 3,
+                  ),
+                  CustomPaint(
+                    painter: ShapesPainter(),
+                    child: Container(
+                      width: 200,
+                      height: 80,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => InfoPage("Part 2: Murals Appeared", 2),
+                ),
+              );
+            },
+            child: Container(
+              width: 200,
+              child: Column(
+                children: <Widget>[
+                  Card(
+                    child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          children: <Widget>[
+                            Text("1960 - 1983:"),
+                            Text("Murals Appeared")
+                          ],
+                        )),
+                    elevation: 3,
+                  ),
+                  CustomPaint(
+                    painter: ShapesPainter(),
+                    child: Container(
+                      width: 200,
+                      height: 80,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => InfoPage("Part 3: Restoration", 3),
+                ),
+              );
+            },
+            child: Container(
+              width: 200,
+              child: Column(
+                children: <Widget>[
+                  Card(
+                    child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          children: <Widget>[
+                            Text("1986 - Present:"),
+                            Text("Restoration")
+                          ],
+                        )),
+                    elevation: 3,
+                  ),
+                  CustomPaint(
+                    painter: ShapesPainter(),
+                    child: Container(
+                      width: 200,
+                      height: 80,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => InfoPage("Part 4: Present Day", 4),
+                ),
+              );
+            },
+            child: Container(
+              width: 200,
+              child: Column(
+                children: <Widget>[
+                  Card(
+                    child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          children: <Widget>[
+                            Text("Present Day:"),
+                            Text("Current State")
+                          ],
+                        )),
+                    elevation: 3,
+                  ),
+                  CustomPaint(
+                    painter: ShapesPainter(),
+                    child: Container(
+                      width: 200,
+                      height: 80,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 

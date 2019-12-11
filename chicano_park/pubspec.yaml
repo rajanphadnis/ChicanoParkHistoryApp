@@ -1,40 +1,27 @@
 name: chicano_park
-description: A new Flutter project.
-
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+description: u know...
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: ">=2.2.0 <3.7.1"
 
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
   # See https://pub.dev/packages/camera for more info
-  camera: ^0.5.6+3
-  firebase_core: ^0.4.0+9
+  camera: ^0.5.7+2
+  firebase_core: ^0.4.3
   # firebase_analytics: ^5.0.2
-  cloud_firestore: ^0.12.9+5
-  firebase_storage: ^3.0.8
+  cloud_firestore: ^0.13.0+1
+  firebase_storage: ^3.0.11
   transparent_image: ^1.0.0
-  share: ^0.6.3+1
+  share: ^0.6.3+5
   firebase_livestream_ml_vision: ^1.0.1
-  # tflite: ^1.0.4
-  flutter_speed_dial: ^1.2.4
+  flutter_speed_dial: ^1.2.5
 
 dev_dependencies:
-  flutter_launcher_icons: ^0.7.3
-  
+  flutter_launcher_icons: ^0.7.4
   flutter_test:
     sdk: flutter
 flutter:

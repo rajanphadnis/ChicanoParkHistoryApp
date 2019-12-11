@@ -46,7 +46,7 @@
 31        android:debuggable="true"
 32        android:icon="@mipmap/launcher_icon"
 32-->C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:12:9-45
-33        android:label="chicano_park" >
+33        android:label="Chicano Park" >
 33-->C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:11:9-37
 34        <activity
 34-->C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:13:9-31:20
@@ -101,11 +101,11 @@
 64                android:value="com.google.firebase.components.ComponentRegistrar" />
 64-->[:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\profile\AndroidManifest.xml:11:17-82
 65            <meta-data
-65-->[:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:11:13-13:85
-66                android:name="com.google.firebase.components:io.flutter.plugins.firebaselivestreammlvision.FlutterFirebaseAppRegistrar"
-66-->[:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:12:17-136
+65-->[:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:9:13-11:85
+66                android:name="com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar"
+66-->[:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:10:17-126
 67                android:value="com.google.firebase.components.ComponentRegistrar" />
-67-->[:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:13:17-82
+67-->[:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:11:17-82
 68            <meta-data
 68-->[:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:9:13-11:85
 69                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar"
@@ -113,11 +113,11 @@
 70                android:value="com.google.firebase.components.ComponentRegistrar" />
 70-->[:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:11:17-82
 71            <meta-data
-71-->[:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:9:13-11:85
-72                android:name="com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar"
-72-->[:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:10:17-126
+71-->[:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:11:13-13:85
+72                android:name="com.google.firebase.components:io.flutter.plugins.firebaselivestreammlvision.FlutterFirebaseAppRegistrar"
+72-->[:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:12:17-136
 73                android:value="com.google.firebase.components.ComponentRegistrar" />
-73-->[:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:11:17-82
+73-->[:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:13:17-82
 74            <meta-data
 74-->[com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:18:13-20:85
 75                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"

@@ -6,11 +6,11 @@ INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:1:1-33:12
 MERGED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:1:1-33:12
 MERGED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-10:12
-MERGED from [:share] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\share\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-7:12
 MERGED from [:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-15:12
-MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-17:12
-MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-15:12
+MERGED from [:share] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\share\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-7:12
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-15:12
+MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-15:12
+MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:2:1-17:12
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:2:1-24:12
 MERGED from [com.google.firebase:firebase-ml-vision-automl:16.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\afa2d7704c893fe3bf4ad7a3d3f99bf5\jetified-firebase-ml-vision-automl-16.0.0\AndroidManifest.xml:2:1-8:12
 MERGED from [com.google.firebase:firebase-ml-vision:20.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\7617fe454bc74cc319b92de00f027691\jetified-firebase-ml-vision-20.0.0\AndroidManifest.xml:2:1-8:12
@@ -32,7 +32,6 @@ MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\Rajan P
 MERGED from [com.google.android.gms:play-services-stats:16.0.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\acaf2a40195e7c8e0835245ea202a927\jetified-play-services-stats-16.0.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-basement:16.1.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\71d210f277c70bece63c284bb511ea03\jetified-play-services-basement-16.1.0\AndroidManifest.xml:17:1-28:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\fb1e5d35f9738a7c29a273d7be7f3e2c\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media:media:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\477e81a6102496b4df20cd2557cfcd3a\media-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\5157104f3bd9253cd81a7d6f29c1621c\fragment-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\536c4d230adcf87aec8f00c8955f8127\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\d10fe1176fa5480b064486ece15f99c1\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -44,6 +43,7 @@ MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\Rajan 
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\31cd047ed3ec37dce69ba9f16e10a05d\customview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\5a5d53679d914b768463e606a8e8f920\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\2ecca17b0eb70fcbc1e9d8148641257d\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\477e81a6102496b4df20cd2557cfcd3a\media-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\c1da7862c7abb8e426855a3f78caf221\core-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\6165e964f01e5bc25bb413b739666f97\exifinterface-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\74d81cbab4baf82cd5ba855cad11f23d\lifecycle-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
@@ -51,12 +51,12 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Rajan Phadnis
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\a78ce9b49fd39a3eac90624d04d1ee8a\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\2ae0f4532ce9c2b2540e7c7daff54826\versionedparcelable-1.0.0\AndroidManifest.xml:17:1-25:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\3bf5fc05ca184d01c3bed36c84f7c6c7\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b652641e60f40536fdf44e18539d0968\lifecycle-viewmodel-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b59192acc39c8e1083525bb1a0764fd3\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\07713a4b02ecb1ede5529340586b2906\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\ec735b528ee8f52f56a38a2f27a69a4b\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\c8f4c2580dddd9ecf64fc10bf9fbc418\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\dff04f4f27a157ea6f57a15b661fd9d7\print-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b59192acc39c8e1083525bb1a0764fd3\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\07713a4b02ecb1ede5529340586b2906\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b652641e60f40536fdf44e18539d0968\lifecycle-viewmodel-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-database-collection:16.0.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\609761c2a34cdc1a820592b58b1ac85f\firebase-database-collection-16.0.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:protolite-well-known-types:16.0.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\9502245c4b92bc115ef1338b48aa7ca4\protolite-well-known-types-16.0.1\AndroidManifest.xml:2:1-11:12
 MERGED from [io.grpc:grpc-android:1.16.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\034529098476943be10d6e515cca9cbe\grpc-android-1.16.1\AndroidManifest.xml:2:1-13:12
@@ -82,12 +82,12 @@ application
 ADDED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:9:5-32:19
 MERGED from [:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\profile\AndroidManifest.xml:7:5-13:19
 MERGED from [:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\profile\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:9:5-15:19
-MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:9:5-15:19
-MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:9:5-15:19
+MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:9:5-15:19
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:16:5-22:19
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:16:5-22:19
 MERGED from [com.google.firebase:firebase-storage:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\203aa8cbed927de0913ff7dd637ff428\jetified-firebase-storage-17.0.0\AndroidManifest.xml:29:5-35:19
@@ -168,16 +168,16 @@ INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml
 MERGED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
 MERGED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
-MERGED from [:share] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\share\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
-MERGED from [:share] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\share\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
+MERGED from [:share] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\share\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
+MERGED from [:share] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\share\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-ml-vision-automl:16.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\afa2d7704c893fe3bf4ad7a3d3f99bf5\jetified-firebase-ml-vision-automl-16.0.0\AndroidManifest.xml:6:5-44
@@ -220,8 +220,6 @@ MERGED from [com.google.android.gms:play-services-basement:16.1.0] C:\Users\Raja
 MERGED from [com.google.android.gms:play-services-basement:16.1.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\71d210f277c70bece63c284bb511ea03\jetified-play-services-basement-16.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\fb1e5d35f9738a7c29a273d7be7f3e2c\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\fb1e5d35f9738a7c29a273d7be7f3e2c\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\477e81a6102496b4df20cd2557cfcd3a\media-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\477e81a6102496b4df20cd2557cfcd3a\media-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\5157104f3bd9253cd81a7d6f29c1621c\fragment-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\5157104f3bd9253cd81a7d6f29c1621c\fragment-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\536c4d230adcf87aec8f00c8955f8127\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
@@ -244,6 +242,8 @@ MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Raja
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\5a5d53679d914b768463e606a8e8f920\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\2ecca17b0eb70fcbc1e9d8148641257d\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\2ecca17b0eb70fcbc1e9d8148641257d\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\477e81a6102496b4df20cd2557cfcd3a\media-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\477e81a6102496b4df20cd2557cfcd3a\media-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\c1da7862c7abb8e426855a3f78caf221\core-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\c1da7862c7abb8e426855a3f78caf221\core-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\6165e964f01e5bc25bb413b739666f97\exifinterface-1.0.0\AndroidManifest.xml:20:5-44
@@ -258,18 +258,18 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Ra
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\2ae0f4532ce9c2b2540e7c7daff54826\versionedparcelable-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\3bf5fc05ca184d01c3bed36c84f7c6c7\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\3bf5fc05ca184d01c3bed36c84f7c6c7\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b652641e60f40536fdf44e18539d0968\lifecycle-viewmodel-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b652641e60f40536fdf44e18539d0968\lifecycle-viewmodel-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b59192acc39c8e1083525bb1a0764fd3\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b59192acc39c8e1083525bb1a0764fd3\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\07713a4b02ecb1ede5529340586b2906\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\07713a4b02ecb1ede5529340586b2906\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\ec735b528ee8f52f56a38a2f27a69a4b\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\ec735b528ee8f52f56a38a2f27a69a4b\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\c8f4c2580dddd9ecf64fc10bf9fbc418\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\c8f4c2580dddd9ecf64fc10bf9fbc418\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\dff04f4f27a157ea6f57a15b661fd9d7\print-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\dff04f4f27a157ea6f57a15b661fd9d7\print-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b59192acc39c8e1083525bb1a0764fd3\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b59192acc39c8e1083525bb1a0764fd3\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\07713a4b02ecb1ede5529340586b2906\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\07713a4b02ecb1ede5529340586b2906\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b652641e60f40536fdf44e18539d0968\lifecycle-viewmodel-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b652641e60f40536fdf44e18539d0968\lifecycle-viewmodel-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-database-collection:16.0.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\609761c2a34cdc1a820592b58b1ac85f\firebase-database-collection-16.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-database-collection:16.0.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\609761c2a34cdc1a820592b58b1ac85f\firebase-database-collection-16.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:protolite-well-known-types:16.0.1] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\9502245c4b92bc115ef1338b48aa7ca4\protolite-well-known-types-16.0.1\AndroidManifest.xml:7:5-9:41
@@ -308,12 +308,12 @@ ADDED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chican
 		ADDED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\profile\AndroidManifest.xml:8:22-68
 service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\profile\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:10:9-14:19
-MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:10:9-14:19
-MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:10:9-14:19
+MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:10:9-14:19
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:17:9-21:19
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:17:9-21:19
 MERGED from [com.google.firebase:firebase-storage:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\203aa8cbed927de0913ff7dd637ff428\jetified-firebase-storage-17.0.0\AndroidManifest.xml:30:9-34:19
@@ -330,24 +330,24 @@ ADDED from [:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryA
 		ADDED from [:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\profile\AndroidManifest.xml:11:17-82
 	android:name
 		ADDED from [:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\profile\AndroidManifest.xml:10:17-133
-meta-data#com.google.firebase.components:io.flutter.plugins.firebaselivestreammlvision.FlutterFirebaseAppRegistrar
-ADDED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:11:13-13:85
-	android:value
-		ADDED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:13:17-82
-	android:name
-		ADDED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:12:17-136
-meta-data#com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar
-ADDED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:9:13-11:85
-	android:value
-		ADDED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:11:17-82
-	android:name
-		ADDED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:10:17-123
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar
 ADDED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:9:13-11:85
 	android:value
 		ADDED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:11:17-82
 	android:name
 		ADDED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\profile\AndroidManifest.xml:10:17-126
+meta-data#com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar
+ADDED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:9:13-11:85
+	android:value
+		ADDED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:11:17-82
+	android:name
+		ADDED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\profile\AndroidManifest.xml:10:17-123
+meta-data#com.google.firebase.components:io.flutter.plugins.firebaselivestreammlvision.FlutterFirebaseAppRegistrar
+ADDED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:11:13-13:85
+	android:value
+		ADDED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:13:17-82
+	android:name
+		ADDED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\profile\AndroidManifest.xml:12:17-136
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e0d92f5be66eadc58588bb00c677c8a\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:13:5-79
 MERGED from [com.google.firebase:firebase-storage:17.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\203aa8cbed927de0913ff7dd637ff428\jetified-firebase-storage-17.0.0\AndroidManifest.xml:26:5-79
