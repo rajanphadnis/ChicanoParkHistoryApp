@@ -23,7 +23,8 @@ String textl = "quite literally nothing";
 double confidence = 0.0;
 bool differentMural = true;
 var jsonData =
-    '{ "roses" : "Mural1", "daisy" : "Mural2", "tulips" : "Mural3"  }';
+
+    '{ "All_The_Way_To_The_Bay" : "Mural1", "daisy" : "Mural2", "tulips" : "Mural3"  }';
 var parsedJson = json.decode(jsonData);
 String data = "no error";
 final double confidenceThresh = 0.6;
