@@ -33,8 +33,6 @@ String data = "no error";
 final double confidenceThresh = 0.2;
 List<CameraDescription> cameras;
 String _modelLoadStatus = 'unknown';
-File _imageFile;
-String _inferenceResult;
 bool processing = false;
 
 // Create the app class and basic Material design structure
@@ -106,6 +104,11 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
     if (!mounted) return;
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(
+        content: Text(_modelLoadStatus),
+      ),
+    );
 
     setState(() {
       _modelLoadStatus = modelLoadStatus;
@@ -198,13 +201,13 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                       radius: 38.0,
                       child: IconButton(
                         icon: Icon(
-                                Icons.add_circle,
-                                // size: 28.0,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {
-                                // Do nothing
-                              },
+                          Icons.add_circle,
+                          // size: 28.0,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          // Do nothing
+                        },
                       ),
                     ),
                     CircleAvatar(
@@ -278,7 +281,6 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                         },
                       ),
                     ),
-                    
                   ],
                 ),
                 IconButton(
@@ -523,8 +525,8 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                       children: <Widget>[
                         Text("Getting Data..."),
                         CircularProgressIndicator(
-                          valueColor: new AlwaysStoppedAnimation<Color>(
-                                    Colors.black),
+                          valueColor:
+                              new AlwaysStoppedAnimation<Color>(Colors.black),
                         )
                       ],
                     ),
