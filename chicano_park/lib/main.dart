@@ -8,12 +8,14 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:share/share.dart';
 import 'dart:convert';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:camera/camera.dart';
 part 'infoPage.dart';
 
 // Next, create a list of cameras so that we know which one is the "back" one
 // Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a cmera feed to the user
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
   runApp(MyApp());
 }
 
@@ -23,12 +25,11 @@ String textl = "quite literally nothing";
 double confidence = 0.0;
 bool differentMural = true;
 var jsonData =
-
-    '{ "All_The_Way_To_The_Bay" : "Mural1", "daisy" : "Mural2", "tulips" : "Mural3"  }';
+    '{ "All_The_Way_To_The_Bay" : "Mural1", "Colossus" : "Mural2", "Los_Grandes" : "grandes", "Cuauhtemoc_Aztec_Warrior" : "aztec_dude" }';
 var parsedJson = json.decode(jsonData);
 String data = "no error";
-final double confidenceThresh = 0.6;
-
+final double confidenceThresh = 0.65;
+List<CameraDescription> cameras;
 // Create the app class and basic Material design structure
 class MyApp extends StatelessWidget {
   @override
@@ -55,11 +56,20 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   dynamic _scanResults;
   bool dialVisible = true;
   BuildContext _scaffoldContext;
+  CameraController controller;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   // initialize camera when the app is initialized
   @override
   void initState() {
     super.initState();
-    _initializeCamera();
+    controller = CameraController(cameras[0], ResolutionPreset.ultraHigh);
+    controller.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {});
+    });
+    // _initializeCamera();
   }
 
   void setDialVisible(bool value) {
@@ -138,26 +148,27 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
         return;
       }
       setState(() {});
-      runDetector();
+      // runDetector();
     });
   }
 
   // Get rid of the camera controller and access to the camera when the app is closed
   @override
   void dispose() {
-    _vision.dispose().then((_) {
-      _vision.visionEdgeImageLabeler.close();
-    });
+    controller?.dispose();
+    // _vision.dispose().then((_) {
+    //   _vision.visionEdgeImageLabeler.close();
+    // });
     super.dispose();
   }
 
   // OK, now for the meaty stuff. The main widget here (called "build") is the main homepage widget in the "TheMainAppHomePage" class
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     var deviceRatio = size.width / size.height;
     // First, make sure that we have initialized the camera and the app (corner case: some devices run slower, so this makes sure that the camera is running before we show the camera to the user)
-    if (_vision == null) {
+    if (!controller.value.isInitialized) {
       // If its not initialized, we let the user know with the following helpful message
       return Scaffold(
         body: Center(
@@ -176,26 +187,87 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
       // print(_vision.value.aspectRatio);
       // print(deviceRatio);
       // print(size.height);
-      return (_vision.value.aspectRatio / deviceRatio) *
-          (size.height / 391.332);
+      return (_vision.value.aspectRatio / deviceRatio) * 1;
+      // (size.height / 391.332);
+      // (size.height / 1);
     }
 
     // When the camera is initialized (Stateful widget, so it is constantly re-checking the state), show the main app ui
     return Scaffold(
-      body: Column(
-        // Center things with a "Column" widget
+      backgroundColor: Theme.of(context).backgroundColor,
+      key: _scaffoldKey,
+      body:
+          // Expanded(
+          //   child:
+          Stack(
         children: <Widget>[
-          Transform.scale(
-            scale: scale(),
-            child: new AspectRatio(
-              aspectRatio: _vision.value.aspectRatio,
-              child: new FirebaseCameraPreview(_vision),
+          ClipRect(
+            child: Container(
+              child: Transform.scale(
+                // scale: (controller.value.aspectRatio / (size.width / size.height)) * (size.height / 391.332),
+                scale: controller.value.aspectRatio / size.aspectRatio,
+                child: Center(
+                  child: AspectRatio(
+                    aspectRatio: controller.value.aspectRatio,
+                    child: CameraPreview(controller),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(15.0),
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Icon(Icons.list),
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 28.0,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.camera_alt,
+                      // size: 28.0,
+                      color: Colors.black,
+                    ),
+                    onPressed: () {
+                      // if (!_isRecordingMode) {
+                      //   _captureImage();
+                      // } else {
+                      //   if (_isRecording) {
+                      //     stopVideoRecording();
+                      //   } else {
+                      //     startVideoRecording();
+                      //   }
+                      // }
+                      showTheModalThingWhenTheButtonIsPressed();
+                    },
+                  ),
+                ),
+                Icon(Icons.explore),
+              ],
             ),
           ),
         ],
       ),
-      floatingActionButton: buildSpeedDial(),
+      // )
     );
+    // return Scaffold(
+    //   body: Column(
+    //     // Center things with a "Column" widget
+    //     children: <Widget>[
+    //       Transform.scale(
+    //         scale: scale(),
+    //         child: new AspectRatio(
+    //           aspectRatio: _vision.value.aspectRatio,
+    //           child: new FirebaseCameraPreview(_vision),
+    //         ),
+    //       ),
+    //     ],
+    //   ),
+    //   floatingActionButton: buildSpeedDial(),
+    // );
   }
 
   String dictLookUp(String label) {
@@ -227,6 +299,21 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     });
   }
 
+  // void runDetector() {
+  //   print("Got Some Data1");
+  //   //This is the actual machine learning algorithm
+  //   _vision
+  //       .addVisionEdgeImageLabeler(
+  //           'ml',
+  //           ModelLocation.Local,
+  //           VisionEdgeImageLabelerOptions(
+  //               confidenceThreshold: confidenceThresh))
+  //       .then((onValue) {
+  //     onValue.listen(
+  //       (onData) => listenForModelCalls(onData),
+  //     );
+  //   });
+  // }
   void runDetector() {
     print("Got Some Data1");
     //This is the actual machine learning algorithm

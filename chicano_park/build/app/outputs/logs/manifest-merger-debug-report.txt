@@ -5,11 +5,12 @@ INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:1:1-33:12
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:1:1-33:12
 MERGED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml:1:1-33:12
-MERGED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-10:12
 MERGED from [:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
-MERGED from [:share] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:firebase_core_web] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core_web\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-10:12
+MERGED from [:share] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-17:12
 MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e43ec82407637f465c620e746b223b7\multidex-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\b14d5c3d384de18cc2a1f5a941c5084e\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:2:1-26:12
@@ -166,16 +167,18 @@ uses-sdk
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\main\AndroidManifest.xml
-MERGED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:share] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:share] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core_web] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core_web] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:share] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:share] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\1e43ec82407637f465c620e746b223b7\multidex-2.0.0\AndroidManifest.xml:20:5-43
@@ -296,16 +299,6 @@ MERGED from [com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gr
 MERGED from [com.google.firebase:firebase-iid:18.0.0] C:\Users\Rajan Phadnis\.gradle\caches\transforms-2\files-2.1\4c8dbcd66eb77c05b447269876967d97\jetified-firebase-iid-18.0.0\AndroidManifest.xml:23:5-67
 	android:name
 		ADDED from C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\android\app\src\debug\AndroidManifest.xml:6:22-64
-uses-permission#android.permission.CAMERA
-ADDED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-65
-MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-65
-MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-65
-	android:name
-		ADDED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-62
-uses-permission#android.permission.RECORD_AUDIO
-ADDED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-71
-	android:name
-		ADDED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-68
 service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [:cloud_firestore] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_storage] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
@@ -348,6 +341,16 @@ ADDED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp
 		ADDED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
 	android:name
 		ADDED from [:firebase_core] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-123
+uses-permission#android.permission.CAMERA
+ADDED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-65
+MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-65
+MERGED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-65
+	android:name
+		ADDED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-62
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-71
+	android:name
+		ADDED from [:camera] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-68
 meta-data#com.google.firebase.components:io.flutter.plugins.firebaselivestreammlvision.FlutterFirebaseAppRegistrar
 ADDED from [:firebase_livestream_ml_vision] C:\Users\Rajan Phadnis\Desktop\ChicanoParkHistoryApp\chicano_park\build\firebase_livestream_ml_vision\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-13:85
 	android:value

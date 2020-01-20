@@ -10,10 +10,10 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.2
   # See https://pub.dev/packages/camera for more info
-  camera: ^0.5.6+3
-  firebase_core: ^0.4.1+5
+  camera: ^0.5.7+3
+  firebase_core: ^0.4.3+2
   # firebase_analytics: ^5.0.2 nov7
-  cloud_firestore: ^0.12.9+8
+  cloud_firestore: ^0.13.0+1
   firebase_storage: ^3.0.8
   transparent_image: ^1.0.0
   share: ^0.6.2+4
