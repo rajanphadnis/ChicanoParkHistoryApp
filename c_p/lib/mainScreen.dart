@@ -6,6 +6,24 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   CameraController controller;
   TextEditingController _controller;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  static const platform = const MethodChannel('samples.flutter.dev/battery');
+  // Get battery level.
+  String _batteryLevel = 'Unknown battery level.';
+
+  Future<void> _getBatteryLevel() async {
+    String batteryLevel;
+    try {
+      final int result = await platform.invokeMethod('getBatteryLevel');
+      batteryLevel = 'Battery level at $result % .';
+    } on PlatformException catch (e) {
+      batteryLevel = "Failed to get battery level: '${e.message}'.";
+    }
+
+    setState(() {
+      _batteryLevel = batteryLevel;
+    });
+  }
+
   // initialize camera when the app is initialized
   @override
   void initState() {
@@ -35,10 +53,10 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
 
   Future<void> loadModel() async {
     String dataset = "pens";
-    await createLocalFiles(dataset);
+    // await createLocalFiles(dataset);
     String modelLoadStatus;
     try {
-      await AutomlMlkit.loadModelFromCache(dataset: dataset);
+      // await AutomlMlkit.loadModelFromCache(dataset: dataset);
       modelLoadStatus = "AutoML model successfully loaded";
     } on PlatformException catch (e) {
       modelLoadStatus = "Error loading model";
@@ -200,49 +218,64 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                     await controller.takePicture(path2);
 
                     print(path2);
-                    final results =
-                        await AutomlMlkit.runModelOnImage(imagePath: path2);
-                    if (results.isEmpty) {
-                      setState(() {
-                        processing = false;
-                      });
-                      _scaffoldKey.currentState.showSnackBar(
-                        SnackBar(
-                          content: Text("No labels found"),
-                          duration: Duration(milliseconds: 500),
-                        ),
-                      );
-                    } else {
-                      print("Got results" + results[0].toString());
-                      var label = results[0]["label"];
-                      var confidence =
-                          (results[0]["confidence"] * 100).toStringAsFixed(2);
-                      if ((results[0]["confidence"] * 100) >=
-                          confidenceNumThing) {
-                        _scaffoldKey.currentState.showSnackBar(
-                          SnackBar(
-                            content: Text("$label: $confidence \%"),
-                            duration: Duration(milliseconds: 500),
-                          ),
-                        );
-                        var parsedJson = json.decode(jsonData);
-                        found = parsedJson[label];
-                        setState(() {
-                          processing = false;
-                        });
-                        showTheModalThingWhenTheButtonIsPressed(context);
-                      } else {
-                        setState(() {
-                          processing = false;
-                        });
-                        _scaffoldKey.currentState.showSnackBar(
-                          SnackBar(
-                            content: Text("$label: $confidence \%"),
-                            duration: Duration(milliseconds: 500),
-                          ),
-                        );
-                      }
+                    final FirebaseVisionImage visionImage =
+                        FirebaseVisionImage.fromFile(File(path2));
+                    final ImageLabeler cloudLabeler =
+                        FirebaseVision.instance.imageLabeler(
+                      ImageLabelerOptions(confidenceThreshold: 0.75),
+                    );
+                    final List<ImageLabel> cloudLabels =
+                        await cloudLabeler.processImage(visionImage);
+                    for (ImageLabel label in cloudLabels) {
+                      final String text = label.text;
+                      final String entityId = label.entityId;
+                      final double confidence = label.confidence;
+                      debugPrint(text + "(" + confidence.toString() + ")");
                     }
+                    cloudLabeler.close();
+                    // final results =
+                    //     await AutomlMlkit.runModelOnImage(imagePath: path2);
+                    // if (results.isEmpty) {
+                    //   setState(() {
+                    //     processing = false;
+                    //   });
+                    //   _scaffoldKey.currentState.showSnackBar(
+                    //     SnackBar(
+                    //       content: Text("No labels found"),
+                    //       duration: Duration(milliseconds: 500),
+                    //     ),
+                    //   );
+                    // } else {
+                    //   print("Got results" + results[0].toString());
+                    //   var label = results[0]["label"];
+                    //   var confidence =
+                    //       (results[0]["confidence"] * 100).toStringAsFixed(2);
+                    //   if ((results[0]["confidence"] * 100) >=
+                    //       confidenceNumThing) {
+                    //     _scaffoldKey.currentState.showSnackBar(
+                    //       SnackBar(
+                    //         content: Text("$label: $confidence \%"),
+                    //         duration: Duration(milliseconds: 500),
+                    //       ),
+                    //     );
+                    //     var parsedJson = json.decode(jsonData);
+                    //     found = parsedJson[label];
+                    //     setState(() {
+                    //       processing = false;
+                    //     });
+                    //     showTheModalThingWhenTheButtonIsPressed(context);
+                    //   } else {
+                    //     setState(() {
+                    //       processing = false;
+                    //     });
+                    //     _scaffoldKey.currentState.showSnackBar(
+                    //       SnackBar(
+                    //         content: Text("$label: $confidence \%"),
+                    //         duration: Duration(milliseconds: 500),
+                    //       ),
+                    //     );
+                    //   }
+                    // }
                   },
                 ),
               ),

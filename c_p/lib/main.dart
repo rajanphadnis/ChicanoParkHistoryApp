@@ -12,7 +12,12 @@ import 'dart:convert';
 import 'package:camera/camera.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
-import 'package:automl_mlkit/automl_mlkit.dart';
+// import 'package:automl_mlkit/automl_mlkit.dart';
+import 'package:firebase_ml_vision/firebase_ml_vision.dart';
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 part 'functions.dart';
 part 'shapesDrawing.dart';
 part 'mainScreen.dart';
