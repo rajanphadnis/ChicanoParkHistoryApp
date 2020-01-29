@@ -233,7 +233,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                     await controller.takePicture(path2);
 
                     print(path2);
-                    await _getBatteryLevel(path2);
+                    //await _getBatteryLevel(path2);
                     debugPrint("hellloo");
                     _scaffoldKey.currentState.showSnackBar(
                         SnackBar(
