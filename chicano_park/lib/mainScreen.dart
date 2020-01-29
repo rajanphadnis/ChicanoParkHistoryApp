@@ -10,7 +10,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   var confidenceThing;
   static const platform = const MethodChannel('samples.flutter.dev/battery');
   // Get battery level.
-  String _batteryLevel = 'Unknown battery level.';
+  // String _batteryLevel = 'Unknown battery level.';
 
   Future<void> _getBatteryLevel(String path2) async {
     String batteryLevel;
@@ -61,20 +61,20 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   }
 
   Future<void> loadModel() async {
-    String dataset = "pens";
+    // String dataset = "pens";
     // await createLocalFiles(dataset);
-    String modelLoadStatus;
+    // String modelLoadStatus;
     try {
       // await AutomlMlkit.loadModelFromCache(dataset: dataset);
-      modelLoadStatus = "AutoML model successfully loaded";
+      // modelLoadStatus = "AutoML model successfully loaded";
     } on PlatformException catch (e) {
-      modelLoadStatus = "Error loading model";
+      // modelLoadStatus = "Error loading model";
       print("error from platform on calling loadModelFromCache");
       print(e.toString());
     }
-    setState(() {
-      _modelLoadStatus = modelLoadStatus;
-    });
+    // setState(() {
+    //   _modelLoadStatus = modelLoadStatus;
+    // });
   }
 
   Future<void> createLocalFiles(String folder) async {

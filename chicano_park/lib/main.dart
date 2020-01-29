@@ -5,7 +5,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_counter/flutter_counter.dart';
 import 'dart:async';
 import 'package:transparent_image/transparent_image.dart';
 import 'dart:convert';
@@ -15,9 +14,6 @@ import 'package:path_provider/path_provider.dart';
 // import 'package:automl_mlkit/automl_mlkit.dart';
 // import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'dart:async';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 part 'functions.dart';
 part 'shapesDrawing.dart';
 part 'mainScreen.dart';
@@ -37,7 +33,7 @@ Future<void> main() async {
 // This variable is a string that will contain a descriptor for the mural we found when scanned
 var found = "";
 double valueTHingy = 0.0;
-num _defaultValue = 0;
+// num _defaultValue = 0;
 String textl = "quite literally nothing";
 double confidenceNumThing = 0.0;
 bool differentMural = true;
@@ -47,7 +43,7 @@ var parsedJson = json.decode(jsonData);
 String data = "no error";
 final double confidenceThresh = 0.2;
 List<CameraDescription> cameras;
-String _modelLoadStatus = 'unknown';
+// String _modelLoadStatus = 'unknown';
 bool processing = false;
 
 // Create the app class and basic Material design structure
