@@ -218,21 +218,21 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                     await controller.takePicture(path2);
 
                     print(path2);
-                    final FirebaseVisionImage visionImage =
-                        FirebaseVisionImage.fromFile(File(path2));
-                    final ImageLabeler cloudLabeler =
-                        FirebaseVision.instance.imageLabeler(
-                      ImageLabelerOptions(confidenceThreshold: 0.75),
-                    );
-                    final List<ImageLabel> cloudLabels =
-                        await cloudLabeler.processImage(visionImage);
-                    for (ImageLabel label in cloudLabels) {
-                      final String text = label.text;
-                      final String entityId = label.entityId;
-                      final double confidence = label.confidence;
-                      debugPrint(text + "(" + confidence.toString() + ")");
-                    }
-                    cloudLabeler.close();
+                    // final FirebaseVisionImage visionImage =
+                    //     FirebaseVisionImage.fromFile(File(path2));
+                    // final ImageLabeler cloudLabeler =
+                    //     FirebaseVision.instance.imageLabeler(
+                    //   ImageLabelerOptions(confidenceThreshold: 0.75),
+                    // );
+                    // final List<ImageLabel> cloudLabels =
+                    //     await cloudLabeler.processImage(visionImage);
+                    // for (ImageLabel label in cloudLabels) {
+                    //   final String text = label.text;
+                    //   final String entityId = label.entityId;
+                    //   final double confidence = label.confidence;
+                    //   debugPrint(text + "(" + confidence.toString() + ")");
+                    // }
+                    // cloudLabeler.close();
                     // final results =
                     //     await AutomlMlkit.runModelOnImage(imagePath: path2);
                     // if (results.isEmpty) {
