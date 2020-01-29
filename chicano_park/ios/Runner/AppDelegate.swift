@@ -56,3 +56,7 @@ private func receiveBatteryLevel(result: FlutterResult) {
 // }
 // }
 // }
+
+
+// https://firebase.google.com/docs/ml-kit/ios/label-images-with-automl#configure-a-local-model-source
+// https://flutter.dev/docs/development/platform-integration/platform-channels?tab=ios-channel-swift-tab#step-4-add-an-ios-platform-specific-implementation
