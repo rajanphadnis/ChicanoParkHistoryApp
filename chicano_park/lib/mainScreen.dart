@@ -4,7 +4,6 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   // Define a camera controller. This determines which camera we want to use and when
   bool dialVisible = true;
   CameraController controller;
-  TextEditingController _controller;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String muralTitleThing;
   var confidenceThing;
@@ -162,38 +161,6 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     super.dispose();
   }
 
-  // Future<void> _neverSatisfied() async {
-  //   return showDialog<void>(
-  //     context: context,
-  //     barrierDismissible: true,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: Text('Adjust Confidence'),
-  //         content: TextField(
-  //           decoration: new InputDecoration.collapsed(
-  //               hintText: confidenceNumThing.toString()),
-  //           controller: _controller,
-  //           textInputAction: TextInputAction.done,
-  //           onSubmitted: (String valueT) {
-  //             setState(() {
-  //               confidenceNumThing = double.parse(valueT);
-  //               Navigator.of(context).pop();
-  //             });
-  //           },
-  //         ),
-  //         actions: <Widget>[
-  //           FlatButton(
-  //             child: Text('Close'),
-  //             onPressed: () {
-  //               Navigator.of(context).pop();
-  //             },
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
-
   Widget cameraPreview(size, controller) {
     return ClipRect(
       child: Container(
@@ -274,24 +241,11 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                     setState(() {
                       processing = true;
                     });
-                    // await PermissionHandler().requestPermissions([PermissionGroup.storage]);
-                    // Construct the path where the image should be saved using the path
-                    // package.
                     final path2 = join(
-                      // Store the picture in the temp directory.
-                      // Find the temp directory using the `path_provider` plugin thing
                       (await getTemporaryDirectory()).path,
                       '${DateTime.now()}.png',
                     );
-                    // final Directory extDir =
-                    //     await getApplicationDocumentsDirectory();
-                    // final String dirPath =
-                    //     '/sdcard/Pictures/flutter_test';
-                    // await Directory(dirPath).create(recursive: true);
-                    // final String filePath = '$dirPath/${DateTime.now()}.png';
-                    // Attempt to take a picture and log where it's been saved.
                     await controller.takePicture(path2);
-
                     print(path2);
                     await _getBatteryLevel(path2);
                     var stringSplit = muralTitleThing;
@@ -303,11 +257,10 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                       _scaffoldKey.currentState.showSnackBar(
                         SnackBar(
                           content: Text("No labels found"),
-                          duration: Duration(milliseconds: 500),
+                          duration: Duration(milliseconds: 750),
                         ),
                       );
                     } else {
-                      // print("Got results" + results[0].toString());
                       var label = newStr[0];
                       double confidence =
                           double.parse(newStr[1].toString()) * 100;
