@@ -4,16 +4,16 @@ Programming I and Programming II Chicano Park collaborative History app. Basic s
 
 ## Timeline
 
-High-level app prototype by March. Final production-ready version by Global Travel.
+High-level app prototype by March. Final production-ready version by Global Travel. Currently on-track. Last updated 1/29/2020.
 
 ## Team Members
 
 - Rajan Phadnis
-- Sloane McGuire
 - Evan Mickelson
 - Elisse Chow
 - Matthew Peng
 - Jordan Wood
+- Sloane McGuire
 - Ishan Seendripu
 
 # App Description
@@ -73,17 +73,16 @@ Who will almost always be the user for the application, unless otherwise stated.
 
 - High priority
 
-  - Provide Offline support to the user in the event the user has no internet connection
+  - Provide Offline support to the user in the event the user has no internet connection (semi-complete)
     - Why: To stay true to our goal of accessibility
     - Difficulty and Feasibility: Medium-difficulty. Feasible. Using caching and pre-written text, the ability to display information on each mural even when the user is not connected to WiFi, which increases accessibility
-  - Have the user use their camera (Image Recognition) to capture, identify and pull up info for a specific mural
+  - ✔Have the user use their camera (Image Recognition) to capture, identify and pull up info for a specific mural (complete)✔
     - Why: For an easy, user friendly way of accessing information about the murals.
     - You scan the murals, and it will display information about the scanned mural, maybe in a pop-up type of display.
     - medium difficulty to implement
-  - Virtual QR Codes:
+  - ✔Virtual QR Codes (complete)✔
     - Why: Makes interacting very easy
     - Who
-  - Vuforia
   - Audio tour
     - Why: More accessibility options
     - Very feasible
@@ -92,7 +91,7 @@ Who will almost always be the user for the application, unless otherwise stated.
   - Predetermined tour routes
     - Why: Accessibility and ease of usage. By having a predetermined route, users can feel less overwhelmed by the park.
     - Feasible, but difficult. Harder than AR
-  - App theming
+  - ✔App theming (complete)✔ 
     - Why: To make the app “feel,” good for the user.
     - Very feasible
     - Clean color palettes
@@ -100,13 +99,13 @@ Who will almost always be the user for the application, unless otherwise stated.
   - Map
     - Why: Ease of use, accessibility, way to navigate park.
     - Feasible. Uses Google Maps API and a view to display location on map
-  - Gallery Feature
+  - Gallery Feature (semi-complete)
     - Why: Consistent easier way to access knowledge about the park
     - Ability to look through all the murals and their information
 - Low Priority
   - Scavenger hunt mode
     - Feasible, but harder AR, easier than a walking tour
-  - Social media share integration
+  - ✔Social media share integration (complete)
     - Very easy. Native share API
   - Loot boxes (GACHA PLEASE)
   - Popularity and view history
