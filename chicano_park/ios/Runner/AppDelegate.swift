@@ -7,24 +7,24 @@ import Flutter
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-    let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
-    let batteryChannel = FlutterMethodChannel(name: "samples.flutter.dev/battery",
-                                              binaryMessenger: controller.binaryMessenger)
-    batteryChannel.setMethodCallHandler({
+    //let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
+    //let batteryChannel = FlutterMethodChannel(name: "samples.flutter.dev/battery",
+                                             // binaryMessenger: controller.binaryMessenger)
+   /* batteryChannel.setMethodCallHandler({
   [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
   // Note: this method is invoked on the UI thread.
   guard call.method == "getModel" else {
     result(FlutterMethodNotImplemented)
     return
   }
-  self?.receiveBatteryLevel(result: result)
-})
+  //self?.receiveBatteryLevel(result: result)
+})*/
 
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }
-private func receiveBatteryLevel(result: FlutterResult) {
+/*private func receiveBatteryLevel(result: FlutterResult) {
   let device = UIDevice.current
   device.isBatteryMonitoringEnabled = true
   if device.batteryState == UIDevice.BatteryState.unknown {
@@ -34,7 +34,7 @@ private func receiveBatteryLevel(result: FlutterResult) {
   } else {
     result(Int(device.batteryLevel * 100))
   }
-}
+}*/
 // private func runModel(result: FlutterResult) {
 //   guard let manifestPath = Bundle.main.path(
 //     forResource: "manifest",

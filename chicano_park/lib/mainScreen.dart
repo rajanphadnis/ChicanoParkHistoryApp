@@ -293,6 +293,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                     await controller.takePicture(path2);
 
                     print(path2);
+<<<<<<< HEAD
                     await _getBatteryLevel(path2);
                     var stringSplit = muralTitleThing;
                     var newStr = stringSplit.split(":");
@@ -301,6 +302,11 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                         processing = false;
                       });
                       _scaffoldKey.currentState.showSnackBar(
+=======
+                    //await _getBatteryLevel(path2);
+                    debugPrint("hellloo");
+                    _scaffoldKey.currentState.showSnackBar(
+>>>>>>> f24f75a4e3f2c8302f580e450548be9feff82d3e
                         SnackBar(
                           content: Text("No labels found"),
                           duration: Duration(milliseconds: 500),
