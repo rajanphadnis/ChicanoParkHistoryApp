@@ -18,7 +18,7 @@ part 'functions.dart';
 part 'shapesDrawing.dart';
 part 'mainScreen.dart';
 part 'historyModal.dart';
-part 'modal.dart';
+// part 'modal.dart';
 part 'timeline.dart';
 part 'infoPage.dart';
 
@@ -38,7 +38,7 @@ String textl = "quite literally nothing";
 double confidenceNumThing = 0.0;
 bool differentMural = true;
 var jsonData =
-    '{ "All_The_Way_To_The_Bay" : "Mural1", "Colossus" : "Mural2", "Los_Grandes" : "grandes", "Cuauhtemoc_Aztec_Warrior" : "aztec_dude" }';
+    '{ "All_The_Way_To_The_Bay" : "all_the_way", "Colossus" : "colossus", "Los_Grandes" : "grandes", "Cuauhtemoc_Aztec_Warrior" : "aztec_dude", "Varrio_Si_Yonkes_No" : "varrio" }';
 var parsedJson = json.decode(jsonData);
 String data = "no error";
 final double confidenceThresh = 0.2;
