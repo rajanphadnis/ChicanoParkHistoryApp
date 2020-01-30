@@ -9,8 +9,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   String muralTitleThing;
   var confidenceThing;
   static const platform = const MethodChannel('samples.flutter.dev/battery');
-  // Get battery level.
-  // String _batteryLevel = 'Unknown battery level.';
+  var realData;
 
   Future<void> _getBatteryLevel(String path2) async {
     String batteryLevel;
@@ -22,7 +21,6 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
 
       batteryLevel = result.toString();
       debugPrint(result.toString());
-      
     } on PlatformException catch (e) {
       batteryLevel = "Failed to get battery level: '${e.message}'.";
     }
@@ -31,6 +29,116 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
       muralTitleThing = batteryLevel;
       processing = false;
     });
+  }
+
+  void showTheModalThingWhenTheButtonIsPressed(BuildContext context) {
+    // Obviously show the bottom sheet
+    showModalBottomSheet(
+      // we want it be dismissable when you swipe down
+      isScrollControlled: true,
+      // Add the corner radii
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10.0),
+          topRight: Radius.circular(10.0),
+        ),
+      ),
+      // Background color of the bottom sheet
+      backgroundColor: Colors.white,
+      // Choose which "navigator" to put the modal in. We just choose the general "context", which is the main, root navigator
+      context: context,
+      // now we supply the modal with the widget inside of the modal
+      builder: (context) => Wrap(
+        // Wrap the text and stuff so that nothing gets cut off
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height * 0.9,
+            child: Center(
+              child: Column(
+                children: <Widget>[
+                  // This is the "pill" shape at the top of the modal. See the class at the bottom of the file.
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: CustomPaint(
+                      painter:
+                          PaintSomeRandomShapeThatIsProbablyARectangleWithSomeRadius(),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: new Border.all(color: Colors.white),
+                            borderRadius:
+                                new BorderRadius.all(Radius.circular(2.5)),
+                            color: Colors.grey),
+                        height: 5,
+                        width: 40,
+                      ),
+                    ),
+                  ),
+                  // This is the title for the modal. get the data from the database
+                  Text(
+                    testString(realData, "title"),
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                  ),
+                  // Add the image
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: getImage(realData, "picURL"),
+                  ),
+                  Text(
+                    "By: Artist Name",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  // add scrollable description that fills up the rest of the available space in the modal
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Text(testString(realData, "desc")),
+                      ),
+                    ),
+                  ),
+                  // Just your average share button. and a tour button that collapses the modal bottom sheet
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: RaisedButton.icon(
+                          icon: Icon(Icons.share),
+                          label: Text("Share"),
+                          onPressed: () {
+                            // The message that will be shared. This can be a link, some text or contact or anything really
+                            // Share.share("Hello there!");
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: RaisedButton.icon(
+                          icon: Icon(Icons.explore),
+                          label: Text("Tour Guide"),
+                          onPressed: () {
+                            // Remember navigator? We just "pop" it to get rid of it.
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    ).whenComplete(() {
+      Future.delayed(const Duration(milliseconds: 500), () {
+        differentMural = true;
+      });
+    });
+    // });
   }
 
   // initialize camera when the app is initialized
@@ -47,12 +155,6 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     });
   }
 
-  void setDialVisible(bool value) {
-    setState(() {
-      dialVisible = value;
-    });
-  }
-
   // Get rid of the camera controller and access to the camera when the app is closed
   @override
   void dispose() {
@@ -60,79 +162,37 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     super.dispose();
   }
 
-  Future<void> loadModel() async {
-    // String dataset = "pens";
-    // await createLocalFiles(dataset);
-    // String modelLoadStatus;
-    try {
-      // await AutomlMlkit.loadModelFromCache(dataset: dataset);
-      // modelLoadStatus = "AutoML model successfully loaded";
-    } on PlatformException catch (e) {
-      // modelLoadStatus = "Error loading model";
-      print("error from platform on calling loadModelFromCache");
-      print(e.toString());
-    }
-    // setState(() {
-    //   _modelLoadStatus = modelLoadStatus;
-    // });
-  }
-
-  Future<void> createLocalFiles(String folder) async {
-    Directory tempDir = await getTemporaryDirectory();
-    final Directory modelDir = Directory("${tempDir.path}/$folder");
-    if (!modelDir.existsSync()) {
-      modelDir.createSync();
-    }
-    final filenames = ["manifest.json", "model.tflite", "dict.txt"];
-
-    for (String filename in filenames) {
-      final File file = File("${modelDir.path}/$filename");
-      if (!file.existsSync()) {
-        print("Copying file: $filename");
-        await copyFileFromAssets(filename, file);
-      }
-    }
-  }
-
-  /// copies file from assets to dst file
-  Future<void> copyFileFromAssets(String filename, File dstFile) async {
-    ByteData data = await rootBundle.load("assets/ml/$filename");
-    final buffer = data.buffer;
-    dstFile.writeAsBytesSync(
-        buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
-  }
-
-  Future<void> _neverSatisfied() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Adjust Confidence'),
-          content: TextField(
-            decoration: new InputDecoration.collapsed(
-                hintText: confidenceNumThing.toString()),
-            controller: _controller,
-            textInputAction: TextInputAction.done,
-            onSubmitted: (String valueT) {
-              setState(() {
-                confidenceNumThing = double.parse(valueT);
-                Navigator.of(context).pop();
-              });
-            },
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('Close'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // Future<void> _neverSatisfied() async {
+  //   return showDialog<void>(
+  //     context: context,
+  //     barrierDismissible: true,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: Text('Adjust Confidence'),
+  //         content: TextField(
+  //           decoration: new InputDecoration.collapsed(
+  //               hintText: confidenceNumThing.toString()),
+  //           controller: _controller,
+  //           textInputAction: TextInputAction.done,
+  //           onSubmitted: (String valueT) {
+  //             setState(() {
+  //               confidenceNumThing = double.parse(valueT);
+  //               Navigator.of(context).pop();
+  //             });
+  //           },
+  //         ),
+  //         actions: <Widget>[
+  //           FlatButton(
+  //             child: Text('Close'),
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   Widget cameraPreview(size, controller) {
     return ClipRect(
@@ -167,14 +227,14 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                 child: IconButton(
                   icon: Icon(Icons.list, color: Colors.white),
                   onPressed: () {
-                    _neverSatisfied();
+                    // _neverSatisfied();
                   },
                 ),
               ),
               IconButton(
                 icon: Icon(Icons.list, color: Colors.black),
                 onPressed: () {
-                  _neverSatisfied();
+                  // _neverSatisfied();
                 },
               ),
             ],
@@ -214,7 +274,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                     setState(() {
                       processing = true;
                     });
-                    await PermissionHandler().requestPermissions([PermissionGroup.storage]);
+                    // await PermissionHandler().requestPermissions([PermissionGroup.storage]);
                     // Construct the path where the image should be saved using the path
                     // package.
                     final path2 = join(
@@ -233,72 +293,59 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                     await controller.takePicture(path2);
 
                     print(path2);
-                    //await _getBatteryLevel(path2);
-                    debugPrint("hellloo");
-                    _scaffoldKey.currentState.showSnackBar(
+                    await _getBatteryLevel(path2);
+                    var stringSplit = muralTitleThing;
+                    var newStr = stringSplit.split(":");
+                    if (newStr.isEmpty) {
+                      setState(() {
+                        processing = false;
+                      });
+                      _scaffoldKey.currentState.showSnackBar(
                         SnackBar(
-                          content: Text(muralTitleThing),
-                          duration: Duration(milliseconds: 750),
+                          content: Text("No labels found"),
+                          duration: Duration(milliseconds: 500),
                         ),
                       );
-                    // final FirebaseVisionImage visionImage =
-                    //     FirebaseVisionImage.fromFile(File(path2));
-                    // final ImageLabeler cloudLabeler =
-                    //     FirebaseVision.instance.imageLabeler(
-                    //   ImageLabelerOptions(confidenceThreshold: 0.75),
-                    // );
-                    // final List<ImageLabel> cloudLabels =
-                    //     await cloudLabeler.processImage(visionImage);
-                    // for (ImageLabel label in cloudLabels) {
-                    //   final String text = label.text;
-                    //   final String entityId = label.entityId;
-                    //   final double confidence = label.confidence;
-                    //   debugPrint(text + "(" + confidence.toString() + ")");
-                    // }
-                    // cloudLabeler.close();
-                    // final results =
-                    //     await AutomlMlkit.runModelOnImage(imagePath: path2);
-                    // if (results.isEmpty) {
-                    //   setState(() {
-                    //     processing = false;
-                    //   });
-                    //   _scaffoldKey.currentState.showSnackBar(
-                    //     SnackBar(
-                    //       content: Text("No labels found"),
-                    //       duration: Duration(milliseconds: 500),
-                    //     ),
-                    //   );
-                    // } else {
-                    //   print("Got results" + results[0].toString());
-                    //   var label = results[0]["label"];
-                    //   var confidence =
-                    //       (results[0]["confidence"] * 100).toStringAsFixed(2);
-                    //   if ((results[0]["confidence"] * 100) >=
-                    //       confidenceNumThing) {
-                    //     _scaffoldKey.currentState.showSnackBar(
-                    //       SnackBar(
-                    //         content: Text("$label: $confidence \%"),
-                    //         duration: Duration(milliseconds: 500),
-                    //       ),
-                    //     );
-                    //     var parsedJson = json.decode(jsonData);
-                    //     found = parsedJson[label];
-                    //     setState(() {
-                    //       processing = false;
-                    //     });
-                    //     showTheModalThingWhenTheButtonIsPressed(context);
-                    //   } else {
-                    //     setState(() {
-                    //       processing = false;
-                    //     });
-                    //     _scaffoldKey.currentState.showSnackBar(
-                    //       SnackBar(
-                    //         content: Text("$label: $confidence \%"),
-                    //         duration: Duration(milliseconds: 500),
-                    //       ),
-                    //     );
-                    //   }
-                    // }
+                    } else {
+                      // print("Got results" + results[0].toString());
+                      var label = newStr[0];
+                      double confidence =
+                          double.parse(newStr[1].toString()) * 100;
+                      if (confidence >= confidenceNumThing) {
+                        _scaffoldKey.currentState.showSnackBar(
+                          SnackBar(
+                            content: Text("$label: $confidence \%"),
+                            duration: Duration(milliseconds: 500),
+                          ),
+                        );
+                        var parsedJson = json.decode(jsonData);
+                        found = parsedJson[label];
+                        Firestore.instance
+                            .collection('Murals')
+                            .document(found)
+                            .get()
+                            .then((DocumentSnapshot ds) {
+                          setState(() {
+                            realData = ds;
+                          });
+                          realData = ds;
+                        });
+                        setState(() {
+                          processing = false;
+                        });
+                        showTheModalThingWhenTheButtonIsPressed(context);
+                      } else {
+                        setState(() {
+                          processing = false;
+                        });
+                        _scaffoldKey.currentState.showSnackBar(
+                          SnackBar(
+                            content: Text("$label: $confidence \%"),
+                            duration: Duration(milliseconds: 500),
+                          ),
+                        );
+                      }
+                    }
                   },
                 ),
               ),
