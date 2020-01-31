@@ -83,15 +83,6 @@ void showHistoryBottomSheet(BuildContext context) {
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                     ),
-                    // SingleChildScrollView(
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.all(15),
-                    //     child: Text(
-                    //       testString(snapshot.data, "basicDescription"),
-                    //       textAlign: TextAlign.center,
-                    //     ),
-                    //   ),
-                    // ),
                     Center(
                       child: Text(
                         "Timeline:",
@@ -115,9 +106,5 @@ void showHistoryBottomSheet(BuildContext context) {
         ),
       ],
     ),
-  ).whenComplete(() {
-    Future.delayed(const Duration(milliseconds: 500), () {
-      differentMural = true;
-    });
-  });
+  );
 }

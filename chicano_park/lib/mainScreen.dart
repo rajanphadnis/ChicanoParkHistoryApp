@@ -132,12 +132,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
           ),
         ],
       ),
-    ).whenComplete(() {
-      Future.delayed(const Duration(milliseconds: 500), () {
-        differentMural = true;
-      });
-    });
-    // });
+    );
   }
 
   // initialize camera when the app is initialized
