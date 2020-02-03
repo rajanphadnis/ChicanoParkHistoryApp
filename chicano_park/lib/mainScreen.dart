@@ -10,7 +10,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   static const platform = const MethodChannel('samples.flutter.dev/battery');
   var realData;
   FlutterTts flutterTts = FlutterTts();
-
+// https://www.youtube.com/watch?v=dQw4w9WgXcQ
   Future<void> _getBatteryLevel(String path2) async {
     String batteryLevel;
     try {
@@ -78,6 +78,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                       ),
                     ),
                   ),
+                  // https://www.youtube.com/watch?v=dQw4w9WgXcQ
                   // This is the title for the modal. get the data from the database
                   Text(
                     testString(realData, "title"),
@@ -85,7 +86,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                   ),
-                  
+                  // https://www.youtube.com/watch?v=dQw4w9WgXcQ
                   /*IconButton(
                     icon: Icon(Icons.speaker, color: Colors.red), 
                     onPressed: () { 
@@ -125,6 +126,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                           onPressed: () {
                             // The message that will be shared. This can be a link, some text or contact or anything really
                             // Share.share("Hello there!");
+                            // https://www.youtube.com/watch?v=dQw4w9WgXcQ
                           },
                         ),
                       ),
@@ -149,7 +151,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
       ),
     );
   }
-
+// https://www.youtube.com/watch?v=dQw4w9WgXcQ
   // initialize camera when the app is initialized
   @override
   void initState() {
@@ -163,14 +165,14 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
       setState(() {});
     });
   }
-
+// https://www.youtube.com/watch?v=dQw4w9WgXcQ
   // Get rid of the camera controller and access to the camera when the app is closed
   @override
   void dispose() {
     controller?.dispose();
     super.dispose();
   }
-
+// https://www.youtube.com/watch?v=dQw4w9WgXcQ
   //Display the camera
   Widget cameraPreview(size, controller) {
     return ClipRect(
@@ -188,7 +190,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
       ),
     );
   }
-
+// https://www.youtube.com/watch?v=dQw4w9WgXcQ
   Widget theBottomButtonNavigation() {
     return Container(
       padding: EdgeInsets.all(15.0),
@@ -259,6 +261,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                     await controller.takePicture(path2);
                     print(path2);
                     await _getBatteryLevel(path2);
+                    // https://www.youtube.com/watch?v=dQw4w9WgXcQ
                     var stringSplit = muralTitleThing;
                     var newStr = stringSplit.split(":");
                     if (newStr.isEmpty) {
@@ -340,7 +343,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
       ),
     );
   }
-
+// https://www.youtube.com/watch?v=dQw4w9WgXcQ
 // OK, now for the meaty stuff. The main widget here (called "build") is the main homepage widget in the "TheMainAppHomePage" class
   @override
   Widget build(BuildContext context) {
@@ -361,6 +364,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
         ),
       );
     }
+    // https://www.youtube.com/watch?v=dQw4w9WgXcQ
     // When the camera is initialized (Stateful widget, so it is constantly re-checking the state), show the main app ui
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,

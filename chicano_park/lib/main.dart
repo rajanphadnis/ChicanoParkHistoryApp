@@ -16,7 +16,7 @@ part 'mainScreen.dart';
 part 'historyModal.dart';
 part 'timeline.dart';
 part 'infoPage.dart';
-
+// https://www.youtube.com/watch?v=dQw4w9WgXcQ
 // Next, create a list of cameras so that we know which one is the "back" one
 // Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a cmera feed to the user
 Future<void> main() async {
@@ -37,7 +37,7 @@ String data = "no error";
 final double confidenceThresh = 0.2;
 List<CameraDescription> cameras;
 bool processing = false;
-
+// https://www.youtube.com/watch?v=dQw4w9WgXcQ
 // Create the app class and basic Material design structure
 class MyApp extends StatelessWidget {
   @override
@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+// https://www.youtube.com/watch?v=dQw4w9WgXcQ
 class TheMainAppHomePage extends StatefulWidget {
   // We want a stateful widget because of all of theredrawing and repainting we are going to be doing. So, we create it (read: start it)
   _TheMainAppHomePageState createState() => _TheMainAppHomePageState();
