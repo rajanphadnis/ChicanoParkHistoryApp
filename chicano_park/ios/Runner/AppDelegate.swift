@@ -1,7 +1,8 @@
 import UIKit
 import Flutter
 import Firebase
-
+import AVFoundation
+import CoreML
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
     
@@ -22,24 +23,62 @@ import Firebase
     batteryChannel.setMethodCallHandler({
   [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
   // Note: this method is invoked on the UI thread.
-  guard call.method == "getBatteryLevel" else {
+  guard call.method == "runModel" else {
     result(FlutterMethodNotImplemented)
     return
   }
-  self?.receiveBatteryLevel(result: result)
+        guard let args = call.arguments else {
+            result("iOS couldnt find any arguments")
+            return
+        }
+//        args = args as!/
+        let args2 = args as! [String: String]
+        let urlString : String = args2["path"] as! String
+        print("* url string: \(urlString as! String)")
+          guard let manifestPath = Bundle.main.path(
+            forResource: "manifest",
+            ofType: "json",
+            inDirectory: "ml"
+        ) else { return }
+        let localModel = AutoMLLocalModel(manifestPath: manifestPath)
+        let options = VisionOnDeviceAutoMLImageLabelerOptions(localModel: localModel)
+        var resultText = ""
+        var confidencetext = 0.20
+options.confidenceThreshold = 0  // Evaluate your model in the Firebase console
+                                 // to determine an appropriate value.
+let labeler = Vision.vision().onDeviceAutoMLImageLabeler(options: options)
+        let image = VisionImage(image: UIImage(contentsOfFile: urlString as! String)!)
+        labeler.process(image) { labels, error in
+    guard error == nil, let labels = labels else { return }
+            print("\(labels.first?.text as! String) - \(Double((labels.first?.confidence)!))")
+            resultText = labels.first?.text as! String
+            confidencetext = labels.first?.confidence as! Double
+//            result(labels.first?.text as! String)
+//for label in labels {labels.first?.text
+//    let labelText = label.text
+//    let confidence = label.confidence
+//}
+    // Task succeeded.
+    // ...
+}
+        result("\(resultText):\(confidencetext)")
+        
+        
+//  self?.receiveBatteryLevel(result: result)
+        
 })
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
-    private func receiveBatteryLevel(result: FlutterResult) {
-  guard let manifestPath = Bundle.main.path(
-    forResource: "manifest",
-    ofType: "json",
-    inDirectory: "ml"
-) else { return true }
-let localModel = AutoMLLocalModel(manifestPath: manifestPath)
-//        var im = UIImage(named: )
-        
-}
+//    private func receiveBatteryLevel(result: FlutterResult) {
+//  guard let manifestPath = Bundle.main.path(
+//    forResource: "manifest",
+//    ofType: "json",
+//    inDirectory: "ml"
+//) else { return true }
+//let localModel = AutoMLLocalModel(manifestPath: manifestPath)
+////        var im = UIImage(named: )
+//
+//}
     
 }
 
