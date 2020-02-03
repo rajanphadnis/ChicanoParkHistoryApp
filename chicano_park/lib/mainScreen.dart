@@ -9,6 +9,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   var confidenceThing;
   static const platform = const MethodChannel('samples.flutter.dev/battery');
   var realData;
+  FlutterTts flutterTts = FlutterTts();
 
   Future<void> _getBatteryLevel(String path2) async {
     String batteryLevel;
@@ -30,6 +31,11 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     });
   }
 
+  
+  void playTTS(BuildContext context, String talk_){
+    flutterTts.speak(talk_);
+
+  }
   void showTheModalThingWhenTheButtonIsPressed(BuildContext context) {
     // Obviously show the bottom sheet
     showModalBottomSheet(
@@ -79,6 +85,15 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                   ),
+                  
+                  /*IconButton(
+                    icon: Icon(Icons.speaker, color: Colors.red), 
+                    onPressed: () { 
+                      playTTS(context, "Hello how are you today");
+                    },
+                  ),*/
+                    
+                 
                   // Add the image
                   Padding(
                     padding: const EdgeInsets.all(15),
@@ -156,6 +171,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     super.dispose();
   }
 
+  //Display the camera
   Widget cameraPreview(size, controller) {
     return ClipRect(
       child: Container(
