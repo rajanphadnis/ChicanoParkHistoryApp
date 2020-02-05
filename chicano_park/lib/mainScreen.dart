@@ -32,8 +32,8 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   }
 
   
-  void playTTS(BuildContext context, String talk_){
-    flutterTts.speak(talk_);
+  void playTTS(BuildContext context, String talk){
+    flutterTts.speak(talk);
 
   }
   void showTheModalThingWhenTheButtonIsPressed(BuildContext context) {
@@ -87,12 +87,12 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                   ),
                   // https://www.youtube.com/watch?v=dQw4w9WgXcQ
-                  /*IconButton(
+                  IconButton(
                     icon: Icon(Icons.speaker, color: Colors.red), 
                     onPressed: () { 
                       playTTS(context, "Hello how are you today");
                     },
-                  ),*/
+                  ),
                     
                  
                   // Add the image

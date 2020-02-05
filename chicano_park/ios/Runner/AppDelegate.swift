@@ -5,7 +5,7 @@ import AVFoundation
 import CoreML
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
-    
+    var hasThing = false
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -21,7 +21,7 @@ import CoreML
 
     GeneratedPluginRegistrant.register(with: self)
     batteryChannel.setMethodCallHandler({
-  [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
+  [weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
   // Note: this method is invoked on the UI thread.
   guard call.method == "runModel" else {
     result(FlutterMethodNotImplemented)
@@ -44,24 +44,37 @@ import CoreML
         let options = VisionOnDeviceAutoMLImageLabelerOptions(localModel: localModel)
         var resultText = ""
         var confidencetext = 0.20
+        
 options.confidenceThreshold = 0  // Evaluate your model in the Firebase console
                                  // to determine an appropriate value.
 let labeler = Vision.vision().onDeviceAutoMLImageLabeler(options: options)
-        let image = VisionImage(image: UIImage(contentsOfFile: urlString as! String)!)
-        labeler.process(image) { labels, error in
-    guard error == nil, let labels = labels else { return }
-            print("\(labels.first?.text as! String) - \(Double((labels.first?.confidence)!))")
-            resultText = labels.first?.text as! String
-            confidencetext = labels.first?.confidence as! Double
-//            result(labels.first?.text as! String)
-//for label in labels {labels.first?.text
-//    let labelText = label.text
-//    let confidence = label.confidence
-//}
-    // Task succeeded.
-    // ...
-}
+        
+            let image = VisionImage(image: UIImage(contentsOfFile: urlString as! String)!)
+                    labeler.process(image) { labels, error in
+                guard error == nil, let labels = labels else { return }
+                        print("\(labels.first?.text as! String) - \(Double((labels.first?.confidence)!))")
+                        resultText = labels.first?.text as! String
+                        confidencetext = labels.first?.confidence as! Double
+                        self!.hasThing = true
+            //            result(labels.first?.text as! String)
+            //for label in labels {labels.first?.text
+            //    let labelText = label.text
+            //    let confidence = label.confidence
+            //}
+                // Task succeeded.
+                        
+                // ...
+                    }
+        
+        
+//        repeat {
+            print("*sleeping")
+//                usleep(5000000)
+        print("\(resultText):\(confidencetext)")
         result("\(resultText):\(confidencetext)")
+
+//        } while self!.hasThing == false
+        
         
         
 //  self?.receiveBatteryLevel(result: result)
