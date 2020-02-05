@@ -5,111 +5,80 @@ import AVFoundation
 import CoreML
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
-    var hasThing = false
+  // Really Raj? I have to format the code for you?
+  var hasThing = false
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-    let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
-    let batteryChannel = FlutterMethodChannel(name: "samples.flutter.dev/battery",
-                                              binaryMessenger: controller.binaryMessenger)
-    batteryChannel.setMethodCallHandler({
-      (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
-      // Note: this method is invoked on the UI thread.
-      // Handle battery messages.
-    })
-
-    GeneratedPluginRegistrant.register(with: self)
-    batteryChannel.setMethodCallHandler({
-  [weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
-  // Note: this method is invoked on the UI thread.
-  guard call.method == "runModel" else {
-    result(FlutterMethodNotImplemented)
-    return
-  }
+      let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
+      let batteryChannel = FlutterMethodChannel(name: "samples.flutter.dev/battery", binaryMessenger: controller.binaryMessenger)
+      // you have two batteryChannel call handlers. Intentional?
+      // batteryChannel.setMethodCallHandler({
+      //   (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
+      //   // Note: this method is invoked on the UI thread.
+      // })
+      GeneratedPluginRegistrant.register(with: self)
+      batteryChannel.setMethodCallHandler({[weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
+        // Note: this method is invoked on the UI thread.
+        guard call.method == "runModel" else {
+          result(FlutterMethodNotImplemented)
+          return
+        }
         guard let args = call.arguments else {
             result("iOS couldnt find any arguments")
             return
         }
-//        args = args as!/
         let args2 = args as! [String: String]
         let urlString : String = args2["path"] as! String
         print("* url string: \(urlString as! String)")
-          guard let manifestPath = Bundle.main.path(
-            forResource: "manifest",
-            ofType: "json",
-            inDirectory: "ml"
+        guard let manifestPath = Bundle.main.path(
+          forResource: "manifest",
+          ofType: "json",
+          inDirectory: "ml"
         ) else { return }
         let localModel = AutoMLLocalModel(manifestPath: manifestPath)
         let options = VisionOnDeviceAutoMLImageLabelerOptions(localModel: localModel)
         var resultText = ""
         var confidencetext = 0.20
-        
-options.confidenceThreshold = 0  // Evaluate your model in the Firebase console
-                                 // to determine an appropriate value.
-let labeler = Vision.vision().onDeviceAutoMLImageLabeler(options: options)
-        
-            let image = VisionImage(image: UIImage(contentsOfFile: urlString as! String)!)
-                    labeler.process(image) { labels, error in
-                guard error == nil, let labels = labels else { return }
-                        print("\(labels.first?.text as! String) - \(Double((labels.first?.confidence)!))")
-                        resultText = labels.first?.text as! String
-                        confidencetext = labels.first?.confidence as! Double
-                        self!.hasThing = true
-            //            result(labels.first?.text as! String)
-            //for label in labels {labels.first?.text
-            //    let labelText = label.text
-            //    let confidence = label.confidence
-            //}
-                // Task succeeded.
-                        
-                // ...
-                    }
-        
-        
-//        repeat {
-            print("*sleeping")
-//                usleep(5000000)
-        print("\(resultText):\(confidencetext)")
-        result("\(resultText):\(confidencetext)")
+        options.confidenceThreshold = 0
+        let labeler = Vision.vision().onDeviceAutoMLImageLabeler(options: options)
+        let image = VisionImage(image: UIImage(contentsOfFile: urlString as! String)!)
+        labeler.process(image) { labels, error in
+          guard error == nil, let labels = labels else { return }
 
-//        } while self!.hasThing == false
-        
-        
-        
-//  self?.receiveBatteryLevel(result: result)
-        
-})
+          print("\(labels.first?.text as! String) - \(Double((labels.first?.confidence)!))")
+          resultText = labels.first?.text as! String
+          confidencetext = labels.first?.confidence as! Double
+          self!.hasThing = true
+          // result(labels.first?.text as! String)
+
+
+          // Here you experiment with return then result (escaping) and result then return (non-escaping).
+          // This situation depends on speed and whichever one XCode decides it wants to work. 
+          // As you know, Flutter is still a growing language and this is one of the rough spots to iron out.
+          // It's not high on our priority list right now, mainly because there are workarounds like the flip-flopping.
+          // I've seen packages for this sort of thing, but if those didn't work, then this is the way to go. 
+          // Couple more things: 
+          // - whoever wrote the Swift code knows what they're doing. Nice Job!
+          // - clever modal implementation. Might want to call database async though.
+          // - generally isn't good practice to use dev_dependencies to flush out icons and assets. Remove the package when you're done
+          // - did I see stress test code in here!? I removed it for you :)
+          // Good luck! Let me know how it turns out.
+
+
+
+          // add return here. void, so just 'return'
+          // add your result() fxn here
+
+
+
+
+        }
+        // everything here is run before labeler.process because its synchronous. Were you simulating high-stress situations?
+        // print("*sleeping")
+        // print("\(resultText):\(confidencetext)")
+        // result("\(resultText):\(confidencetext)")   
+      })
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
-  }
-//    private func receiveBatteryLevel(result: FlutterResult) {
-//  guard let manifestPath = Bundle.main.path(
-//    forResource: "manifest",
-//    ofType: "json",
-//    inDirectory: "ml"
-//) else { return true }
-//let localModel = AutoMLLocalModel(manifestPath: manifestPath)
-////        var im = UIImage(named: )
-//
-//}
-    
+  } 
 }
-
-
-
-/*private func receiveBatteryLevel(result: FlutterResult) {
-  let device = UIDevice.current
-  device.isBatteryMonitoringEnabled = true
-  if device.batteryState == UIDevice.BatteryState.unknown {
-    result(FlutterError(code: "UNAVAILABLE",
-                        message: "Battery info unavailable",
-                        details: nil))
-  } else {
-    result(Int(device.batteryLevel * 100))
-  }
-}*/
-
-
-
-// https://firebase.google.com/docs/ml-kit/ios/label-images-with-automl#configure-a-local-model-source
-// https://flutter.dev/docs/development/platform-integration/platform-channels?tab=ios-channel-swift-tab#step-4-add-an-ios-platform-specific-implementation
