@@ -10,7 +10,7 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="chicano_park"
-        android:icon="@mipmap/launcher_icon">
+        android:icon="@mipmap/launcher_icon_new">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
