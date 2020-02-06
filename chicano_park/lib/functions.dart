@@ -16,7 +16,7 @@ String testString(DocumentSnapshot doc, String val) {
 }
 
 // Same thing as the string version, but instead with a loading circle and images
-Widget getImage(DocumentSnapshot docs, String url) {
+Widget getImage(DocumentSnapshot docs, String url, BuildContext context) {
   if (docs == null) {
     return Stack(
       children: <Widget>[
@@ -36,14 +36,34 @@ Widget getImage(DocumentSnapshot docs, String url) {
   }
   return Stack(
     children: <Widget>[
-      Padding(
+      Container(
         padding: const EdgeInsets.all(25),
         child: Center(child: CircularProgressIndicator()),
       ),
-      Center(
-        child: FadeInImage.memoryNetwork(
-          placeholder: kTransparentImage,
-          image: docs[url],
+      Container(
+        alignment: Alignment.center,
+        //width: MediaQuery.of(context).size.width,
+        //height: MediaQuery.of(context).size.height,
+        child: ClipRRect(
+          child: FadeInImage.memoryNetwork(
+            placeholder: kTransparentImage,
+            image: docs[url],
+            
+          ),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        /*borderRadius: new BorderRadius.only(
+
+          topLeft: const Radius.circular(40.0),
+          topRight: const Radius.circular(40.0),
+          bottomLeft: const Radius.circular(40.0),
+          bottomRight: const Radius.circular(40.0),
+        ),*/
+        decoration: BoxDecoration(
+          color: Colors.grey, 
+          
+          //border: Border.all(width: 10, color: Colors.blueAccent),
+          
         ),
       ),
     ],
@@ -67,7 +87,6 @@ DocumentSnapshot getMuralData(String nameMatch) {
   return doc;
 }
 
-
 Widget gridThing(BuildContext context) {
   return GridView.count(
     crossAxisCount: 2,
@@ -84,5 +103,3 @@ Widget gridThing(BuildContext context) {
     ),
   );
 }
-
-

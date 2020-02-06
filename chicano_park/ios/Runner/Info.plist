@@ -23,9 +23,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Give me access you feckin nerd</string>
+	<string>Camera access is needed to scan murals</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>I want to hear you :))))</string>
+	<string>Our camera package needs your microphone as well sorry</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

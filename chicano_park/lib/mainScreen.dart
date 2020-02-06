@@ -9,7 +9,10 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   var confidenceThing;
   static const platform = const MethodChannel('samples.flutter.dev/battery');
   var realData;
+
   FlutterTts flutterTts = FlutterTts();
+  bool talking = false;
+
   Future<void> _getBatteryLevel(String path2) async {
     String batteryLevel;
     try {
@@ -31,7 +34,13 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   }
 
   void playTTS(BuildContext context, String talk) {
-    flutterTts.speak(talk);
+    if (talking == false) {
+      flutterTts.speak(talk);
+      talking = true;
+    } else {
+      flutterTts.stop();
+      talking = false; 
+    }
   }
 
   void showTheModalThingWhenTheButtonIsPressed(BuildContext context) {
@@ -119,20 +128,30 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 30),
                       ),
-                      IconButton(
-                        icon: Icon(Icons.speaker, color: Colors.red),
-                        onPressed: () {
-                          playTTS(context, "Hello how are you today");
-                        },
-                      ),
+
                       // Add the image
-                      Padding(
+                      Container(
                         padding: const EdgeInsets.all(15),
-                        child: getImage(snapshot.data, "picURL"),
+                        child: getImage(snapshot.data, "picURL", context),
                       ),
-                      Text(
-                        "By: Artist Name",
-                        style: TextStyle(fontSize: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            testString(snapshot.data, "author"),
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.headset, color: Colors.purple),
+                            highlightColor: Colors.grey,
+                            tooltip: "Press to listen to the description",
+                            onPressed: () {
+                              playTTS(
+                                  context, testString(snapshot.data, "desc"));
+                            },
+                          ),
+                        ],
                       ),
                       // add scrollable description that fills up the rest of the available space in the modal
                       Expanded(
@@ -226,7 +245,59 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     );
   }
 
-// https://www.youtube.com/watch?v=dQw4w9WgXcQ
+  void runModelThingyTHing() async {
+    setState(() {
+      processing = true;
+    });
+    final path2 = join(
+      (await getTemporaryDirectory()).path,
+      '${DateTime.now()}.png',
+    );
+    await controller.takePicture(path2);
+    print(path2);
+    await _getBatteryLevel(path2);
+    var stringSplit = muralTitleThing;
+    var newStr = stringSplit.split(":");
+    if (newStr.isEmpty) {
+      setState(() {
+        processing = false;
+      });
+      _scaffoldKey.currentState.showSnackBar(
+        SnackBar(
+          content: Text("No labels found"),
+          duration: Duration(milliseconds: 750),
+        ),
+      );
+    } else {
+      var label = newStr[0];
+      double confidence = double.parse(newStr[1].toString()) * 100;
+      if (confidence >= confidenceNumThing) {
+        _scaffoldKey.currentState.showSnackBar(
+          SnackBar(
+            content: Text("$label: $confidence \%"),
+            duration: Duration(milliseconds: 500),
+          ),
+        );
+        var parsedJson = json.decode(jsonData);
+        found = parsedJson[label];
+        setState(() {
+          processing = false;
+        });
+        showTheModalThingWhenTheButtonIsPressed(context);
+      } else {
+        setState(() {
+          processing = false;
+        });
+        _scaffoldKey.currentState.showSnackBar(
+          SnackBar(
+            content: Text("$label: $confidence \%"),
+            duration: Duration(milliseconds: 500),
+          ),
+        );
+      }
+    }
+  }
+
   Widget theBottomButtonNavigation() {
     return Container(
       padding: EdgeInsets.all(15.0),
@@ -243,7 +314,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                 child: IconButton(
                   icon: Icon(Icons.list, color: Colors.white),
                   onPressed: () {
-                    // _neverSatisfied();
+                    // Do nothing for now
                   },
                 ),
               ),
@@ -255,104 +326,108 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
               ),
             ],
           ),
-          Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 38.0,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.add_circle,
-                    // size: 28.0,
-                    color: Colors.white,
+          Padding(
+            padding: EdgeInsets.only(bottom: 40.0),
+            child: Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 38.0,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.add_circle,
+                      // size: 28.0,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      // Do nothing
+                      runModelThingyTHing();
+                    },
                   ),
-                  onPressed: () {
-                    // Do nothing
-                  },
                 ),
-              ),
-              CircleAvatar(
-                backgroundColor: Colors.grey,
-                radius: 33.0,
-                child: IconButton(
-                  icon: processing
-                      ? CircularProgressIndicator(
-                          valueColor:
-                              new AlwaysStoppedAnimation<Color>(Colors.white),
-                        )
-                      : Icon(
-                          Icons.camera_alt,
-                          size: 28.0,
-                          color: Colors.grey,
-                        ),
-                  onPressed: () async {
-                    setState(() {
-                      processing = true;
-                    });
-                    final path2 = join(
-                      (await getTemporaryDirectory()).path,
-                      '${DateTime.now()}.png',
-                    );
-                    await controller.takePicture(path2);
-                    print(path2);
-                    await _getBatteryLevel(path2);
-                    // https://www.youtube.com/watch?v=dQw4w9WgXcQ
-                    var stringSplit = muralTitleThing;
-                    var newStr = stringSplit.split(":");
-                    if (newStr.isEmpty) {
-                      setState(() {
-                        processing = false;
-                      });
-                      _scaffoldKey.currentState.showSnackBar(
-                        SnackBar(
-                          content: Text("No labels found"),
-                          duration: Duration(milliseconds: 750),
-                        ),
-                      );
-                    } else {
-                      var label = newStr[0];
-                      double confidence =
-                          double.parse(newStr[1].toString()) * 100;
-                      if (confidence >= confidenceNumThing) {
-                        _scaffoldKey.currentState.showSnackBar(
-                          SnackBar(
-                            content: Text("$label: $confidence \%"),
-                            duration: Duration(milliseconds: 500),
+                CircleAvatar(
+                  backgroundColor: Colors.grey,
+                  radius: 33.0,
+                  child: IconButton(
+                    icon: processing
+                        ? CircularProgressIndicator(
+                            valueColor:
+                                new AlwaysStoppedAnimation<Color>(Colors.white),
+                          )
+                        : Icon(
+                            Icons.camera_alt,
+                            size: 28.0,
+                            color: Colors.grey,
                           ),
-                        );
-                        var parsedJson = json.decode(jsonData);
-                        found = parsedJson[label];
-                        // Firestore.instance
-                        //     .collection('Murals')
-                        //     .document(found)
-                        //     .get()
-                        //     .then((DocumentSnapshot ds) {
-                        //   setState(() {
-                        //     realData = ds;
-                        //   });
-                        //   realData = ds;
-                        // });
-                        setState(() {
-                          processing = false;
-                        });
-                        showTheModalThingWhenTheButtonIsPressed(context);
-                      } else {
-                        setState(() {
-                          processing = false;
-                        });
-                        _scaffoldKey.currentState.showSnackBar(
-                          SnackBar(
-                            content: Text("$label: $confidence \%"),
-                            duration: Duration(milliseconds: 500),
-                          ),
-                        );
-                      }
-                    }
-                  },
+                    onPressed: () async {
+                      runModelThingyTHing();
+                      //   setState(() {
+                      //     processing = true;
+                      //   });
+                      //   final path2 = join(
+                      //     (await getTemporaryDirectory()).path,
+                      //     '${DateTime.now()}.png',
+                      //   );
+                      //   await controller.takePicture(path2);
+                      //   print(path2);
+                      //   await _getBatteryLevel(path2);
+                      //   var stringSplit = muralTitleThing;
+                      //   var newStr = stringSplit.split(":");
+                      //   if (newStr.isEmpty) {
+                      //     setState(() {
+                      //       processing = false;
+                      //     });
+                      //     _scaffoldKey.currentState.showSnackBar(
+                      //       SnackBar(
+                      //         content: Text("No labels found"),
+                      //         duration: Duration(milliseconds: 750),
+                      //       ),
+                      //     );
+                      //   } else {
+                      //     var label = newStr[0];
+                      //     double confidence =
+                      //         double.parse(newStr[1].toString()) * 100;
+                      //     if (confidence >= confidenceNumThing) {
+                      //       _scaffoldKey.currentState.showSnackBar(
+                      //         SnackBar(
+                      //           content: Text("$label: $confidence \%"),
+                      //           duration: Duration(milliseconds: 500),
+                      //         ),
+                      //       );
+                      //       var parsedJson = json.decode(jsonData);
+                      //       found = parsedJson[label];
+                      //       // Firestore.instance
+                      //       //     .collection('Murals')
+                      //       //     .document(found)
+                      //       //     .get()
+                      //       //     .then((DocumentSnapshot ds) {
+                      //       //   setState(() {
+                      //       //     realData = ds;
+                      //       //   });
+                      //       //   realData = ds;
+                      //       // });
+                      //       setState(() {
+                      //         processing = false;
+                      //       });
+                      //       showTheModalThingWhenTheButtonIsPressed(context);
+                      //     } else {
+                      //       setState(() {
+                      //         processing = false;
+                      //       });
+                      //       _scaffoldKey.currentState.showSnackBar(
+                      //         SnackBar(
+                      //           content: Text("$label: $confidence \%"),
+                      //           duration: Duration(milliseconds: 500),
+                      //         ),
+                      //       );
+                      //     }
+                      //   }
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Stack(
             alignment: Alignment.center,
