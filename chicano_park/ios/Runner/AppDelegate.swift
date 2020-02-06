@@ -39,7 +39,7 @@ import CoreML
         let localModel = AutoMLLocalModel(manifestPath: manifestPath)
         let options = VisionOnDeviceAutoMLImageLabelerOptions(localModel: localModel)
         var resultText = ""
-        var confidencetext = 0.20
+        var confidencetext = 0.10
         options.confidenceThreshold = 0
         let labeler = Vision.vision().onDeviceAutoMLImageLabeler(options: options)
         let image = VisionImage(image: UIImage(contentsOfFile: urlString as! String)!)
@@ -50,8 +50,10 @@ import CoreML
           resultText = labels.first?.text as! String
           confidencetext = labels.first?.confidence as! Double
           self!.hasThing = true
-          // result(labels.first?.text as! String)
-
+          // apparently the following works:
+          print("\(resultText):\(confidencetext)")
+        result("\(resultText):\(confidencetext)")
+        return
 
           // Here you experiment with return then result (escaping) and result then return (non-escaping).
           // This situation depends on speed and whichever one XCode decides it wants to work. 

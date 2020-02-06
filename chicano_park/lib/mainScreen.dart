@@ -10,7 +10,6 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   static const platform = const MethodChannel('samples.flutter.dev/battery');
   var realData;
   FlutterTts flutterTts = FlutterTts();
-// https://www.youtube.com/watch?v=dQw4w9WgXcQ
   Future<void> _getBatteryLevel(String path2) async {
     String batteryLevel;
     try {
@@ -31,11 +30,10 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     });
   }
 
-  
-  void playTTS(BuildContext context, String talk){
+  void playTTS(BuildContext context, String talk) {
     flutterTts.speak(talk);
-
   }
+
   void showTheModalThingWhenTheButtonIsPressed(BuildContext context) {
     // Obviously show the bottom sheet
     showModalBottomSheet(
@@ -58,99 +56,134 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
         children: <Widget>[
           Container(
             height: MediaQuery.of(context).size.height * 0.9,
-            child: Center(
-              child: Column(
-                children: <Widget>[
-                  // This is the "pill" shape at the top of the modal. See the class at the bottom of the file.
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: CustomPaint(
-                      painter:
-                          PaintSomeRandomShapeThatIsProbablyARectangleWithSomeRadius(),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: new Border.all(color: Colors.white),
-                            borderRadius:
-                                new BorderRadius.all(Radius.circular(2.5)),
-                            color: Colors.grey),
-                        height: 5,
-                        width: 40,
-                      ),
+            child: StreamBuilder(
+              // now add firebase integration. "subscribe" to the data from the firestore database
+              stream: Firestore.instance
+                  .collection("Murals")
+                  // get the document that has the title of the mural that was just scanned: "found"
+                  .document(found)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                // https://www.youtube.com/watch?v=dQw4w9WgXcQ
+                // Do some basic error processing
+                if (!snapshot.hasData) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text("Getting Data..."),
+                        CircularProgressIndicator(
+                          valueColor:
+                              new AlwaysStoppedAnimation<Color>(Colors.black),
+                        )
+                      ],
                     ),
-                  ),
-                  // https://www.youtube.com/watch?v=dQw4w9WgXcQ
-                  // This is the title for the modal. get the data from the database
-                  Text(
-                    testString(realData, "title"),
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-                  ),
-                  // https://www.youtube.com/watch?v=dQw4w9WgXcQ
-                  IconButton(
-                    icon: Icon(Icons.speaker, color: Colors.red), 
-                    onPressed: () { 
-                      playTTS(context, "Hello how are you today");
-                    },
-                  ),
-                    
-                 
-                  // Add the image
-                  Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: getImage(realData, "picURL"),
-                  ),
-                  Text(
-                    "By: Artist Name",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  // add scrollable description that fills up the rest of the available space in the modal
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Text(testString(realData, "desc")),
-                      ),
-                    ),
-                  ),
-                  // Just your average share button. and a tour button that collapses the modal bottom sheet
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                  );
+                }
+                if (snapshot == null || snapshot.data == null) {
+                  return const Text("Something went seriously wrong! Sorry!");
+                }
+                if (snapshot.hasError) {
+                  return const Text("error!");
+                }
+                // https://www.youtube.com/watch?v=dQw4w9WgXcQ
+                // If there is no error, continue building the widgets
+                return Center(
+                  child: Column(
                     children: <Widget>[
+                      // This is the "pill" shape at the top of the modal. See the class at the bottom of the file.
                       Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: RaisedButton.icon(
-                          icon: Icon(Icons.share),
-                          label: Text("Share"),
-                          onPressed: () {
-                            // The message that will be shared. This can be a link, some text or contact or anything really
-                            // Share.share("Hello there!");
-                            // https://www.youtube.com/watch?v=dQw4w9WgXcQ
-                          },
+                        padding: const EdgeInsets.all(10),
+                        child: CustomPaint(
+                          painter:
+                              PaintSomeRandomShapeThatIsProbablyARectangleWithSomeRadius(),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: new Border.all(color: Colors.white),
+                                borderRadius:
+                                    new BorderRadius.all(Radius.circular(2.5)),
+                                color: Colors.grey),
+                            height: 5,
+                            width: 40,
+                          ),
                         ),
                       ),
+                      // This is the title for the modal. get the data from the database
+                      Text(
+                        testString(snapshot.data, "title"),
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 30),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.speaker, color: Colors.red),
+                        onPressed: () {
+                          playTTS(context, "Hello how are you today");
+                        },
+                      ),
+                      // Add the image
                       Padding(
                         padding: const EdgeInsets.all(15),
-                        child: RaisedButton.icon(
-                          icon: Icon(Icons.explore),
-                          label: Text("Tour Guide"),
-                          onPressed: () {
-                            // Remember navigator? We just "pop" it to get rid of it.
-                            Navigator.pop(context);
-                          },
+                        child: getImage(snapshot.data, "picURL"),
+                      ),
+                      Text(
+                        "By: Artist Name",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      // add scrollable description that fills up the rest of the available space in the modal
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Text(testString(snapshot.data, "desc")),
+                          ),
                         ),
+                      ),
+                      // Just your average share button. and a tour button that collapses the modal bottom sheet
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: RaisedButton.icon(
+                              icon: Icon(Icons.share),
+                              label: Text("Share"),
+                              onPressed: () {
+                                // The message that will be shared. This can be a link, some text or contact or anything really
+                                Share.share("Hello there!");
+                                // https://www.youtube.com/watch?v=dQw4w9WgXcQ
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: RaisedButton.icon(
+                              icon: Icon(Icons.explore),
+                              label: Text("Tour Guide"),
+                              onPressed: () {
+                                // Remember navigator? We just "pop" it to get rid of it.
+                                // Navigator.pop(context);
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                );
+              },
             ),
           ),
         ],
       ),
     );
   }
+
 // https://www.youtube.com/watch?v=dQw4w9WgXcQ
   // initialize camera when the app is initialized
   @override
@@ -165,6 +198,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
       setState(() {});
     });
   }
+
 // https://www.youtube.com/watch?v=dQw4w9WgXcQ
   // Get rid of the camera controller and access to the camera when the app is closed
   @override
@@ -172,6 +206,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
     controller?.dispose();
     super.dispose();
   }
+
 // https://www.youtube.com/watch?v=dQw4w9WgXcQ
   //Display the camera
   Widget cameraPreview(size, controller) {
@@ -190,6 +225,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
       ),
     );
   }
+
 // https://www.youtube.com/watch?v=dQw4w9WgXcQ
   Widget theBottomButtonNavigation() {
     return Container(
@@ -287,16 +323,16 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                         );
                         var parsedJson = json.decode(jsonData);
                         found = parsedJson[label];
-                        Firestore.instance
-                            .collection('Murals')
-                            .document(found)
-                            .get()
-                            .then((DocumentSnapshot ds) {
-                          setState(() {
-                            realData = ds;
-                          });
-                          realData = ds;
-                        });
+                        // Firestore.instance
+                        //     .collection('Murals')
+                        //     .document(found)
+                        //     .get()
+                        //     .then((DocumentSnapshot ds) {
+                        //   setState(() {
+                        //     realData = ds;
+                        //   });
+                        //   realData = ds;
+                        // });
                         setState(() {
                           processing = false;
                         });
@@ -343,6 +379,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
       ),
     );
   }
+
 // https://www.youtube.com/watch?v=dQw4w9WgXcQ
 // OK, now for the meaty stuff. The main widget here (called "build") is the main homepage widget in the "TheMainAppHomePage" class
   @override

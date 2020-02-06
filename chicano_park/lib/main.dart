@@ -3,6 +3,7 @@ library mainlib;
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:share/share.dart';
 import 'dart:async';
 import 'package:transparent_image/transparent_image.dart';
 import 'dart:convert';

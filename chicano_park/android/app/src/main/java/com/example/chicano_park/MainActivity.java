@@ -48,7 +48,7 @@ public class MainActivity extends FlutterActivity {
                                 try {
                                     FirebaseVisionOnDeviceAutoMLImageLabelerOptions options =
                                             new FirebaseVisionOnDeviceAutoMLImageLabelerOptions.Builder(localModel)
-                                                    .setConfidenceThreshold(0.2f)  // Evaluate your model in the Firebase console
+                                                    .setConfidenceThreshold(0.0f)  // Evaluate your model in the Firebase console
                                                     // to determine an appropriate value.
                                                     .build();
                                     labeler = FirebaseVision.getInstance().getOnDeviceAutoMLImageLabeler(options);

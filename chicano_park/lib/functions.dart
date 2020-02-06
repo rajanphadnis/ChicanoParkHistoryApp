@@ -9,6 +9,9 @@ String testString(DocumentSnapshot doc, String val) {
   if (doc == null) {
     return "error! DB not found!";
   }
+  if (doc[val] == null) {
+    return "'" + val + "' doesn't exist in DB";
+  }
   return doc[val];
 }
 
