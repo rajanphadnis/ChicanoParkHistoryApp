@@ -1,4 +1,22 @@
 part of mainlib;
+// Route _createRoute() {
+//   return PageRouteBuilder(
+//     transitionDuration: Duration(seconds: 2),
+//     pageBuilder: (context, animation, secondaryAnimation) => ArtistPage(),
+//     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+//       var begin = Offset(0.0, 1.0);
+//       var end = Offset.zero;
+//       var curve = Curves.ease;
+
+//       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+//       return SlideTransition(
+//         position: animation.drive(tween),
+//         child: child,
+//       );
+//     },
+//   );
+// }
 
 void showHistoryBottomSheet(BuildContext context) {
   // Obviously show the bottom sheet
@@ -31,7 +49,6 @@ void showHistoryBottomSheet(BuildContext context) {
                 .document("index")
                 .snapshots(),
             builder: (context, snapshot) {
-              // https://www.youtube.com/watch?v=dQw4w9WgXcQ
               // Do some basic error processing
               if (!snapshot.hasData) {
                 return Container(
@@ -100,7 +117,6 @@ void showHistoryBottomSheet(BuildContext context) {
                             fontWeight: FontWeight.bold, fontSize: 10),
                       ),
                     ),
-                    // https://www.youtube.com/watch?v=dQw4w9WgXcQ
                     timeline(context),
                   ],
                 ),

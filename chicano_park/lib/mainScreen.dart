@@ -39,7 +39,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
       talking = true;
     } else {
       flutterTts.stop();
-      talking = false; 
+      talking = false;
     }
   }
 
@@ -100,6 +100,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                 }
                 // https://www.youtube.com/watch?v=dQw4w9WgXcQ
                 // If there is no error, continue building the widgets
+
                 return Center(
                   child: Column(
                     children: <Widget>[
@@ -138,9 +139,21 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          Text(
-                            testString(snapshot.data, "author"),
-                            style: TextStyle(fontSize: 20),
+                          InkWell(
+                            child: Text(
+                              testString(snapshot.data, "author"),
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            onTap: () {
+                              Navigator.pop(context);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ArtistPage(
+                                      testString(snapshot.data, "author")),
+                                ),
+                              );
+                            },
                           ),
                           IconButton(
                             icon: Icon(Icons.headset, color: Colors.purple),
@@ -174,7 +187,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                               label: Text("Share"),
                               onPressed: () {
                                 // The message that will be shared. This can be a link, some text or contact or anything really
-                                Share.share("Hello there!");
+                                Share.share(testString(snapshot.data, "title"));
                                 // https://www.youtube.com/watch?v=dQw4w9WgXcQ
                               },
                             ),

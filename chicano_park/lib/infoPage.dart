@@ -48,13 +48,13 @@ class InfoPage extends StatelessWidget {
                   height: MediaQuery.of(context).size.height,
                   
                   child: SingleChildScrollView(
-                    child: Html(
-                      data: snapshot.data["desc"],
-                      padding:
-                      EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 0),
-                    ),
-                    // child: Text(snapshot.data["desc"], textAlign: TextAlign.center, style: TextStyle(
-                    //         fontWeight: FontWeight.normal, fontSize: 20),),
+                    // child: Html(
+                    //   data: snapshot.data["desc"],
+                    //   padding:
+                    //   EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 0),
+                    // ),
+                    child: Text(snapshot.data["desc"], textAlign: TextAlign.center, style: TextStyle(
+                            fontWeight: FontWeight.normal, fontSize: 20),),
                   ),
                 );
               },

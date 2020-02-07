@@ -3,7 +3,6 @@ library mainlib;
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:share/share.dart';
 import 'dart:async';
 import 'package:transparent_image/transparent_image.dart';
@@ -12,12 +11,14 @@ import 'package:camera/camera.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:flutter/cupertino.dart';
 part 'functions.dart';
 part 'shapesDrawing.dart';
 part 'mainScreen.dart';
 part 'historyModal.dart';
 part 'timeline.dart';
 part 'infoPage.dart';
+part 'artist.dart';
 // https://www.youtube.com/watch?v=dQw4w9WgXcQ
 // Next, create a list of cameras so that we know which one is the "back" one
 // Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a cmera feed to the user
