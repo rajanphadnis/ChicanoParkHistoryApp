@@ -1,6 +1,6 @@
 part of mainlib;
 
-class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
+class _MainPageState extends State<MainPage> {
   // Define a camera controller. This determines which camera we want to use and when
   bool dialVisible = true;
   CameraController controller;
@@ -42,8 +42,8 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
       talking = false;
     }
   }
-
-  void showTheModalThingWhenTheButtonIsPressed(BuildContext context) {
+  
+  void displayModal(BuildContext context) {
     // Obviously show the bottom sheet
     showModalBottomSheet(
       // we want it be dismissable when you swipe down
@@ -109,7 +109,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                         padding: const EdgeInsets.all(10),
                         child: CustomPaint(
                           painter:
-                              PaintSomeRandomShapeThatIsProbablyARectangleWithSomeRadius(),
+                              PaintRectangle(),
                           child: Container(
                             decoration: BoxDecoration(
                                 border: new Border.all(color: Colors.white),
@@ -134,7 +134,12 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
                       Container(
                         padding: const EdgeInsets.all(15),
                         child: getImage(snapshot.data, "picURL", context),
+                        
+                        //Width and height wasn't here before
+                        height: MediaQuery.of(context).size.height / 2,
+                        width: MediaQuery.of(context).size.width / 1.25,
                       ),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -296,7 +301,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
         setState(() {
           processing = false;
         });
-        showTheModalThingWhenTheButtonIsPressed(context);
+        displayModal(context);
       } else {
         setState(() {
           processing = false;
@@ -469,7 +474,7 @@ class _TheMainAppHomePageState extends State<TheMainAppHomePage> {
   }
 
 // https://www.youtube.com/watch?v=dQw4w9WgXcQ
-// OK, now for the meaty stuff. The main widget here (called "build") is the main homepage widget in the "TheMainAppHomePage" class
+// OK, now for the meaty stuff. The main widget here (called "build") is the main homepage widget in the "MainPage" class.
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

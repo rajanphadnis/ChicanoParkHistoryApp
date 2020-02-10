@@ -13,7 +13,6 @@ import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 part 'functions.dart';
 part 'shapesDrawing.dart';
 part 'mainScreen.dart';
@@ -22,7 +21,7 @@ part 'timeline.dart';
 part 'infoPage.dart';
 part 'artist.dart';
 // Next, create a list of cameras so that we know which one is the "back" one
-// Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a cmera feed to the user
+// Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a camera feed to the user
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
@@ -41,7 +40,6 @@ String data = "no error";
 final double confidenceThresh = 0.2;
 List<CameraDescription> cameras;
 bool processing = false;
-// https://www.youtube.com/watch?v=dQw4w9WgXcQ
 // Create the app class and basic Material design structure
 class MyApp extends StatelessWidget {
   @override
@@ -51,15 +49,15 @@ class MyApp extends StatelessWidget {
         // We can end up changing a bunch of values in here: https://api.flutter.dev/flutter/material/Colors-class.html
         primarySwatch: Colors.blue,
       ),
-      // Tell the app that the homepage is TheMainAppHomePage()
-      home: TheMainAppHomePage(),
+      // Tell the app that the homepage is MainPage()
+      home: MainPage(),
     );
   }
 }
-// https://www.youtube.com/watch?v=dQw4w9WgXcQ
-class TheMainAppHomePage extends StatefulWidget {
+//  
+class MainPage extends StatefulWidget {
   // We want a stateful widget because of all of theredrawing and repainting we are going to be doing. So, we create it (read: start it)
-  _TheMainAppHomePageState createState() => _TheMainAppHomePageState();
+  _MainPageState createState() => _MainPageState();
 }
 
 
@@ -68,6 +66,12 @@ class TheMainAppHomePage extends StatefulWidget {
 
 // TODO: 
 // - [Everybody] Come up with an app name. length =< 8 characters. Change the name in pubspec.yaml's "name" field (at the top)
+// potential names (not all can even work):
+  // CP Explorer - >:(
+  // CP Murals  <--- I like this the best
+  // Chicano Explorer (real name)
+  // CP Tour
+  // Chicano (name for app) - sure
 // - [Everybody else] Update the database (add info and murals. add picture URLs). 
 //    For pic URLs, put the picture in the "public" folder and 
 //    run "firebase deploy". then link to the picture using the
@@ -82,7 +86,7 @@ class TheMainAppHomePage extends StatefulWidget {
 //    - https://pub.dev/packages/webview_flutter
 //    - https://pub.dev/packages/flutter_webview_plugin
 // - Play around with colors and icons
-// - [Evan] Make Evan do some good flutter stuff (idk. audio, other stuff. he can get it)
+// - [Evan] Make Evan do some good flutter stuff (idk. audio, other stuff. he can get it) 
 // - see if IT got us a Testflite account yet and distribute?
 // - [Evan] clean up variable language and permission language. Make it professional *cough cough evan
 // - start documentation (i'll start at around 1:45 or 2) in "public/index.html"

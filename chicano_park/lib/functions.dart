@@ -52,19 +52,9 @@ Widget getImage(DocumentSnapshot docs, String url, BuildContext context) {
           ),
           borderRadius: BorderRadius.circular(10.0),
         ),
-        /*borderRadius: new BorderRadius.only(
-
-          topLeft: const Radius.circular(40.0),
-          topRight: const Radius.circular(40.0),
-          bottomLeft: const Radius.circular(40.0),
-          bottomRight: const Radius.circular(40.0),
+        /*decoration: BoxDecoration(
+          color: Colors.blueGrey, 
         ),*/
-        decoration: BoxDecoration(
-          color: Colors.grey, 
-          
-          //border: Border.all(width: 10, color: Colors.blueAccent),
-          
-        ),
       ),
     ],
   );
@@ -87,7 +77,7 @@ DocumentSnapshot getMuralData(String nameMatch) {
   return doc;
 }
 
-Widget gridThing(BuildContext context) {
+Widget muralGrid(BuildContext context) {
   return GridView.count(
     crossAxisCount: 2,
     children: List.generate(

@@ -3,8 +3,10 @@ part of mainlib;
 Widget timeline(BuildContext context) {
   return Container(
     height: 200,
+    //width: 200,
     child: ListView(
       padding: const EdgeInsets.all(8),
+      //was horizonatal 
       scrollDirection: Axis.horizontal,
       children: <Widget>[
         InkWell(

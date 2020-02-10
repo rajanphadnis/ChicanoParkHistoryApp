@@ -83,7 +83,7 @@ void showHistoryBottomSheet(BuildContext context) {
                       padding: const EdgeInsets.all(10),
                       child: CustomPaint(
                         painter:
-                            PaintSomeRandomShapeThatIsProbablyARectangleWithSomeRadius(),
+                            PaintRectangle(),
                         child: Container(
                           decoration: BoxDecoration(
                               border: new Border.all(color: Colors.white),

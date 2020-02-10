@@ -2,7 +2,7 @@ part of mainlib;
 
 
 // This is a custom painter that literally paints a shape on the screen. We call it when we draw the modal above.
-class PaintSomeRandomShapeThatIsProbablyARectangleWithSomeRadius
+class PaintRectangle
     extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
