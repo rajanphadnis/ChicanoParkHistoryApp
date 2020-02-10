@@ -1,6 +1,4 @@
 part of mainlib;
-// void infoPage() => runApp(InfoPage());
-
 class InfoPage extends StatelessWidget {
   final String historyNum;
   final int historyCaseNum;
