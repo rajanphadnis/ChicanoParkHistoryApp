@@ -3,6 +3,7 @@ library mainlib;
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:share/share.dart';
 import 'dart:async';
 import 'package:transparent_image/transparent_image.dart';
@@ -12,6 +13,7 @@ import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 part 'functions.dart';
 part 'shapesDrawing.dart';
 part 'mainScreen.dart';
@@ -19,7 +21,6 @@ part 'historyModal.dart';
 part 'timeline.dart';
 part 'infoPage.dart';
 part 'artist.dart';
-// https://www.youtube.com/watch?v=dQw4w9WgXcQ
 // Next, create a list of cameras so that we know which one is the "back" one
 // Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a cmera feed to the user
 Future<void> main() async {
@@ -60,3 +61,31 @@ class TheMainAppHomePage extends StatefulWidget {
   // We want a stateful widget because of all of theredrawing and repainting we are going to be doing. So, we create it (read: start it)
   _TheMainAppHomePageState createState() => _TheMainAppHomePageState();
 }
+
+
+
+
+
+// TODO: 
+// - [Everybody] Come up with an app name. length =< 8 characters. Change the name in pubspec.yaml's "name" field (at the top)
+// - [Everybody else] Update the database (add info and murals. add picture URLs). 
+//    For pic URLs, put the picture in the "public" folder and 
+//    run "firebase deploy". then link to the picture using the
+//    url in firebase console --> hosting
+//    example: garcia's picture is garcia.jpg in the public folder. I ran firebase deploy and garcia's picURL is:
+//    https://programmingii-367d0.web.app/garcia.jpg
+//    Note: pics can only be png of jpg. no gif or jpeg.
+// - [Sloane, Elisse, Matthew?] The history section is now just standard HTML files. They
+//    are in the "public" folder. change those, then run 
+//    "firebase deploy"
+// - [JBone] update iOS info.plist with the stuff from these links:
+//    - https://pub.dev/packages/webview_flutter
+//    - https://pub.dev/packages/flutter_webview_plugin
+// - [Jordan, Sloane, Elisse] The file "assets/ml/dict.txt" has the ml model's potential outputs. 
+//    In the variable above "var jsonData", add all of the murals in the following format:
+//    "name from dict.txt" : "name of entry in firebase database"
+// - Play around with colors and icons
+// - [Evan] Make Evan do some good flutter stuff (idk. audio, other stuff. he can get it)
+// - see if IT got us a Testflite account yet and distribute?
+// - [Evan] clean up variable language and permission language. Make it professional *cough cough evan
+// - start documentation (i'll start that at around 1:45 or 2)
