@@ -35,7 +35,7 @@ double valueTHingy = 0.0;
 String textl = "quite literally nothing";
 double confidenceNumThing = 0.0;
 var jsonData =
-    '{ "All_The_Way_To_The_Bay" : "all_the_way", "Colossus" : "colossus", "Los_Grandes" : "grandes", "Cuauhtemoc_Aztec_Warrior" : "aztec_dude", "Varrio_Si_Yonkes_No" : "varrio" }';
+    '{ "All_The_Way_To_The_Bay" : "all_the_way", "Colossus" : "colossus", "Los_Grandes" : "grandes", "Cuauhtemoc_Aztec_Warrior" : "aztec_dude", "Varrio_Si_Yonkes_No" : "varrio", "Mujer_Cosmica" : "mujer_cosmica", "Chicano_Pinto_union" : "pinto", "Ninos_del_Mundo" : "ninos" }';
 var parsedJson = json.decode(jsonData);
 String data = "no error";
 final double confidenceThresh = 0.2;
@@ -81,11 +81,8 @@ class TheMainAppHomePage extends StatefulWidget {
 // - [JBone] update iOS info.plist with the stuff from these links:
 //    - https://pub.dev/packages/webview_flutter
 //    - https://pub.dev/packages/flutter_webview_plugin
-// - [Jordan, Sloane, Elisse] The file "assets/ml/dict.txt" has the ml model's potential outputs. 
-//    In the variable above "var jsonData", add all of the murals in the following format:
-//    "name from dict.txt" : "name of entry in firebase database"
 // - Play around with colors and icons
 // - [Evan] Make Evan do some good flutter stuff (idk. audio, other stuff. he can get it)
 // - see if IT got us a Testflite account yet and distribute?
 // - [Evan] clean up variable language and permission language. Make it professional *cough cough evan
-// - start documentation (i'll start that at around 1:45 or 2)
+// - start documentation (i'll start at around 1:45 or 2) in "public/index.html"
