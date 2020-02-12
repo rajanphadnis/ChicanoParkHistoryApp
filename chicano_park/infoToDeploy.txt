@@ -4,30 +4,4 @@ alias firebase="/usr/local/Cellar/node/12.6.0/bin/firebase"
 then run:
 firebase deploy
 
-THis deploys the website to the internet so that the app can access it properly.
-
-
-/*
-
-IMPORTANT
-DO 
-NOT
-DELETE
-(MATTHEW AND ELISSE *COUGH COUG)
-
-owo raj
-fwel bweteer :3
-weee woveee uuu ;)
-
-awu wuu whats dis daddy 
-
-people die when they are killed
-fun things are fun
-
-https://www.youtube.com/watch?v=dQw4w9WgXcQ
-https://www.youtube.com/watch?v=EaqJgQOVZ9k
-*/
-
-
-for i in {1..1000}; do say uwu owo; done
-for i in {1..10000}; do echo owo; done
+This deploys the website to the internet so that the app can access it properly.
