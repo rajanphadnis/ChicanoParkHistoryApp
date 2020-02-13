@@ -77,3 +77,12 @@ class MainPage extends StatefulWidget {
 //    Note: pics can only be png of jpg. no gif or jpeg.
 // - Play around with colors and icons
 // - see if IT got us a Testflite account yet and distribute?
+
+
+
+// To add new mural:
+// - train model
+// - replace ml folder
+// - change "children" in muralGallery.dart ~line90
+// - create listing in database (not website)
+// - Update listing from website

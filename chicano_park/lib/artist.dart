@@ -2,7 +2,8 @@ part of mainlib;
 
 class ArtistPage extends StatelessWidget {
   final String author;
-  ArtistPage(this.author);
+  final PanelController _pc;
+  ArtistPage(this.author, this._pc);
   List<String> itemsTHing = List();
   SliverGrid muralGrid() {
     return SliverGrid(
@@ -105,15 +106,15 @@ class ArtistPage extends StatelessWidget {
                           fontSize: 30.0,
                         ),
                       ),
-                      IconButton(
-                        icon: Icon(IconData(0xf4ca,
-                            fontFamily: CupertinoIcons.iconFont,
-                            fontPackage: CupertinoIcons.iconFontPackage)),
-                        tooltip: 'Share',
-                        onPressed: () {
-                          Share.share(author);
-                        },
-                      ),
+                      // IconButton(
+                      //   icon: Icon(IconData(0xf4ca,
+                      //       fontFamily: CupertinoIcons.iconFont,
+                      //       fontPackage: CupertinoIcons.iconFontPackage)),
+                      //   tooltip: 'Share',
+                      //   onPressed: () {
+                      //     Share.share(author);
+                      //   },
+                      // ),
                     ],
                   ),
                 ),
@@ -127,22 +128,43 @@ class ArtistPage extends StatelessWidget {
                 ),
               ),
               SliverToBoxAdapter(
-                child: Padding(
-                  padding: new EdgeInsets.only(
-                    top: 20.0,
-                    bottom: 20.0,
-                    left: 20.0,
-                    right: 20.0,
-                  ),
-                  child: Text(
-                    "Murals",
-                    style: TextStyle(
-                      fontSize: 30.0,
-                    ),
-                  ),
-                ),
+                child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: RaisedButton.icon(
+                              icon: Icon(IconData(0xf4ca,
+                            fontFamily: CupertinoIcons.iconFont,
+                            fontPackage: CupertinoIcons.iconFontPackage)),
+                              label: Text("Share"),
+                              onPressed: () {
+                                // The message that will be shared. This can be a link, some text or contact or anything really
+                                Share.share(author);
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: RaisedButton.icon(
+                              icon: Icon(Icons.explore),
+                              label: Text("All Murals"),
+                              onPressed: () {
+                                Navigator.pop(context);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MuralGallery(_pc),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
               ),
-              muralGrid(),
+              // muralGrid(),
             ],
           ),
         );

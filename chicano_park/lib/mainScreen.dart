@@ -131,7 +131,7 @@ class _MainPageState extends State<MainPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ArtistPage(
-                                  testString(snapshot.data, "author")),
+                                  testString(snapshot.data, "author"), _pc),
                             ),
                           );
                         },
@@ -183,8 +183,16 @@ class _MainPageState extends State<MainPage> {
                             padding: const EdgeInsets.all(15),
                             child: RaisedButton.icon(
                               icon: Icon(Icons.explore),
-                              label: Text("Tour Guide"),
-                              onPressed: () {},
+                              label: Text("All Murals"),
+                              onPressed: () {
+                                _pc.animatePanelToPosition(0);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MuralGallery(_pc),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ],
@@ -254,22 +262,22 @@ class _MainPageState extends State<MainPage> {
       setState(() {
         processing = false;
       });
-      _scaffoldKey.currentState.showSnackBar(
-        SnackBar(
-          content: Text("No labels found"),
-          duration: Duration(milliseconds: 750),
-        ),
-      );
+      // _scaffoldKey.currentState.showSnackBar(
+      //   SnackBar(
+      //     content: Text("No labels found"),
+      //     duration: Duration(milliseconds: 750),
+      //   ),
+      // );
     } else {
       var label = newStr[0];
       double confidence = double.parse(newStr[1].toString()) * 100;
       if (confidence >= confidenceNumThing) {
-        _scaffoldKey.currentState.showSnackBar(
-          SnackBar(
-            content: Text("$label: $confidence \%"),
-            duration: Duration(milliseconds: 500),
-          ),
-        );
+        // _scaffoldKey.currentState.showSnackBar(
+        //   SnackBar(
+        //     content: Text("$label: $confidence \%"),
+        //     duration: Duration(milliseconds: 500),
+        //   ),
+        // );
         var parsedJson = json.decode(jsonData);
         found = parsedJson[label];
         setState(() {
@@ -280,12 +288,12 @@ class _MainPageState extends State<MainPage> {
         setState(() {
           processing = false;
         });
-        _scaffoldKey.currentState.showSnackBar(
-          SnackBar(
-            content: Text("$label: $confidence \%"),
-            duration: Duration(milliseconds: 500),
-          ),
-        );
+        // _scaffoldKey.currentState.showSnackBar(
+        //   SnackBar(
+        //     content: Text("$label: $confidence \%"),
+        //     duration: Duration(milliseconds: 500),
+        //   ),
+        // );
       }
     }
   }
@@ -309,7 +317,7 @@ class _MainPageState extends State<MainPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MuralGallery(),
+                        builder: (context) => MuralGallery(_pc),
                       ),
                     );
 
@@ -324,7 +332,7 @@ class _MainPageState extends State<MainPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MuralGallery(),
+                      builder: (context) => MuralGallery(_pc),
                     ),
                   );
                   // _neverSatisfied();

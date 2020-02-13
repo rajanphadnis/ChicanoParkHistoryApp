@@ -1,8 +1,19 @@
 part of mainlib;
-
-class MuralGallery extends StatelessWidget {
+class MuralGallery extends StatefulWidget {
+  final PanelController _pc;
+  MuralGallery(this._pc);
+  // We want a stateful widget because of all of theredrawing and repainting we are going to be doing. So, we create it (read: start it)
+  _MuralGallery createState() => _MuralGallery(_pc);
+}
+class _MuralGallery extends State<MuralGallery> {
+  final PanelController _pc;
+  _MuralGallery(this._pc);
   String getDataF(snapshot, String arg, index) {
     List thingh = snapshot.data.documents.map((doc) => doc[arg]).toList();
+    return thingh[index];
+  }
+  String getData2(snapshot, index) {
+    List thingh = snapshot.data.documents.map((doc) => doc.documentID).toList();
     return thingh[index];
   }
 
@@ -42,28 +53,37 @@ class MuralGallery extends StatelessWidget {
                   return Container(
                     padding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          height: 130.0,
-                          width: double.infinity,
-                          child: FadeInImage.memoryNetwork(
-                            placeholder: kTransparentImage,
-                            image: getDataF(snapshot, "picURL", index),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          found = getData2(snapshot, index);
+                        });
+                        Navigator.pop(context);
+                        _pc.animatePanelToPosition(1);
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            height: 130.0,
+                            width: double.infinity,
+                            child: FadeInImage.memoryNetwork(
+                              placeholder: kTransparentImage,
+                              image: getDataF(snapshot, "picURL", index),
+                            ),
                           ),
-                        ),
-                        //This is the title below the murals
-                        Text(
-                          getDataF(snapshot, "title", index),
-                          textAlign: TextAlign.center,
-                          style: new TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.black,
-                            // backgroundColor: Colors.black
+                          //This is the title below the murals
+                          Text(
+                            getDataF(snapshot, "title", index),
+                            textAlign: TextAlign.center,
+                            style: new TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.black,
+                              // backgroundColor: Colors.black
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 }, childCount: 8),
@@ -75,12 +95,3 @@ class MuralGallery extends StatelessWidget {
     );
   }
 }
-
-// void showMuralGallery(BuildContext context) {
-
-//   // Obviously show the bottom sheet
-//   showMuralGallery(
-//     muralGrid(),
-//   );
-
-// }
