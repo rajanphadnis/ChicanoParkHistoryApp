@@ -155,7 +155,26 @@ class _MainPageState extends State<MainPage> {
                           ],
                         ),
                       ),
+                      InkWell(
+                        onTap: () {
 
+                        },
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text("Watch Interview"),
+                              IconButton(
+                                icon: Icon(Icons.play_circle_outline,
+                                    color: Colors.black),
+                                highlightColor: Colors.grey,
+                                tooltip: "",
+                                onPressed: () {
+                                  playTTS(context,
+                                      testString(snapshot.data, "desc"));
+                                },
+                              ),
+                            ]),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(15),
                         child: Text(
