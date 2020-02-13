@@ -361,8 +361,6 @@ PODS:
   - TensorFlowLiteC (1.14.0)
   - TensorFlowLiteObjC (1.14.0):
     - TensorFlowLiteC (= 1.14.0)
-  - webview_flutter (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
   - camera (from `.symlinks/plugins/camera/ios`)
@@ -379,7 +377,6 @@ DEPENDENCIES:
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - share (from `.symlinks/plugins/share/ios`)
-  - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
 
 SPEC REPOS:
   trunk:
@@ -439,8 +436,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/permission_handler/ios"
   share:
     :path: ".symlinks/plugins/share/ios"
-  webview_flutter:
-    :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -485,7 +480,6 @@ SPEC CHECKSUMS:
   share: bae0a282aab4483288913fc4dc0b935d4b491f2e
   TensorFlowLiteC: a6702011fb661928634e59565b5fe262f69692d0
   TensorFlowLiteObjC: ece71b1e78f3df5952996c1606934b1d5538c875
-  webview_flutter: bec7599de6bfbe8008a739aa3ebd7b364ea9d0cd
 
 PODFILE CHECKSUM: 3f878806deb98fae8aaf3ec6f3fc276c01313d4a
 
