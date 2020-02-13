@@ -1,104 +1,118 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta nent="width=device-width, initial-scale=1">
-    <title>Documentation</title>
-    <link rel="stylesheet"  type="text/css" href="../styles/main.css">
-  </head>
-  <script>
-   function userShow() {
-        document.getElementById("userDoc").style.display = "block";
-        document.getElementById("scDoc").style.display = "none";
-    };
-    function scShow() {
-        var password = prompt("Please enter password to view Steering Committee Documentation:");
-        if(password == "password123") {
-            document.getElementById("scDoc").style.display = "block";
-            document.getElementById("userDoc").style.display = "none";
-        }
-        else {
-            alert("Password incorrect")
-        }    
-    };
-    function showNone() {
-        document.getElementById("userDoc").style.display = "none";
-        document.getElementById("scDoc").style.display = "none";
-    };
-    </script>
-  <body>
-    <div id="menu">
-      <ul class="menuLinks">
-        <li class="link"><button onclick="showNone()">Documentation for Chicano Park App</button></li>
-        <li class="link"><button onclick="userShow()">User</button></li>
-        <li class="link"><button onclick="scShow()">Steering Committee</button></li>
-      </ul>
-    </div>
-    <div id="message">
-      <h2>Welcome to our incredible documentation that everybody will totally contribute to</h2>
-      <h1>Documentation</h1>
-      <p>Step 1: become a PhD in CS and be fluent in at least 300! different coding languages. <br/> Step 2: there is no step 2. You know everything.</p>
 
-    <div id="userDoc">
-      <h2 id="user">For the User:</h2>
-      <h3>How is the app used?</h3>
-      <ol>
-        <li>Open App</li><ol type="a"><li>The default "home" screen should be displaying your camera</li></ol>
-        <li>Point your phone camera at a mural</li>
-        <ol type="a">Make sure that the entire (or at least a majority) of the mural can be seen inside the view shown on your phone screen</ol>
-        <li>Click the capture button (the round button at the bottom of the screen)</li>
-        <li>An information page should then pop up</li>
-        <ol type="a"><li>If information page does not appear, then either:</li>
+<head>
+  <meta charset="utf-8">
+  <meta nent="width=device-width, initial-scale=1">
+  <title>Documentation</title>
+  <link rel="stylesheet" type="text/css" href="../styles/main.css">
+  <script src="/__/firebase/7.8.0/firebase.js"></script>
+  <script src="/__/firebase/7.8.0/firebase-app.js"></script>
+  <script src="/__/firebase/7.8.0/firebase-auth.js"></script>
+  <script src="/__/firebase/init.js"></script>
+  <script src="doc.js"></script>
+</head>
+
+<body>
+  <div id="menu">
+    <ul class="menuLinks">
+      <li class="link"><button onclick="showNone()">Documentation for Chicano Park App</button></li>
+      <li class="link"><button onclick="userShow()">User</button></li>
+      <li class="link"><button onclick="scShow()">Steering Committee</button></li>
+    </ul>
+  </div>
+  <div id="loginE" style="display: none;">
+    <p>User not logged in. <a href="login.html">Login</a></p>
+  </div>
+  <div id="message">
+    <h2>Welcome to our incredible documentation that everybody will totally contribute to</h2>
+    <h1>Documentation</h1>
+    <p>Step 1: become a PhD in CS and be fluent in at least 300! different coding languages. <br /> Step 2: there is no
+      step 2. You know everything.</p>
+  </div>
+  <div id="userDoc">
+    <h2 id="user">For the User:</h2>
+    <h3>How is the app used?</h3>
+    <ol>
+      <li>Open App</li>
+      <ol type="a">
+        <li>The default "home" screen should be displaying your camera</li>
+      </ol>
+      <li>Point your phone camera at a mural</li>
+      <ol type="a">Make sure that the entire (or at least a majority) of the mural can be seen inside the view shown on
+        your phone screen</ol>
+      <li>Click the capture button (the round button at the bottom of the screen)</li>
+      <li>An information page should then pop up</li>
+      <ol type="a">
+        <li>If information page does not appear, then either:</li>
         <ol type="I">
           <li>Try clicking the capture button again</li>
           <li>Adjust your location, and then click the button again</li>
           <li>Adjust the angle at which you are pointing your phone at the mural</li>
-        </ol></ol>
-        <li>You should be able to scroll down the information page to view more (if needed)</li>
-        <li>To exit this information page, swipe down</li>
-        <li>To view information on another mural, point the camera at the new mural and click the round button. Repeat the above steps</li>
+        </ol>
       </ol>
-      <h3>Other features located on the information page</h3>
+      <li>You should be able to scroll down the information page to view more (if needed)</li>
+      <li>To exit this information page, swipe down</li>
+      <li>To view information on another mural, point the camera at the new mural and click the round button. Repeat the
+        above steps</li>
+    </ol>
+    <h3>Other features located on the information page</h3>
+    <ul>
+      <li>Tap the headphones icon to listen to the auditory version of the text</li>
+      <li>Tap the artist's name to see their biography and:</li>
       <ul>
-        <li>Tap the headphones icon to listen to the auditory version of the text</li>
-        <li>Tap the artist's name to see their biography and:</li>
-        <ul><li>Other murals they have done</li>
+        <li>Other murals they have done</li>
         <li>Background info (such as their inspiration, why they got involved, etc.)</li>
-        <ul><li>Possibly even a contact us section (helps the artist and people looking to hire them. Gives them incentive to help us w/ mural descriptions etc)</li></ul>
-        </ul>
-        <li>Next to the artist pic + name will be a rating showing how popular the current mural is (has yet to be implemented)</li>
-        <ul><li>User can press little flame icon to show that they "like" it (maybe change this)</li></ul>
-        <li>To exit a mural page or artist bio page, swipe down</li>
-      </ul>
-      <h3>Other features located on the Home page</h3>
-      <ul>
-        <li>Tap the explore button (to the right of the camera button) to view the general history of the park</li>
         <ul>
-          <li>Tap on each of the events in the timeline to see more about each section</li>
-          <li>Tap on the back arrow button on the top left to go back to the timeline</li>
-          <li>Swipe left or right to travel along the timeline</li>
+          <li>Possibly even a contact us section (helps the artist and people looking to hire them. Gives them incentive
+            to help us w/ mural descriptions etc)</li>
         </ul>
-        <li>Swipe down to return to the home page</li>  
-        <li>Tap the gallery button (to the left of the camera button) to view a list of the murals currently in the database</li>
-        <ul><li>Tap on a mural to learn more about it (also see "Other features located on the information page")</li></ul>
       </ul>
-    </div>
-    <!--————————————————Separator————————————————————-->
-    <div id="scDoc">
+      <li>Next to the artist pic + name will be a rating showing how popular the current mural is (has yet to be
+        implemented)</li>
+      <ul>
+        <li>User can press little flame icon to show that they "like" it (maybe change this)</li>
+      </ul>
+      <li>To exit a mural page or artist bio page, swipe down</li>
+    </ul>
+    <h3>Other features located on the Home page</h3>
+    <ul>
+      <li>Tap the explore button (to the right of the camera button) to view the general history of the park</li>
+      <ul>
+        <li>Tap on each of the events in the timeline to see more about each section</li>
+        <li>Tap on the back arrow button on the top left to go back to the timeline</li>
+        <li>Swipe left or right to travel along the timeline</li>
+      </ul>
+      <li>Swipe down to return to the home page</li>
+      <li>Tap the gallery button (to the left of the camera button) to view a list of the murals currently in the
+        database</li>
+      <ul>
+        <li>Tap on a mural to learn more about it (also see "Other features located on the information page")</li>
+      </ul>
+    </ul>
+  </div>
+
+  <!--————————————————Separator————————————————————-->
+  <div id="scDoc">
     <h2 id="sc">For the Steering Committee:</h2>
+    <p><a onclick="logout()" href="">Logout</a></p>
     <ul>
       <li>Go to the console at this <a href="https://programmingii-367d0.firebaseapp.com/console.html">link</a></li>
-      <li>MURALS - Each of the murals in the database has a dedicated space for the Steering Committee to make changes to the title, the defining picture, and/or the description of the mural. To edit information about the murals, click the button at the top titled "Edit Murals"</li>
+      <li>MURALS - Each of the murals in the database has a dedicated space for the Steering Committee to make changes
+        to the title, the defining picture, and/or the description of the mural. To edit information about the murals,
+        click the button at the top titled "Edit Murals"</li>
       <ul>
         <li>To change the title of a mural, edit the text box titled "Title:"</li>
-        <li>To change the picture of the mural, edit the link in the text box titled "Picture:" (the new link should be a picture file)</li>
+        <li>To change the picture of the mural, edit the link in the text box titled "Picture:" (the new link should be
+          a picture file)</li>
         <li>To change the description of the mural, edit the text box titled "Description: "</li>
       </ul>
-      <li>AUTHORS - Each of the artists has their own page for their biography. To edit the information of these artists, click the button at the top titled "Edit Artists"
-      <ul>
-        <li>To change the picture of the artist, edit the link in the text box titled "Picture: "</li>
-        <li>To change the artist biography, edit the text box titled "Description: "</li>
-      </ul>
+      <li>AUTHORS - Each of the artists has their own page for their biography. To edit the information of these
+        artists, click the button at the top titled "Edit Artists"
+        <ul>
+          <li>To change the picture of the artist, edit the link in the text box titled "Picture: "</li>
+          <li>To change the artist biography, edit the text box titled "Description: "</li>
+        </ul>
       <li>To save any changes, click the black save button on the bottom right corner</li>
     </ul>
     <ul>
@@ -111,6 +125,6 @@
       </ul>
     </ul>
   </div>
-    </div>
-  </body>
+</body>
+
 </html>

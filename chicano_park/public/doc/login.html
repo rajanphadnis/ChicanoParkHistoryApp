@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,22 +19,22 @@
     <script src="/__/firebase/7.8.0/firebase-auth.js"></script>
     <script src="/__/firebase/init.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
     <script type="text/javascript">
         var ui = new firebaseui.auth.AuthUI(firebase.auth());
         ui.start('#firebaseui-auth-container', {
-                signInSuccessUrl: './',
-                signInOptions: [
-                    {
-                        provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                        authMethod: 'https://accounts.google.com',
-                        clientId: '680500466339-knq0u1iv9cvni2fss0296veiv4qhngis.apps.googleusercontent.com'
-                    },
-                    firebase.auth.EmailAuthProvider.PROVIDER_ID,
-                ],
-                credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
-                tosUrl: 'https://rodojo.co/'
-            });
+            signInSuccessUrl: './documentation.html',
+            signInOptions: [
+                // {
+                //     provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                //     authMethod: 'https://accounts.google.com',
+                //     clientId: '680500466339-knq0u1iv9cvni2fss0296veiv4qhngis.apps.googleusercontent.com'
+                // },
+                firebase.auth.EmailAuthProvider.PROVIDER_ID,
+            ],
+            credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
+            tosUrl: 'https://rodojo.co/'
+        });
     </script>
 </head>
 
