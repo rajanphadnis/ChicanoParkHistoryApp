@@ -7,7 +7,7 @@ function userShow() {
 function scShow() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          if (user.email == "rphadnis20@pacificridge.org" || user.email == "rajansd28@gmail.com") {
+          if (user.email == "rphadnis20@pacificridge.org" || user.email == "rajansd28@gmail.com" || user.email == "elisse.chow@gmail.com") {
             document.getElementById("message").style.display = "none";
           document.getElementById("scDoc").style.display = "block";
           document.getElementById("userDoc").style.display = "none";

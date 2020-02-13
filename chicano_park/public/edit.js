@@ -28,7 +28,7 @@ firebase.firestore().enablePersistence({
     });
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-        if (user.email == "rphadnis20@pacificridge.org" || user.email == "rajansd28@gmail.com") {
+        if (user.email == "rphadnis20@pacificridge.org" || user.email == "rajansd28@gmail.com"|| user.email == "elisse.chow@gmail.com") {
             document.getElementById("murals").style.display = "block";
             document.getElementById("artists").style.display = "block";
             document.getElementById("noAuth").style.display = "none";
