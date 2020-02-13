@@ -106,8 +106,6 @@ class _MainPageState extends State<MainPage> {
                           width: 40,
                         ),
                       ),
-                      // height: 50,
-                      //     width: 40,
                     ),
                   ),
                   SliverAppBar(
@@ -121,11 +119,7 @@ class _MainPageState extends State<MainPage> {
                       background: FittedBox(
                         child: getImage(snapshot.data, "picURL", context),
                         fit: BoxFit.fitHeight,
-                      )
-                      // Parallax.inside(
-                      //   child: getImage(snapshot.data, "picURL", context),
-                      //   mainAxisExtent: 150.0,
-                      // ),
+                      ),
                     ),
                   ),
                   SliverToBoxAdapter(
@@ -140,8 +134,7 @@ class _MainPageState extends State<MainPage> {
                               style: TextStyle(fontSize: 20),
                             ),
                             onTap: () {
-                              // Navigator.pop(context);
-                              sc.animateTo(0);
+                              _pc.animatePanelToPosition(0);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

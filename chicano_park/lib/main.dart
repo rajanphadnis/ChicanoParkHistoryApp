@@ -3,7 +3,6 @@ library mainlib;
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_parallax/flutter_parallax.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:share/share.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -68,28 +67,13 @@ class MainPage extends StatefulWidget {
 
 
 // TODO: 
-// - [Everybody] Come up with an app name. length =< 8 characters. Change the name in pubspec.yaml's "name" field (at the top)
-// potential names (not all can even work):
-  // CP Explorer - >:(
-  // CP Murals  <--- I like this the best
-  // Chicano Explorer (real name)
-  // CP Tour
-  // Chicano (name for app) - sure
-// - [Everybody else] Update the database (add info and murals. add picture URLs). 
+// - Fix Gallery
+// - [Everybody else] Update the data at https://programmingii-367d0.web.app/ (add info and murals. add picture URLs). 
 //    For pic URLs, put the picture in the "public" folder and 
 //    run "firebase deploy". then link to the picture using the
 //    url in firebase console --> hosting
 //    example: garcia's picture is garcia.jpg in the public folder. I ran firebase deploy and garcia's picURL is:
 //    https://programmingii-367d0.web.app/garcia.jpg
 //    Note: pics can only be png of jpg. no gif or jpeg.
-// - [Sloane, Elisse, Matthew?] The history section is now just standard HTML files. They
-//    are in the "public" folder. change those, then run 
-//    "firebase deploy"
-// - [JBone] update iOS info.plist with the stuff from these links:
-//    - https://pub.dev/packages/webview_flutter
-//    - https://pub.dev/packages/flutter_webview_plugin
 // - Play around with colors and icons
-// - [Evan] Make Evan do some good flutter stuff (idk. audio, other stuff. he can get it) 
 // - see if IT got us a Testflite account yet and distribute?
-// - [Evan] clean up variable language and permission language. Make it professional *cough cough evan
-// - start documentation (i'll start at around 1:45 or 2) in "public/index.html"
