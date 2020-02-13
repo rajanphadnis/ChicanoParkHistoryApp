@@ -1,39 +1,17 @@
 part of mainlib;
 
 class MuralGallery extends StatelessWidget {
+  String getDataF(snapshot, String arg, index) {
+    List thingh = snapshot.data.documents.map((doc) => doc[arg]).toList();
+    return thingh[index];
+  }
+
   @override
   Widget build(BuildContext context) {
     return new StreamBuilder(
       // now add firebase integration. "subscribe" to the data from the firestore database
-      stream: Firestore.instance
-          .collection("Murals")
-          // get the document that has the title of the mural that was just scanned: "found"
-          // .document("index")
-          .snapshots(),
+      stream: Firestore.instance.collection("Murals").snapshots(),
       builder: (context, snapshot) {
-        // Do some basic error processing
-        // if (!snapshot.hasData) {
-        //   return Container(
-        //     width: MediaQuery.of(context).size.width,
-        //     height: MediaQuery.of(context).size.height,
-        //     child: Column(
-        //       mainAxisAlignment: MainAxisAlignment.center,
-        //       crossAxisAlignment: CrossAxisAlignment.center,
-        //       children: <Widget>[
-        //         Text("Getting Data..."),
-        //         CircularProgressIndicator(
-        //           valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
-        //         )
-        //       ],
-        //     ),
-        //   );
-        // }
-        // if (snapshot == null || snapshot.data == null) {
-        //   return const Text("Something went seriously wrong! Sorry!");
-        // }
-        // if (snapshot.hasError) {
-        //   return const Text("error!");
-        // }
         return Scaffold(
           body: new CustomScrollView(
             slivers: <Widget>[
@@ -44,10 +22,14 @@ class MuralGallery extends StatelessWidget {
                 pinned: true,
                 flexibleSpace: new FlexibleSpaceBar(
                   centerTitle: true,
-                  title: Text("Murals\nClick to learn more!"),
-                  background: Image.network(
-                    "https://www.kcet.org/sites/kl/files/atoms/article_atoms/www.kcet.org/socal/departures/landofsunshine/assets_c/2012/11/poetswall-thumb-630x450-39917.jpg", //snapshot.data["picURL"],
-                    fit: BoxFit.cover,
+                  title: Text("Murals"),
+                  background: FittedBox(
+                    fit: BoxFit.fitHeight,
+                    child: FadeInImage.memoryNetwork(
+                      placeholder: kTransparentImage,
+                      image:
+                          "https://www.kcet.org/sites/kl/files/atoms/article_atoms/www.kcet.org/socal/departures/landofsunshine/assets_c/2012/11/poetswall-thumb-630x450-39917.jpg",
+                    ),
                   ),
                 ),
               ),
@@ -66,25 +48,20 @@ class MuralGallery extends StatelessWidget {
                         Container(
                           height: 130.0,
                           width: double.infinity,
-                          decoration: new BoxDecoration(
-                            image: DecorationImage(
-                              image: new NetworkImage(
-                                snapshot.data[
-                                    "picURL"],
-                              ),
-                            ),
+                          child: FadeInImage.memoryNetwork(
+                            placeholder: kTransparentImage,
+                            image: getDataF(snapshot, "picURL", index),
                           ),
                         ),
                         //This is the title below the murals
                         Text(
-                          "hi",
-                          // testString(snapshot.data, "title"),
-                          //"hello there $index",
+                          getDataF(snapshot, "title", index),
                           textAlign: TextAlign.center,
                           style: new TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.white,
-                              backgroundColor: Colors.black),
+                            fontSize: 14.0,
+                            color: Colors.black,
+                            // backgroundColor: Colors.black
+                          ),
                         ),
                       ],
                     ),

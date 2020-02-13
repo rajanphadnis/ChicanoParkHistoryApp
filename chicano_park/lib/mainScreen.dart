@@ -124,37 +124,38 @@ class _MainPageState extends State<MainPage> {
                   ),
                   SliverToBoxAdapter(
                     child: Column(children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          InkWell(
-                            child: Text(
+                      InkWell(
+                        onTap: () {
+                          _pc.animatePanelToPosition(0);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ArtistPage(
+                                  testString(snapshot.data, "author")),
+                            ),
+                          );
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
                               testString(snapshot.data, "author"),
                               style: TextStyle(fontSize: 20),
                             ),
-                            onTap: () {
-                              _pc.animatePanelToPosition(0);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ArtistPage(
-                                      testString(snapshot.data, "author")),
-                                ),
-                              );
-                            },
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.headset, color: Colors.purple),
-                            highlightColor: Colors.grey,
-                            tooltip: "Press to listen to the description",
-                            onPressed: () {
-                              playTTS(
-                                  context, testString(snapshot.data, "desc"));
-                            },
-                          ),
-                        ],
+                            IconButton(
+                              icon: Icon(Icons.headset, color: Colors.purple),
+                              highlightColor: Colors.grey,
+                              tooltip: "Press to listen to the description",
+                              onPressed: () {
+                                playTTS(
+                                    context, testString(snapshot.data, "desc"));
+                              },
+                            ),
+                          ],
+                        ),
                       ),
+
                       Padding(
                         padding: const EdgeInsets.all(15),
                         child: Text(
@@ -311,7 +312,7 @@ class _MainPageState extends State<MainPage> {
                         builder: (context) => MuralGallery(),
                       ),
                     );
-                    
+
                     //HERE FOR MURAL LIBRARY/MURAL GALLERY
                     // Do nothing for now
                   },
@@ -321,11 +322,11 @@ class _MainPageState extends State<MainPage> {
                 icon: Icon(Icons.list, color: Colors.black),
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MuralGallery(),
-                      ),
-                    );
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MuralGallery(),
+                    ),
+                  );
                   // _neverSatisfied();
                 },
               ),
@@ -342,7 +343,6 @@ class _MainPageState extends State<MainPage> {
                 CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 38.0,
-                  
                   child: IconButton(
                     icon: Icon(
                       Icons.add_circle,
