@@ -106,6 +106,25 @@
         <li>To change the picture of the mural, edit the link in the text box titled "Picture:" (the new link should be
           a picture file)</li>
         <li>To change the description of the mural, edit the text box titled "Description: "</li>
+        <li>To add a new Mural, open the database.</li>
+        <ul>
+          <li>On the left side, click on "Database" under "Develop"</li>
+          <li>Click on "Murals"</li>
+          <li>Click "Add Document"</li>
+          <ul>
+            <li>The Document ID is a no-spaces abbreviated name of the new mural</li>
+            <li>The first Field is "title" (no quotation marks). do not capitalize</li>
+            <li>The first field is also a string</li>
+            <li>The first field's value is the name of the mural. Here you can use spaces and capital letters</li>
+          </ul>
+          <li>Take pictures of the mural from almost every angle and in all sorts of lighting conditions.</li>
+          <li>Upload those pictures to train a model in the console (Develop --> ML Kit)</li>
+          <li>Train the new model and download (do not publish)</li>
+          <li>Extract the contents of the zip file (do not rename) and replace with the ones in the app directory</li>
+          <li>In "lib --> main.dart", find the variable called "jsonData" and add your mural to the json string in the pattern "name in dict.txt" : "name you gave in database"</li>
+          <li>In "lib --> muralGallery.dart", go to around line 90 and find the "childCount" field. Increment.</li>
+          <li>Build and Deploy app</li>
+        </ul>
       </ul>
       <li>AUTHORS - Each of the artists has their own page for their biography. To edit the information of these
         artists, click the button at the top titled "Edit Artists"
@@ -121,7 +140,7 @@
       <ul>
         <li>Finish this documentation</li>
         <li>Give access to the Firebase and teach how to change information using the console/Firebase</li>
-        <li>use squoosh to compress most images to under 1 MB</li>
+        <li>use <a href="https://squoosh.app/">squoosh</a> to compress most images to under 1 MB</li>
       </ul>
     </ul>
   </div>
