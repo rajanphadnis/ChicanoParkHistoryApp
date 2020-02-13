@@ -4,7 +4,7 @@ Programming I and Programming II Chicano Park collaborative History app. Basic s
 
 ## Timeline
 
-High-level app prototype by March. Final production-ready version by Global Travel. Currently on-track. Last updated 1/29/2020.
+High-level app prototype by March. Final production-ready version by Global Travel. Currently ahead of schedule. Last updated 2/12/2020.
 
 ## Team Members
 
