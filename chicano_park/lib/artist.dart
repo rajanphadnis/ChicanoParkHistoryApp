@@ -4,6 +4,41 @@ class ArtistPage extends StatelessWidget {
   final String author;
   ArtistPage(this.author);
   List<String> itemsTHing = List();
+  SliverGrid muralGrid() {
+    return SliverGrid(
+      gridDelegate:
+          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+        return Container(
+          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                // color: Colors.grey,
+                height: 130.0,
+                width: double.infinity,
+                decoration: new BoxDecoration(
+                  image: DecorationImage(
+                    image: new NetworkImage(
+                        "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350"),
+                    fit: BoxFit.fill,
+                  ),
+                  // shape: BoxShape.circle,
+                ),
+              ),
+              Text("hello there $index",
+                  style: Theme.of(context)
+                      .textTheme
+                      .title
+                      .merge(TextStyle(fontSize: 14.0)))
+            ],
+          ),
+        );
+      }, childCount: 8),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return new StreamBuilder(
@@ -107,44 +142,13 @@ class ArtistPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SliverGrid(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                  return Container(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          // color: Colors.grey,
-                          height: 130.0,
-                          width: double.infinity,
-                          decoration: new BoxDecoration(
-                            image: DecorationImage(
-                              image: new NetworkImage(
-                                  "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350"),
-                              fit: BoxFit.fill,
-                            ),
-                            // shape: BoxShape.circle,
-                          ),
-                        ),
-                        Text("hello there $index",
-                            style: Theme.of(context)
-                                .textTheme
-                                .title
-                                .merge(TextStyle(fontSize: 14.0)))
-                      ],
-                    ),
-                  );
-                }, childCount: 8),
-              ),
+              muralGrid(),
             ],
           ),
         );
       },
     );
   }
+
+
 }

@@ -3,8 +3,10 @@ library mainlib;
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_parallax/flutter_parallax.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:share/share.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'dart:async';
 import 'package:transparent_image/transparent_image.dart';
 import 'dart:convert';
@@ -20,6 +22,7 @@ part 'historyModal.dart';
 part 'timeline.dart';
 part 'infoPage.dart';
 part 'artist.dart';
+part 'muralGallery.dart';
 // Next, create a list of cameras so that we know which one is the "back" one
 // Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a camera feed to the user
 Future<void> main() async {
@@ -29,7 +32,7 @@ Future<void> main() async {
 }
 
 // This variable is a string that will contain a descriptor for the mural we found when scanned
-var found = "";
+var found = "all_the_way";
 double valueTHingy = 0.0;
 String textl = "quite literally nothing";
 double confidenceNumThing = 0.0;

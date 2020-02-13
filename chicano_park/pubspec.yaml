@@ -35,6 +35,8 @@ dependencies:
   flutter_webview_plugin: ^0.3.10+1
   # Add the dependency for the FlutterFire plugin for Google Analytics
   firebase_analytics: ^5.0.2
+  sliding_up_panel: ^1.0.0
+  flutter_parallax: ^0.1.2
 
 
   # The following adds the Cupertino Icons font to your application.

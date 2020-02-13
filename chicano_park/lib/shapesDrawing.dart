@@ -11,7 +11,7 @@ class PaintRectangle
     // set the paint color to be white (background)
     paint.color = Colors.white;
     // Create a rectangle with size and width same as parent
-    var rect = Rect.fromLTWH(0, 0, size.width, size.height);
+    var rect = Rect.fromLTWH(0, 0, 40, 5);
     // draw the rectangle
     canvas.drawRect(rect, paint);
   }

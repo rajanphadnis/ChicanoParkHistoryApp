@@ -9,6 +9,7 @@ class _MainPageState extends State<MainPage> {
   var confidenceThing;
   static const platform = const MethodChannel('samples.flutter.dev/battery');
   var realData;
+  PanelController _pc = new PanelController();
 
   FlutterTts flutterTts = FlutterTts();
   bool talking = false;
@@ -34,7 +35,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   void playTTS(BuildContext context, String talk) {
-    if (talking == false) {
+    if (talking == false && talk != "") {
       flutterTts.speak(talk);
       talking = true;
     } else {
@@ -42,104 +43,93 @@ class _MainPageState extends State<MainPage> {
       talking = false;
     }
   }
-  
-  void displayModal(BuildContext context) {
-    // Obviously show the bottom sheet
-    showModalBottomSheet(
-      // we want it be dismissable when you swipe down
-      isScrollControlled: true,
-      // Add the corner radii
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10.0),
-          topRight: Radius.circular(10.0),
-        ),
-      ),
-      // Background color of the bottom sheet
-      backgroundColor: Colors.white,
-      // Choose which "navigator" to put the modal in. We just choose the general "context", which is the main, root navigator
-      context: context,
-      // now we supply the modal with the widget inside of the modal
-      builder: (context) => Wrap(
-        // Wrap the text and stuff so that nothing gets cut off
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height * 0.9,
-            child: StreamBuilder(
-              // now add firebase integration. "subscribe" to the data from the firestore database
-              stream: Firestore.instance
-                  .collection("Murals")
-                  // get the document that has the title of the mural that was just scanned: "found"
-                  .document(found)
-                  .snapshots(),
-              builder: (context, snapshot) {
-                // https://www.youtube.com/watch?v=dQw4w9WgXcQ
-                // Do some basic error processing
-                if (!snapshot.hasData) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Text("Getting Data..."),
-                        CircularProgressIndicator(
-                          valueColor:
-                              new AlwaysStoppedAnimation<Color>(Colors.black),
-                        )
-                      ],
-                    ),
-                  );
-                }
-                if (snapshot == null || snapshot.data == null) {
-                  return const Text("Something went seriously wrong! Sorry!");
-                }
-                if (snapshot.hasError) {
-                  return const Text("error!");
-                }
-                // https://www.youtube.com/watch?v=dQw4w9WgXcQ
-                // If there is no error, continue building the widgets
 
-                return Center(
-                  child: Column(
-                    children: <Widget>[
-                      // This is the "pill" shape at the top of the modal. See the class at the bottom of the file.
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: CustomPaint(
-                          painter:
-                              PaintRectangle(),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                border: new Border.all(color: Colors.white),
-                                borderRadius:
-                                    new BorderRadius.all(Radius.circular(2.5)),
-                                color: Colors.grey),
-                            height: 5,
-                            width: 40,
-                          ),
+//This is the mural display widget, it shows the mural photo and its description
+  Widget newDisplayModal(BuildContext context) {
+    return StreamBuilder(
+        stream:
+            Firestore.instance.collection("Murals").document(found).snapshots(),
+        builder: (context, snapshot) {
+          // Do some basic error processing
+          if (!snapshot.hasData) {
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text("Getting Data..."),
+                  CircularProgressIndicator(
+                    valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
+                  )
+                ],
+              ),
+            );
+          }
+          if (snapshot == null || snapshot.data == null) {
+            return const Text("Something went seriously wrong! Sorry!");
+          }
+          if (snapshot.hasError) {
+            return const Text("error!");
+          }
+          return SlidingUpPanel(
+            panelSnapping: true,
+            backdropEnabled: true,
+            minHeight: 0,
+            maxHeight: MediaQuery.of(context).size.height * 0.95,
+            controller: _pc,
+            onPanelClosed: () {
+              playTTS(context, "");
+            },
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.circular(10.0),
+            ),
+            panelBuilder: (ScrollController sc) => Scaffold(
+              body: new CustomScrollView(
+                controller: sc,
+                slivers: <Widget>[
+                  SliverToBoxAdapter(
+                    child: Container(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, bottom: 10.0, right: 10, left: 10),
+                      child: CustomPaint(
+                        painter: PaintRectangle(),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: new Border.all(color: Colors.white),
+                              borderRadius:
+                                  new BorderRadius.all(Radius.circular(2.5)),
+                              color: Colors.grey),
+                          height: 5,
+                          width: 40,
                         ),
                       ),
-                      // This is the title for the modal. get the data from the database
-                      Text(
-                        testString(snapshot.data, "title"),
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 30),
-                      ),
-
-                      // Add the image
-                      Container(
-                        padding: const EdgeInsets.all(15),
+                      // height: 50,
+                      //     width: 40,
+                    ),
+                  ),
+                  SliverAppBar(
+                    backgroundColor: Colors.black,
+                    expandedHeight: 256.0,
+                    floating: false,
+                    pinned: true,
+                    flexibleSpace: new FlexibleSpaceBar(
+                      centerTitle: true,
+                      title: Text(testString(snapshot.data, "title")),
+                      background: FittedBox(
                         child: getImage(snapshot.data, "picURL", context),
-                        
-                        //Width and height wasn't here before
-                        height: MediaQuery.of(context).size.height / 2,
-                        width: MediaQuery.of(context).size.width / 1.25,
-                      ),
-
+                        fit: BoxFit.fitHeight,
+                      )
+                      // Parallax.inside(
+                      //   child: getImage(snapshot.data, "picURL", context),
+                      //   mainAxisExtent: 150.0,
+                      // ),
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Column(children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -150,7 +140,8 @@ class _MainPageState extends State<MainPage> {
                               style: TextStyle(fontSize: 20),
                             ),
                             onTap: () {
-                              Navigator.pop(context);
+                              // Navigator.pop(context);
+                              sc.animateTo(0);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -171,13 +162,11 @@ class _MainPageState extends State<MainPage> {
                           ),
                         ],
                       ),
-                      // add scrollable description that fills up the rest of the available space in the modal
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: Text(testString(snapshot.data, "desc")),
-                          ),
+                      Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Text(
+                          testString(snapshot.data, "desc"),
+                          style: TextStyle(fontSize: 18),
                         ),
                       ),
                       // Just your average share button. and a tour button that collapses the modal bottom sheet
@@ -193,7 +182,6 @@ class _MainPageState extends State<MainPage> {
                               onPressed: () {
                                 // The message that will be shared. This can be a link, some text or contact or anything really
                                 Share.share(testString(snapshot.data, "title"));
-                                // https://www.youtube.com/watch?v=dQw4w9WgXcQ
                               },
                             ),
                           ),
@@ -202,26 +190,20 @@ class _MainPageState extends State<MainPage> {
                             child: RaisedButton.icon(
                               icon: Icon(Icons.explore),
                               label: Text("Tour Guide"),
-                              onPressed: () {
-                                // Remember navigator? We just "pop" it to get rid of it.
-                                // Navigator.pop(context);
-                              },
+                              onPressed: () {},
                             ),
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                );
-              },
+                    ]),
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+          );
+        });
   }
 
-// https://www.youtube.com/watch?v=dQw4w9WgXcQ
   // initialize camera when the app is initialized
   @override
   void initState() {
@@ -236,7 +218,6 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
-// https://www.youtube.com/watch?v=dQw4w9WgXcQ
   // Get rid of the camera controller and access to the camera when the app is closed
   @override
   void dispose() {
@@ -244,7 +225,6 @@ class _MainPageState extends State<MainPage> {
     super.dispose();
   }
 
-// https://www.youtube.com/watch?v=dQw4w9WgXcQ
   //Display the camera
   Widget cameraPreview(size, controller) {
     return ClipRect(
@@ -301,7 +281,7 @@ class _MainPageState extends State<MainPage> {
         setState(() {
           processing = false;
         });
-        displayModal(context);
+        _pc.animatePanelToPosition(1);
       } else {
         setState(() {
           processing = false;
@@ -332,6 +312,14 @@ class _MainPageState extends State<MainPage> {
                 child: IconButton(
                   icon: Icon(Icons.list, color: Colors.white),
                   onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MuralGallery(),
+                      ),
+                    );
+                    
+                    //HERE FOR MURAL LIBRARY/MURAL GALLERY
                     // Do nothing for now
                   },
                 ),
@@ -339,11 +327,20 @@ class _MainPageState extends State<MainPage> {
               IconButton(
                 icon: Icon(Icons.list, color: Colors.black),
                 onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MuralGallery(),
+                      ),
+                    );
                   // _neverSatisfied();
                 },
               ),
             ],
           ),
+
+          //The middle button that runs the model
+          //There are two circle avatars because then the user can touch any part of the button
           Padding(
             padding: EdgeInsets.only(bottom: 40.0),
             child: Stack(
@@ -352,6 +349,7 @@ class _MainPageState extends State<MainPage> {
                 CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 38.0,
+                  
                   child: IconButton(
                     icon: Icon(
                       Icons.add_circle,
@@ -359,7 +357,6 @@ class _MainPageState extends State<MainPage> {
                       color: Colors.white,
                     ),
                     onPressed: () {
-                      // Do nothing
                       runModelThingyTHing();
                     },
                   ),
@@ -378,69 +375,8 @@ class _MainPageState extends State<MainPage> {
                             size: 28.0,
                             color: Colors.grey,
                           ),
-                    onPressed: () async {
+                    onPressed: () {
                       runModelThingyTHing();
-                      //   setState(() {
-                      //     processing = true;
-                      //   });
-                      //   final path2 = join(
-                      //     (await getTemporaryDirectory()).path,
-                      //     '${DateTime.now()}.png',
-                      //   );
-                      //   await controller.takePicture(path2);
-                      //   print(path2);
-                      //   await _getBatteryLevel(path2);
-                      //   var stringSplit = muralTitleThing;
-                      //   var newStr = stringSplit.split(":");
-                      //   if (newStr.isEmpty) {
-                      //     setState(() {
-                      //       processing = false;
-                      //     });
-                      //     _scaffoldKey.currentState.showSnackBar(
-                      //       SnackBar(
-                      //         content: Text("No labels found"),
-                      //         duration: Duration(milliseconds: 750),
-                      //       ),
-                      //     );
-                      //   } else {
-                      //     var label = newStr[0];
-                      //     double confidence =
-                      //         double.parse(newStr[1].toString()) * 100;
-                      //     if (confidence >= confidenceNumThing) {
-                      //       _scaffoldKey.currentState.showSnackBar(
-                      //         SnackBar(
-                      //           content: Text("$label: $confidence \%"),
-                      //           duration: Duration(milliseconds: 500),
-                      //         ),
-                      //       );
-                      //       var parsedJson = json.decode(jsonData);
-                      //       found = parsedJson[label];
-                      //       // Firestore.instance
-                      //       //     .collection('Murals')
-                      //       //     .document(found)
-                      //       //     .get()
-                      //       //     .then((DocumentSnapshot ds) {
-                      //       //   setState(() {
-                      //       //     realData = ds;
-                      //       //   });
-                      //       //   realData = ds;
-                      //       // });
-                      //       setState(() {
-                      //         processing = false;
-                      //       });
-                      //       showTheModalThingWhenTheButtonIsPressed(context);
-                      //     } else {
-                      //       setState(() {
-                      //         processing = false;
-                      //       });
-                      //       _scaffoldKey.currentState.showSnackBar(
-                      //         SnackBar(
-                      //           content: Text("$label: $confidence \%"),
-                      //           duration: Duration(milliseconds: 500),
-                      //         ),
-                      //       );
-                      //     }
-                      //   }
                     },
                   ),
                 ),
@@ -473,7 +409,6 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-// https://www.youtube.com/watch?v=dQw4w9WgXcQ
 // OK, now for the meaty stuff. The main widget here (called "build") is the main homepage widget in the "MainPage" class.
   @override
   Widget build(BuildContext context) {
@@ -494,7 +429,6 @@ class _MainPageState extends State<MainPage> {
         ),
       );
     }
-    // https://www.youtube.com/watch?v=dQw4w9WgXcQ
     // When the camera is initialized (Stateful widget, so it is constantly re-checking the state), show the main app ui
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -504,6 +438,7 @@ class _MainPageState extends State<MainPage> {
           //This is the camera
           cameraPreview(size, controller),
           theBottomButtonNavigation(),
+          newDisplayModal(context),
         ],
       ),
     );

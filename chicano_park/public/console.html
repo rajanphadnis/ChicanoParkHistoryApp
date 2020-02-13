@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Database | Rodojo Console</title>
+    <link rel="stylesheet" type="text/css" href="../styles/console.css">
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-firestore.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body id="b">
+    <div class="w3-bar w3-black">
+        <button class="w3-bar-item w3-button" onclick="openCity('mur')">Edit Murals</button>
+        <button class="w3-bar-item w3-button" onclick="openCity('art')">Edit Artists</button>
+        <a href="/doc/documentation.html"><button class="w3-bar-item w3-button"> View Documentation</button></a>
+    </div>
+    <div id="mur" class="tabbar">
+        <button id="commit"><i class="material-icons">save</i></button>
+        <div id="murals"></div>
+    </div>
+    <div id="art" class="tabbar" style="display:none">
+        <button id="artSave"><i class="material-icons">save</i></button>
+        <div id="artists"></div>
+    </div>
+
+</body>
+<script src="./edit.js"></script>
+</html>
