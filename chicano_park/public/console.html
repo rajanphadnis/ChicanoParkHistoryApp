@@ -4,8 +4,11 @@
 <head>
     <title>Edit Database | Rodojo Console</title>
     <link rel="stylesheet" type="text/css" href="../styles/console.css">
-    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-firestore.js"></script>
+    <script src="/__/firebase/7.8.0/firebase.js"></script>
+    <script src="/__/firebase/7.8.0/firebase-app.js"></script>
+    <script src="/__/firebase/7.8.0/firebase-auth.js"></script>
+    <script src="/__/firebase/7.8.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/init.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
@@ -24,7 +27,14 @@
         <button id="artSave"><i class="material-icons">save</i></button>
         <div id="artists"></div>
     </div>
+    <div id="noAuth">
+        <p>User not authenticated <a href="login.html">Login</a></p>
+    </div>
+    <div id="noAur">
+        <p>User not authorized to access system</p>
+    </div>
 
 </body>
 <script src="./edit.js"></script>
+
 </html>
