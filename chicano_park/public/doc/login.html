@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodojo Console | Login</title>
+    <link rel="stylesheet" type="text/css" href="styles/inline.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Weather PWA">
+    <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+    <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
+    <script src="/__/firebase/7.8.0/firebase.js"></script>
+    <script src="/__/firebase/7.8.0/firebase-app.js"></script>
+    <script src="/__/firebase/7.8.0/firebase-auth.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <script type="text/javascript">
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        ui.start('#firebaseui-auth-container', {
+                signInSuccessUrl: './',
+                signInOptions: [
+                    {
+                        provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                        authMethod: 'https://accounts.google.com',
+                        clientId: '680500466339-knq0u1iv9cvni2fss0296veiv4qhngis.apps.googleusercontent.com'
+                    },
+                    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                ],
+                credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
+                tosUrl: 'https://rodojo.co/'
+            });
+    </script>
+</head>
+
+<body>
+
+    <header class="header">
+        <h1 class="header__title">Login</h1>
+        <button id="buttonAdd" class="headerButton" aria-label="Add" style="display: none"></button>
+        <button id="buttonLogOut" class="headerButton" aria-label="Logout" style="display: none"></button>
+    </header>
+
+    <main class="main">
+        <div id="firebaseui-auth-container"></div>
+    </main>
+
+    <div class="loader">
+        <svg viewBox="0 0 32 32" width="32" height="32">
+            <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
+        </svg>
+    </div>
+</body>
+
+</html>
