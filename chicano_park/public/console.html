@@ -14,24 +14,27 @@
 </head>
 
 <body id="b">
+    <h1 id="back">Rodojo</h1>
     <div class="w3-bar w3-black">
         <button class="w3-bar-item w3-button" onclick="openCity('mur')">Edit Murals</button>
         <button class="w3-bar-item w3-button" onclick="openCity('art')">Edit Artists</button>
         <a href="/doc/documentation.html"><button class="w3-bar-item w3-button"> View Documentation</button></a>
     </div>
-    <div id="mur" class="tabbar">
-        <button id="commit"><i class="material-icons">save</i></button>
-        <div id="murals"></div>
-    </div>
-    <div id="art" class="tabbar" style="display:none">
-        <button id="artSave"><i class="material-icons">save</i></button>
-        <div id="artists"></div>
-    </div>
-    <div id="noAuth">
-        <p>User not authenticated <a href="/doc/login.html">Login</a></p>
-    </div>
-    <div id="noAur">
-        <p>User not authorized to access system</p>
+    <div id="scrollPart">
+        <div id="mur" class="tabbar">
+            <button id="commit"><i class="material-icons">save</i></button>
+            <div id="murals"></div>
+        </div>
+        <div id="art" class="tabbar" style="display:none">
+            <button id="artSave"><i class="material-icons">save</i></button>
+            <div id="artists"></div>
+        </div>
+        <div id="noAuth">
+            <p>User not authenticated <a href="/doc/login.html">Login</a></p>
+        </div>
+        <div id="noAur">
+            <p>User not authorized to access system</p>
+        </div>
     </div>
 
 </body>

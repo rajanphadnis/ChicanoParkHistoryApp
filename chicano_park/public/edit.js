@@ -12,20 +12,20 @@
 var firestore = firebase.firestore();
 var selected = true;
 
-firebase.firestore().enablePersistence({
-        experimentalTabSynchronization: true
-    })
-    .catch(function (err) {
-        if (err.code == 'failed-precondition') {
-            // Multiple tabs open, persistence can only be enabled
-            // in one tab at a a time.
-            // ...
-        } else if (err.code == 'unimplemented') {
-            // The current browser does not support all of the
-            // features required to enable persistence
-            // ...
-        }
-    });
+// firebase.firestore().enablePersistence({
+//         experimentalTabSynchronization: true
+//     })
+//     .catch(function (err) {
+//         if (err.code == 'failed-precondition') {
+//             // Multiple tabs open, persistence can only be enabled
+//             // in one tab at a a time.
+//             // ...
+//         } else if (err.code == 'unimplemented') {
+//             // The current browser does not support all of the
+//             // features required to enable persistence
+//             // ...
+//         }
+//     });
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         if (user.email == "rphadnis20@pacificridge.org" || user.email == "rajansd28@gmail.com"|| user.email == "elisse.chow@gmail.com") {
@@ -46,7 +46,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         document.getElementById("noAur").style.display = "none";
     }
 });
-var StringThing = '<h1>Murals</h1>';
+var StringThing = '<h1 class="title">Edit Murals</h1>';
 firestore.collection("Murals/").get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {
         StringThing = StringThing + '<div class="cardDiv mdc-card"><input disabled class="centerTheThing" value="' + doc.id + '"><p>Title:</p><input class="VT" value="' + doc.data().title +
@@ -62,7 +62,7 @@ firestore.collection("Murals/").get().then(function (querySnapshot) {
 });
 document.getElementById("murals").innerHTML = StringThing;
 
-var ArtistString = '<h1>Artists</h1>';
+var ArtistString = '<h1 class="title">Edit Artists</h1>';
 firestore.collection("Artists/").get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {
         ArtistString = ArtistString + '<div class="cardDiv mdc-card"><input disabled class="centerArt" value="' + doc.id + '"><p>Picture:</p><input class="ArtistPic" value="' + doc.data().picURL +
