@@ -148,17 +148,19 @@ class _MainPageState extends State<MainPage> {
                               highlightColor: Colors.grey,
                               tooltip: "Press to listen to the description",
                               onPressed: () {
-                                playTTS(
-                                    context, testString(snapshot.data, "desc"));
+                                //BUG: ON PRESSED THIS IS CLOSING THE PANEL
+                                playTTS(context, 
+                                  testString(snapshot.data, "desc"));
+                                    
                               },
                             ),
                           ],
                         ),
                       ),
                       InkWell(
-                        onTap: () {
+                        /*onTap: () {
 
-                        },
+                        },*/
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -324,6 +326,7 @@ class _MainPageState extends State<MainPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
+          //MURAL GALLERY/LIBRARY
           Stack(
             alignment: Alignment.center,
             children: <Widget>[
@@ -340,8 +343,7 @@ class _MainPageState extends State<MainPage> {
                       ),
                     );
 
-                    //HERE FOR MURAL LIBRARY/MURAL GALLERY
-                    // Do nothing for now
+                    
                   },
                 ),
               ),

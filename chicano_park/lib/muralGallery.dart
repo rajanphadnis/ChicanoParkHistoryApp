@@ -52,7 +52,8 @@ class _MuralGallery extends State<MuralGallery> {
                     (BuildContext context, int index) {
                   return Container(
                     padding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                        //was 10.0 and 20.0
+                        EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
                     child: InkWell(
                       onTap: () {
                         setState(() {
@@ -65,8 +66,10 @@ class _MuralGallery extends State<MuralGallery> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Container(
-                            height: 130.0,
-                            width: double.infinity,
+                            //alignment: Alignment.center.
+                            //was 130
+                            height: 130,
+                            width: MediaQuery.of(context).size.width/2,
                             child: FadeInImage.memoryNetwork(
                               placeholder: kTransparentImage,
                               image: getDataF(snapshot, "picURL", index),
