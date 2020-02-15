@@ -158,9 +158,10 @@ class _MainPageState extends State<MainPage> {
                         ),
                       ),
                       InkWell(
-                        /*onTap: () {
-
-                        },*/
+                        onTap: () {
+                          // open youtube link
+                          launchURL(testString(snapshot.data, "interview"));
+                        },
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -171,8 +172,8 @@ class _MainPageState extends State<MainPage> {
                                 highlightColor: Colors.grey,
                                 tooltip: "",
                                 onPressed: () {
-                                  playTTS(context,
-                                      testString(snapshot.data, "desc"));
+                                  // open youtube link
+                                  launchURL(testString(snapshot.data, "interview"));
                                 },
                               ),
                             ]),

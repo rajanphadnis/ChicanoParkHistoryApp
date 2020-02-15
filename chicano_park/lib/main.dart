@@ -14,6 +14,7 @@ import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:url_launcher/url_launcher.dart';
 part 'functions.dart';
 part 'shapesDrawing.dart';
 part 'mainScreen.dart';
@@ -61,28 +62,3 @@ class MainPage extends StatefulWidget {
   // We want a stateful widget because of all of theredrawing and repainting we are going to be doing. So, we create it (read: start it)
   _MainPageState createState() => _MainPageState();
 }
-
-
-
-
-
-// TODO: 
-// - Fix Gallery
-// - [Everybody else] Update the data at https://programmingii-367d0.web.app/ (add info and murals. add picture URLs). 
-//    For pic URLs, put the picture in the "public" folder and 
-//    run "firebase deploy". then link to the picture using the
-//    url in firebase console --> hosting
-//    example: garcia's picture is garcia.jpg in the public folder. I ran firebase deploy and garcia's picURL is:
-//    https://programmingii-367d0.web.app/garcia.jpg
-//    Note: pics can only be png of jpg. no gif or jpeg.
-// - Play around with colors and icons
-// - see if IT got us a Testflite account yet and distribute?
-
-
-
-// To add new mural:
-// - train model
-// - replace ml folder
-// - change "children" in muralGallery.dart ~line90
-// - create listing in database (not website)
-// - Update listing from website

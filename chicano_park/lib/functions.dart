@@ -6,58 +6,71 @@ String dictLookUp(String label) {
 
 // Make sure that all of the strings return a string from the database, and show an error if the entry doesn't exist in the database
 String testString(DocumentSnapshot doc, String val) {
-  if (doc == null) {
-    return "error! DB not found!";
+  try {
+    if (doc == null) {
+      return "error! DB not found!";
+    }
+    if (doc[val] == null) {
+      return "'" + val + "' doesn't exist in DB";
+    }
+    return doc[val];
+  } catch (e) {
+    return "Error: something went wrong";
   }
-  if (doc[val] == null) {
-    return "'" + val + "' doesn't exist in DB";
-  }
-  return doc[val];
 }
 
 // Same thing as the string version, but instead with a loading circle and images
 Widget getImage(DocumentSnapshot docs, String url, BuildContext context) {
-  if (docs == null) {
+  try {
+    if (docs == null) {
+      return Stack(
+        children: <Widget>[
+          Center(
+            child: Text("Error: Snapshot is null"),
+          ),
+        ],
+      );
+    } else if (docs[url] == null) {
+      return Stack(
+        children: <Widget>[
+          Center(
+            child: Text("Error: Picture not found"),
+          ),
+        ],
+      );
+    }
     return Stack(
       children: <Widget>[
-        Center(
-          child: Text("Error: Snapshot is null"),
+        Container(
+          padding: const EdgeInsets.all(25),
+          child: Center(child: CircularProgressIndicator()),
+        ),
+        Container(
+          alignment: Alignment.center,
+          //width: MediaQuery.of(context).size.width,
+          //height: MediaQuery.of(context).size.height,
+          child: ClipRRect(
+            child: FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              image: docs[url],
+            ),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          /*decoration: BoxDecoration(
+          color: Colors.blueGrey, 
+        ),*/
         ),
       ],
     );
-  } else if (docs[url] == null) {
+  } catch (e) {
     return Stack(
       children: <Widget>[
         Center(
-          child: Text("Error: Picture not found"),
+          child: Text("Error: Something went wrong"),
         ),
       ],
     );
   }
-  return Stack(
-    children: <Widget>[
-      Container(
-        padding: const EdgeInsets.all(25),
-        child: Center(child: CircularProgressIndicator()),
-      ),
-      Container(
-        alignment: Alignment.center,
-        //width: MediaQuery.of(context).size.width,
-        //height: MediaQuery.of(context).size.height,
-        child: ClipRRect(
-          child: FadeInImage.memoryNetwork(
-            placeholder: kTransparentImage,
-            image: docs[url],
-            
-          ),
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        /*decoration: BoxDecoration(
-          color: Colors.blueGrey, 
-        ),*/
-      ),
-    ],
-  );
 }
 
 // This function could have been embedded in the build() widget, but its easier to see when its separated out here
@@ -93,3 +106,22 @@ Widget muralGrid(BuildContext context) {
     ),
   );
 }
+
+void launchURL(String urll) async {
+  if (await canLaunch(urll)) {
+    await launch(urll);
+  } else {
+    throw 'Could not launch $urll';
+  }
+}
+
+
+// void playTTS(BuildContext context, String talk) {
+//     if (talking == false && talk != "") {
+//       flutterTts.speak(talk);
+//       talking = true;
+//     } else {
+//       flutterTts.stop();
+//       talking = false;
+//     }
+//   }
