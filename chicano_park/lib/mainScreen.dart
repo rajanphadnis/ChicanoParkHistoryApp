@@ -13,6 +13,26 @@ class _MainPageState extends State<MainPage> {
 
   FlutterTts flutterTts = FlutterTts();
   bool talking = false;
+  Future<bool> _onWillPop() async {
+    return (await showDialog(
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: new Text('Are you sure?'),
+            content: new Text('Do you want to exit the app?'),
+            actions: <Widget>[
+              new FlatButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: new Text('No'),
+              ),
+              new FlatButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: new Text('Yes'),
+              ),
+            ],
+          ),
+        )) ??
+        false;
+  }
 
   Future<void> _getBatteryLevel(String path2) async {
     String batteryLevel;
@@ -149,9 +169,8 @@ class _MainPageState extends State<MainPage> {
                               tooltip: "Press to listen to the description",
                               onPressed: () {
                                 //BUG: ON PRESSED THIS IS CLOSING THE PANEL
-                                playTTS(context, 
-                                  testString(snapshot.data, "desc"));
-                                    
+                                playTTS(
+                                    context, testString(snapshot.data, "desc"));
                               },
                             ),
                           ],
@@ -173,7 +192,8 @@ class _MainPageState extends State<MainPage> {
                                 tooltip: "",
                                 onPressed: () {
                                   // open youtube link
-                                  launchURL(testString(snapshot.data, "interview"));
+                                  launchURL(
+                                      testString(snapshot.data, "interview"));
                                 },
                               ),
                             ]),
@@ -343,8 +363,6 @@ class _MainPageState extends State<MainPage> {
                         builder: (context) => MuralGallery(_pc),
                       ),
                     );
-
-                    
                   },
                 ),
               ),
@@ -453,16 +471,19 @@ class _MainPageState extends State<MainPage> {
       );
     }
     // When the camera is initialized (Stateful widget, so it is constantly re-checking the state), show the main app ui
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      key: _scaffoldKey,
-      body: Stack(
-        children: <Widget>[
-          //This is the camera
-          cameraPreview(size, controller),
-          theBottomButtonNavigation(),
-          newDisplayModal(context),
-        ],
+    return new WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
+        key: _scaffoldKey,
+        body: Stack(
+          children: <Widget>[
+            //This is the camera
+            cameraPreview(size, controller),
+            theBottomButtonNavigation(),
+            newDisplayModal(context),
+          ],
+        ),
       ),
     );
   }
