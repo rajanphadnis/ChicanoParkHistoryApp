@@ -52,7 +52,8 @@ firestore.collection("Murals/").get().then(function (querySnapshot) {
         StringThing = StringThing + '<div class="cardDiv mdc-card"><input disabled class="centerTheThing" value="' + doc.id + '"><p>Title:</p><input class="VT" value="' + doc.data().title +
             '"></br><p>Picture:</p><input class="VP" value="' + doc.data().picURL +
             '"></br><p>Description:</p><textarea rows="4" class="VD" wrap="soft">' + doc.data().desc +
-            '</textarea></br><p>Author:</p><input class="VA" value="' + doc.data().author + '"></div>';
+            '</textarea></br><p>Author:</p><input class="VA" value="' + doc.data().author + '"></br><p>Interview URL (YouTube link):</p><input class="ArtistInt" value="' + doc.data().interview +
+            '"></div>';
         document.getElementById("murals").innerHTML = StringThing;
 
     });
@@ -105,7 +106,8 @@ function updateV(lengthOfV) {
                 title: document.getElementsByClassName("VT")[i].value,
                 picURL: document.getElementsByClassName("VP")[i].value,
                 desc: document.getElementsByClassName("VD")[i].value,
-                author: document.getElementsByClassName("VA")[i].value
+                author: document.getElementsByClassName("VA")[i].value,
+                interview: document.getElementsByClassName("ArtistInt")[i].value,
             }, {
                 merge: true
             }).then(function () {
@@ -125,7 +127,8 @@ function updateA(lengthOfA) {
     for (i = 0; i < lengthOfA; i++) {
         firestore.collection("Artists").doc(document.getElementsByClassName("centerArt")[i].value.toString()).set({
                 picURL: document.getElementsByClassName("ArtistPic")[i].value,
-                desc: document.getElementsByClassName("ArtistDesc")[i].value
+                desc: document.getElementsByClassName("ArtistDesc")[i].value,
+                
             }, {
                 merge: true
             }).then(function () {

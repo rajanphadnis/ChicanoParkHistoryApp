@@ -111,17 +111,7 @@ void launchURL(String urll) async {
   if (await canLaunch(urll)) {
     await launch(urll);
   } else {
+    // TODO: add error handling here
     throw 'Could not launch $urll';
   }
 }
-
-
-// void playTTS(BuildContext context, String talk) {
-//     if (talking == false && talk != "") {
-//       flutterTts.speak(talk);
-//       talking = true;
-//     } else {
-//       flutterTts.stop();
-//       talking = false;
-//     }
-//   }

@@ -16,7 +16,7 @@ body {
   width: 80%;
   z-index: 99;
   background-color: white;
-  box-shadow: 0 6px 12px #666, 0 6px 12px #666;
+  box-shadow: 0 3px 6px #666, 0 3px 6px #666;
   -webkit-animation: var(--transition); /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: var(--transition); /* Firefox < 16 */
   -ms-animation: var(--transition); /* Internet Explorer */

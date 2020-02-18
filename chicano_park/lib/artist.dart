@@ -22,7 +22,7 @@ class ArtistPage extends StatelessWidget {
                 decoration: new BoxDecoration(
                   image: DecorationImage(
                     image: new NetworkImage(
-                        "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350"),
+                        "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg"),
                     fit: BoxFit.fill,
                   ),
                   // shape: BoxShape.circle,
@@ -85,7 +85,8 @@ class ArtistPage extends StatelessWidget {
                   centerTitle: true,
                   title: Text(author),
                   background: Image.network(
-                    snapshot.data["picURL"],
+                    "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg",
+                    // snapshot.data["picURL"],
                     fit: BoxFit.cover,
                   ),
                 ),

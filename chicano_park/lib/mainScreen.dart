@@ -79,7 +79,7 @@ class _MainPageState extends State<MainPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Text("Getting Data..."),
+                  Text("Can't connect to the internet. Retrying..."),
                   CircularProgressIndicator(
                     valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
                   )
@@ -103,31 +103,35 @@ class _MainPageState extends State<MainPage> {
               playTTS(context, "");
             },
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10.0),
-              topRight: Radius.circular(10.0),
+              topLeft: Radius.circular(24.0),
+              topRight: Radius.circular(24.0),
             ),
             panelBuilder: (ScrollController sc) => Scaffold(
               body: new CustomScrollView(
                 controller: sc,
                 slivers: <Widget>[
                   SliverToBoxAdapter(
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                          top: 10.0, bottom: 10.0, right: 10, left: 10),
-                      child: CustomPaint(
-                        painter: PaintRectangle(),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: new Border.all(color: Colors.white),
-                              borderRadius:
-                                  new BorderRadius.all(Radius.circular(2.5)),
-                              color: Colors.grey),
-                          height: 5,
-                          width: 40,
-                        ),
+                      child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 10.0, bottom: 10.0, right: 10, left: 10),
+                  )
+                      // Container(
+                      //   padding: const EdgeInsets.only(
+                      //       top: 10.0, bottom: 10.0, right: 10, left: 10),
+                      //   child: CustomPaint(
+                      //     painter: PaintRectangle(),
+                      //     child: Container(
+                      //       decoration: BoxDecoration(
+                      //           border: new Border.all(color: Colors.white),
+                      //           borderRadius:
+                      //               new BorderRadius.all(Radius.circular(2.5)),
+                      //           color: Colors.grey),
+                      //       height: 5,
+                      //       width: 40,
+                      //     ),
+                      //   ),
+                      // ),
                       ),
-                    ),
-                  ),
                   SliverAppBar(
                     backgroundColor: Colors.black,
                     expandedHeight: 256.0,

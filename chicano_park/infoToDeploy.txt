@@ -5,3 +5,8 @@ then run:
 firebase deploy
 
 THis deploys the website to the internet so that the app can access it properly.
+
+
+To compile android release, increment versionCode and versionName in /android/app/build.gradle. Then, run:
+
+flutter build appbundle

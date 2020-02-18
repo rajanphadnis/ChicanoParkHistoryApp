@@ -30,7 +30,7 @@ Future<void> main() async {
   cameras = await availableCameras();
   runApp(MyApp());
 }
-
+final key = new GlobalKey<_MainPageState>();
 // This variable is a string that will contain a descriptor for the mural we found when scanned
 var found = "all_the_way";
 double valueTHingy = 0.0;
