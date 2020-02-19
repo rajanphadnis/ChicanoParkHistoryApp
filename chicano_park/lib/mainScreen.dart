@@ -76,9 +76,7 @@ class _MainPageState extends State<MainPage> {
 
   // initialize camera when the app is initialized
   @override
-  void initState() async {
-    // WidgetsFlutterBinding.ensureInitialized();
-    // cameras = await availableCameras();
+  void initState(){
     super.initState();
     // loadModel();
     controller = CameraController(cameras[0], ResolutionPreset.ultraHigh);
