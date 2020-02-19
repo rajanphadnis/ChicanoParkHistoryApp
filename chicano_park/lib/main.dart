@@ -64,8 +64,9 @@ class MyApp extends StatelessWidget {
       SplashScreen.navigate(
         name: 'assets/Chicano.flr',
         next: (_) => MainPage(),
-        until: () => Future.delayed(Duration(seconds: 5)),
-        startAnimation: 'Intro',
+        until: () => Future.delayed(Duration(seconds: 0)),
+        startAnimation: 'Open',
+        endAnimation: "Intro",
       ),
     );
   }
