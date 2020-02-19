@@ -60,13 +60,13 @@ class MyApp extends StatelessWidget {
       // ),
       // Tell the app that the homepage is MainPage()
       home: 
-      MainPage()
-      // SplashScreen(
-      //   'assets/Chicano.flr',
-      //   (context) => MainPage(),
-      //   until: () => Future.delayed(Duration(seconds: 5)),
-      //   startAnimation: '0',
-      // ),
+      // MainPage()
+      SplashScreen.navigate(
+        name: 'assets/Chicano.flr',
+        next: (_) => MainPage(),
+        until: () => Future.delayed(Duration(seconds: 5)),
+        startAnimation: 'Intro',
+      ),
     );
   }
 }
