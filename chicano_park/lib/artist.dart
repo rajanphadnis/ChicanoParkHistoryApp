@@ -4,7 +4,7 @@ class ArtistPage extends StatelessWidget {
   final String author;
   final PanelController _pc;
   ArtistPage(this.author, this._pc);
-  List<String> itemsTHing = List();
+  final List<String> itemsTHing = List();
   SliverGrid muralGrid() {
     return SliverGrid(
       gridDelegate:

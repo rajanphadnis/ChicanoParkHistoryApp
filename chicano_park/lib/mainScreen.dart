@@ -12,6 +12,11 @@ class _MainPageState extends State<MainPage> {
   PanelController _pc = new PanelController();
   FlutterTts flutterTts = FlutterTts();
   bool talking = false;
+  // List<CameraDescription> cameras = await availableCameras();
+  Future<void> go() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    cameras = await availableCameras();
+  }
 
   Future<bool> _onWillPop() async {
     if (_pc.isPanelOpen) {
@@ -71,7 +76,9 @@ class _MainPageState extends State<MainPage> {
 
   // initialize camera when the app is initialized
   @override
-  void initState() {
+  void initState() async {
+    // WidgetsFlutterBinding.ensureInitialized();
+    // cameras = await availableCameras();
     super.initState();
     // loadModel();
     controller = CameraController(cameras[0], ResolutionPreset.ultraHigh);
@@ -270,7 +277,7 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
-  
+
 // OK, now for the meaty stuff. The main widget here (called "build") is the main homepage widget in the "MainPage" class.
   @override
   Widget build(BuildContext context) {
@@ -363,9 +370,7 @@ class _MainPageState extends State<MainPage> {
                           centerTitle: true,
                           title: Text(
                             testString(snapshot.data, "title"),
-                            style: TextStyle(
-                              color: Colors.black
-                              ),
+                            style: TextStyle(color: Colors.black),
                           ),
                           background: FittedBox(
                             child: getImage(snapshot.data, "picURL", context),
