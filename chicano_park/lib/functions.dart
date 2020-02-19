@@ -108,10 +108,38 @@ Widget muralGrid(BuildContext context) {
 }
 
 void launchURL(String urll) async {
+  debugPrint(urll);
   if (await canLaunch(urll)) {
+    debugPrint(urll);
     await launch(urll);
   } else {
-    // TODO: add error handling here
+    debugPrint(urll);
     throw 'Could not launch $urll';
+  }
+}
+
+Widget inte(String data) {
+  if (data == "undefined") {
+    return Container();
+  } else {
+    return InkWell(
+      onTap: () {
+        // open youtube link
+        launchURL(data);
+      },
+      child:
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+        Text("Watch Interview"),
+        IconButton(
+          icon: Icon(Icons.play_circle_outline, color: Colors.black),
+          highlightColor: Colors.grey,
+          tooltip: "",
+          onPressed: () {
+            // open youtube link
+            launchURL(data);
+          },
+        ),
+      ]),
+    );
   }
 }

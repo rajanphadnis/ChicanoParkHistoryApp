@@ -10,9 +10,9 @@ class _MainPageState extends State<MainPage> {
   static const platform = const MethodChannel('samples.flutter.dev/battery');
   var realData;
   PanelController _pc = new PanelController();
-
   FlutterTts flutterTts = FlutterTts();
   bool talking = false;
+
   Future<bool> _onWillPop() async {
     if (_pc.isPanelOpen) {
       _pc.animatePanelToPosition(0);
@@ -408,47 +408,12 @@ class _MainPageState extends State<MainPage> {
                               ],
                             ),
                           ),
-                          InkWell(
-                            onTap: () {
-                              // open youtube link
-                              launchURL(testString(snapshot.data, "interview"));
-                            },
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Text("Watch Interview"),
-                                  IconButton(
-                                    icon: Icon(Icons.play_circle_outline,
-                                        color: Colors.black),
-                                    highlightColor: Colors.grey,
-                                    tooltip: "",
-                                    onPressed: () {
-                                      // open youtube link
-                                      launchURL(testString(
-                                          snapshot.data, "interview"));
-                                    },
-                                  ),
-                                ]),
-                          ),
+                          inte(testString(snapshot.data, "interview")),
                           Padding(
                             padding: const EdgeInsets.all(15),
                             child: Text(
                               testString(snapshot.data, "desc"),
                               style: TextStyle(fontSize: 18),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: Text(
-                              testString(snapshot.data, "desc"),
-                              style: TextStyle(fontSize: 22),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: Text(
-                              testString(snapshot.data, "desc"),
-                              style: TextStyle(fontSize: 22),
                             ),
                           ),
                           // Just your average share button. and a tour button that collapses the modal bottom sheet
@@ -457,7 +422,7 @@ class _MainPageState extends State<MainPage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Padding(
-                                padding: const EdgeInsets.all(15),
+                                padding: const EdgeInsets.all(30),
                                 child: RaisedButton.icon(
                                   icon: Icon(Icons.share),
                                   label: Text("Share"),
@@ -469,7 +434,7 @@ class _MainPageState extends State<MainPage> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(15),
+                                padding: const EdgeInsets.all(30),
                                 child: RaisedButton.icon(
                                   icon: Icon(Icons.explore),
                                   label: Text("All Murals"),
@@ -499,7 +464,6 @@ class _MainPageState extends State<MainPage> {
               //This is the camera
               cameraPreview(size, controller),
               theBottomButtonNavigation(),
-              // newDisplayModal(context),
             ],
           ),
         ),
