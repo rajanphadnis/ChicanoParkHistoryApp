@@ -54,19 +54,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // theme: ThemeData(
-      //   // We can end up changing a bunch of values in here: https://api.flutter.dev/flutter/material/Colors-class.html
-      //   primarySwatch: Colors.blue,
-      // ),
+      theme: ThemeData(
+        // We can end up changing a bunch of values in here: https://api.flutter.dev/flutter/material/Colors-class.html
+        primarySwatch: Colors.blue,
+        canvasColor: Colors.white,
+      ),
       // Tell the app that the homepage is MainPage()
       home: 
       // MainPage()
       SplashScreen.navigate(
         name: 'assets/Chicano.flr',
         next: (_) => MainPage(),
-        until: () => Future.delayed(Duration(seconds: 0)),
-        startAnimation: 'Open',
-        endAnimation: "Intro",
+        until: () => availableCameras(),
+        startAnimation: 'Intro',
       ),
     );
   }

@@ -100,9 +100,9 @@ class _MuralGallery extends State<MuralGallery> {
                           EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
                       child: InkWell(
                         onTap: () {
-                          // setState(() {
-                          //   found = getMuralName(snapshot, index);
-                          // });
+                          setState(() {
+                            found = getMuralName(snapshot, index);
+                          });
                           Navigator.pop(context);
                           _pc.animatePanelToPosition(1);
                         },
