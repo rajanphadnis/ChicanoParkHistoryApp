@@ -76,16 +76,20 @@ class _MainPageState extends State<MainPage> {
 
   // initialize camera when the app is initialized
   @override
-  void initState(){
+  void initState() {
     super.initState();
     // loadModel();
     controller = CameraController(cameras[0], ResolutionPreset.ultraHigh);
+    try{
     controller.initialize().then((_) {
       if (!mounted) {
         return;
       }
       setState(() {});
-    });
+    });}
+    catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   // Get rid of the camera controller and access to the camera when the app is closed
@@ -282,19 +286,20 @@ class _MainPageState extends State<MainPage> {
     final size = MediaQuery.of(context).size;
     // First, make sure that we have initialized the camera and the app (corner case: some devices run slower, so this makes sure that the camera is running before we show the camera to the user)
     if (!controller.value.isInitialized) {
-      // If its not initialized, we let the user know with the following helpful message
-      return Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              // We can add more here, but this is a basic template that I made
-              Text(
-                  "You must enable camera and recording/audio persmissions in order to use this app")
-            ],
-          ),
-        ),
-      );
+    // If its not initialized, we let the user know with the following helpful message
+    return new GestureDetector(
+      onTap: () {
+        controller = CameraController(cameras[0], ResolutionPreset.ultraHigh);
+        controller.initialize().then((_) {
+          if (!mounted) {
+            return;
+          }
+          setState(() {});
+        });
+      },
+      child: FlareActor("assets/Camera.flr",
+          alignment: Alignment.center, fit: BoxFit.contain, animation: "loop"),
+    );
     }
     // When the camera is initialized (Stateful widget, so it is constantly re-checking the state), show the main app ui
     return new WillPopScope(
