@@ -28,20 +28,32 @@ var selected = true;
 //     });
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-        if (user.email == "rphadnis20@pacificridge.org" || user.email == "rajansd28@gmail.com" || user.email == "elisse.chow@gmail.com"|| user.email == "elisse.chow@gmail.com") {
-            document.getElementById("murals").style.display = "block";
-            document.getElementById("artists").style.display = "block";
-            document.getElementById("noAuth").style.display = "none";
-            document.getElementById("noAur").style.display = "none";
-        } else {
-            document.getElementById("murals").style.display = "none";
-            document.getElementById("artists").style.display = "none";
-            document.getElementById("noAuth").style.display = "none";
-            document.getElementById("noAur").style.display = "block";
-        }
+        var docRef = firestore.collection("Authorization").doc(user.email);
+
+        docRef.get().then(function (doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                document.getElementById("murals").style.display = "block";
+                document.getElementById("artists").style.display = "block";
+                document.getElementById("history").style.display = "block";
+                document.getElementById("noAuth").style.display = "none";
+                document.getElementById("noAur").style.display = "none";
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+                document.getElementById("murals").style.display = "none";
+                document.getElementById("artists").style.display = "none";
+                document.getElementById("history").style.display = "none";
+                document.getElementById("noAuth").style.display = "none";
+                document.getElementById("noAur").style.display = "block";
+            }
+        }).catch(function (error) {
+            console.log("Error getting document:", error);
+        });
     } else {
         document.getElementById("murals").style.display = "none";
         document.getElementById("artists").style.display = "none";
+        document.getElementById("history").style.display = "none";
         document.getElementById("noAuth").style.display = "block";
         document.getElementById("noAur").style.display = "none";
     }
@@ -78,6 +90,21 @@ firestore.collection("Artists/").get().then(function (querySnapshot) {
 });
 document.getElementById("artists").innerHTML = ArtistString;
 
+
+var HistoryString = '<h1 class="title">Edit History</h1>';
+firestore.collection("History/").get().then(function (querySnapshot) {
+    querySnapshot.forEach(function (doc) {
+        HistoryString = HistoryString + '<div class="cardDiv mdc-card"><input disabled class="centerHis" value="' + doc.id + '"></br><p>Paragraph:</p><textarea rows="10" class="paraHis" wrap="soft">' + doc.data().para +
+            '</textarea></div>';
+        document.getElementById("history").innerHTML = HistoryString;
+
+    });
+}).catch(function (error) {
+    console.log("Error getting document:", error);
+    errorMain();
+});
+document.getElementById("artists").innerHTML = ArtistString;
+
 document.getElementById("commit").addEventListener("click", function () {
     var VT = document.getElementsByClassName("centerTheThing").length;
     updateV(VT);
@@ -86,6 +113,11 @@ document.getElementById("commit").addEventListener("click", function () {
 document.getElementById("artSave").addEventListener("click", function () {
     var AT = document.getElementsByClassName("centerArt").length;
     updateA(AT);
+    alert("Updated data. Refresh page to see changes.");
+});
+document.getElementById("hisSave").addEventListener("click", function () {
+    var HT = document.getElementsByClassName("centerHis").length;
+    updateH(HT);
     alert("Updated data. Refresh page to see changes.");
 });
 
@@ -128,7 +160,7 @@ function updateA(lengthOfA) {
         firestore.collection("Artists").doc(document.getElementsByClassName("centerArt")[i].value.toString()).set({
                 picURL: document.getElementsByClassName("ArtistPic")[i].value,
                 desc: document.getElementsByClassName("ArtistDesc")[i].value,
-                
+
             }, {
                 merge: true
             }).then(function () {
@@ -138,6 +170,26 @@ function updateA(lengthOfA) {
             .catch(function (error) {
                 // The document probably doesn't exist.
                 console.error("Error updating artist document: ", error);
+            });
+    }
+}
+
+function updateH(lengthOfH) {
+    console.log(lengthOfH);
+    var i;
+    for (i = 0; i < lengthOfH; i++) {
+        firestore.collection("History").doc(document.getElementsByClassName("centerHis")[i].value.toString()).set({
+                para: document.getElementsByClassName("paraHis")[i].value,
+
+            }, {
+                merge: true
+            }).then(function () {
+                console.log("Done updating history " + i);
+                console.log(lengthOfH);
+            })
+            .catch(function (error) {
+                // The document probably doesn't exist.
+                console.error("Error updating history document: ", error);
             });
     }
 }

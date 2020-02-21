@@ -18,7 +18,8 @@
     <div class="w3-bar w3-black">
         <button class="w3-bar-item w3-button" onclick="openCity('mur')">Edit Murals</button>
         <button class="w3-bar-item w3-button" onclick="openCity('art')">Edit Artists</button>
-        <a href="/doc/documentation.html"><button class="w3-bar-item w3-button"> View Documentation</button></a>
+        <button class="w3-bar-item w3-button" onclick="openCity('his')">Edit History</button>
+        <a href="/doc/documentation.html"><button class="w3-bar-item w3-button">View Documentation</button></a>
     </div>
     <div id="scrollPart">
         <div id="mur" class="tabbar">
@@ -29,7 +30,12 @@
             <button id="artSave"><i class="material-icons">save</i></button>
             <div id="artists"></div>
         </div>
-        <div id="noAuth">
+        <div id="his" class="tabbar" style="display:none">
+            <button id="hisSave"><i class="material-icons">save</i></button>
+            <div id="history"></div>
+        </div>
+        <div
+         id="noAuth">
             <p>User not authenticated <a href="/doc/login.html">Login</a></p>
         </div>
         <div id="noAur">

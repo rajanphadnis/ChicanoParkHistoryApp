@@ -48,14 +48,6 @@ As an exercise in the app development process and cycle
 
 - Art murals at Chicano park
 - Stories behind the murals
-- Every mural
-- Pacific Ridge
-- Mural from Hands of Peace
-- Globe
-- Old clock senior signature
-- Slab painting
-- Fish on sewer grate
-- Global travel map
 
 ### Stakeholders
 
@@ -99,7 +91,7 @@ Who will almost always be the user for the application, unless otherwise stated.
   - Map
     - Why: Ease of use, accessibility, way to navigate park.
     - Feasible. Uses Google Maps API and a view to display location on map
-  - Gallery Feature (semi-complete)
+  - ✔Gallery Feature (complete)✔
     - Why: Consistent easier way to access knowledge about the park
     - Ability to look through all the murals and their information
 - Low Priority

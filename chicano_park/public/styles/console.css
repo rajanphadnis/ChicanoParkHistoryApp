@@ -32,9 +32,17 @@ body {
   align-self: center;
   text-align: center;
 }
+.centerHis {
+  align-self: center;
+  text-align: center;
+}
 
 .VD {
   max-width: 100%;
+}
+.paraHis {
+  max-width: 100%;
+  min-width: 100%;
 }
 
 input {
@@ -96,6 +104,25 @@ textarea {
 }
 
 #artSave:hover {
+  box-shadow: 0 6px 10px 0 #666;
+  transition: 0.2s ease-in-out;
+}
+#hisSave {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 3px 5px 0 #666;
+  background-color: black;
+  color: white;
+  text-align: center;
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  cursor:pointer;
+}
+
+#hisSave:hover {
   box-shadow: 0 6px 10px 0 #666;
   transition: 0.2s ease-in-out;
 }
