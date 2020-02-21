@@ -1,4 +1,5 @@
 part of mainlib;
+
 class InfoPage extends StatelessWidget {
   final String historyNum;
   final int historyCaseNum;
@@ -7,10 +8,11 @@ class InfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     print(historyNum);
     print(historyCaseNum);
-    return WebviewScaffold(
-      url: "https://programmingii-367d0.web.app/" + historyCaseNum.toString() + ".html",
-      hidden: true,
-      appBar: AppBar(title: Text(historyNum)),
+    return Scaffold(
+      appBar: new AppBar(
+        title: Text(historyNum),
+      ),
+      body: buildTextP(historyCaseNum),
     );
   }
 }

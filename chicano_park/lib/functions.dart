@@ -143,3 +143,65 @@ Widget inte(String data) {
     );
   }
 }
+
+Widget buildPara(String text) {
+  var split = text.split('\\n').map((i) {
+    debugPrint("halooo");
+    if (i == "") {
+      return Divider();
+    } else {
+      return Container(
+          padding: new EdgeInsets.only(
+            bottom: 15,
+          ),
+          child: Text(
+            i,
+            style: TextStyle(fontSize: 20),
+          ));
+    }
+  }).toList();
+  return ListView(
+      padding: new EdgeInsets.only(
+        right: 15,
+        left: 15,
+        top: 10
+      ),
+      children: split);
+}
+
+Widget buildTextP(int number) {
+  return StreamBuilder(
+      stream: Firestore.instance
+          .collection("History")
+          .document(number.toString())
+          .snapshots(),
+      builder: (context, snapshot) {
+        debugPrint("doin stuff");
+        // Do some basic error processing
+        if (!snapshot.hasData) {
+          return Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text("Can't connect to the internet. Retrying..."),
+                CircularProgressIndicator(
+                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
+                )
+              ],
+            ),
+          );
+        }
+        if (snapshot == null || snapshot.data == null) {
+          return const Text("Something went seriously wrong! Sorry!");
+        }
+        if (snapshot.hasError) {
+          return const Text("error!");
+        }
+        return buildPara(
+          testString(snapshot.data, "para"),
+        );
+      });
+}
