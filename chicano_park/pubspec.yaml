@@ -1,7 +1,7 @@
 # My b. don't change this name thing
 name: chicano_park
 description: Chicano Park Explorer, learn about Chicano Park's murals
-version: 0.9+2
+version: 0.9+3
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
