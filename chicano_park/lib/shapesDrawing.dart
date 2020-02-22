@@ -30,7 +30,6 @@ class ShapesPainter extends CustomPainter {
     double rectRad = 5;
     double timelineShapeWidth = 200;
     // Create a rectangle with size and width same as the canvas
-    // var rect = Rect.fromLTWH(0, 0, 10, size.height / 3);
     var rect = Rect.fromLTRB(0, (size.height / 2) - (rectRad / 2),
         timelineShapeWidth, (size.height / 2) + (rectRad / 2));
     // draw the rectangle using the paint

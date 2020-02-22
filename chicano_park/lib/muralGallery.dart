@@ -18,18 +18,13 @@ class _MuralGallery extends State<MuralGallery> {
       } else {
         List<String> imageURLData =
             snapshot.data.documents.map((doc) => doc[arg].toString()).toList();
-        // setState(() {
-        debugPrint("gett set1");
         gett = imageURLData.length;
-        debugPrint("gett set2");
-        // });
         return imageURLData[index];
       }
     } catch (e) {
       debugPrint("error1");
       return "Error";
     }
-    // return thingh[index];
   }
 
   String getMuralName(AsyncSnapshot<QuerySnapshot> snapshot, index) {
@@ -44,20 +39,6 @@ class _MuralGallery extends State<MuralGallery> {
     }
   }
 
-  // int getListLength() {
-  //   try {
-  //     if (gett == null) {
-  //       return 0;
-  //     }
-  //     else {
-  //       return gett.length;
-  //     }
-  //   }
-  //   catch (error) {
-  //     debugPrint(error);
-  //     return 8;
-  //   }
-  // }
   @override
   Widget build(BuildContext context) {
     return new StreamBuilder(
@@ -110,8 +91,6 @@ class _MuralGallery extends State<MuralGallery> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Container(
-                              //alignment: Alignment.center.
-                              //was 130
                               height: 130,
                               width: MediaQuery.of(context).size.width / 2,
                               child: FadeInImage.memoryNetwork(
@@ -126,7 +105,6 @@ class _MuralGallery extends State<MuralGallery> {
                               style: new TextStyle(
                                 fontSize: 14.0,
                                 color: Colors.black,
-                                // backgroundColor: Colors.black
                               ),
                             ),
                           ],

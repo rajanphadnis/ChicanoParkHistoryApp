@@ -1,22 +1,4 @@
 part of mainlib;
-// Route _createRoute() {
-//   return PageRouteBuilder(
-//     transitionDuration: Duration(seconds: 2),
-//     pageBuilder: (context, animation, secondaryAnimation) => ArtistPage(),
-//     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-//       var begin = Offset(0.0, 1.0);
-//       var end = Offset.zero;
-//       var curve = Curves.ease;
-
-//       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-//       return SlideTransition(
-//         position: animation.drive(tween),
-//         child: child,
-//       );
-//     },
-//   );
-// }
 
 void showHistoryBottomSheet(BuildContext context) {
   // Obviously show the bottom sheet
@@ -30,7 +12,6 @@ void showHistoryBottomSheet(BuildContext context) {
         topRight: Radius.circular(10.0),
       ),
     ),
-    // https://www.youtube.com/watch?v=dQw4w9WgXcQ
     // Background color of the bottom sheet
     backgroundColor: Colors.white,
     // Choose which "navigator" to put the modal in. We just choose the general "context", which is the main, root navigator
@@ -73,7 +54,6 @@ void showHistoryBottomSheet(BuildContext context) {
               if (snapshot.hasError) {
                 return const Text("error!");
               }
-              // https://www.youtube.com/watch?v=dQw4w9WgXcQ
               // If there is no error, continue building the widgets
               return Center(
                 child: Column(

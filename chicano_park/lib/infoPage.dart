@@ -6,8 +6,6 @@ class InfoPage extends StatelessWidget {
   InfoPage(this.historyNum, this.historyCaseNum);
   @override
   Widget build(BuildContext context) {
-    print(historyNum);
-    print(historyCaseNum);
     return Scaffold(
       appBar: new AppBar(
         title: Text(historyNum),

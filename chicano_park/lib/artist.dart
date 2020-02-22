@@ -16,7 +16,6 @@ class ArtistPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                // color: Colors.grey,
                 height: 130.0,
                 width: double.infinity,
                 decoration: new BoxDecoration(
@@ -25,7 +24,6 @@ class ArtistPage extends StatelessWidget {
                         "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg"),
                     fit: BoxFit.fill,
                   ),
-                  // shape: BoxShape.circle,
                 ),
               ),
               Text("hello there $index",
@@ -165,7 +163,6 @@ class ArtistPage extends StatelessWidget {
                         ],
                       ),
               ),
-              // muralGrid(),
             ],
           ),
         );

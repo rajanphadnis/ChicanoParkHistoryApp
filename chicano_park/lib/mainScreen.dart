@@ -12,7 +12,6 @@ class _MainPageState extends State<MainPage> {
   PanelController _pc = new PanelController();
   FlutterTts flutterTts = FlutterTts();
   bool talking = false;
-  // List<CameraDescription> cameras = await availableCameras();
   Future<void> go() async {
     WidgetsFlutterBinding.ensureInitialized();
     cameras = await availableCameras();
@@ -78,7 +77,6 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    // loadModel();
     controller = CameraController(cameras[0], ResolutionPreset.ultraHigh);
     try{
     controller.initialize().then((_) {
@@ -134,22 +132,10 @@ class _MainPageState extends State<MainPage> {
       setState(() {
         processing = false;
       });
-      // _scaffoldKey.currentState.showSnackBar(
-      //   SnackBar(
-      //     content: Text("No labels found"),
-      //     duration: Duration(milliseconds: 750),
-      //   ),
-      // );
     } else {
       var label = newStr[0];
       double confidence = double.parse(newStr[1].toString()) * 100;
       if (confidence >= confidenceNumThing) {
-        // _scaffoldKey.currentState.showSnackBar(
-        //   SnackBar(
-        //     content: Text("$label: $confidence \%"),
-        //     duration: Duration(milliseconds: 500),
-        //   ),
-        // );
         var parsedJson = json.decode(jsonData);
         found = parsedJson[label];
         setState(() {
@@ -160,12 +146,6 @@ class _MainPageState extends State<MainPage> {
         setState(() {
           processing = false;
         });
-        // _scaffoldKey.currentState.showSnackBar(
-        //   SnackBar(
-        //     content: Text("$label: $confidence \%"),
-        //     duration: Duration(milliseconds: 500),
-        //   ),
-        // );
       }
     }
   }
@@ -205,12 +185,10 @@ class _MainPageState extends State<MainPage> {
                       builder: (context) => MuralGallery(_pc),
                     ),
                   );
-                  // _neverSatisfied();
                 },
               ),
             ],
           ),
-
           //The middle button that runs the model
           //There are two circle avatars because then the user can touch any part of the button
           Padding(
@@ -224,7 +202,6 @@ class _MainPageState extends State<MainPage> {
                   child: IconButton(
                     icon: Icon(
                       Icons.add_circle,
-                      // size: 28.0,
                       color: Colors.white,
                     ),
                     onPressed: () {
@@ -324,8 +301,6 @@ class _MainPageState extends State<MainPage> {
           },
           padding:
               const EdgeInsets.only(top: 20.0, bottom: 0.0, right: 0, left: 0),
-
-          // border: new Border.all(color: Colors.amber, width: 20),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20.0),
             topRight: Radius.circular(20.0),
@@ -462,8 +437,6 @@ class _MainPageState extends State<MainPage> {
                         ]),
                       )
                     ],
-                    //   ),
-                    // ],
                   ),
                 );
               }),

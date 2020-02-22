@@ -1,31 +1,5 @@
-// var config = {
-//     apiKey: "AIzaSyC1IMIc5fVsAF30_pi08gc03pz94CX2Avk",
-//     authDomain: "programmingii-367d0.firebaseapp.com",
-//     databaseURL: "https://programmingii-367d0.firebaseio.com",
-//     projectId: "programmingii-367d0",
-//     storageBucket: "programmingii-367d0.appspot.com",
-//     messagingSenderId: "374441578679",
-//     appId: "1:374441578679:web:33e2088b751f0169a77d32",
-//     measurementId: "G-1GTHN2PHCX"
-// };
-// firebase.initializeApp(config);
 var firestore = firebase.firestore();
 var selected = true;
-
-// firebase.firestore().enablePersistence({
-//         experimentalTabSynchronization: true
-//     })
-//     .catch(function (err) {
-//         if (err.code == 'failed-precondition') {
-//             // Multiple tabs open, persistence can only be enabled
-//             // in one tab at a a time.
-//             // ...
-//         } else if (err.code == 'unimplemented') {
-//             // The current browser does not support all of the
-//             // features required to enable persistence
-//             // ...
-//         }
-//     });
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         var docRef = firestore.collection("Authorization").doc(user.email);
@@ -39,7 +13,6 @@ firebase.auth().onAuthStateChanged(function (user) {
                 document.getElementById("noAuth").style.display = "none";
                 document.getElementById("noAur").style.display = "none";
             } else {
-                // doc.data() will be undefined in this case
                 console.log("No such document!");
                 document.getElementById("murals").style.display = "none";
                 document.getElementById("artists").style.display = "none";

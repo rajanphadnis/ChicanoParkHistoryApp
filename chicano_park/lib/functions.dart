@@ -47,8 +47,6 @@ Widget getImage(DocumentSnapshot docs, String url, BuildContext context) {
         ),
         Container(
           alignment: Alignment.center,
-          //width: MediaQuery.of(context).size.width,
-          //height: MediaQuery.of(context).size.height,
           child: ClipRRect(
             child: FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
@@ -56,9 +54,6 @@ Widget getImage(DocumentSnapshot docs, String url, BuildContext context) {
             ),
             borderRadius: BorderRadius.circular(10.0),
           ),
-          /*decoration: BoxDecoration(
-          color: Colors.blueGrey, 
-        ),*/
         ),
       ],
     );
@@ -74,7 +69,6 @@ Widget getImage(DocumentSnapshot docs, String url, BuildContext context) {
 }
 
 // This function could have been embedded in the build() widget, but its easier to see when its separated out here
-
 DocumentSnapshot getMuralData(String nameMatch) {
   DocumentSnapshot doc;
   Firestore.instance

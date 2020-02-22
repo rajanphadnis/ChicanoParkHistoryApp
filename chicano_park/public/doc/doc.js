@@ -1,6 +1,5 @@
 var firestore = firebase.firestore();
 
-
 function userShow() {
   document.getElementById("message").style.display = "none";
   document.getElementById("userDoc").style.display = "block";
@@ -31,7 +30,6 @@ function scShow() {
         console.log("Error getting document:", error);
       });
     } else {
-      // No user is signed in.
       document.getElementById("scDoc").style.display = "none";
       document.getElementById("userDoc").style.display = "none";
       document.getElementById("loginE").style.display = "block";
