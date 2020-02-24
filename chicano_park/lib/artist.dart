@@ -50,26 +50,42 @@ class ArtistPage extends StatelessWidget {
       builder: (context, snapshot) {
         // Do some basic error processing
         if (!snapshot.hasData) {
-          return Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text("Getting Data..."),
-                CircularProgressIndicator(
-                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
-                )
-              ],
+          return Scaffold(
+            appBar: new AppBar(
+              backgroundColor: Colors.black,
+              title: Text("Loading..."),
+            ),
+            body: Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text("Getting Data..."),
+                  CircularProgressIndicator(
+                    valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
+                  )
+                ],
+              ),
             ),
           );
         }
         if (snapshot == null || snapshot.data == null) {
-          return const Text("Something went seriously wrong! Sorry!");
+          return Scaffold(
+            appBar: new AppBar(
+              title: Text("Error"),
+            ),
+            body: Text("Something went seriously wrong! Sorry!"),
+          );
         }
         if (snapshot.hasError) {
-          return const Text("error!");
+          return Scaffold(
+            appBar: new AppBar(
+              title: Text("Error"),
+            ),
+            body: Text("error!"),
+          );
         }
         return Scaffold(
           body: new CustomScrollView(
@@ -82,9 +98,12 @@ class ArtistPage extends StatelessWidget {
                 flexibleSpace: new FlexibleSpaceBar(
                   centerTitle: true,
                   title: Text(author),
-                  background: Image.network(
-                    "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg",
-                    // snapshot.data["picURL"],
+                  background: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: (testUndString(snapshot.data, "picURL") ==
+                            "undefined"
+                        ? "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg"
+                        : testUndString(snapshot.data, "picURL")),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -128,40 +147,40 @@ class ArtistPage extends StatelessWidget {
               ),
               SliverToBoxAdapter(
                 child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: RaisedButton.icon(
-                              icon: Icon(IconData(0xf4ca,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: RaisedButton.icon(
+                        icon: Icon(IconData(0xf4ca,
                             fontFamily: CupertinoIcons.iconFont,
                             fontPackage: CupertinoIcons.iconFontPackage)),
-                              label: Text("Share"),
-                              onPressed: () {
-                                // The message that will be shared. This can be a link, some text or contact or anything really
-                                Share.share(author);
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: RaisedButton.icon(
-                              icon: Icon(Icons.explore),
-                              label: Text("All Murals"),
-                              onPressed: () {
-                                Navigator.pop(context);
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MuralGallery(_pc),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ],
+                        label: Text("Share"),
+                        onPressed: () {
+                          // The message that will be shared. This can be a link, some text or contact or anything really
+                          Share.share(author);
+                        },
                       ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: RaisedButton.icon(
+                        icon: Icon(Icons.explore),
+                        label: Text("All Murals"),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MuralGallery(_pc),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -169,6 +188,4 @@ class ArtistPage extends StatelessWidget {
       },
     );
   }
-
-
 }

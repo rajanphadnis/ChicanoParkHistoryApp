@@ -19,6 +19,21 @@ String testString(DocumentSnapshot doc, String val) {
   }
 }
 
+String testUndString(DocumentSnapshot doc, String val) {
+  try {
+    if (doc is !DocumentSnapshot || doc == null || doc.data == null) {
+      return "undefined";
+    }
+    else if (doc[val] == null) {
+      return "undefined";
+    } else {
+      return doc[val];
+    }
+  } catch (e) {
+    return "Error: something went wrong";
+  }
+}
+
 // Same thing as the string version, but instead with a loading circle and images
 Widget getImage(DocumentSnapshot docs, String url, BuildContext context) {
   try {
@@ -155,11 +170,7 @@ Widget buildPara(String text) {
     }
   }).toList();
   return ListView(
-      padding: new EdgeInsets.only(
-        right: 15,
-        left: 15,
-        top: 10
-      ),
+      padding: new EdgeInsets.only(right: 15, left: 15, top: 10),
       children: split);
 }
 

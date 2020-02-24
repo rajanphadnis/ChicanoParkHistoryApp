@@ -27,6 +27,7 @@ dependencies:
   flare_splash_screen: ^3.0.1
   flare_flutter: ^2.0.1
   cupertino_icons: ^0.1.2
+  blurhash_dart: ^0.2.3
 
 dev_dependencies:
   flutter_test:
