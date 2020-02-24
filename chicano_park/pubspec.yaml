@@ -27,7 +27,8 @@ dependencies:
   flare_splash_screen: ^3.0.1
   flare_flutter: ^2.0.1
   cupertino_icons: ^0.1.2
-  blurhash_dart: ^0.2.3
+  audioplayers: ^0.14.0
+  flutter_animation_progress_bar: ^1.0.0
 
 dev_dependencies:
   flutter_test:

@@ -391,9 +391,14 @@ class _MainPageState extends State<MainPage> {
                               ],
                             ),
                           ),
-                          inte(testString(snapshot.data, "interview")),
+                          inte(testUndString(snapshot.data, "interview")),
+                          aud(testUndString(snapshot.data, "audioTour"), context),                          
                           Padding(
-                            padding: const EdgeInsets.all(15),
+                            padding: const EdgeInsets.only(
+                              bottom: 15,
+                              right: 15,
+                              left: 15,
+                            ),
                             child: Text(
                               testString(snapshot.data, "desc"),
                               style: TextStyle(fontSize: 18),

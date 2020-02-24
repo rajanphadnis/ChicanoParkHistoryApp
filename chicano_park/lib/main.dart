@@ -1,11 +1,12 @@
 // First, you want to import all of the packages. Material is standard.
 library mainlib;
 
-import 'package:blurhash_dart/blurhash_dart.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:share/share.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'dart:async';
@@ -18,6 +19,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flare_splash_screen/flare_splash_screen.dart';
+part 'audioTour.dart';
 part 'functions.dart';
 part 'shapesDrawing.dart';
 part 'mainScreen.dart';
@@ -26,6 +28,7 @@ part 'timeline.dart';
 part 'infoPage.dart';
 part 'artist.dart';
 part 'muralGallery.dart';
+
 
 // Next, create a list of cameras so that we know which one is the "back" one
 // Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a camera feed to the user

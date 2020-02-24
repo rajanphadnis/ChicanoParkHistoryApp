@@ -133,19 +133,51 @@ Widget inte(String data) {
   } else {
     return InkWell(
       onTap: () {
-        // open youtube link
         launchURL(data);
       },
       child:
           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
         Text("Watch Interview"),
         IconButton(
+          icon: Icon(Icons.ondemand_video, color: Colors.black),
+          highlightColor: Colors.grey,
+          tooltip: "",
+          onPressed: () {
+            launchURL(data);
+          },
+        ),
+      ]),
+    );
+  }
+}
+
+Widget aud(String data, BuildContext context) {
+  if (data == "undefined" || data == null) {
+    return Container();
+  } else {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AudioPage("https://programmingii-367d0.web.app/aud.mp3"),
+              ),
+            );
+      },
+      child:
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+        Text("Audio Tour"),
+        IconButton(
           icon: Icon(Icons.play_circle_outline, color: Colors.black),
           highlightColor: Colors.grey,
           tooltip: "",
           onPressed: () {
-            // open youtube link
-            launchURL(data);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AudioPage("https://programmingii-367d0.web.app/aud.mp3"),
+              ),
+            );
           },
         ),
       ]),
