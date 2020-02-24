@@ -38,6 +38,7 @@ firestore.collection("Murals/").get().then(function (querySnapshot) {
             '"></br><p>Picture:</p><input class="VP" value="' + doc.data().picURL +
             '"></br><p>Description:</p><textarea rows="4" class="VD" wrap="soft">' + doc.data().desc +
             '</textarea></br><p>Author:</p><input class="VA" value="' + doc.data().author + '"></br><p>Interview URL (YouTube link):</p><input class="ArtistInt" value="' + doc.data().interview +
+            '"></br><p>Audio Tour:</p><input class="AudTour" value="' + doc.data().audioTour +
             '"></div>';
         document.getElementById("murals").innerHTML = StringThing;
 
@@ -113,6 +114,7 @@ function updateV(lengthOfV) {
                 desc: document.getElementsByClassName("VD")[i].value,
                 author: document.getElementsByClassName("VA")[i].value,
                 interview: document.getElementsByClassName("ArtistInt")[i].value,
+                audioTour: document.getElementsByClassName("AudTour")[i].value,
             }, {
                 merge: true
             }).then(function () {

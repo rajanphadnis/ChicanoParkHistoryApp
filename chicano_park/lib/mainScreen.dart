@@ -392,7 +392,7 @@ class _MainPageState extends State<MainPage> {
                             ),
                           ),
                           inte(testUndString(snapshot.data, "interview")),
-                          aud(testUndString(snapshot.data, "audioTour"), context),                          
+                          aud(testUndString(snapshot.data, "audioTour"),testString(snapshot.data, "title"), context),                          
                           Padding(
                             padding: const EdgeInsets.only(
                               bottom: 15,

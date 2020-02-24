@@ -4,7 +4,7 @@ description: Chicano Park Explorer, learn about Chicano Park's murals
 version: 0.9+3
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -24,11 +24,12 @@ dependencies:
   firebase_analytics: ^5.0.2
   sliding_up_panel: ^1.0.0
   url_launcher: ^5.4.1
+  # Flare project: https://rive.app/a/rajap/files/recent/all
   flare_splash_screen: ^3.0.1
   flare_flutter: ^2.0.1
   cupertino_icons: ^0.1.2
   audioplayers: ^0.14.0
-  flutter_animation_progress_bar: ^1.0.0
+  percent_indicator: ^2.1.1+1
 
 dev_dependencies:
   flutter_test:

@@ -151,7 +151,7 @@ Widget inte(String data) {
   }
 }
 
-Widget aud(String data, BuildContext context) {
+Widget aud(String data, String name, BuildContext context) {
   if (data == "undefined" || data == null) {
     return Container();
   } else {
@@ -160,7 +160,7 @@ Widget aud(String data, BuildContext context) {
         Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AudioPage("https://programmingii-367d0.web.app/aud.mp3"),
+                builder: (context) => AudioPage(data, name),
               ),
             );
       },
@@ -175,7 +175,7 @@ Widget aud(String data, BuildContext context) {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AudioPage("https://programmingii-367d0.web.app/aud.mp3"),
+                builder: (context) => AudioPage(data, name),
               ),
             );
           },
