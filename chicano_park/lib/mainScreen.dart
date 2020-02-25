@@ -176,7 +176,6 @@ class _MainPageState extends State<MainPage> {
                   Vibration.vibrate(amplitude: 128);
                 }
               }
-
               Util flameUtil = Util();
               await flameUtil.fullScreen();
               await flameUtil.setOrientation(DeviceOrientation.portraitUp);
