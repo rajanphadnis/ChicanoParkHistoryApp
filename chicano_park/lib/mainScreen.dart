@@ -138,7 +138,8 @@ class _MainPageState extends State<MainPage> {
       if (confidence >= confidenceNumThing) {
         var parsedJson = json.decode(jsonData);
         found = parsedJson[label];
-        final DocumentReference postRef = Firestore.instance.collection("Murals").document(found);
+        final DocumentReference postRef =
+            Firestore.instance.collection("Murals").document(found);
         postRef.updateData({'views': FieldValue.increment(1)});
         setState(() {
           processing = false;
@@ -160,14 +161,48 @@ class _MainPageState extends State<MainPage> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           //MURAL GALLERY/LIBRARY
-          Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 18.0,
-                child: IconButton(
-                  icon: Icon(Icons.list, color: Colors.white),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MuralGallery(_pc),
+                ),
+              );
+            },
+            onLongPress: () async {
+              Util flameUtil = Util();
+              await flameUtil.fullScreen();
+              await flameUtil.setOrientation(DeviceOrientation.portraitUp);
+
+              SharedPreferences storage = await SharedPreferences.getInstance();
+              GameController gameController = GameController(storage);
+              runApp(gameController.widget);
+
+              TapGestureRecognizer tapper = TapGestureRecognizer();
+              tapper.onTapDown = gameController.onTapDown;
+              flameUtil.addGestureRecognizer(tapper);
+            },
+            child: Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 18.0,
+                  child: IconButton(
+                    icon: Icon(Icons.list, color: Colors.white),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MuralGallery(_pc),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.list, color: Colors.black),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -177,19 +212,8 @@ class _MainPageState extends State<MainPage> {
                     );
                   },
                 ),
-              ),
-              IconButton(
-                icon: Icon(Icons.list, color: Colors.black),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MuralGallery(_pc),
-                    ),
-                  );
-                },
-              ),
-            ],
+              ],
+            ),
           ),
           //The middle button that runs the model
           //There are two circle avatars because then the user can touch any part of the button

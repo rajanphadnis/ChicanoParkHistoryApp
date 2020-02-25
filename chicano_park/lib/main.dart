@@ -2,6 +2,7 @@
 library mainlib;
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:chicano_park/game/game_controller.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flare_flutter/flare_actor.dart';
@@ -9,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_seekbar/flutter_seekbar.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:share/share.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'dart:async';
 import 'package:transparent_image/transparent_image.dart';
@@ -22,6 +23,9 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flare_splash_screen/flare_splash_screen.dart';
+import 'package:flame/util.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/widgets.dart';
 part 'audioTour.dart';
 part 'functions.dart';
 part 'shapesDrawing.dart';

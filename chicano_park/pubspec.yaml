@@ -29,7 +29,8 @@ dependencies:
   flare_flutter: ^2.0.1
   cupertino_icons: ^0.1.2
   audioplayers: ^0.14.0
-  percent_indicator: ^2.1.1+1
+  flame: ^0.18.1
+  shared_preferences: ^0.5.4+3
   flutter_seekbar:
     git: https://github.com/LiuC520/flutter_seekbar.git
 

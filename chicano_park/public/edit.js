@@ -42,7 +42,7 @@ function expand() {
     document.getElementsByClassName("expand").innerHTML = "Collapse";
 }
 
-var StringThing = '<h1 class="title">Edit Murals</h1>';
+var StringThing = '<h1 class="title">Edit Murals</h1></br><button id="reset">Reset all viewcount data</button>';
 firestore.collection("Murals/").get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {
         StringThing = StringThing + '<div class="cardDiv mdc-card"><input disabled class="centerTheThing" value="' + doc.id + '"><p>Title:</p><input class="VT" value="' + doc.data().title +
