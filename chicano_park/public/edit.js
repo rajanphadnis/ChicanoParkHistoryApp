@@ -40,7 +40,7 @@ firestore.collection("Murals/").get().then(function (querySnapshot) {
             '</textarea></br><p>Author:</p><input class="VA" value="' + doc.data().author + '"></br><p>Interview URL (YouTube link):</p><input class="ArtistInt" value="' + doc.data().interview +
             '"></br><p>Audio Tour:</p><input class="AudTour" value="' + doc.data().audioTour +
             '"></br><p>Audio Description:</p><textarea rows="4" class="AudDesc" wrap="soft">' + doc.data().audioDesc +
-            '</textarea></br><p>Viewcount:</p><input disabled class="views" value="' + doc.data().views + '"></br><button class="reset">Reset all viewcount data</button></div>';
+            '</textarea></br><p>Viewcount:</p><input disabled class="views" value="' + doc.data().views + '"></div>';
         document.getElementById("murals").innerHTML = StringThing;
 
     });
@@ -95,10 +95,16 @@ document.getElementById("hisSave").addEventListener("click", function () {
     updateH(HT);
     alert("Updated data. Refresh page to see changes.");
 });
-document.getElementsByClassName("reset").addEventListener("click", function() {
+document.getElementById("reset").addEventListener("click", function () {
     var VT = document.getElementsByClassName("centerTheThing").length;
-    reset(VT);
-    alert("Reset viewcounts. Refresh page to see changes");
+    var r = confirm("Reset Viewcount?");
+    if (r == true) {
+        reset(VT);
+        alert("Reset viewcounts. Refresh page to see changes");
+    } else {
+        console.log("canceled reset");
+    }
+
 });
 
 function openCity(cityName) {
