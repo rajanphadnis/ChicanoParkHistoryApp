@@ -116,6 +116,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   void runModelThingyTHing() async {
+    final FirebaseAnalytics analytics = FirebaseAnalytics();
     setState(() {
       processing = true;
     });
@@ -141,6 +142,12 @@ class _MainPageState extends State<MainPage> {
         final DocumentReference postRef =
             Firestore.instance.collection("Murals").document(found);
         postRef.updateData({'views': FieldValue.increment(1)});
+        analytics.logEvent(
+          name: 'mural_event',
+          parameters: <String, dynamic>{
+            'mural': found,
+          },
+        );
         setState(() {
           processing = false;
         });
