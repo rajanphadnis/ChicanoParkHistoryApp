@@ -26,6 +26,7 @@ import 'package:flare_splash_screen/flare_splash_screen.dart';
 import 'package:flame/util.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
+import 'package:vibration/vibration.dart';
 part 'audioTour.dart';
 part 'functions.dart';
 part 'shapesDrawing.dart';

@@ -171,6 +171,12 @@ class _MainPageState extends State<MainPage> {
               );
             },
             onLongPress: () async {
+              if (await Vibration.hasVibrator()) {
+                if (await Vibration.hasAmplitudeControl()) {
+                  Vibration.vibrate(amplitude: 128);
+                }
+              }
+
               Util flameUtil = Util();
               await flameUtil.fullScreen();
               await flameUtil.setOrientation(DeviceOrientation.portraitUp);
