@@ -65,7 +65,7 @@ Who will almost always be the user for the application, unless otherwise stated.
 
 - High priority
 
-  - Provide Offline support to the user in the event the user has no internet connection (semi-complete)
+  - ✔Provide Offline support to the user in the event the user has no internet connection (as much as possible)✔
     - Why: To stay true to our goal of accessibility
     - Difficulty and Feasibility: Medium-difficulty. Feasible. Using caching and pre-written text, the ability to display information on each mural even when the user is not connected to WiFi, which increases accessibility
   - ✔Have the user use their camera (Image Recognition) to capture, identify and pull up info for a specific mural (complete)✔
@@ -75,7 +75,7 @@ Who will almost always be the user for the application, unless otherwise stated.
   - ✔Virtual QR Codes (complete)✔
     - Why: Makes interacting very easy
     - Who
-  - Audio tour
+  - ✔Audio tour (complete)✔
     - Why: More accessibility options
     - Very feasible
     - A guided audio tour that will guide visitors around the park in a predetermined route
@@ -88,7 +88,7 @@ Who will almost always be the user for the application, unless otherwise stated.
     - Very feasible
     - Clean color palettes
     - Provide different themes that users can switch between, such as dark and light mode, in order to improve user satisfaction and enjoyability while using the app
-  - Map
+  - (deprecated) Map
     - Why: Ease of use, accessibility, way to navigate park.
     - Feasible. Uses Google Maps API and a view to display location on map
   - ✔Gallery Feature (complete)✔
