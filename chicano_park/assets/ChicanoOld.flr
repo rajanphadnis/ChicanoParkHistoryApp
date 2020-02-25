@@ -346,7 +346,7 @@
 				{
 					"name": "Intro",
 					"fps": 60,
-					"duration": 2.8,
+					"duration": 4.690005000011064,
 					"isLooping": false,
 					"keyed": [
 						{
@@ -363,12 +363,12 @@
 										"value": 15
 									},
 									{
-										"time": 0.35,
+										"time": 0.5,
 										"interpolatorType": 1,
 										"value": 0
 									},
 									{
-										"time": 0.6833333333333333,
+										"time": 1,
 										"interpolatorType": 1,
 										"value": 2
 									}
@@ -386,12 +386,12 @@
 										"value": 15
 									},
 									{
-										"time": 0.35,
+										"time": 0.5,
 										"interpolatorType": 1,
 										"value": 0
 									},
 									{
-										"time": 0.6833333333333333,
+										"time": 1,
 										"interpolatorType": 1,
 										"value": 2
 									}
@@ -400,7 +400,7 @@
 							"posX": [
 								[
 									{
-										"time": 1.9,
+										"time": 3.2333333333333334,
 										"interpolatorType": 1,
 										"value": 144
 									}
@@ -409,12 +409,12 @@
 							"posY": [
 								[
 									{
-										"time": 1.9,
+										"time": 3.2333333333333334,
 										"interpolatorType": 1,
 										"value": 249
 									},
 									{
-										"time": 2.216666666666667,
+										"time": 4,
 										"interpolatorType": 1,
 										"value": 204
 									}
@@ -431,12 +431,12 @@
 										"value": 0
 									},
 									{
-										"time": 0.35,
+										"time": 0.5,
 										"interpolatorType": 1,
 										"value": 0
 									},
 									{
-										"time": 0.6833333333333333,
+										"time": 1,
 										"interpolatorType": 2,
 										"cubicX1": 0,
 										"cubicY1": 0.8864247311827957,
@@ -445,17 +445,17 @@
 										"value": 0.15
 									},
 									{
-										"time": 1.0166666666666666,
+										"time": 2.0833333333333335,
 										"interpolatorType": 1,
 										"value": 0.15000000596046448
 									},
 									{
-										"time": 1.1833333333333333,
+										"time": 2.25,
 										"interpolatorType": 1,
 										"value": -0.15
 									},
 									{
-										"time": 1.35,
+										"time": 2.4166666666666665,
 										"interpolatorType": 2,
 										"cubicX1": 0.23118279569892472,
 										"cubicY1": -0.5047043010752688,
@@ -473,12 +473,12 @@
 										"value": 0
 									},
 									{
-										"time": 0.35,
+										"time": 0.5,
 										"interpolatorType": 1,
 										"value": 0
 									},
 									{
-										"time": 0.6833333333333333,
+										"time": 1,
 										"interpolatorType": 2,
 										"cubicX1": 0,
 										"cubicY1": 0.8864247311827957,
@@ -487,12 +487,12 @@
 										"value": 0.15
 									},
 									{
-										"time": 1.0166666666666666,
+										"time": 2.0833333333333335,
 										"interpolatorType": 1,
 										"value": 0.15000000596046448
 									},
 									{
-										"time": 1.1833333333333333,
+										"time": 2.25,
 										"interpolatorType": 1,
 										"value": 0.15
 									}
@@ -501,12 +501,12 @@
 							"posY": [
 								[
 									{
-										"time": 0.35,
+										"time": 0.5,
 										"interpolatorType": 1,
 										"value": -42.67720413208008
 									},
 									{
-										"time": 0.6833333333333333,
+										"time": 1,
 										"interpolatorType": 2,
 										"cubicX1": 0,
 										"cubicY1": 0.8864247311827957,
@@ -515,32 +515,32 @@
 										"value": -55.852054595947266
 									},
 									{
-										"time": 0.8166666666666667,
+										"time": 1.1333333333333333,
 										"interpolatorType": 1,
 										"value": 210.06541442871094
 									},
 									{
-										"time": 0.85,
+										"time": 1.1666666666666667,
 										"interpolatorType": 1,
 										"value": 191.03497314453125
 									},
 									{
-										"time": 0.9166666666666666,
+										"time": 1.2333333333333334,
 										"interpolatorType": 1,
 										"value": 207.03497314453125
 									},
 									{
-										"time": 1.0166666666666666,
+										"time": 2.0833333333333335,
 										"interpolatorType": 1,
 										"value": 207.03497314453125
 									},
 									{
-										"time": 1.1833333333333333,
+										"time": 2.25,
 										"interpolatorType": 1,
 										"value": 137.03
 									},
 									{
-										"time": 1.35,
+										"time": 2.4166666666666665,
 										"interpolatorType": 2,
 										"cubicX1": 0.23118279569892472,
 										"cubicY1": -0.5047043010752688,
@@ -549,22 +549,22 @@
 										"value": 77.03
 									},
 									{
-										"time": 1.5166666666666666,
+										"time": 2.5833333333333335,
 										"interpolatorType": 1,
 										"value": 207.03
 									},
 									{
-										"time": 1.6666666666666667,
+										"time": 2.7333333333333334,
 										"interpolatorType": 1,
 										"value": 200.02999877929688
 									},
 									{
-										"time": 1.9,
+										"time": 3.2333333333333334,
 										"interpolatorType": 1,
 										"value": 200.02999877929688
 									},
 									{
-										"time": 2.216666666666667,
+										"time": 4,
 										"interpolatorType": 1,
 										"value": 155.02999877929688
 									}
@@ -573,12 +573,12 @@
 							"posX": [
 								[
 									{
-										"time": 0.35,
+										"time": 0.5,
 										"interpolatorType": 1,
 										"value": 144
 									},
 									{
-										"time": 0.6833333333333333,
+										"time": 1,
 										"interpolatorType": 2,
 										"cubicX1": 0,
 										"cubicY1": 0.8864247311827957,
@@ -587,32 +587,67 @@
 										"value": 144
 									},
 									{
-										"time": 0.85,
+										"time": 1.1666666666666667,
 										"interpolatorType": 1,
 										"value": 144
 									},
 									{
-										"time": 0.9166666666666666,
+										"time": 1.2333333333333334,
 										"interpolatorType": 1,
 										"value": 144.5
 									},
 									{
-										"time": 1.0166666666666666,
+										"time": 1.4166666666666667,
 										"interpolatorType": 1,
-										"value": 144
+										"value": 138
 									},
 									{
-										"time": 1.1833333333333333,
+										"time": 1.5,
 										"interpolatorType": 1,
-										"value": 144
+										"value": 151
+									},
+									{
+										"time": 1.5833333333333333,
+										"interpolatorType": 1,
+										"value": 138
 									},
 									{
 										"time": 1.6666666666666667,
 										"interpolatorType": 1,
+										"value": 151
+									},
+									{
+										"time": 1.75,
+										"interpolatorType": 1,
+										"value": 138
+									},
+									{
+										"time": 1.8333333333333333,
+										"interpolatorType": 1,
+										"value": 151
+									},
+									{
+										"time": 1.9166666666666667,
+										"interpolatorType": 1,
 										"value": 144
 									},
 									{
-										"time": 1.9,
+										"time": 2.0833333333333335,
+										"interpolatorType": 1,
+										"value": 144
+									},
+									{
+										"time": 2.25,
+										"interpolatorType": 1,
+										"value": 144
+									},
+									{
+										"time": 2.7333333333333334,
+										"interpolatorType": 1,
+										"value": 144
+									},
+									{
+										"time": 3.2333333333333334,
 										"interpolatorType": 1,
 										"value": 144
 									}
@@ -621,12 +656,47 @@
 							"rotation": [
 								[
 									{
-										"time": 0.6833333333333333,
+										"time": 1,
 										"interpolatorType": 1,
 										"value": 0
 									},
 									{
-										"time": 0.9166666666666666,
+										"time": 1.2333333333333334,
+										"interpolatorType": 1,
+										"value": 0
+									},
+									{
+										"time": 1.4166666666666667,
+										"interpolatorType": 1,
+										"value": -0.1308996938995747
+									},
+									{
+										"time": 1.5,
+										"interpolatorType": 1,
+										"value": 0.1308996938995747
+									},
+									{
+										"time": 1.5833333333333333,
+										"interpolatorType": 1,
+										"value": -0.1308996938995747
+									},
+									{
+										"time": 1.6666666666666667,
+										"interpolatorType": 1,
+										"value": 0.1308996938995747
+									},
+									{
+										"time": 1.75,
+										"interpolatorType": 1,
+										"value": -0.1308996938995747
+									},
+									{
+										"time": 1.8333333333333333,
+										"interpolatorType": 1,
+										"value": 0.1308996938995747
+									},
+									{
+										"time": 1.9166666666666667,
 										"interpolatorType": 1,
 										"value": 0
 									}
@@ -638,7 +708,7 @@
 							"posX": [
 								[
 									{
-										"time": 0.35,
+										"time": 0.5,
 										"interpolatorType": 1,
 										"value": 144
 									}
@@ -647,7 +717,7 @@
 							"posY": [
 								[
 									{
-										"time": 0.35,
+										"time": 0.5,
 										"interpolatorType": 1,
 										"value": 370.8392639160156
 									}
@@ -661,12 +731,12 @@
 										"value": 0
 									},
 									{
-										"time": 0.35,
+										"time": 0.5,
 										"interpolatorType": 1,
 										"value": 0
 									},
 									{
-										"time": 2.216666666666667,
+										"time": 4,
 										"interpolatorType": 1,
 										"value": 0.5
 									}
@@ -680,12 +750,12 @@
 										"value": 0
 									},
 									{
-										"time": 0.35,
+										"time": 0.5,
 										"interpolatorType": 1,
 										"value": 0
 									},
 									{
-										"time": 2.216666666666667,
+										"time": 4,
 										"interpolatorType": 1,
 										"value": 0.5
 									}
@@ -694,12 +764,12 @@
 							"opacity": [
 								[
 									{
-										"time": 2.216666666666667,
+										"time": 4,
 										"interpolatorType": 1,
 										"value": 0
 									},
 									{
-										"time": 2.466666666666667,
+										"time": 4.333333333333333,
 										"interpolatorType": 1,
 										"value": 1
 									}
@@ -716,17 +786,17 @@
 										"value": 0
 									},
 									{
-										"time": 0.35,
+										"time": 0.5,
 										"interpolatorType": 1,
 										"value": 0
 									},
 									{
-										"time": 1.4833333333333334,
+										"time": 2.55,
 										"interpolatorType": 1,
 										"value": 0
 									},
 									{
-										"time": 1.5833333333333333,
+										"time": 2.65,
 										"interpolatorType": 1,
 										"value": 2
 									}
@@ -740,17 +810,17 @@
 										"value": 0
 									},
 									{
-										"time": 0.35,
+										"time": 0.5,
 										"interpolatorType": 1,
 										"value": 0
 									},
 									{
-										"time": 1.4833333333333334,
+										"time": 2.55,
 										"interpolatorType": 1,
 										"value": 0
 									},
 									{
-										"time": 1.5833333333333333,
+										"time": 2.65,
 										"interpolatorType": 1,
 										"value": 2
 									}
@@ -759,7 +829,7 @@
 							"posX": [
 								[
 									{
-										"time": 1.9,
+										"time": 3.2333333333333334,
 										"interpolatorType": 1,
 										"value": 144
 									}
@@ -768,12 +838,12 @@
 							"posY": [
 								[
 									{
-										"time": 1.9,
+										"time": 3.2333333333333334,
 										"interpolatorType": 1,
 										"value": 249
 									},
 									{
-										"time": 2.216666666666667,
+										"time": 4,
 										"interpolatorType": 1,
 										"value": 204
 									}
@@ -785,7 +855,7 @@
 							"fillColor": [
 								[
 									{
-										"time": 2.8,
+										"time": 4.690005000011064,
 										"interpolatorType": 1,
 										"value": [
 											0.7333333492279053,
@@ -811,7 +881,7 @@
 										"value": 0
 									},
 									{
-										"time": 0.35,
+										"time": 0.5,
 										"interpolatorType": 1,
 										"value": 0
 									}
@@ -829,7 +899,7 @@
 										"value": 0
 									},
 									{
-										"time": 0.35,
+										"time": 0.5,
 										"interpolatorType": 1,
 										"value": 0
 									}
@@ -838,7 +908,7 @@
 						}
 					],
 					"animationStart": 0,
-					"animationEnd": 2.8,
+					"animationEnd": 4.690005000011064,
 					"type": "animation"
 				}
 			],
