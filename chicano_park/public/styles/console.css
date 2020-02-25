@@ -24,6 +24,18 @@ body {
   animation: var(--transition);
 }
 
+/* .VP .VD .VA .ArtistInt .AudTour .AudDesc {
+  display: none;
+} */
+
+/* .cardDiv:hover + .VP .VD .VA .ArtistInt .AudTour .AudDesc {
+  display: block;
+} */
+
+/* .collapse {
+  width: 100%;
+} */
+
 .centerTheThing {
   align-self: center;
   text-align: center;
@@ -58,7 +70,7 @@ input {
 input:disabled {
   color: black;
   background-color: lightgrey;
-  border:none;
+  border: none;
 }
 p {
   color: black;
@@ -100,7 +112,7 @@ textarea {
   position: fixed;
   right: 50px;
   bottom: 50px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 #artSave:hover {
@@ -119,7 +131,7 @@ textarea {
   position: fixed;
   right: 50px;
   bottom: 50px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 #hisSave:hover {

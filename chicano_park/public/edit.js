@@ -1,5 +1,6 @@
 var firestore = firebase.firestore();
 var selected = true;
+var expand = false;
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         var docRef = firestore.collection("Authorization").doc(user.email);
@@ -31,17 +32,28 @@ firebase.auth().onAuthStateChanged(function (user) {
         document.getElementById("noAur").style.display = "none";
     }
 });
+
+function collapse() {
+    document.getElementsByClassName("collapse").style.display = "none";
+    document.getElementsByClassName("expand").innerHTML = "Expand";
+}
+function expand() {
+    document.getElementsByClassName("collapse").style.display = "block";
+    document.getElementsByClassName("expand").innerHTML = "Collapse";
+}
+
 var StringThing = '<h1 class="title">Edit Murals</h1>';
 firestore.collection("Murals/").get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {
         StringThing = StringThing + '<div class="cardDiv mdc-card"><input disabled class="centerTheThing" value="' + doc.id + '"><p>Title:</p><input class="VT" value="' + doc.data().title +
-            '"></br><p>Picture:</p><input class="VP" value="' + doc.data().picURL +
+            '"><!--<a class="expand">Expand</a><div class="collapse"> --></br><p>Picture:</p><input class="VP" value="' + doc.data().picURL +
             '"></br><p>Description:</p><textarea rows="4" class="VD" wrap="soft">' + doc.data().desc +
             '</textarea></br><p>Author:</p><input class="VA" value="' + doc.data().author + '"></br><p>Interview URL (YouTube link):</p><input class="ArtistInt" value="' + doc.data().interview +
             '"></br><p>Audio Tour:</p><input class="AudTour" value="' + doc.data().audioTour +
             '"></br><p>Audio Description:</p><textarea rows="4" class="AudDesc" wrap="soft">' + doc.data().audioDesc +
-            '</textarea></br><p>Viewcount:</p><input disabled class="views" value="' + doc.data().views + '"></div>';
+            '</textarea></br><p>Viewcount:</p><input disabled class="views" value="' + doc.data().views + '"><!--</div>--></div>';
         document.getElementById("murals").innerHTML = StringThing;
+        // collapse();
 
     });
 }).catch(function (error) {
@@ -49,6 +61,7 @@ firestore.collection("Murals/").get().then(function (querySnapshot) {
     errorMain();
 });
 document.getElementById("murals").innerHTML = StringThing;
+// collapse();
 
 var ArtistString = '<h1 class="title">Edit Artists</h1>';
 firestore.collection("Artists/").get().then(function (querySnapshot) {
@@ -106,6 +119,14 @@ document.getElementById("reset").addEventListener("click", function () {
     }
 
 });
+// document.getElementById("expand").addEventListener("click", function () {
+//     if(expand == true) {
+//         expand();
+//     }
+//     else {
+//         collapse();
+//     }
+// });
 
 function openCity(cityName) {
     var i;
