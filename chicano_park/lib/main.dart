@@ -2,10 +2,13 @@
 library mainlib;
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_seekbar/flutter_seekbar.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:share/share.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -28,7 +31,6 @@ part 'timeline.dart';
 part 'infoPage.dart';
 part 'artist.dart';
 part 'muralGallery.dart';
-
 
 // Next, create a list of cameras so that we know which one is the "back" one
 // Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a camera feed to the user
@@ -54,9 +56,13 @@ bool processing = false;
 
 // Create the app class and basic Material design structure
 class MyApp extends StatelessWidget {
+  FirebaseAnalytics analytics = FirebaseAnalytics();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: analytics),
+      ],
       theme: ThemeData(
         // We can end up changing a bunch of values in here: https://api.flutter.dev/flutter/material/Colors-class.html
         primarySwatch: Colors.blue,
@@ -72,6 +78,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class MainPage extends StatefulWidget {
   // We want a stateful widget because of all of theredrawing and repainting we are going to be doing. So, we create it (read: start it)
   _MainPageState createState() => _MainPageState();

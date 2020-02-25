@@ -39,7 +39,8 @@ firestore.collection("Murals/").get().then(function (querySnapshot) {
             '"></br><p>Description:</p><textarea rows="4" class="VD" wrap="soft">' + doc.data().desc +
             '</textarea></br><p>Author:</p><input class="VA" value="' + doc.data().author + '"></br><p>Interview URL (YouTube link):</p><input class="ArtistInt" value="' + doc.data().interview +
             '"></br><p>Audio Tour:</p><input class="AudTour" value="' + doc.data().audioTour +
-            '"></div>';
+            '"></br><p>Audio Description:</p><textarea rows="4" class="AudDesc" wrap="soft">' + doc.data().audioDesc +
+            '</textarea></br><p>Viewcount:</p><input disabled class="views" value="' + doc.data().views + '"></br><button class="reset">Reset all viewcount data</button></div>';
         document.getElementById("murals").innerHTML = StringThing;
 
     });
@@ -94,6 +95,11 @@ document.getElementById("hisSave").addEventListener("click", function () {
     updateH(HT);
     alert("Updated data. Refresh page to see changes.");
 });
+document.getElementsByClassName("reset").addEventListener("click", function() {
+    var VT = document.getElementsByClassName("centerTheThing").length;
+    reset(VT);
+    alert("Reset viewcounts. Refresh page to see changes");
+});
 
 function openCity(cityName) {
     var i;
@@ -115,6 +121,7 @@ function updateV(lengthOfV) {
                 author: document.getElementsByClassName("VA")[i].value,
                 interview: document.getElementsByClassName("ArtistInt")[i].value,
                 audioTour: document.getElementsByClassName("AudTour")[i].value,
+                audioDesc: document.getElementsByClassName("AudDesc")[i].value,
             }, {
                 merge: true
             }).then(function () {
@@ -165,6 +172,25 @@ function updateH(lengthOfH) {
             .catch(function (error) {
                 // The document probably doesn't exist.
                 console.error("Error updating history document: ", error);
+            });
+    }
+}
+
+function reset(lengthOfV) {
+    console.log(lengthOfV);
+    var i;
+    for (i = 0; i < lengthOfV; i++) {
+        firestore.collection("Murals").doc(document.getElementsByClassName("centerTheThing")[i].value.toString()).set({
+                views: 0
+            }, {
+                merge: true
+            }).then(function () {
+                console.log("Done resetting mural " + i);
+                console.log(lengthOfV);
+            })
+            .catch(function (error) {
+                // The document probably doesn't exist.
+                console.error("Error updating document: ", error);
             });
     }
 }

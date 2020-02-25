@@ -151,7 +151,7 @@ Widget inte(String data) {
   }
 }
 
-Widget aud(String data, String name, BuildContext context) {
+Widget aud(String data, String name, BuildContext context, DocumentSnapshot pic) {
   if (data == "undefined" || data == null) {
     return Container();
   } else {
@@ -160,7 +160,7 @@ Widget aud(String data, String name, BuildContext context) {
         Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AudioPage(data, name),
+                builder: (context) => AudioPage(data, name, pic),
               ),
             );
       },
@@ -175,7 +175,7 @@ Widget aud(String data, String name, BuildContext context) {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AudioPage(data, name),
+                builder: (context) => AudioPage(data, name, pic),
               ),
             );
           },

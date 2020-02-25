@@ -19,7 +19,11 @@ class _MuralGallery extends State<MuralGallery> {
         List<String> imageURLData =
             snapshot.data.documents.map((doc) => doc[arg].toString()).toList();
         gett = imageURLData.length;
-        return imageURLData[index];
+        try {
+          return imageURLData[index];
+        } catch (e) {
+          return "Error";
+        }
       }
     } catch (e) {
       debugPrint("error1");

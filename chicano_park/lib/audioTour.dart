@@ -3,8 +3,9 @@ part of mainlib;
 class AudioPage extends StatefulWidget {
   final String url;
   final String name;
+  final DocumentSnapshot pic;
 
-  const AudioPage(this.url, this.name);
+  const AudioPage(this.url, this.name, this.pic);
   // We want a stateful widget because of all of theredrawing and repainting we are going to be doing. So, we create it (read: start it)
   _AudioPageState createState() => _AudioPageState();
 }
@@ -13,9 +14,13 @@ class _AudioPageState extends State<AudioPage> {
   AudioPlayer audioPlayer = AudioPlayer();
   Duration pos = Duration(milliseconds: 123);
   Duration dur = Duration(milliseconds: 123);
+  bool playing = false;
   void play() async {
     int result = await audioPlayer.play(widget.url);
     if (result == 1) {
+      setState(() {
+        playing = true;
+      });
       audioPlayer.onAudioPositionChanged
           .listen((Duration p) => {setState(() => pos = p)});
       audioPlayer.onDurationChanged.listen((Duration d) {
@@ -33,10 +38,16 @@ class _AudioPageState extends State<AudioPage> {
   }
 
   void pause() async {
+    setState(() {
+      playing = false;
+    });
     await audioPlayer.pause();
   }
 
   void stop() async {
+    setState(() {
+      playing = false;
+    });
     await audioPlayer.stop();
   }
 
@@ -52,7 +63,7 @@ class _AudioPageState extends State<AudioPage> {
       child: Scaffold(
         appBar: new AppBar(
           backgroundColor: Colors.black,
-          title: Text("Audio Tour"),
+          title: Text("Audio Tour: " + widget.name),
         ),
         body: Padding(
           padding: EdgeInsets.only(
@@ -60,29 +71,59 @@ class _AudioPageState extends State<AudioPage> {
             left: 10,
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text("Audio Tour: " + widget.name),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  IconButton(
-                      icon: Icon(Icons.play_arrow),
-                      onPressed: () {
-                        play();
-                      }),
-                  IconButton(
-                      icon: Icon(Icons.pause),
-                      onPressed: () {
-                        pause();
-                      }),
-                  IconButton(
-                      icon: Icon(Icons.stop),
-                      onPressed: () {
-                        stop();
-                      }),
-                ],
+              Padding(
+                padding: EdgeInsets.only(top: 15),
+                child: FittedBox(
+                  child: getImage(widget.pic, "picURL", context),
+                  fit: BoxFit.fitHeight,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  bottom: 0,
+                  top: 10,
+                ),
+                child: Text(testString(widget.pic, "audioDesc")),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    IconButton(
+                        icon: Icon(Icons.pause, color: Colors.white),
+                        onPressed: () {
+                          // pause();
+                        }),
+                    playing
+                        ? IconButton(
+                            iconSize: 60,
+                            icon: Icon(Icons.pause),
+                            onPressed: () {
+                              pause();
+                            })
+                        : IconButton(
+                            iconSize: 60,
+                            icon: Icon(Icons.play_circle_outline),
+                            onPressed: () {
+                              play();
+                            }),
+                    playing
+                        ? IconButton(
+                            icon: Icon(Icons.stop),
+                            onPressed: () {
+                              stop();
+                            })
+                        : IconButton(
+                            icon: Icon(Icons.stop, color: Colors.white),
+                            onPressed: () {
+                              // stop();
+                            }),
+                  ],
+                ),
               ),
               Column(
                 children: <Widget>[
@@ -94,17 +135,22 @@ class _AudioPageState extends State<AudioPage> {
                     ],
                   ),
                   Padding(
-                      child: LinearPercentIndicator(
-                        width: MediaQuery.of(context).size.width - 20,
-                        lineHeight: 5.0,
-                        percent:
-                            ((pos.inMilliseconds == 123 ? 100 : pos.inSeconds) /
-                                    (dur.inMilliseconds == 123
-                                        ? 100
-                                        : dur.inSeconds))
-                                .toDouble(),
-                        center: Text(""),
-                        progressColor: Colors.red,
+                      child: SeekBar(
+                        progressColor: Colors.black,
+                        min: 0.0,
+                        max: dur.inMilliseconds == 123.toDouble()
+                            ? 100.toDouble()
+                            : dur.inSeconds.toDouble(),
+                        value: pos.inMilliseconds == 123.toDouble()
+                            ? 100.toDouble()
+                            : pos.inSeconds.toDouble(),
+                        onValueChanged: (value) async {
+                          debugPrint(value.toString());
+
+                          await audioPlayer.seek(Duration(
+                              seconds:
+                                  (dur.inSeconds * value.progress).round()));
+                        },
                       ),
                       padding: new EdgeInsets.only(top: 10)),
                 ],
