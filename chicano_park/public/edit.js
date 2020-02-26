@@ -51,7 +51,7 @@ firestore.collection("Murals/").get().then(function (querySnapshot) {
             '</textarea></br><p>Author:</p><input class="VA" value="' + doc.data().author + '"></br><p>Interview URL (YouTube link):</p><input class="ArtistInt" value="' + doc.data().interview +
             '"></br><p>Audio Tour:</p><input class="AudTour" value="' + doc.data().audioTour +
             '"></br><p>Audio Description:</p><textarea rows="4" class="AudDesc" wrap="soft">' + doc.data().audioDesc +
-            '</textarea></br><p>Viewcount:</p><input disabled class="views" value="' + doc.data().views + '"><!--</div>--></div>';
+            '</textarea></br><p>Viewcount:</p><input disabled class="views" value="' + doc.data().views + '"></br><p>Average Confidence:</p><input disabled class="avg" value="' + doc.data().avg + '"><!--</div>--></div>';
         document.getElementById("murals").innerHTML = StringThing;
         // collapse();
 
@@ -208,7 +208,8 @@ function reset(lengthOfV) {
     var i;
     for (i = 0; i < lengthOfV; i++) {
         firestore.collection("Murals").doc(document.getElementsByClassName("centerTheThing")[i].value.toString()).set({
-                views: 0
+                views: 0,
+                avg: 0
             }, {
                 merge: true
             }).then(function () {

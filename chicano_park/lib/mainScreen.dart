@@ -115,7 +115,18 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  void runModelThingyTHing() async {
+  void log(double av, double confidence, FirebaseAnalytics analytics) async {
+    final DocumentReference postRef =
+        Firestore.instance.collection("Murals").document(found);
+    postRef.updateData(
+        {'views': FieldValue.increment(1), 'avg': (av + confidence) / 2});
+    await analytics.logGenerateLead(
+      currency: found,
+      value: confidence,
+    );
+  }
+
+  void runModelThingyTHing(double av) async {
     final FirebaseAnalytics analytics = FirebaseAnalytics();
     setState(() {
       processing = true;
@@ -139,19 +150,13 @@ class _MainPageState extends State<MainPage> {
       if (confidence >= confidenceNumThing) {
         var parsedJson = json.decode(jsonData);
         found = parsedJson[label];
-        final DocumentReference postRef =
-            Firestore.instance.collection("Murals").document(found);
-        postRef.updateData({'views': FieldValue.increment(1)});
-        analytics.logEvent(
-          name: 'mural_event',
-          parameters: <String, dynamic>{
-            'mural': found,
-          },
-        );
+
+        debugPrint("done thing");
         setState(() {
           processing = false;
         });
         _pc.animatePanelToPosition(1);
+        log(av, confidence, analytics);
       } else {
         setState(() {
           processing = false;
@@ -179,6 +184,7 @@ class _MainPageState extends State<MainPage> {
             },
             onLongPress: () async {
               if (await Vibration.hasVibrator()) {
+                Vibration.vibrate(duration: 250);
                 if (await Vibration.hasAmplitudeControl()) {
                   Vibration.vibrate(amplitude: 128);
                 }
@@ -229,46 +235,105 @@ class _MainPageState extends State<MainPage> {
           ),
           //The middle button that runs the model
           //There are two circle avatars because then the user can touch any part of the button
-          Padding(
-            padding: EdgeInsets.only(bottom: 40.0),
-            child: Stack(
-              alignment: Alignment.center,
-              children: <Widget>[
-                CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 38.0,
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.add_circle,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      runModelThingyTHing();
-                    },
-                  ),
-                ),
-                CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  radius: 33.0,
-                  child: IconButton(
-                    icon: processing
-                        ? CircularProgressIndicator(
-                            valueColor:
-                                new AlwaysStoppedAnimation<Color>(Colors.white),
-                          )
-                        : Icon(
-                            Icons.camera_alt,
-                            size: 28.0,
-                            color: Colors.grey,
+          StreamBuilder(
+              stream: Firestore.instance
+                  .collection("Murals")
+                  .document(found)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                // Do some basic error processing
+                if (!snapshot.hasData) {
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: 40.0),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: <Widget>[
+                        CircleAvatar(
+                          backgroundColor: Colors.white,
+                          radius: 38.0,
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.add_circle,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              runModelThingyTHing(0.0);
+                            },
                           ),
-                    onPressed: () {
-                      runModelThingyTHing();
-                    },
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          radius: 33.0,
+                          child: IconButton(
+                            icon: processing
+                                ? CircularProgressIndicator(
+                                    valueColor:
+                                        new AlwaysStoppedAnimation<Color>(
+                                            Colors.white),
+                                  )
+                                : Icon(
+                                    Icons.camera_alt,
+                                    size: 28.0,
+                                    color: Colors.grey,
+                                  ),
+                            onPressed: () {
+                              runModelThingyTHing(0.0);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+                if (snapshot == null || snapshot.data == null) {
+                  return const Text("Something went seriously wrong! Sorry!");
+                }
+                if (snapshot.hasError) {
+                  return const Text("error!");
+                }
+                return Padding(
+                  padding: EdgeInsets.only(bottom: 40.0),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 38.0,
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.add_circle,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            runModelThingyTHing(
+                                testDouble(snapshot.data, "avg"));
+                          },
+                        ),
+                      ),
+                      CircleAvatar(
+                        backgroundColor: Colors.grey,
+                        radius: 33.0,
+                        child: IconButton(
+                          icon: processing
+                              ? CircularProgressIndicator(
+                                  valueColor: new AlwaysStoppedAnimation<Color>(
+                                      Colors.white),
+                                )
+                              : Icon(
+                                  Icons.camera_alt,
+                                  size: 28.0,
+                                  color: Colors.grey,
+                                ),
+                          onPressed: () {
+                            runModelThingyTHing(
+                                testDouble(snapshot.data, "avg"));
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ),
+                );
+              }),
           Stack(
             alignment: Alignment.center,
             children: <Widget>[

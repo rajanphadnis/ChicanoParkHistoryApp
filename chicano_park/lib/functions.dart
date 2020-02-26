@@ -19,12 +19,25 @@ String testString(DocumentSnapshot doc, String val) {
   }
 }
 
+double testDouble(DocumentSnapshot doc, String val) {
+  try {
+    if (doc == null) {
+      return 0.0;
+    }
+    if (doc[val] == null) {
+      return 0.0;
+    }
+    return doc[val].toDouble();
+  } catch (e) {
+    return 0.0;
+  }
+}
+
 String testUndString(DocumentSnapshot doc, String val) {
   try {
-    if (doc is !DocumentSnapshot || doc == null || doc.data == null) {
+    if (doc is! DocumentSnapshot || doc == null || doc.data == null) {
       return "undefined";
-    }
-    else if (doc[val] == null) {
+    } else if (doc[val] == null) {
       return "undefined";
     } else {
       return doc[val];
@@ -151,18 +164,19 @@ Widget inte(String data) {
   }
 }
 
-Widget aud(String data, String name, BuildContext context, DocumentSnapshot pic) {
+Widget aud(
+    String data, String name, BuildContext context, DocumentSnapshot pic) {
   if (data == "undefined" || data == null) {
     return Container();
   } else {
     return InkWell(
       onTap: () {
         Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AudioPage(data, name, pic),
-              ),
-            );
+          context,
+          MaterialPageRoute(
+            builder: (context) => AudioPage(data, name, pic),
+          ),
+        );
       },
       child:
           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
