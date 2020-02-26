@@ -9,12 +9,14 @@ firebase.auth().onAuthStateChanged(function (user) {
             if (doc.exists) {
                 console.log("Document data:", doc.data());
                 document.getElementById("murals").style.display = "block";
+                document.getElementById("reset").style.display = "block";
                 document.getElementById("artists").style.display = "block";
                 document.getElementById("history").style.display = "block";
                 document.getElementById("noAuth").style.display = "none";
                 document.getElementById("noAur").style.display = "none";
             } else {
                 console.log("No such document!");
+                document.getElementById("murals").style.display = "none";
                 document.getElementById("murals").style.display = "none";
                 document.getElementById("artists").style.display = "none";
                 document.getElementById("history").style.display = "none";
@@ -26,6 +28,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         });
     } else {
         document.getElementById("murals").style.display = "none";
+        document.getElementById("reset").style.display = "block";
         document.getElementById("artists").style.display = "none";
         document.getElementById("history").style.display = "none";
         document.getElementById("noAuth").style.display = "block";
@@ -42,7 +45,7 @@ function expand() {
     document.getElementsByClassName("expand").innerHTML = "Collapse";
 }
 
-var StringThing = '<h1 class="title">Edit Murals</h1></br><button id="reset">Reset all viewcount data</button>';
+var StringThing = '<h1 class="title">Edit Murals</h1></br>';
 firestore.collection("Murals/").get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {
         StringThing = StringThing + '<div class="cardDiv mdc-card"><input disabled class="centerTheThing" value="' + doc.id + '"><p>Title:</p><input class="VT" value="' + doc.data().title +
@@ -109,9 +112,12 @@ document.getElementById("hisSave").addEventListener("click", function () {
     alert("Updated data. Refresh page to see changes.");
 });
 document.getElementById("reset").addEventListener("click", function () {
+    console.log("hehehe");
     var VT = document.getElementsByClassName("centerTheThing").length;
+    console.log("hehehe");
     var r = confirm("Reset Viewcount?");
     if (r == true) {
+        console.log("hehehe");
         reset(VT);
         alert("Reset viewcounts. Refresh page to see changes");
     } else {
@@ -209,7 +215,7 @@ function reset(lengthOfV) {
     for (i = 0; i < lengthOfV; i++) {
         firestore.collection("Murals").doc(document.getElementsByClassName("centerTheThing")[i].value.toString()).set({
                 views: 0,
-                avg: 0
+                avg: 0,
             }, {
                 merge: true
             }).then(function () {

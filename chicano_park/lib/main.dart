@@ -36,6 +36,7 @@ part 'timeline.dart';
 part 'infoPage.dart';
 part 'artist.dart';
 part 'muralGallery.dart';
+part 'credits.dart';
 
 // Next, create a list of cameras so that we know which one is the "back" one
 // Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a camera feed to the user

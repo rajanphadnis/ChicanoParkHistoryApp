@@ -118,12 +118,20 @@ class _MainPageState extends State<MainPage> {
   void log(double av, double confidence, FirebaseAnalytics analytics) async {
     final DocumentReference postRef =
         Firestore.instance.collection("Murals").document(found);
-    postRef.updateData(
-        {'views': FieldValue.increment(1), 'avg': (av + confidence) / 2});
-    await analytics.logGenerateLead(
-      currency: found,
-      value: confidence,
-    );
+    Firestore.instance.runTransaction((transaction) async {
+      // final freshSnapshot = await transaction.get(postRef);
+
+// final fresh = Record.fromSnapshot(freshSnapshot);
+
+      await transaction.update(postRef,
+          {'views': FieldValue.increment(1), 'avg': (av + confidence) / 2});
+    });
+    // postRef.updateData(
+    //     {'views': FieldValue.increment(1), 'avg': (av + confidence) / 2});
+    // await analytics.logGenerateLead(
+    //   currency: found,
+    //   value: confidence,
+    // );
   }
 
   void runModelThingyTHing(double av) async {
@@ -150,19 +158,42 @@ class _MainPageState extends State<MainPage> {
       if (confidence >= confidenceNumThing) {
         var parsedJson = json.decode(jsonData);
         found = parsedJson[label];
-
+        final DocumentReference postRef =
+            Firestore.instance.collection("Murals").document(found);
+        postRef.updateData(
+            {'views': FieldValue.increment(1), 'avg': (av + confidence) / 2});
+        // log(av, confidence, analytics);
         debugPrint("done thing");
         setState(() {
           processing = false;
         });
         _pc.animatePanelToPosition(1);
-        log(av, confidence, analytics);
       } else {
         setState(() {
           processing = false;
         });
       }
     }
+  }
+
+  void launchGame() async {
+    if (await Vibration.hasVibrator()) {
+      Vibration.vibrate(duration: 250);
+      if (await Vibration.hasAmplitudeControl()) {
+        Vibration.vibrate(amplitude: 128);
+      }
+    }
+    Util flameUtil = Util();
+    await flameUtil.fullScreen();
+    await flameUtil.setOrientation(DeviceOrientation.portraitUp);
+
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    GameController gameController = GameController(storage);
+    runApp(gameController.widget);
+
+    TapGestureRecognizer tapper = TapGestureRecognizer();
+    tapper.onTapDown = gameController.onTapDown;
+    flameUtil.addGestureRecognizer(tapper);
   }
 
   Widget theBottomButtonNavigation() {
@@ -181,25 +212,6 @@ class _MainPageState extends State<MainPage> {
                   builder: (context) => MuralGallery(_pc),
                 ),
               );
-            },
-            onLongPress: () async {
-              if (await Vibration.hasVibrator()) {
-                Vibration.vibrate(duration: 250);
-                if (await Vibration.hasAmplitudeControl()) {
-                  Vibration.vibrate(amplitude: 128);
-                }
-              }
-              Util flameUtil = Util();
-              await flameUtil.fullScreen();
-              await flameUtil.setOrientation(DeviceOrientation.portraitUp);
-
-              SharedPreferences storage = await SharedPreferences.getInstance();
-              GameController gameController = GameController(storage);
-              runApp(gameController.widget);
-
-              TapGestureRecognizer tapper = TapGestureRecognizer();
-              tapper.onTapDown = gameController.onTapDown;
-              flameUtil.addGestureRecognizer(tapper);
             },
             child: Stack(
               alignment: Alignment.center,

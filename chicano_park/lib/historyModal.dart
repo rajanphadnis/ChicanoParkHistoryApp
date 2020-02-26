@@ -62,8 +62,7 @@ void showHistoryBottomSheet(BuildContext context) {
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: CustomPaint(
-                        painter:
-                            PaintRectangle(),
+                        painter: PaintRectangle(),
                         child: Container(
                           decoration: BoxDecoration(
                               border: new Border.all(color: Colors.white),
@@ -84,10 +83,13 @@ void showHistoryBottomSheet(BuildContext context) {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                     ),
                     Center(
-                      child: Text(
-                        "Timeline:",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
+                      child: Padding(
+                        child: Text(
+                          "Timeline:",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                        padding: EdgeInsets.only(top: 15),
                       ),
                     ),
                     Center(
@@ -98,6 +100,23 @@ void showHistoryBottomSheet(BuildContext context) {
                       ),
                     ),
                     timeline(context),
+                    Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 30),
+                        child: MaterialButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    CreditsPage(),
+                              ),
+                            );
+                          },
+                          child: Text("Credits"),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               );
