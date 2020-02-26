@@ -213,62 +213,84 @@ class _CreditsPageState extends State<CreditsPage> {
                   SizedBox(
                     height: 32,
                   ),
-                  AnimatedOpacity(
-                    opacity: _fade2Visible ? 1.0 : 0.0,
-                    duration: Duration(milliseconds: 1000),
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Container(
-                            padding: new EdgeInsets.only(top: 20),
-                            width: 110.0,
-                            height: 110.0,
-                            decoration: new BoxDecoration(
-                              boxShadow: [
-                                new BoxShadow(
-                                  color: Colors.black26,
-                                  offset: new Offset(0.0, 2.0),
-                                  blurRadius: 25.0,
-                                )
-                              ],
-                              border: Border.all(
-                                color: Colors.white,
-                                width: 8,
-                              ),
-                              shape: BoxShape.circle,
-                              image: new DecorationImage(
-                                fit: BoxFit.fill,
-                                image: new NetworkImage(
-                                    "https://programmingii-367d0.web.app/profile.jpg"),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: new EdgeInsets.only(top: 20),
-                            width: 110.0,
-                            height: 110.0,
-                            decoration: new BoxDecoration(
-                              boxShadow: [
-                                new BoxShadow(
-                                  color: Colors.black26,
-                                  offset: new Offset(0.0, 2.0),
-                                  blurRadius: 25.0,
-                                )
-                              ],
-                              border: Border.all(
-                                color: Colors.white,
-                                width: 8,
-                              ),
-                              shape: BoxShape.circle,
-                              image: new DecorationImage(
-                                fit: BoxFit.fill,
-                                image: new NetworkImage(
-                                    "https://programmingii-367d0.web.app/profile.jpg"),
+                  GestureDetector(
+                    onLongPress: () async {
+                      if (await Vibration.hasVibrator()) {
+                        if (await Vibration.hasAmplitudeControl()) {
+                          Vibration.vibrate(amplitude: 128);
+                        }
+                      }
+                      Util flameUtil = Util();
+                      await flameUtil.fullScreen();
+                      await flameUtil
+                          .setOrientation(DeviceOrientation.portraitUp);
+
+                      SharedPreferences storage =
+                          await SharedPreferences.getInstance();
+                      GameController gameController = GameController(storage);
+                      runApp(gameController.widget);
+
+                      TapGestureRecognizer tapper = TapGestureRecognizer();
+                      tapper.onTapDown = gameController.onTapDown;
+                      flameUtil.addGestureRecognizer(tapper);
+                    },
+                    child: AnimatedOpacity(
+                      opacity: _fade2Visible ? 1.0 : 0.0,
+                      duration: Duration(milliseconds: 1000),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Container(
+                              padding: new EdgeInsets.only(top: 20),
+                              width: 110.0,
+                              height: 110.0,
+                              decoration: new BoxDecoration(
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.black26,
+                                    offset: new Offset(0.0, 2.0),
+                                    blurRadius: 25.0,
+                                  )
+                                ],
+                                border: Border.all(
+                                  color: Colors.white,
+                                  width: 8,
+                                ),
+                                shape: BoxShape.circle,
+                                image: new DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: new NetworkImage(
+                                      "https://programmingii-367d0.web.app/profile.jpg"),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                            Container(
+                              padding: new EdgeInsets.only(top: 20),
+                              width: 110.0,
+                              height: 110.0,
+                              decoration: new BoxDecoration(
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.black26,
+                                    offset: new Offset(0.0, 2.0),
+                                    blurRadius: 25.0,
+                                  )
+                                ],
+                                border: Border.all(
+                                  color: Colors.white,
+                                  width: 8,
+                                ),
+                                shape: BoxShape.circle,
+                                image: new DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: new NetworkImage(
+                                      "https://programmingii-367d0.web.app/profile.jpg"),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
