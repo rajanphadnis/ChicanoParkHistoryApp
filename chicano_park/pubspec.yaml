@@ -32,6 +32,7 @@ dependencies:
   flame: ^0.18.1
   shared_preferences: ^0.5.4+3
   vibration: ^1.2.4
+  animations: ^1.0.0+5
   flutter_seekbar:
     git: https://github.com/LiuC520/flutter_seekbar.git
 

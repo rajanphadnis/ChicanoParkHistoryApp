@@ -56,6 +56,7 @@ class _MuralGallery extends State<MuralGallery> {
             body: new CustomScrollView(
               slivers: <Widget>[
                 SliverAppBar(
+                  leading: Icon(Icons.arrow_back_ios),
                   backgroundColor: Colors.black,
                   expandedHeight: 512.0,
                   floating: false,
