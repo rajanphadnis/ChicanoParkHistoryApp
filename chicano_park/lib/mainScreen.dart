@@ -115,26 +115,19 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  void log(double av, double confidence, FirebaseAnalytics analytics) async {
+  void log(double av, double confidence, double number,
+      FirebaseAnalytics analytics) async {
     final DocumentReference postRef =
         Firestore.instance.collection("Murals").document(found);
     Firestore.instance.runTransaction((transaction) async {
-      // final freshSnapshot = await transaction.get(postRef);
-
-// final fresh = Record.fromSnapshot(freshSnapshot);
-
-      await transaction.update(postRef,
-          {'views': FieldValue.increment(1), 'avg': (av + confidence) / 2});
+      await transaction.update(postRef, {
+        'views': FieldValue.increment(1),
+        'avg': ((av * number) + confidence) / (1 + number)
+      });
     });
-    // postRef.updateData(
-    //     {'views': FieldValue.increment(1), 'avg': (av + confidence) / 2});
-    // await analytics.logGenerateLead(
-    //   currency: found,
-    //   value: confidence,
-    // );
   }
 
-  void runModelThingyTHing(double av) async {
+  void runModelThingyTHing(double av, double number) async {
     final FirebaseAnalytics analytics = FirebaseAnalytics();
     setState(() {
       processing = true;
@@ -160,8 +153,10 @@ class _MainPageState extends State<MainPage> {
         found = parsedJson[label];
         final DocumentReference postRef =
             Firestore.instance.collection("Murals").document(found);
-        postRef.updateData(
-            {'views': FieldValue.increment(1), 'avg': (av + confidence) / 2});
+        postRef.updateData({
+          'views': FieldValue.increment(1),
+          'avg': (((av * number) + confidence) / (1 + number))
+        });
         // log(av, confidence, analytics);
         debugPrint("done thing");
         setState(() {
@@ -269,7 +264,8 @@ class _MainPageState extends State<MainPage> {
                               color: Colors.white,
                             ),
                             onPressed: () {
-                              runModelThingyTHing(0.0);
+                              runModelThingyTHing(
+                                  0.0, testDouble(snapshot.data, "views"));
                             },
                           ),
                         ),
@@ -289,7 +285,8 @@ class _MainPageState extends State<MainPage> {
                                     color: Colors.grey,
                                   ),
                             onPressed: () {
-                              runModelThingyTHing(0.0);
+                              runModelThingyTHing(
+                                  0.0, testDouble(snapshot.data, "views"));
                             },
                           ),
                         ),
@@ -318,7 +315,8 @@ class _MainPageState extends State<MainPage> {
                           ),
                           onPressed: () {
                             runModelThingyTHing(
-                                testDouble(snapshot.data, "avg"));
+                                testDouble(snapshot.data, "avg"),
+                                testDouble(snapshot.data, "views"));
                           },
                         ),
                       ),
@@ -338,7 +336,8 @@ class _MainPageState extends State<MainPage> {
                                 ),
                           onPressed: () {
                             runModelThingyTHing(
-                                testDouble(snapshot.data, "avg"));
+                                testDouble(snapshot.data, "avg"),
+                                testDouble(snapshot.data, "views"));
                           },
                         ),
                       ),
