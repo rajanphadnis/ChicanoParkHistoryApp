@@ -38,6 +38,37 @@ part 'artist.dart';
 part 'muralGallery.dart';
 part 'credits.dart';
 
+
+/*  
+TODO
+
+Change back arrow for murals page to a caret going down 
+Change animation for clicking on murals to be horizontal (right to left)
+and for going back (left to right)
+willpopscope no
+
+Make swipe gesture for mural gallery down instead of left to right
+
+"Card" shadowed outline on murals page photos(?)
+Non-whitespace gallery for photos
+
+More clear that you can move timeline
+  - Make it vertical
+
+
+Audio tour drop down menu
+  - Instead of going to a new page, when you click audio tour it drops down a menu with the audio bar slider
+
+when it presents the mural move the image down a little bit.
+Mural name up at top near back button
+Back button on Murals page
+Circular artist photo next to artist name 
+
+If mural page comes up from button, show an arrow going down (a caret)
+If the mural page comes from the murals tab, show a back button up top
+
+*/
+
 // Next, create a list of cameras so that we know which one is the "back" one
 // Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a camera feed to the user
 Future<void> main() async {
