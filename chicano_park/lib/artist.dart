@@ -2,8 +2,8 @@ part of mainlib;
 
 class ArtistPage extends StatelessWidget {
   final String author;
-  final PanelController _pc;
-  ArtistPage(this.author, this._pc);
+  // final PanelController _pc;
+  ArtistPage(this.author);
   final List<String> itemsTHing = List();
   SliverGrid muralGrid() {
     return SliverGrid(
@@ -173,7 +173,7 @@ class ArtistPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => MuralGallery(_pc),
+                              builder: (context) => MuralGallery(),
                             ),
                           );
                         },

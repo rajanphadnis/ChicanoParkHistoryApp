@@ -9,38 +9,32 @@ class _MainPageState extends State<MainPage> {
   var confidenceThing;
   static const platform = const MethodChannel('samples.flutter.dev/battery');
   var realData;
-  PanelController _pc = new PanelController();
+  // PanelController _pc = new PanelController();
   FlutterTts flutterTts = FlutterTts();
-  bool talking = false;
+  // bool talking = false;
   Future<void> go() async {
     WidgetsFlutterBinding.ensureInitialized();
     cameras = await availableCameras();
   }
 
   Future<bool> _onWillPop() async {
-    if (_pc.isPanelOpen) {
-      _pc.animatePanelToPosition(0);
-      return false;
-    } else {
-      return (await showDialog(
-            context: context,
-            builder: (context) => new AlertDialog(
-              title: new Text('Are you sure?'),
-              content: new Text('Do you want to exit the app?'),
-              actions: <Widget>[
-                new FlatButton(
-                  onPressed: () => Navigator.of(context).pop(false),
-                  child: new Text('No'),
-                ),
-                new FlatButton(
-                  onPressed: () => Navigator.of(context).pop(true),
-                  child: new Text('Yes'),
-                ),
-              ],
-            ),
-          )) ??
-          false;
-    }
+    await showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: new Text('Are you sure?'),
+        content: new Text('Do you want to exit the app?'),
+        actions: <Widget>[
+          new FlatButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: new Text('No'),
+          ),
+          new FlatButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: new Text('Yes'),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _getBatteryLevel(String path2) async {
@@ -61,16 +55,6 @@ class _MainPageState extends State<MainPage> {
       muralTitleThing = batteryLevel;
       processing = false;
     });
-  }
-
-  void playTTS(BuildContext context, String talk) {
-    if (talking == false && talk != "") {
-      flutterTts.speak(talk);
-      talking = true;
-    } else {
-      flutterTts.stop();
-      talking = false;
-    }
   }
 
   // initialize camera when the app is initialized
@@ -152,16 +136,25 @@ class _MainPageState extends State<MainPage> {
         found = parsedJson[label];
         final DocumentReference postRef =
             Firestore.instance.collection("Murals").document(found);
-        postRef.updateData({
-          'views': FieldValue.increment(1),
-          'avg': (((av * number) + confidence) / (1 + number))
-        });
-        // log(av, confidence, analytics);
+        try {
+          postRef.setData({
+            'views': FieldValue.increment(1),
+            'avg': (((av * number) + confidence) / (1 + number))
+          }, merge: true);
+        } catch (e) {
+          debugPrint("error analytics");
+        }
         debugPrint("done thing");
         setState(() {
           processing = false;
         });
-        _pc.animatePanelToPosition(1);
+        // _pc.animatePanelToPosition(1);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MuralPage(found),
+          ),
+        );
       } else {
         setState(() {
           processing = false;
@@ -170,25 +163,25 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
-  void launchGame() async {
-    if (await Vibration.hasVibrator()) {
-      Vibration.vibrate(duration: 250);
-      if (await Vibration.hasAmplitudeControl()) {
-        Vibration.vibrate(amplitude: 128);
-      }
-    }
-    Util flameUtil = Util();
-    await flameUtil.fullScreen();
-    await flameUtil.setOrientation(DeviceOrientation.portraitUp);
+  // void launchGame() async {
+  //   if (await Vibration.hasVibrator()) {
+  //     Vibration.vibrate(duration: 250);
+  //     if (await Vibration.hasAmplitudeControl()) {
+  //       Vibration.vibrate(amplitude: 128);
+  //     }
+  //   }
+  //   Util flameUtil = Util();
+  //   await flameUtil.fullScreen();
+  //   await flameUtil.setOrientation(DeviceOrientation.portraitUp);
 
-    SharedPreferences storage = await SharedPreferences.getInstance();
-    GameController gameController = GameController(storage);
-    runApp(gameController.widget);
+  //   SharedPreferences storage = await SharedPreferences.getInstance();
+  //   GameController gameController = GameController(storage);
+  //   runApp(gameController.widget);
 
-    TapGestureRecognizer tapper = TapGestureRecognizer();
-    tapper.onTapDown = gameController.onTapDown;
-    flameUtil.addGestureRecognizer(tapper);
-  }
+  //   TapGestureRecognizer tapper = TapGestureRecognizer();
+  //   tapper.onTapDown = gameController.onTapDown;
+  //   flameUtil.addGestureRecognizer(tapper);
+  // }
 
   Widget theBottomButtonNavigation() {
     return Container(
@@ -203,7 +196,7 @@ class _MainPageState extends State<MainPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MuralGallery(_pc),
+                  builder: (context) => MuralGallery(),
                 ),
               );
             },
@@ -219,7 +212,7 @@ class _MainPageState extends State<MainPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MuralGallery(_pc),
+                          builder: (context) => MuralGallery(),
                         ),
                       );
                     },
@@ -231,7 +224,7 @@ class _MainPageState extends State<MainPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MuralGallery(_pc),
+                        builder: (context) => MuralGallery(),
                       ),
                     );
                   },
@@ -354,11 +347,11 @@ class _MainPageState extends State<MainPage> {
                   icon: Icon(Icons.list, color: Colors.white),
                   onPressed: () {
                     Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MainHistory(),
-                            ),
-                          );
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MainHistory(),
+                      ),
+                    );
                     // showHistoryBottomSheet(context);
                   },
                 ),
@@ -367,11 +360,11 @@ class _MainPageState extends State<MainPage> {
                 icon: Icon(Icons.explore, color: Colors.black),
                 onPressed: () {
                   Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MainHistory(),
-                            ),
-                          );
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MainHistory(),
+                    ),
+                  );
                   // showHistoryBottomSheet(context);
                 },
               ),
@@ -411,180 +404,41 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         key: _scaffoldKey,
-        body: SlidingUpPanel(
-          panelSnapping: true,
-          backdropEnabled: true,
-          backdropOpacity: 0.8,
-          // Experiment with this
-          // renderPanelSheet: false,
-          parallaxEnabled: true,
-          parallaxOffset: 0.6,
-          // ----
-          minHeight: 0,
-          maxHeight: MediaQuery.of(context).size.height * 0.95,
-          controller: _pc,
-          onPanelClosed: () {
-            playTTS(context, "");
-          },
-          padding:
-              const EdgeInsets.only(top: 20.0, bottom: 0.0, right: 0, left: 0),
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
-          ),
-          panelBuilder: (ScrollController sc) => StreamBuilder(
-              stream: Firestore.instance
-                  .collection("Murals")
-                  .document(found)
-                  .snapshots(),
-              builder: (context, snapshot) {
-                // Do some basic error processing
-                if (!snapshot.hasData) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Text("Can't connect to the internet. Retrying..."),
-                        CircularProgressIndicator(
-                          valueColor:
-                              new AlwaysStoppedAnimation<Color>(Colors.black),
-                        )
-                      ],
-                    ),
-                  );
-                }
-                if (snapshot == null || snapshot.data == null) {
-                  return const Text("Something went seriously wrong! Sorry!");
-                }
-                if (snapshot.hasError) {
-                  return const Text("error!");
-                }
-                return Scaffold(
-                  body: CustomScrollView(
-                    controller: sc,
-                    slivers: <Widget>[
-                      SliverAppBar(
-                        backgroundColor: Colors.white,
-                        expandedHeight: 256.0,
-                        floating: false,
-                        pinned: true,
-                        flexibleSpace: new FlexibleSpaceBar(
-                          centerTitle: true,
-                          title: Text(
-                            testString(snapshot.data, "title"),
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          background: FittedBox(
-                            child: getImage(snapshot.data, "picURL", context),
-                            fit: BoxFit.fitHeight,
-                          ),
-                        ),
-                      ),
-                      SliverToBoxAdapter(
-                        child: Column(children: [
-                          InkWell(
-                            onTap: () {
-                              _pc.animatePanelToPosition(0);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ArtistPage(
-                                      testString(snapshot.data, "author"), _pc),
-                                ),
-                              );
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  testString(snapshot.data, "author"),
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                                IconButton(
-                                  icon:
-                                      Icon(Icons.headset, color: Colors.purple),
-                                  highlightColor: Colors.grey,
-                                  tooltip: "Press to listen to the description",
-                                  onPressed: () {
-                                    //BUG: ON PRESSED THIS IS CLOSING THE PANEL
-                                    playTTS(context,
-                                        testString(snapshot.data, "desc"));
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                          inte(testUndString(snapshot.data, "interview")),
-                          aud(
-                              testUndString(snapshot.data, "audioTour"),
-                              testString(snapshot.data, "title"),
-                              context,
-                              snapshot.data),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              bottom: 15,
-                              right: 15,
-                              left: 15,
-                            ),
-                            child: Text(
-                              testString(snapshot.data, "desc"),
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ),
-                          // Just your average share button. and a tour button that collapses the modal bottom sheet
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.all(30),
-                                child: RaisedButton.icon(
-                                  icon: Icon(Icons.share),
-                                  label: Text("Share"),
-                                  onPressed: () {
-                                    // The message that will be shared. This can be a link, some text or contact or anything really
-                                    Share.share(
-                                        testString(snapshot.data, "title"));
-                                  },
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(30),
-                                child: RaisedButton.icon(
-                                  icon: Icon(Icons.explore),
-                                  label: Text("All Murals"),
-                                  onPressed: () {
-                                    _pc.animatePanelToPosition(0);
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => MuralGallery(_pc),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ]),
-                      )
-                    ],
-                  ),
-                );
-              }),
-          body: Stack(
-            children: <Widget>[
-              //This is the camera
-              cameraPreview(size, controller),
-              theBottomButtonNavigation(),
-            ],
-          ),
+        body:
+            // SlidingUpPanel(
+            //   panelSnapping: true,
+            //   backdropEnabled: true,
+            //   backdropOpacity: 0.8,
+            //   // Experiment with this
+            //   // renderPanelSheet: false,
+            //   parallaxEnabled: true,
+            //   parallaxOffset: 0.6,
+            //   // ----
+            //   minHeight: 0,
+            //   maxHeight: MediaQuery.of(context).size.height * 0.95,
+            //   controller: _pc,
+            //   onPanelClosed: () {
+            //     playTTS(context, "");
+            //   },
+            //   padding:
+            //       const EdgeInsets.only(top: 20.0, bottom: 0.0, right: 0, left: 0),
+            //   borderRadius: BorderRadius.only(
+            //     topLeft: Radius.circular(20.0),
+            //     topRight: Radius.circular(20.0),
+            //   ),
+            //   // panelBuilder: (ScrollController sc) =>
+            //   body:
+            Stack(
+          children: <Widget>[
+            //This is the camera
+            cameraPreview(size, controller),
+            theBottomButtonNavigation(),
+          ],
         ),
       ),
     );
+    //   ),
+    // ),
+    // );
   }
 }

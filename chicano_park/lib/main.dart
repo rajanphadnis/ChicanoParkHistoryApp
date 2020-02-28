@@ -38,6 +38,7 @@ part 'infoPage.dart';
 part 'artist.dart';
 part 'muralGallery.dart';
 part 'credits.dart';
+part 'muralInfo.dart';
 
 
 /*  
@@ -53,8 +54,8 @@ willpopscope no
 "Card" shadowed outline on murals page photos(?)
 Non-whitespace gallery for photos
 
-More clear that you can move timeline
-  - Make it vertical
+-More clear that you can move timeline
+-Make it vertical
 
 
 Audio tour drop down menu

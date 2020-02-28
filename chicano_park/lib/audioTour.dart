@@ -33,8 +33,8 @@ class _AudioPageState extends State<AudioPage> {
 
   @override
   void dispose() async {
-    await audioPlayer.dispose();
     super.dispose();
+    await audioPlayer.dispose();
   }
 
   void pause() async {

@@ -1,15 +1,15 @@
 part of mainlib;
 
 class MuralGallery extends StatefulWidget {
-  final PanelController _pc;
-  MuralGallery(this._pc);
+  // final PanelController _pc;
+  // MuralGallery(this._pc);
   // We want a stateful widget because of all of theredrawing and repainting we are going to be doing. So, we create it (read: start it)
-  _MuralGallery createState() => _MuralGallery(_pc);
+  _MuralGallery createState() => _MuralGallery();
 }
 
 class _MuralGallery extends State<MuralGallery> {
-  final PanelController _pc;
-  _MuralGallery(this._pc);
+  // final PanelController _pc;
+  // _MuralGallery(this._pc);
   int gett = 8;
   String getMuralPic(AsyncSnapshot<QuerySnapshot> snapshot, String arg, index) {
     try {
@@ -58,7 +58,7 @@ class _MuralGallery extends State<MuralGallery> {
                 SliverAppBar(
                   // leading: Icon(Icons.arrow_back_ios),
                   backgroundColor: Colors.black,
-                  expandedHeight: 512.0,
+                  expandedHeight: 256.0,
                   floating: false,
                   pinned: true,
                   flexibleSpace: new FlexibleSpaceBar(
@@ -89,8 +89,14 @@ class _MuralGallery extends State<MuralGallery> {
                           setState(() {
                             found = getMuralName(snapshot, index);
                           });
-                          Navigator.pop(context);
-                          _pc.animatePanelToPosition(1);
+                          // Navigator.pop(context);
+                          // _pc.animatePanelToPosition(1);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MuralPage(found),
+                            ),
+                          );
                         },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,14 +110,14 @@ class _MuralGallery extends State<MuralGallery> {
                               ),
                             ),
                             //This is the title below the murals
-                            Text(
-                              getMuralPic(snapshot, "title", index),
-                              textAlign: TextAlign.center,
-                              style: new TextStyle(
-                                fontSize: 14.0,
-                                color: Colors.black,
-                              ),
-                            ),
+                            // Text(
+                            //   getMuralPic(snapshot, "title", index),
+                            //   textAlign: TextAlign.center,
+                            //   style: new TextStyle(
+                            //     fontSize: 14.0,
+                            //     color: Colors.black,
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
