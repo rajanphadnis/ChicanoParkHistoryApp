@@ -8,6 +8,7 @@ class InfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.black,
         title: Text(historyNum),
       ),
       body: buildTextP(historyCaseNum),
