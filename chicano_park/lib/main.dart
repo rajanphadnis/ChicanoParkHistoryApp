@@ -1,6 +1,7 @@
 // First, you want to import all of the packages. Material is standard.
 library mainlib;
 
+import 'package:animations/animations.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:chicano_park/game/game_controller.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -42,12 +43,12 @@ part 'credits.dart';
 /*  
 TODO
 
-Change back arrow for murals page to a caret going down 
+-Change back arrow for murals page to a caret going down 
 Change animation for clicking on murals to be horizontal (right to left)
 and for going back (left to right)
 willpopscope no
 
-Make swipe gesture for mural gallery down instead of left to right
+-Make swipe gesture for mural gallery down instead of left to right
 
 "Card" shadowed outline on murals page photos(?)
 Non-whitespace gallery for photos

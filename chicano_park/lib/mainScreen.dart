@@ -128,7 +128,6 @@ class _MainPageState extends State<MainPage> {
   }
 
   void runModelThingyTHing(double av, double number) async {
-    final FirebaseAnalytics analytics = FirebaseAnalytics();
     setState(() {
       processing = true;
     });
@@ -354,14 +353,26 @@ class _MainPageState extends State<MainPage> {
                 child: IconButton(
                   icon: Icon(Icons.list, color: Colors.white),
                   onPressed: () {
-                    showHistoryBottomSheet(context);
+                    Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MainHistory(),
+                            ),
+                          );
+                    // showHistoryBottomSheet(context);
                   },
                 ),
               ),
               IconButton(
                 icon: Icon(Icons.explore, color: Colors.black),
                 onPressed: () {
-                  showHistoryBottomSheet(context);
+                  Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MainHistory(),
+                            ),
+                          );
+                  // showHistoryBottomSheet(context);
                 },
               ),
             ],
