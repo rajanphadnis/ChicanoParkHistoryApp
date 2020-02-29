@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_seekbar/flutter_seekbar.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -45,29 +46,29 @@ part 'muralInfo.dart';
 TODO
 
 -Change back arrow for murals page to a caret going down 
-Change animation for clicking on murals to be horizontal (right to left)
-and for going back (left to right)
-willpopscope no
+-Change animation for clicking on murals to be horizontal (right to left)
+-and for going back (left to right)
+-willpopscope no
 
 -Make swipe gesture for mural gallery down instead of left to right
 
-"Card" shadowed outline on murals page photos(?)
-Non-whitespace gallery for photos
+-"Card" shadowed outline on murals page photos(?)
+-Non-whitespace gallery for photos
 
 -More clear that you can move timeline
 -Make it vertical
 
 
-Audio tour drop down menu
+-Audio tour drop down menu
   - Instead of going to a new page, when you click audio tour it drops down a menu with the audio bar slider
 
-when it presents the mural move the image down a little bit.
+-when it presents the mural move the image down a little bit.
 Mural name up at top near back button
-Back button on Murals page
-Circular artist photo next to artist name 
+-Back button on Murals page
+-Circular artist photo next to artist name 
 
-If mural page comes up from button, show an arrow going down (a caret)
-If the mural page comes from the murals tab, show a back button up top
+-If mural page comes up from button, show an arrow going down (a caret)
+-If the mural page comes from the murals tab, show a back button up top
 
 */
 

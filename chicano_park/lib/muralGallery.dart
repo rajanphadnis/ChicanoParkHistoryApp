@@ -1,6 +1,9 @@
 part of mainlib;
 
 class MuralGallery extends StatefulWidget {
+  final ScrollController sc;
+  final PanelController _pc;
+  MuralGallery(this.sc, this._pc);
   // final PanelController _pc;
   // MuralGallery(this._pc);
   // We want a stateful widget because of all of theredrawing and repainting we are going to be doing. So, we create it (read: start it)
@@ -54,6 +57,7 @@ class _MuralGallery extends State<MuralGallery> {
         } else {
           return Scaffold(
             body: new CustomScrollView(
+              controller: widget.sc,
               slivers: <Widget>[
                 SliverAppBar(
                   // leading: Icon(Icons.arrow_back_ios),
@@ -74,56 +78,32 @@ class _MuralGallery extends State<MuralGallery> {
                     ),
                   ),
                 ),
-                // Grid of all the murals
-                SliverGrid(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
-                  delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                    return Container(
-                      padding:
-                          //was 10.0 and 20.0
-                          EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                SliverStaggeredGrid.countBuilder(
+                  crossAxisCount: 2,
+                  staggeredTileBuilder: (_) => StaggeredTile.fit(1),
+                  itemBuilder: (context, index) => new Container(
+                    padding: EdgeInsets.all(5),
+                    child: Card(
                       child: InkWell(
                         onTap: () {
-                          setState(() {
-                            found = getMuralName(snapshot, index);
-                          });
-                          // Navigator.pop(context);
-                          // _pc.animatePanelToPosition(1);
+                          // widget._pc.animatePanelToPosition(0);
+                          found = getMuralName(snapshot, index);
                           Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MuralPage(found),
-                            ),
-                          );
+                              context,
+                              CupertinoPageRoute(
+                                builder: (context) =>
+                                    MuralPage(found, widget._pc),
+                              ));
                         },
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              height: 130,
-                              width: MediaQuery.of(context).size.width / 2,
-                              child: FadeInImage.memoryNetwork(
-                                placeholder: kTransparentImage,
-                                image: getMuralPic(snapshot, "picURL", index),
-                              ),
-                            ),
-                            //This is the title below the murals
-                            // Text(
-                            //   getMuralPic(snapshot, "title", index),
-                            //   textAlign: TextAlign.center,
-                            //   style: new TextStyle(
-                            //     fontSize: 14.0,
-                            //     color: Colors.black,
-                            //   ),
-                            // ),
-                          ],
+                        child: FadeInImage.memoryNetwork(
+                          placeholder: kTransparentImage,
+                          image: getMuralPic(snapshot, "picURL", index),
                         ),
                       ),
-                    );
-                  }, childCount: gett),
-                )
+                    ),
+                  ),
+                  itemCount: gett,
+                ),
               ],
             ),
           );

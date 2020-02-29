@@ -173,7 +173,7 @@ Widget aud(
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
+          CupertinoPageRoute(
             builder: (context) => AudioPage(data, name, pic),
           ),
         );
@@ -188,7 +188,7 @@ Widget aud(
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
+              CupertinoPageRoute(
                 builder: (context) => AudioPage(data, name, pic),
               ),
             );

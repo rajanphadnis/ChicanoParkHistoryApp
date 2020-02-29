@@ -9,7 +9,7 @@ class _MainPageState extends State<MainPage> {
   var confidenceThing;
   static const platform = const MethodChannel('samples.flutter.dev/battery');
   var realData;
-  // PanelController _pc = new PanelController();
+  PanelController _pc = new PanelController();
   FlutterTts flutterTts = FlutterTts();
   // bool talking = false;
   Future<void> go() async {
@@ -35,6 +35,7 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
     );
+    return false;
   }
 
   Future<void> _getBatteryLevel(String path2) async {
@@ -151,8 +152,8 @@ class _MainPageState extends State<MainPage> {
         // _pc.animatePanelToPosition(1);
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => MuralPage(found),
+          CupertinoPageRoute(
+            builder: (context) => MuralPage(found, _pc),
           ),
         );
       } else {
@@ -193,12 +194,13 @@ class _MainPageState extends State<MainPage> {
           //MURAL GALLERY/LIBRARY
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MuralGallery(),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   CupertinoPageRoute(
+              //     builder: (context) => MuralGallery(),
+              //   ),
+              // );
+              _pc.animatePanelToPosition(1);
             },
             child: Stack(
               alignment: Alignment.center,
@@ -209,24 +211,26 @@ class _MainPageState extends State<MainPage> {
                   child: IconButton(
                     icon: Icon(Icons.list, color: Colors.white),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MuralGallery(),
-                        ),
-                      );
+                      _pc.animatePanelToPosition(1);
+                      // Navigator.push(
+                      //   context,
+                      //   CupertinoPageRoute(
+                      //     builder: (context) => MuralGallery(),
+                      //   ),
+                      // );
                     },
                   ),
                 ),
                 IconButton(
                   icon: Icon(Icons.list, color: Colors.black),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MuralGallery(),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   CupertinoPageRoute(
+                    //     builder: (context) => MuralGallery(),
+                    //   ),
+                    // );
+                    _pc.animatePanelToPosition(1);
                   },
                 ),
               ],
@@ -348,7 +352,7 @@ class _MainPageState extends State<MainPage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
+                      CupertinoPageRoute(
                         builder: (context) => MainHistory(),
                       ),
                     );
@@ -361,7 +365,7 @@ class _MainPageState extends State<MainPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
+                    CupertinoPageRoute(
                       builder: (context) => MainHistory(),
                     ),
                   );
@@ -404,36 +408,35 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         key: _scaffoldKey,
-        body:
-            // SlidingUpPanel(
-            //   panelSnapping: true,
-            //   backdropEnabled: true,
-            //   backdropOpacity: 0.8,
-            //   // Experiment with this
-            //   // renderPanelSheet: false,
-            //   parallaxEnabled: true,
-            //   parallaxOffset: 0.6,
-            //   // ----
-            //   minHeight: 0,
-            //   maxHeight: MediaQuery.of(context).size.height * 0.95,
-            //   controller: _pc,
-            //   onPanelClosed: () {
-            //     playTTS(context, "");
-            //   },
-            //   padding:
-            //       const EdgeInsets.only(top: 20.0, bottom: 0.0, right: 0, left: 0),
-            //   borderRadius: BorderRadius.only(
-            //     topLeft: Radius.circular(20.0),
-            //     topRight: Radius.circular(20.0),
-            //   ),
-            //   // panelBuilder: (ScrollController sc) =>
-            //   body:
-            Stack(
-          children: <Widget>[
-            //This is the camera
-            cameraPreview(size, controller),
-            theBottomButtonNavigation(),
-          ],
+        body: SlidingUpPanel(
+          panelSnapping: true,
+          backdropEnabled: true,
+          backdropOpacity: 0.8,
+          // Experiment with this
+          // renderPanelSheet: false,
+          parallaxEnabled: true,
+          parallaxOffset: 0.6,
+          // ----
+          minHeight: 0,
+          maxHeight: MediaQuery.of(context).size.height * 0.95,
+          controller: _pc,
+          // onPanelClosed: () {
+          //   playTTS(context, "");
+          // },
+          // padding:
+          //     const EdgeInsets.only(top: 20.0, bottom: 0.0, right: 0, left: 0),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          ),
+          panelBuilder: (ScrollController sc) => MuralGallery(sc, _pc),
+          body: Stack(
+            children: <Widget>[
+              //This is the camera
+              cameraPreview(size, controller),
+              theBottomButtonNavigation(),
+            ],
+          ),
         ),
       ),
     );

@@ -1,7 +1,7 @@
 # My b. don't change this name thing
 name: chicano_park
 description: Chicano Park Explorer, learn about Chicano Park's murals
-version: 0.9.8+1
+version: 0.9.9+1
 
 environment:
   sdk: ">=2.2.0 <3.0.0"
@@ -33,6 +33,7 @@ dependencies:
   shared_preferences: ^0.5.4+3
   vibration: ^1.2.4
   animations: ^1.0.0+5
+  flutter_staggered_grid_view: ^0.3.0
   flutter_seekbar:
     git: https://github.com/LiuC520/flutter_seekbar.git
 

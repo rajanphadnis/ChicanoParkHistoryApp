@@ -11,7 +11,7 @@ Widget timeline(BuildContext context) {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
+              CupertinoPageRoute(
                 builder: (context) => InfoPage("Part 1: The Takeover", 1),
               ),
             );
@@ -46,7 +46,7 @@ Widget timeline(BuildContext context) {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
+              CupertinoPageRoute(
                 builder: (context) => InfoPage("Part 2: Murals Appeared", 2),
               ),
             );
@@ -81,7 +81,7 @@ Widget timeline(BuildContext context) {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
+              CupertinoPageRoute(
                 builder: (context) => InfoPage("Part 3: Restoration", 3),
               ),
             );
@@ -116,7 +116,7 @@ Widget timeline(BuildContext context) {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
+              CupertinoPageRoute(
                 builder: (context) => InfoPage("Part 4: Present Day", 4),
               ),
             );

@@ -2,8 +2,9 @@ part of mainlib;
 
 class ArtistPage extends StatelessWidget {
   final String author;
+  final PanelController _pc;
   // final PanelController _pc;
-  ArtistPage(this.author);
+  ArtistPage(this.author, this._pc);
   final List<String> itemsTHing = List();
   SliverGrid muralGrid() {
     return SliverGrid(
@@ -170,12 +171,13 @@ class ArtistPage extends StatelessWidget {
                         label: Text("All Murals"),
                         onPressed: () {
                           Navigator.pop(context);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MuralGallery(),
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   CupertinoPageRoute(
+                          //     builder: (context) => MuralGallery(),
+                          //   ),
+                          // );
+                          _pc.animatePanelToPosition(1);
                         },
                       ),
                     ),

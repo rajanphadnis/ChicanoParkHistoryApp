@@ -31,7 +31,7 @@ class Part1 extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
+                    CupertinoPageRoute(
                       builder: (context) => InfoPage("The Takeover", 1),
                     ),
                   );
@@ -69,7 +69,7 @@ class Part2 extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
+                    CupertinoPageRoute(
                       builder: (context) => InfoPage("Murals Appeared", 2),
                     ),
                   );
@@ -107,7 +107,7 @@ class Part3 extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
+                    CupertinoPageRoute(
                       builder: (context) => InfoPage("Restoration", 3),
                     ),
                   );
@@ -145,7 +145,7 @@ class Part4 extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
+                    CupertinoPageRoute(
                       builder: (context) => InfoPage("Current State", 4),
                     ),
                   );
