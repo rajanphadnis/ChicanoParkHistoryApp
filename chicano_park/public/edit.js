@@ -51,7 +51,8 @@ firestore.collection("Murals/").get().then(function (querySnapshot) {
         StringThing = StringThing + '<div class="cardDiv mdc-card"><input disabled class="centerTheThing" value="' + doc.id + '"><p>Title:</p><input class="VT" value="' + doc.data().title +
             '"><!--<a class="expand">Expand</a><div class="collapse"> --></br><p>Picture:</p><input class="VP" value="' + doc.data().picURL +
             '"></br><p>Description:</p><textarea rows="4" class="VD" wrap="soft">' + doc.data().desc +
-            '</textarea></br><p>Author:</p><input class="VA" value="' + doc.data().author + '"></br><p>Interview URL (YouTube link):</p><input class="ArtistInt" value="' + doc.data().interview +
+            '</textarea></br><p>Author:</p><input class="VA" value="' + doc.data().author + '"></br><p>Artist Picture:</p><input class="ArtP" value="' + doc.data().artistPic +
+            '"></br><p>Interview URL (YouTube link):</p><input class="ArtistInt" value="' + doc.data().interview +
             '"></br><p>Audio Tour:</p><input class="AudTour" value="' + doc.data().audioTour +
             '"></br><p>Audio Description:</p><textarea rows="4" class="AudDesc" wrap="soft">' + doc.data().audioDesc +
             '</textarea></br><p>Viewcount:</p><input disabled class="views" value="' + doc.data().views + '"></br><p>Average Confidence:</p><input disabled class="avg" value="' + doc.data().avg + '"><!--</div>--></div>';
@@ -152,6 +153,7 @@ function updateV(lengthOfV) {
                 picURL: document.getElementsByClassName("VP")[i].value,
                 desc: document.getElementsByClassName("VD")[i].value,
                 author: document.getElementsByClassName("VA")[i].value,
+                artistPic: document.getElementsByClassName("ArtP")[i].value,
                 interview: document.getElementsByClassName("ArtistInt")[i].value,
                 audioTour: document.getElementsByClassName("AudTour")[i].value,
                 audioDesc: document.getElementsByClassName("AudDesc")[i].value,

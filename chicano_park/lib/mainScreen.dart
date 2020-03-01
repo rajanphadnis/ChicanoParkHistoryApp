@@ -138,10 +138,11 @@ class _MainPageState extends State<MainPage> {
         final DocumentReference postRef =
             Firestore.instance.collection("Murals").document(found);
         try {
-          postRef.setData({
+          (postRef == null || postRef == "undefined")? DoNothingAction() : 
+          postRef.updateData({
             'views': FieldValue.increment(1),
             'avg': (((av * number) + confidence) / (1 + number))
-          }, merge: true);
+          });
         } catch (e) {
           debugPrint("error analytics");
         }
@@ -239,63 +240,14 @@ class _MainPageState extends State<MainPage> {
           //The middle button that runs the model
           //There are two circle avatars because then the user can touch any part of the button
           StreamBuilder(
-              stream: Firestore.instance
-                  .collection("Murals")
-                  .document(found)
-                  .snapshots(),
-              builder: (context, snapshot) {
-                // Do some basic error processing
-                if (!snapshot.hasData) {
-                  return Padding(
-                    padding: EdgeInsets.only(bottom: 40.0),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: <Widget>[
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 38.0,
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.add_circle,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              runModelThingyTHing(
-                                  0.0, testDouble(snapshot.data, "views"));
-                            },
-                          ),
-                        ),
-                        CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          radius: 33.0,
-                          child: IconButton(
-                            icon: processing
-                                ? CircularProgressIndicator(
-                                    valueColor:
-                                        new AlwaysStoppedAnimation<Color>(
-                                            Colors.white),
-                                  )
-                                : Icon(
-                                    Icons.camera_alt,
-                                    size: 28.0,
-                                    color: Colors.grey,
-                                  ),
-                            onPressed: () {
-                              runModelThingyTHing(
-                                  0.0, testDouble(snapshot.data, "views"));
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-                if (snapshot == null || snapshot.data == null) {
-                  return const Text("Something went seriously wrong! Sorry!");
-                }
-                if (snapshot.hasError) {
-                  return const Text("error!");
-                }
+            stream: Firestore.instance
+                .collection("Murals")
+                .document(found)
+                .snapshots(),
+            builder: (context, snapshot) {
+              // if (snapshot.connectionState == ConnectionState.done) {
+              // Do some basic error processing
+              if (!snapshot.hasData) {
                 return Padding(
                   padding: EdgeInsets.only(bottom: 40.0),
                   child: Stack(
@@ -311,8 +263,7 @@ class _MainPageState extends State<MainPage> {
                           ),
                           onPressed: () {
                             runModelThingyTHing(
-                                testDouble(snapshot.data, "avg"),
-                                testDouble(snapshot.data, "views"));
+                                0.0, testDouble(snapshot.data, "views"));
                           },
                         ),
                       ),
@@ -332,15 +283,81 @@ class _MainPageState extends State<MainPage> {
                                 ),
                           onPressed: () {
                             runModelThingyTHing(
-                                testDouble(snapshot.data, "avg"),
-                                testDouble(snapshot.data, "views"));
+                                0.0, testDouble(snapshot.data, "views"));
                           },
                         ),
                       ),
                     ],
                   ),
                 );
-              }),
+              }
+              if (snapshot == null || snapshot.data == null) {
+                return const Text("Something went seriously wrong! Sorry!");
+              }
+              if (snapshot.hasError) {
+                return const Text("error!");
+              }
+              return Padding(
+                padding: EdgeInsets.only(bottom: 40.0),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 38.0,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.add_circle,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          runModelThingyTHing(testDouble(snapshot.data, "avg"),
+                              testDouble(snapshot.data, "views"));
+                        },
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.grey,
+                      radius: 33.0,
+                      child: IconButton(
+                        icon: processing
+                            ? CircularProgressIndicator(
+                                valueColor: new AlwaysStoppedAnimation<Color>(
+                                    Colors.white),
+                              )
+                            : Icon(
+                                Icons.camera_alt,
+                                size: 28.0,
+                                color: Colors.grey,
+                              ),
+                        onPressed: () {
+                          runModelThingyTHing(testDouble(snapshot.data, "avg"),
+                              testDouble(snapshot.data, "views"));
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              );
+              // } else {
+              //   return Container(
+              //     width: MediaQuery.of(context).size.width,
+              //     height: MediaQuery.of(context).size.height,
+              //     child: Column(
+              //       mainAxisAlignment: MainAxisAlignment.center,
+              //       crossAxisAlignment: CrossAxisAlignment.center,
+              //       children: <Widget>[
+              //         Text("Loading..."),
+              //         CircularProgressIndicator(
+              //           valueColor:
+              //               new AlwaysStoppedAnimation<Color>(Colors.black),
+              //         )
+              //       ],
+              //     ),
+              //   );
+              // }
+            },
+          ),
           Stack(
             alignment: Alignment.center,
             children: <Widget>[

@@ -152,7 +152,7 @@ Widget inte(String data) {
           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
         Text("Watch Interview"),
         IconButton(
-          icon: Icon(Icons.ondemand_video, color: Colors.black),
+          icon: Icon(Icons.ondemand_video, color: Colors.redAccent),
           highlightColor: Colors.grey,
           tooltip: "",
           onPressed: () {
@@ -223,12 +223,12 @@ Widget buildPara(String text) {
 
 Widget buildTextP(int number) {
   return StreamBuilder(
-      stream: Firestore.instance
-          .collection("History")
-          .document(number.toString())
-          .snapshots(),
-      builder: (context, snapshot) {
-        debugPrint("doin stuff");
+    stream: Firestore.instance
+        .collection("History")
+        .document(number.toString())
+        .snapshots(),
+    builder: (context, snapshot) {
+      // if (snapshot.connectionState == ConnectionState.done) {
         // Do some basic error processing
         if (!snapshot.hasData) {
           return Container(
@@ -255,5 +255,22 @@ Widget buildTextP(int number) {
         return buildPara(
           testString(snapshot.data, "para"),
         );
-      });
+      // } else {
+      //   return Container(
+      //     width: MediaQuery.of(context).size.width,
+      //     height: MediaQuery.of(context).size.height,
+      //     child: Column(
+      //       mainAxisAlignment: MainAxisAlignment.center,
+      //       crossAxisAlignment: CrossAxisAlignment.center,
+      //       children: <Widget>[
+      //         Text("Loading..."),
+      //         CircularProgressIndicator(
+      //           valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
+      //         )
+      //       ],
+      //     ),
+      //   );
+      // }
+    },
+  );
 }

@@ -7,7 +7,43 @@ class MainHistory extends StatefulWidget {
   }
 }
 
+// class Part1R extends StatefulWidget {
+//   final int pompousAss;
+//   Part1R(this.pompousAss);
+//   @override
+//   _Part1State createState() {
+//     return _Part1State();
+//   }
+// }
+
+// class _Part1State extends State<Part1R> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//         children: <Widget>[
+//           Container(
+//             child: IconButton(
+//                 icon: Icon(Icons.keyboard_arrow_up, color: Colors.white),
+//                 onPressed: () {}),
+//           ),
+//           Part1(),
+//           Container(
+//             child: IconButton(
+//                 icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
+//                 onPressed: () {
+//                   setState(() {
+//                     // widget.pompousAss = 2;
+//                   });
+//                 }),
+//           ),
+//         ]);
+//   }
+// }
+
 class Part1 extends StatelessWidget {
+  final double bigPP;
+  Part1(this.bigPP);
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -16,30 +52,46 @@ class Part1 extends StatelessWidget {
         padding: EdgeInsets.only(right: 70),
         // width: 200,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text("1800s - 1972:", style: TextStyle(fontSize: 25)),
-            Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: Text("The Takeover", style: TextStyle(fontSize: 20)),
+            Container(
+              padding: EdgeInsets.all(20),
+              child: IconButton(
+                  icon: Icon(Icons.keyboard_arrow_up,
+                      color: Colors.white, size: bigPP),
+                  onPressed: () {}),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: MaterialButton(
-                child: Text(
-                  "Learn More",
-                  style: TextStyle(color: Colors.lightBlue),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => InfoPage("The Takeover", 1),
-                    ),
-                  );
-                },
+            Column(children: <Widget>[
+              Text("1800s - 1972:", style: TextStyle(fontSize: 25)),
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: Text("The Takeover", style: TextStyle(fontSize: 20)),
               ),
+              Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: MaterialButton(
+                  child: Text(
+                    "Learn More",
+                    style: TextStyle(color: Colors.lightBlue),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => InfoPage("The Takeover", 1),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ]),
+            Container(
+              padding: EdgeInsets.all(20),
+              child: IconButton(
+                  icon: Icon(Icons.keyboard_arrow_down,
+                      color: Colors.grey, size: bigPP),
+                  onPressed: () {}),
             ),
           ],
         ),
@@ -49,6 +101,8 @@ class Part1 extends StatelessWidget {
 }
 
 class Part2 extends StatelessWidget {
+  final double bigPP;
+  Part2(this.bigPP);
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -57,33 +111,52 @@ class Part2 extends StatelessWidget {
         padding: EdgeInsets.only(right: 70),
         // width: 200,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text("1960 - 1983:", style: TextStyle(fontSize: 25)),
-            Padding(
-              padding: EdgeInsets.only(
-                top: 10,
-                right: 0,
-              ),
-              child: Text("Murals Appeared", style: TextStyle(fontSize: 20)),
+            Container(
+              padding: EdgeInsets.all(20),
+              child: IconButton(
+                  icon: Icon(Icons.keyboard_arrow_up,
+                      color: Colors.grey, size: bigPP),
+                  onPressed: () {}),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: MaterialButton(
-                child: Text(
-                  "Learn More",
-                  style: TextStyle(color: Colors.lightBlue),
+            Column(
+              children: <Widget>[
+                Text("1960 - 1983:", style: TextStyle(fontSize: 25)),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 10,
+                    right: 0,
+                  ),
+                  child:
+                      Text("Murals Appeared", style: TextStyle(fontSize: 20)),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => InfoPage("Murals Appeared", 2),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: MaterialButton(
+                    child: Text(
+                      "Learn More",
+                      style: TextStyle(color: Colors.lightBlue),
                     ),
-                  );
-                },
-              ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => InfoPage("Murals Appeared", 2),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              child: IconButton(
+                  icon: Icon(Icons.keyboard_arrow_down,
+                      color: Colors.grey, size: bigPP),
+                  onPressed: () {}),
             ),
           ],
         ),
@@ -93,6 +166,8 @@ class Part2 extends StatelessWidget {
 }
 
 class Part3 extends StatelessWidget {
+  final double bigPP;
+  Part3(this.bigPP);
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -101,30 +176,48 @@ class Part3 extends StatelessWidget {
         padding: EdgeInsets.only(right: 70),
         // width: 200,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text("1986 - Present:", style: TextStyle(fontSize: 25)),
-            Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: Text("Restoration", style: TextStyle(fontSize: 20)),
+            Container(
+              padding: EdgeInsets.all(20),
+              child: IconButton(
+                  icon: Icon(Icons.keyboard_arrow_up,
+                      color: Colors.grey, size: bigPP),
+                  onPressed: () {}),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: MaterialButton(
-                child: Text(
-                  "Learn More",
-                  style: TextStyle(color: Colors.lightBlue),
+            Column(
+              children: <Widget>[
+                Text("1986 - Present:", style: TextStyle(fontSize: 25)),
+                Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Text("Restoration", style: TextStyle(fontSize: 20)),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => InfoPage("Restoration", 3),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: MaterialButton(
+                    child: Text(
+                      "Learn More",
+                      style: TextStyle(color: Colors.lightBlue),
                     ),
-                  );
-                },
-              ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => InfoPage("Restoration", 3),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              child: IconButton(
+                  icon: Icon(Icons.keyboard_arrow_down,
+                      color: Colors.grey, size: bigPP),
+                  onPressed: () {}),
             ),
           ],
         ),
@@ -134,6 +227,8 @@ class Part3 extends StatelessWidget {
 }
 
 class Part4 extends StatelessWidget {
+  final double bigPP;
+  Part4(this.bigPP);
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -142,30 +237,48 @@ class Part4 extends StatelessWidget {
         padding: EdgeInsets.only(right: 70),
         // width: 200,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text("Present Day:", style: TextStyle(fontSize: 25)),
-            Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: Text("Current State", style: TextStyle(fontSize: 20)),
+            Container(
+              padding: EdgeInsets.all(20),
+              child: IconButton(
+                  icon: Icon(Icons.keyboard_arrow_up,
+                      color: Colors.grey, size: bigPP),
+                  onPressed: () {}),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: MaterialButton(
-                child: Text(
-                  "Learn More",
-                  style: TextStyle(color: Colors.lightBlue),
+            Column(
+              children: <Widget>[
+                Text("Present Day:", style: TextStyle(fontSize: 25)),
+                Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Text("Current State", style: TextStyle(fontSize: 20)),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => InfoPage("Current State", 4),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: MaterialButton(
+                    child: Text(
+                      "Learn More",
+                      style: TextStyle(color: Colors.lightBlue),
                     ),
-                  );
-                },
-              ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => InfoPage("Current State", 4),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              child: IconButton(
+                  icon: Icon(Icons.keyboard_arrow_down,
+                      color: Colors.white, size: bigPP),
+                  onPressed: () {}),
             ),
           ],
         ),
@@ -185,6 +298,7 @@ class _MainHistoryState extends State<MainHistory>
   Color two = Colors.purple;
   Color three = Colors.purple;
   Color four = Colors.purple;
+  double bigPP = 40.0;
 
   void setColor(int index) {
     if (index == 1) {
@@ -237,6 +351,7 @@ class _MainHistoryState extends State<MainHistory>
                   .document("index")
                   .snapshots(),
               builder: (context, snapshot) {
+                // if (snapshot.connectionState == ConnectionState.done) {
                 // Do some basic error processing
                 if (!snapshot.hasData) {
                   return Container(
@@ -444,7 +559,7 @@ class _MainHistoryState extends State<MainHistory>
                             GestureDetector(
                               onLongPress: () async {
                                 if (await Vibration.hasVibrator()) {
-                                  Vibration.vibrate(duration: 50);
+                                  Vibration.vibrate(duration: 25);
                                   // if (await Vibration.hasAmplitudeControl()) {
                                   //   Vibration.vibrate(amplitude: 128);
                                   // }
@@ -581,12 +696,14 @@ class _MainHistoryState extends State<MainHistory>
                               );
                             },
                             child: pompousAss == 1
-                                ? Part1()
+                                ? Part1(bigPP)
                                 : (pompousAss == 2
-                                    ? Part2()
+                                    ? Part2(bigPP)
                                     : (pompousAss == 3
-                                        ? Part3()
-                                        : pompousAss == 4 ? Part4() : Part1())),
+                                        ? Part3(bigPP)
+                                        : pompousAss == 4
+                                            ? Part4(bigPP)
+                                            : Part1(bigPP))),
                           ),
                         ),
                       ),

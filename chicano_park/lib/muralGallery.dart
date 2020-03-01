@@ -52,78 +52,92 @@ class _MuralGallery extends State<MuralGallery> {
       // now add firebase integration. "subscribe" to the data from the firestore database
       stream: Firestore.instance.collection("Murals").snapshots(),
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (!snapshot.hasData) {
-          return Text("error");
-        } else {
-          return Scaffold(
-            body: new CustomScrollView(
-              physics: BouncingScrollPhysics(),
-              controller: widget.sc,
-              slivers: <Widget>[
-                SliverAppBar(
-                  // leading: Icon(Icons.arrow_back_ios),
-                  backgroundColor: Colors.black,
-                  // expandedHeight: 256.0,
-                  floating: false,
-                  pinned: true,
-                  flexibleSpace: new FlexibleSpaceBar(
-                    centerTitle: true,
-                    title: Text("Murals"),
-                    // background: FittedBox(
-                    //   fit: BoxFit.fitHeight,
-                    //   child: FadeInImage.memoryNetwork(
-                    //     placeholder: kTransparentImage,
-                    //     image:
-                    //         "https://www.kcet.org/sites/kl/files/atoms/article_atoms/www.kcet.org/socal/departures/landofsunshine/assets_c/2012/11/poetswall-thumb-630x450-39917.jpg",
-                    //   ),
-                    // ),
+        // if (snapshot.connectionState == ConnectionState.done) {
+          if (!snapshot.hasData) {
+            return Text("error");
+          } else {
+            return Scaffold(
+              body: new CustomScrollView(
+                physics: BouncingScrollPhysics(),
+                controller: widget.sc,
+                slivers: <Widget>[
+                  SliverAppBar(
+                    leading: IconButton(
+                        icon: Icon(Icons.keyboard_arrow_down,
+                            color: Colors.white),
+                        onPressed: () {
+                          widget._pc.animatePanelToPosition(0);
+                        }),
+                    backgroundColor: Colors.black,
+                    // expandedHeight: 256.0,
+                    floating: false,
+                    pinned: true,
+                    flexibleSpace: new FlexibleSpaceBar(
+                      centerTitle: true,
+                      title: Text("Murals"),
+                    ),
                   ),
-                ),
-                SliverStaggeredGrid.countBuilder(
-                  crossAxisCount: 2,
-                  staggeredTileBuilder: (_) => StaggeredTile.fit(1),
-                  itemBuilder: (context, index) => new Container(
-                    // padding: EdgeInsets.all(5),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      elevation: 8.0,
-                      borderOnForeground: true,
-                      margin: EdgeInsets.all(10),
-                      child: InkWell(
-                        customBorder: RoundedRectangleBorder(
+                  SliverStaggeredGrid.countBuilder(
+                    crossAxisCount: 2,
+                    staggeredTileBuilder: (_) => StaggeredTile.fit(1),
+                    itemBuilder: (context, index) => new Container(
+                      // padding: EdgeInsets.all(5),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0),
                         ),
-                        onTap: () {
-                          // widget._pc.animatePanelToPosition(0);
-                          found = getMuralName(snapshot, index);
-                          Navigator.push(
-                              context,
-                              CupertinoPageRoute(
-                                builder: (context) =>
-                                    MuralPage(found, widget._pc),
-                              ));
-                        },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.network(
-                            getMuralPic(snapshot, "picURL", index),
+                        elevation: 8.0,
+                        borderOnForeground: true,
+                        margin: EdgeInsets.all(10),
+                        child: InkWell(
+                          customBorder: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
                           ),
-                          // FadeInImage.memoryNetwork(
-                          //   placeholder: kTransparentImage,
-                          //   image: getMuralPic(snapshot, "picURL", index),
-                          // ),
+                          onTap: () {
+                            // widget._pc.animatePanelToPosition(0);
+                            found = getMuralName(snapshot, index);
+                            Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (context) =>
+                                      MuralPage(found, widget._pc),
+                                ));
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5.0),
+                            child: Image.network(
+                              getMuralPic(snapshot, "picURL", index),
+                            ),
+                            // FadeInImage.memoryNetwork(
+                            //   placeholder: kTransparentImage,
+                            //   image: getMuralPic(snapshot, "picURL", index),
+                            // ),
+                          ),
                         ),
                       ),
                     ),
+                    itemCount: gett,
                   ),
-                  itemCount: gett,
-                ),
-              ],
-            ),
-          );
-        }
+                ],
+              ),
+            );
+          }
+        // } else {
+        //   return Container(
+        //     width: MediaQuery.of(context).size.width,
+        //     height: MediaQuery.of(context).size.height,
+        //     child: Column(
+        //       mainAxisAlignment: MainAxisAlignment.center,
+        //       crossAxisAlignment: CrossAxisAlignment.center,
+        //       children: <Widget>[
+        //         Text("Loading..."),
+        //         CircularProgressIndicator(
+        //           valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
+        //         )
+        //       ],
+        //     ),
+        //   );
+        // }
       },
     );
   }

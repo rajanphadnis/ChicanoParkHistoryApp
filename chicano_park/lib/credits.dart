@@ -7,7 +7,8 @@ class CreditsPage extends StatefulWidget {
   }
 }
 
-class _CreditsPageState extends State<CreditsPage> {
+class _CreditsPageState extends State<CreditsPage>
+    with TickerProviderStateMixin {
   bool _slideVisible = false;
   bool _fadeVisible = false;
   bool _fade2Visible = false;
@@ -19,9 +20,7 @@ class _CreditsPageState extends State<CreditsPage> {
     });
   }
 
-  List<String> listData = [
-    // "Built with Pride by:"
-  ];
+  List<String> listData = [];
   List<String> names = [
     "Rajan Phadnis",
     "Evan Mickelson",
@@ -88,6 +87,10 @@ class _CreditsPageState extends State<CreditsPage> {
                                     Future.delayed(
                                         const Duration(milliseconds: 1000), () {
                                       addUser();
+                                      // });
+                                      //   for (var i in names) {
+
+                                      // }
                                     });
                                   });
                                 });
@@ -111,12 +114,6 @@ class _CreditsPageState extends State<CreditsPage> {
   void initState() {
     super.initState();
     animateTHing();
-    // _list = ListModel<int>(
-    //   listKey: _listKey,
-    //   initialItems: <int>[0, 1, 2],
-    //   removedItemBuilder: _buildRemovedItem,
-    // );
-    // _nextItem = 3;
   }
 
   @override
@@ -190,34 +187,6 @@ class _CreditsPageState extends State<CreditsPage> {
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
-                        // child: RichText(
-                        //   text: TextSpan(children: <TextSpan>[
-                        //     TextSpan(
-                        //       text: 'Presented by ',
-                        //       style:
-                        //           TextStyle(fontSize: 18, color: Colors.black),
-                        //     ),
-                        //     TextSpan(
-                        //       text: 'Pacific Ridge School',
-                        //       style: TextStyle(
-                        //           fontSize: 20,
-                        //           color: Colors.blue[300],
-                        //           fontWeight: FontWeight.bold),
-                        //     ),
-                        //     TextSpan(
-                        //       text: ' and ',
-                        //       style:
-                        //           TextStyle(fontSize: 18, color: Colors.black),
-                        //     ),
-                        //     TextSpan(
-                        //       text: 'Chicano Park',
-                        //       style: TextStyle(
-                        //           fontSize: 20,
-                        //           color: Colors.blue[300],
-                        //           fontWeight: FontWeight.bold),
-                        //     ),
-                        //   ]),
-                        // ),
                       ),
                     ),
                   ),
@@ -227,9 +196,10 @@ class _CreditsPageState extends State<CreditsPage> {
                   GestureDetector(
                     onLongPress: () async {
                       if (await Vibration.hasVibrator()) {
-                        if (await Vibration.hasAmplitudeControl()) {
-                          Vibration.vibrate(amplitude: 128);
-                        }
+                        Vibration.vibrate(duration: 100);
+                        // if (await Vibration.hasAmplitudeControl()) {
+                        //   Vibration.vibrate(amplitude: 128);
+                        // }
                       }
                       Util flameUtil = Util();
                       await flameUtil.fullScreen();
@@ -313,9 +283,12 @@ class _CreditsPageState extends State<CreditsPage> {
             opacity: _fade2Visible ? 1.0 : 0.0,
             duration: Duration(milliseconds: 1000),
             child: Padding(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(15),
               child: Center(
-                child: Text("Built with pride by:"),
+                child: Text(
+                  "Built with pride by:",
+                  style: TextStyle(fontSize: 18),
+                ),
               ),
             ),
           ),
@@ -328,15 +301,17 @@ class _CreditsPageState extends State<CreditsPage> {
                 child: AnimatedList(
                   physics: BouncingScrollPhysics(),
                   key: _listKey,
-                  initialItemCount:
-                      (listData.length == null || listData.length == 0)
-                          ? 1
-                          : listData.length,
+                  initialItemCount: listData.length,
                   itemBuilder: (context, int i, Animation<double> doub) {
-                    return ListTile(
-                      subtitle: Text(titles[i].toString()),
-                      title: Text(names[i].toString()),
-                    );
+                    return SlideTransition(
+                        position: doub.drive(Tween<Offset>(
+                          begin: const Offset(15, 0.0),
+                          end: Offset.zero,
+                        )),
+                        child: ListTile(
+                          subtitle: Text(titles[i].toString()),
+                          title: Text(names[i].toString()),
+                        ));
                   },
                 ),
               ),

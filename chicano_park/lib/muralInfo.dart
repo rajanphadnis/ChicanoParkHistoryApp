@@ -105,11 +105,12 @@ class _MuralPageState extends State<MuralPage>
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-          stream: Firestore.instance
-              .collection("Murals")
-              .document(widget.found)
-              .snapshots(),
-          builder: (context, snapshot) {
+        stream: Firestore.instance
+            .collection("Murals")
+            .document(widget.found)
+            .snapshots(),
+        builder: (context, snapshot) {
+          // if (snapshot.connectionState == ConnectionState.done) {
             // Do some basic error processing
             if (!snapshot.hasData) {
               return Container(
@@ -141,10 +142,11 @@ class _MuralPageState extends State<MuralPage>
                 // controller: sc,
                 slivers: <Widget>[
                   SliverAppBar(
-                    // title: Text(
-                    //     testString(snapshot.data, "title"),
-                    //     style: TextStyle(color: Colors.white),
-                    //   ),
+                    centerTitle: true,
+                    title: Text(
+                        testString(snapshot.data, "title"),
+                        style: TextStyle(color: Colors.white),
+                      ),
                     // textTheme: TextTheme(: TextStyle(color: Colors.white)),
                     backgroundColor: Colors.black,
                     expandedHeight: 256.0,
@@ -152,14 +154,14 @@ class _MuralPageState extends State<MuralPage>
                     pinned: true,
                     flexibleSpace: new FlexibleSpaceBar(
                       // top = constraints.biggest.height;
-                      centerTitle: true,
-                      title: Text(
-                        testString(snapshot.data, "title"),
-                        style: TextStyle(color: Colors.white),
-                      ),
+                      // centerTitle: true,
+                      // title: Text(
+                      //   testString(snapshot.data, "title"),
+                      //   style: TextStyle(color: Colors.white),
+                      // ),
                       background: FittedBox(
                         child: getImage(snapshot.data, "picURL", context),
-                        fit: BoxFit.fitHeight,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -202,14 +204,14 @@ class _MuralPageState extends State<MuralPage>
                                       ),
                                       shape: BoxShape.circle,
                                       image: new DecorationImage(
-                                        fit: BoxFit.fill,
+                                        fit: BoxFit.cover,
                                         image: NetworkImage((testUndString(
                                                         snapshot.data,
                                                         "artistPic") ==
                                                     "undefined"
                                                 ? "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg"
                                                 : testUndString(
-                                                    snapshot.data, "picURL"))
+                                                    snapshot.data, "artistPic"))
                                             // "https://programmingii-367d0.web.app/profile.jpg"
                                             ),
                                       ),
@@ -438,8 +440,24 @@ class _MuralPageState extends State<MuralPage>
                 ],
               ),
             );
-          }),
-      // ),
+          // } else {
+          //   return Container(
+          //     width: MediaQuery.of(context).size.width,
+          //     height: MediaQuery.of(context).size.height,
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       crossAxisAlignment: CrossAxisAlignment.center,
+          //       children: <Widget>[
+          //         Text("Loading..."),
+          //         CircularProgressIndicator(
+          //           valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
+          //         )
+          //       ],
+          //     ),
+          //   );
+          // }
+        },
+      ),
     );
   }
 }
