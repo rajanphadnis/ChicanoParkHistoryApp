@@ -8,7 +8,8 @@ class MuralPage extends StatefulWidget {
   _MuralPageState createState() => _MuralPageState();
 }
 
-class _MuralPageState extends State<MuralPage> {
+class _MuralPageState extends State<MuralPage>
+    with SingleTickerProviderStateMixin {
   bool talking = false;
   FlutterTts flutterTts = FlutterTts();
   AudioPlayer audioPlayer = AudioPlayer();
@@ -19,6 +20,9 @@ class _MuralPageState extends State<MuralPage> {
   bool expanded = false;
   bool go = false;
   ScrollController sc;
+  AnimationController _animationController;
+  Animation _animation;
+  int fadeAnimDur = 1000;
   var top;
   void playTTS(BuildContext context, String talk) {
     if (talking == false && talk != "") {
@@ -28,6 +32,16 @@ class _MuralPageState extends State<MuralPage> {
       flutterTts.stop();
       talking = false;
     }
+  }
+
+  @override
+  void initState() {
+    _animationController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: fadeAnimDur));
+    _animation = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_animationController);
   }
 
   void play() async {
@@ -48,6 +62,7 @@ class _MuralPageState extends State<MuralPage> {
 
   @override
   void dispose() async {
+    _animationController.dispose();
     super.dispose();
     await audioPlayer.dispose();
   }
@@ -64,6 +79,26 @@ class _MuralPageState extends State<MuralPage> {
       playing = false;
     });
     await audioPlayer.stop();
+  }
+
+  void closeAndPause() async {
+    _animationController.reverse();
+    pause();
+    await Future.delayed(Duration(milliseconds: fadeAnimDur), () {
+      setState(() {
+        expanded = !expanded;
+      });
+    });
+    // OR, uncomment the lines below
+    // setState(() {
+    //     expanded = !expanded;
+    //   });
+  }
+
+  void openThing(AsyncSnapshot<dynamic> snapshot) {
+    _animationController.forward();
+    url = testUndString(snapshot.data, "audioTour");
+    expanded = !expanded;
   }
 
   @override
@@ -102,6 +137,7 @@ class _MuralPageState extends State<MuralPage> {
 
             return Scaffold(
               body: CustomScrollView(
+                physics: BouncingScrollPhysics(),
                 // controller: sc,
                 slivers: <Widget>[
                   SliverAppBar(
@@ -126,52 +162,7 @@ class _MuralPageState extends State<MuralPage> {
                         fit: BoxFit.fitHeight,
                       ),
                     ),
-                    // onStretchTrigger: () {
-                    //   sc.addListener(() {
-
-                    //   });
-                    // },
                   ),
-                  // SliverAppBar(
-                  //   // title: Text(
-                  //   //     testString(snapshot.data, "title"),
-                  //   //     style: TextStyle(color: Colors.white),
-                  //   //   ),
-                  //   // textTheme: TextTheme(: TextStyle(color: Colors.white)),
-                  //   backgroundColor: Colors.black,
-                  //   expandedHeight: 256.0,
-                  //   floating: false,
-                  //   pinned: true,
-                  //   flexibleSpace: new FlexibleSpaceBar(
-                  //     // top = constraints.biggest.height;
-
-                  //     centerTitle: true,
-                  //     title: Text(
-                  //       testString(snapshot.data, "title"),
-                  //       style: TextStyle(color: Colors.white),
-                  //     ),
-                  //     background: FittedBox(
-                  //       child: getImage(snapshot.data, "picURL", context),
-                  //       fit: BoxFit.fitHeight,
-                  //     ),
-                  //   ),
-                  //   // onStretchTrigger: () {
-                  //   //   sc.addListener(() {
-
-                  //   //   });
-                  //   // },
-                  // ),
-                  // SliverToBoxAdapter(
-                  //   child: IconButton(
-                  //     icon: Icon(Icons.headset, color: Colors.purple),
-                  //     highlightColor: Colors.grey,
-                  //     tooltip: "Press to listen to the description",
-                  //     onPressed: () {
-                  //       //BUG: ON PRESSED THIS IS CLOSING THE PANEL
-                  //       playTTS(context, testString(snapshot.data, "desc"));
-                  //     },
-                  //   ),
-                  // ),
                   SliverToBoxAdapter(
                     child: Column(
                       children: [
@@ -248,55 +239,35 @@ class _MuralPageState extends State<MuralPage> {
                                         ? Container()
                                         : InkWell(
                                             onTap: () {
-                                              // Navigator.push(
-                                              //   context,
-                                              //   CupertinoPageRoute(
-                                              //     builder: (context) =>
-                                              //         AudioPage(data, name, pic),
-                                              //   ),
-                                              // );
-                                              setState(() {
-                                                url = testUndString(
-                                                    snapshot.data, "audioTour");
-                                                expanded = !expanded;
-                                                go = !go;
+                                              setState(() async {
+                                                expanded
+                                                    ? closeAndPause()
+                                                    : openThing(snapshot);
                                               });
                                             },
                                             child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: <Widget>[
-                                                  Text("Audio Tour"),
-                                                  IconButton(
-                                                    icon: expanded
-                                                        ? Icon(
-                                                            Icons.arrow_drop_up)
-                                                        : Icon(Icons
-                                                            .arrow_drop_down),
-                                                    // Icon(Icons.play_circle_outline,
-                                                    //     color: Colors.black),
-                                                    highlightColor: Colors.grey,
-                                                    tooltip: "",
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        expanded ? pause() : DoNothingAction();
-                                                        url = testUndString(
-                                                            snapshot.data,
-                                                            "audioTour");
-                                                        expanded = !expanded;
-                                                        go = !go;
-                                                        
-                                                      });
-                                                      // Navigator.push(
-                                                      //   context,
-                                                      //   CupertinoPageRoute(
-                                                      //     builder: (context) =>
-                                                      //         AudioPage(data, name, pic),
-                                                      //   ),
-                                                      // );
-                                                    },
-                                                  ),
-                                                ]),
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Text("Audio Tour"),
+                                                IconButton(
+                                                  icon: expanded
+                                                      ? Icon(
+                                                          Icons.arrow_drop_up)
+                                                      : Icon(Icons
+                                                          .arrow_drop_down),
+                                                  highlightColor: Colors.grey,
+                                                  tooltip: "",
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      expanded
+                                                          ? closeAndPause()
+                                                          : openThing(snapshot);
+                                                    });
+                                                  },
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                     inte(testUndString(
                                         snapshot.data, "interview")),
@@ -307,13 +278,18 @@ class _MuralPageState extends State<MuralPage> {
                           ),
                         ),
                         expanded
-                            ? AnimatedOpacity(
-                                // If the widget is visible, animate to 0.0 (invisible).
-                                // If the widget is hidden, animate to 1.0 (fully visible).
-                                opacity: go ? 1.0 : 0.0,
-                                duration: Duration(milliseconds: 1000),
-                                // The green box must be a child of the AnimatedOpacity widget.
-                                child: Container(
+                            ? FadeTransition(
+                                opacity: _animation,
+                                child:
+                                    // )
+                                    // AnimatedOpacity(
+                                    //     // If the widget is visible, animate to 0.0 (invisible).
+                                    //     // If the widget is hidden, animate to 1.0 (fully visible).
+                                    //     opacity: go ? 1.0 : 0.0,
+                                    //     duration: Duration(milliseconds: 1000),
+                                    //     // The green box must be a child of the AnimatedOpacity widget.
+                                    //     child:
+                                    Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.75,
                                   child: Column(
@@ -404,7 +380,8 @@ class _MuralPageState extends State<MuralPage> {
                                       )
                                     ],
                                   ),
-                                ))
+                                ),
+                              )
                             : Container(),
                         Padding(
                           padding: const EdgeInsets.only(

@@ -40,6 +40,7 @@ part 'artist.dart';
 part 'muralGallery.dart';
 part 'credits.dart';
 part 'muralInfo.dart';
+part 'customTransition.dart';
 
 
 /*  

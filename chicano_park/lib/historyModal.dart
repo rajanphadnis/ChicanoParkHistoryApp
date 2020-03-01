@@ -13,14 +13,17 @@ class Part1 extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
-        width: 200,
+        padding: EdgeInsets.only(right: 70),
+        // width: 200,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text("1800s - 1972:", style: TextStyle(fontSize: 25)),
-            Padding(padding: EdgeInsets.only(top:10), child:
-            Text("The Takeover", style: TextStyle(fontSize: 20)),),
+            Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Text("The Takeover", style: TextStyle(fontSize: 20)),
+            ),
             Padding(
               padding: EdgeInsets.only(top: 20),
               child: MaterialButton(
@@ -51,14 +54,20 @@ class Part2 extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
-        width: 200,
+        padding: EdgeInsets.only(right: 70),
+        // width: 200,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text("1960 - 1983:", style: TextStyle(fontSize: 25)),
-            Padding(padding: EdgeInsets.only(top:10), child:
-            Text("Murals Appeared", style: TextStyle(fontSize: 20)),),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 10,
+                right: 0,
+              ),
+              child: Text("Murals Appeared", style: TextStyle(fontSize: 20)),
+            ),
             Padding(
               padding: EdgeInsets.only(top: 20),
               child: MaterialButton(
@@ -89,14 +98,17 @@ class Part3 extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
-        width: 200,
+        padding: EdgeInsets.only(right: 70),
+        // width: 200,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text("1986 - Present:", style: TextStyle(fontSize: 25)),
-            Padding(padding: EdgeInsets.only(top:10), child:
-            Text("Restoration", style: TextStyle(fontSize: 20)),),
+            Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Text("Restoration", style: TextStyle(fontSize: 20)),
+            ),
             Padding(
               padding: EdgeInsets.only(top: 20),
               child: MaterialButton(
@@ -127,14 +139,17 @@ class Part4 extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
-        width: 200,
+        padding: EdgeInsets.only(right: 70),
+        // width: 200,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text("Present Day:", style: TextStyle(fontSize: 25)),
-            Padding(padding: EdgeInsets.only(top:10), child:
-            Text("Current State", style: TextStyle(fontSize: 20)),),
+            Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Text("Current State", style: TextStyle(fontSize: 20)),
+            ),
             Padding(
               padding: EdgeInsets.only(top: 20),
               child: MaterialButton(
@@ -164,9 +179,9 @@ class _MainHistoryState extends State<MainHistory>
   int pompousAss = 1;
   bool backItUpBoii = false;
   bool workingOnSomething = false;
-  Color selected = Colors.red;
+  Color selected = Colors.blue;
   Color normal = Colors.purple;
-  Color one = Colors.red;
+  Color one = Colors.blue;
   Color two = Colors.purple;
   Color three = Colors.purple;
   Color four = Colors.purple;
@@ -249,11 +264,14 @@ class _MainHistoryState extends State<MainHistory>
                 // If there is no error, continue building the widgets
                 return Center(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Container(
                         width: 70,
                         // height: ,
-                        child: ListView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {
@@ -424,6 +442,12 @@ class _MainHistoryState extends State<MainHistory>
                               ),
                             ),
                             GestureDetector(
+                              onLongPress: () {
+                                Navigator.push(
+                                  context,
+                                  FadeRoute(page: CreditsPage()),
+                                );
+                              },
                               onTap: () {
                                 setColor(4);
                                 setState(() {

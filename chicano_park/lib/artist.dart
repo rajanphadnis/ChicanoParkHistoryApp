@@ -39,6 +39,16 @@ class ArtistPage extends StatelessWidget {
     );
   }
 
+  String loadImage(AsyncSnapshot<dynamic> snapshot) {
+    try {
+      return (testUndString(snapshot.data, "picURL") == "undefined"
+          ? "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg"
+          : testUndString(snapshot.data, "picURL"));
+    } catch (e) {
+      return "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return new StreamBuilder(
@@ -90,6 +100,7 @@ class ArtistPage extends StatelessWidget {
         }
         return Scaffold(
           body: new CustomScrollView(
+            physics: BouncingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
                 backgroundColor: Colors.black,
@@ -101,10 +112,7 @@ class ArtistPage extends StatelessWidget {
                   title: Text(author),
                   background: FadeInImage.memoryNetwork(
                     placeholder: kTransparentImage,
-                    image: (testUndString(snapshot.data, "picURL") ==
-                            "undefined"
-                        ? "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg"
-                        : testUndString(snapshot.data, "picURL")),
+                    image: loadImage(snapshot),
                     fit: BoxFit.cover,
                   ),
                 ),

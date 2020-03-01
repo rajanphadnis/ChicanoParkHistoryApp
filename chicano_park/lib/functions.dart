@@ -164,40 +164,40 @@ Widget inte(String data) {
   }
 }
 
-Widget aud(
-    String data, String name, BuildContext context, DocumentSnapshot pic) {
-  if (data == "undefined" || data == null) {
-    return Container();
-  } else {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          CupertinoPageRoute(
-            builder: (context) => AudioPage(data, name, pic),
-          ),
-        );
-      },
-      child:
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-        Text("Audio Tour"),
-        IconButton(
-          icon: Icon(Icons.play_circle_outline, color: Colors.black),
-          highlightColor: Colors.grey,
-          tooltip: "",
-          onPressed: () {
-            Navigator.push(
-              context,
-              CupertinoPageRoute(
-                builder: (context) => AudioPage(data, name, pic),
-              ),
-            );
-          },
-        ),
-      ]),
-    );
-  }
-}
+// Widget aud(
+//     String data, String name, BuildContext context, DocumentSnapshot pic) {
+//   if (data == "undefined" || data == null) {
+//     return Container();
+//   } else {
+//     return InkWell(
+//       onTap: () {
+//         Navigator.push(
+//           context,
+//           CupertinoPageRoute(
+//             builder: (context) => AudioPage(data, name, pic),
+//           ),
+//         );
+//       },
+//       child:
+//           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+//         Text("Audio Tour"),
+//         IconButton(
+//           icon: Icon(Icons.play_circle_outline, color: Colors.black),
+//           highlightColor: Colors.grey,
+//           tooltip: "",
+//           onPressed: () {
+//             Navigator.push(
+//               context,
+//               CupertinoPageRoute(
+//                 builder: (context) => AudioPage(data, name, pic),
+//               ),
+//             );
+//           },
+//         ),
+//       ]),
+//     );
+//   }
+// }
 
 Widget buildPara(String text) {
   var split = text.split('\\n').map((i) {
@@ -216,6 +216,7 @@ Widget buildPara(String text) {
     }
   }).toList();
   return ListView(
+      physics: BouncingScrollPhysics(),
       padding: new EdgeInsets.only(right: 15, left: 15, top: 10),
       children: split);
 }
@@ -256,7 +257,3 @@ Widget buildTextP(int number) {
         );
       });
 }
-
-
-
-

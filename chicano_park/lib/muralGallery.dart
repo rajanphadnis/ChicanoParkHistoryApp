@@ -57,34 +57,44 @@ class _MuralGallery extends State<MuralGallery> {
         } else {
           return Scaffold(
             body: new CustomScrollView(
+              physics: BouncingScrollPhysics(),
               controller: widget.sc,
               slivers: <Widget>[
                 SliverAppBar(
                   // leading: Icon(Icons.arrow_back_ios),
                   backgroundColor: Colors.black,
-                  expandedHeight: 256.0,
+                  // expandedHeight: 256.0,
                   floating: false,
                   pinned: true,
                   flexibleSpace: new FlexibleSpaceBar(
                     centerTitle: true,
                     title: Text("Murals"),
-                    background: FittedBox(
-                      fit: BoxFit.fitHeight,
-                      child: FadeInImage.memoryNetwork(
-                        placeholder: kTransparentImage,
-                        image:
-                            "https://www.kcet.org/sites/kl/files/atoms/article_atoms/www.kcet.org/socal/departures/landofsunshine/assets_c/2012/11/poetswall-thumb-630x450-39917.jpg",
-                      ),
-                    ),
+                    // background: FittedBox(
+                    //   fit: BoxFit.fitHeight,
+                    //   child: FadeInImage.memoryNetwork(
+                    //     placeholder: kTransparentImage,
+                    //     image:
+                    //         "https://www.kcet.org/sites/kl/files/atoms/article_atoms/www.kcet.org/socal/departures/landofsunshine/assets_c/2012/11/poetswall-thumb-630x450-39917.jpg",
+                    //   ),
+                    // ),
                   ),
                 ),
                 SliverStaggeredGrid.countBuilder(
                   crossAxisCount: 2,
                   staggeredTileBuilder: (_) => StaggeredTile.fit(1),
                   itemBuilder: (context, index) => new Container(
-                    padding: EdgeInsets.all(5),
+                    // padding: EdgeInsets.all(5),
                     child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      elevation: 5.0,
+                      borderOnForeground: true,
+                      margin: EdgeInsets.all(10),
                       child: InkWell(
+                        customBorder: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
                         onTap: () {
                           // widget._pc.animatePanelToPosition(0);
                           found = getMuralName(snapshot, index);
@@ -95,9 +105,12 @@ class _MuralGallery extends State<MuralGallery> {
                                     MuralPage(found, widget._pc),
                               ));
                         },
-                        child: FadeInImage.memoryNetwork(
-                          placeholder: kTransparentImage,
-                          image: getMuralPic(snapshot, "picURL", index),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: FadeInImage.memoryNetwork(
+                            placeholder: kTransparentImage,
+                            image: getMuralPic(snapshot, "picURL", index),
+                          ),
                         ),
                       ),
                     ),
