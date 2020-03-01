@@ -23,16 +23,26 @@ class _CreditsPageState extends State<CreditsPage> {
     // "Built with Pride by:"
   ];
   List<String> names = [
-    "Built With Pride by:",
     "Rajan Phadnis",
-    "Evan",
-    "Elisse",
-    "Jordan",
-    "Sloane",
-    "Matthew",
-    "Ishan",
+    "Evan Mickelson",
+    "Jordan Wood",
+    "Elisse Chow",
+    "Sloane McGuire",
+    "Matthew Peng",
+    "Ishan Seendripu",
     "Mr. Pashkow",
     "Mr. Hobbs",
+  ];
+  List<String> titles = [
+    "SOmeone put a title",
+    "Cheif Technical Consultant",
+    "UI/UX",
+    "Operations",
+    "Project Lead",
+    "Graphics",
+    "?",
+    "Got all the Data",
+    "Teacher"
   ];
   void addUser() {
     int index = listData.length;
@@ -119,7 +129,7 @@ class _CreditsPageState extends State<CreditsPage> {
         elevation: 0,
         backgroundColor: Colors.white,
       ),
-      body: ListView(
+      body: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           AnimatedOpacity(
@@ -128,6 +138,7 @@ class _CreditsPageState extends State<CreditsPage> {
             opacity: _main ? 1.0 : 0.0,
             duration: Duration(milliseconds: 1000),
             // The green box must be a child of the AnimatedOpacity widget.
+            // child:
             child: Container(
               height: 300,
               decoration: BoxDecoration(
@@ -298,47 +309,39 @@ class _CreditsPageState extends State<CreditsPage> {
               ),
             ),
           ),
-          Container(
-            height: 300,
-            child: AnimatedOpacity(
-              opacity: _fade2Visible ? 1.0 : 0.0,
-              duration: Duration(milliseconds: 1000),
-              child: AnimatedList(
-                key: _listKey,
-                initialItemCount:
-                    (listData.length == null || listData.length == 0)
-                        ? 1
-                        : listData.length,
-                itemBuilder: (context, int i, Animation<double> doub) {
-                  return FadeTransition(
-                    opacity: doub,
-                    child: ListTile(
-                      title: Center(
-                        child: Text(names[i].toString()),
-                      ),
-                    ),
-                  );
-                },
+          AnimatedOpacity(
+            opacity: _fade2Visible ? 1.0 : 0.0,
+            duration: Duration(milliseconds: 1000),
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Center(
+                child: Text("Built with pride by:"),
               ),
             ),
           ),
-          // MaterialButton(
-          //   child: Text("hello there"),
-          //   onPressed: () {
-          //     animateTHing();
-          //   },
-          // ),
-          // MaterialButton(
-          //   child: Text("out"),
-          //   onPressed: () {
-          //     setState(() {
-          //       _slideVisible = false;
-          //       _fadeVisible = false;
-          //       _fade2Visible = false;
-          //       _main = false;
-          //     });
-          //   },
-          // ),
+          Expanded(
+            child: Container(
+              height: 300,
+              child: AnimatedOpacity(
+                opacity: _fade2Visible ? 1.0 : 0.0,
+                duration: Duration(milliseconds: 1000),
+                child: AnimatedList(
+                  physics: BouncingScrollPhysics(),
+                  key: _listKey,
+                  initialItemCount:
+                      (listData.length == null || listData.length == 0)
+                          ? 1
+                          : listData.length,
+                  itemBuilder: (context, int i, Animation<double> doub) {
+                    return ListTile(
+                      subtitle: Text(titles[i].toString()),
+                      title: Text(names[i].toString()),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
