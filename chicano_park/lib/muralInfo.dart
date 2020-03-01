@@ -169,7 +169,7 @@ class _MuralPageState extends State<MuralPage>
                         InkWell(
                           onTap: () {
                             // _pc.animatePanelToPosition(0);
-                            Navigator.pop(context);
+                            // Navigator.pop(context);
                             Navigator.push(
                               context,
                               CupertinoPageRoute(

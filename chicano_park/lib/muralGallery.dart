@@ -88,7 +88,7 @@ class _MuralGallery extends State<MuralGallery> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
-                      elevation: 5.0,
+                      elevation: 8.0,
                       borderOnForeground: true,
                       margin: EdgeInsets.all(10),
                       child: InkWell(
@@ -107,10 +107,13 @@ class _MuralGallery extends State<MuralGallery> {
                         },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
-                          child: FadeInImage.memoryNetwork(
-                            placeholder: kTransparentImage,
-                            image: getMuralPic(snapshot, "picURL", index),
+                          child: Image.network(
+                            getMuralPic(snapshot, "picURL", index),
                           ),
+                          // FadeInImage.memoryNetwork(
+                          //   placeholder: kTransparentImage,
+                          //   image: getMuralPic(snapshot, "picURL", index),
+                          // ),
                         ),
                       ),
                     ),

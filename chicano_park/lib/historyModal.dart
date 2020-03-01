@@ -444,11 +444,11 @@ class _MainHistoryState extends State<MainHistory>
                             GestureDetector(
                               onLongPress: () async {
                                 if (await Vibration.hasVibrator()) {
-      Vibration.vibrate(duration: 50);
-      // if (await Vibration.hasAmplitudeControl()) {
-      //   Vibration.vibrate(amplitude: 128);
-      // }
-    }
+                                  Vibration.vibrate(duration: 50);
+                                  // if (await Vibration.hasAmplitudeControl()) {
+                                  //   Vibration.vibrate(amplitude: 128);
+                                  // }
+                                }
                                 Navigator.push(
                                   context,
                                   FadeRoute(page: CreditsPage()),

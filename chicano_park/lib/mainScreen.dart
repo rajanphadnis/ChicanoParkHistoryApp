@@ -418,7 +418,7 @@ class _MainPageState extends State<MainPage> {
           parallaxOffset: 0.6,
           // ----
           minHeight: 0,
-          maxHeight: MediaQuery.of(context).size.height * 0.95,
+          maxHeight: MediaQuery.of(context).size.height * 1,
           controller: _pc,
           // onPanelClosed: () {
           //   playTTS(context, "");
