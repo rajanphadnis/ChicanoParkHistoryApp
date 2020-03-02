@@ -18,6 +18,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   Future<bool> _onWillPop() async {
+    var vlose;
     await showDialog(
       context: context,
       builder: (context) => new AlertDialog(
@@ -25,17 +26,29 @@ class _MainPageState extends State<MainPage> {
         content: new Text('Do you want to exit the app?'),
         actions: <Widget>[
           new FlatButton(
-            onPressed: () => Navigator.of(context).pop(false),
+            onPressed: () {
+              Navigator.of(context).pop(false);
+              setState(() {
+                vlose = false;
+              });
+              return false;
+            },
             child: new Text('No'),
           ),
           new FlatButton(
-            onPressed: () => Navigator.of(context).pop(true),
+            onPressed: () {
+              Navigator.of(context).pop(true);
+              setState(() {
+                vlose = true;
+              });
+              return true;
+            },
             child: new Text('Yes'),
           ),
         ],
       ),
     );
-    return false;
+    return vlose;
   }
 
   Future<void> _getBatteryLevel(String path2) async {
@@ -138,11 +151,12 @@ class _MainPageState extends State<MainPage> {
         final DocumentReference postRef =
             Firestore.instance.collection("Murals").document(found);
         try {
-          (postRef == null || postRef == "undefined")? DoNothingAction() : 
-          postRef.updateData({
-            'views': FieldValue.increment(1),
-            'avg': (((av * number) + confidence) / (1 + number))
-          });
+          postRef == null
+              ? DoNothingAction()
+              : postRef.updateData({
+                  'views': FieldValue.increment(1),
+                  'avg': (((av * number) + confidence) / (1 + number))
+                });
         } catch (e) {
           debugPrint("error analytics");
         }
@@ -165,26 +179,6 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
-  // void launchGame() async {
-  //   if (await Vibration.hasVibrator()) {
-  //     Vibration.vibrate(duration: 250);
-  //     if (await Vibration.hasAmplitudeControl()) {
-  //       Vibration.vibrate(amplitude: 128);
-  //     }
-  //   }
-  //   Util flameUtil = Util();
-  //   await flameUtil.fullScreen();
-  //   await flameUtil.setOrientation(DeviceOrientation.portraitUp);
-
-  //   SharedPreferences storage = await SharedPreferences.getInstance();
-  //   GameController gameController = GameController(storage);
-  //   runApp(gameController.widget);
-
-  //   TapGestureRecognizer tapper = TapGestureRecognizer();
-  //   tapper.onTapDown = gameController.onTapDown;
-  //   flameUtil.addGestureRecognizer(tapper);
-  // }
-
   Widget theBottomButtonNavigation() {
     return Container(
       padding: EdgeInsets.all(15.0),
@@ -195,12 +189,6 @@ class _MainPageState extends State<MainPage> {
           //MURAL GALLERY/LIBRARY
           GestureDetector(
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   CupertinoPageRoute(
-              //     builder: (context) => MuralGallery(),
-              //   ),
-              // );
               _pc.animatePanelToPosition(1);
             },
             child: Stack(
@@ -213,24 +201,12 @@ class _MainPageState extends State<MainPage> {
                     icon: Icon(Icons.list, color: Colors.white),
                     onPressed: () {
                       _pc.animatePanelToPosition(1);
-                      // Navigator.push(
-                      //   context,
-                      //   CupertinoPageRoute(
-                      //     builder: (context) => MuralGallery(),
-                      //   ),
-                      // );
                     },
                   ),
                 ),
                 IconButton(
                   icon: Icon(Icons.list, color: Colors.black),
                   onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   CupertinoPageRoute(
-                    //     builder: (context) => MuralGallery(),
-                    //   ),
-                    // );
                     _pc.animatePanelToPosition(1);
                   },
                 ),
@@ -245,7 +221,6 @@ class _MainPageState extends State<MainPage> {
                 .document(found)
                 .snapshots(),
             builder: (context, snapshot) {
-              // if (snapshot.connectionState == ConnectionState.done) {
               // Do some basic error processing
               if (!snapshot.hasData) {
                 return Padding(
@@ -339,23 +314,6 @@ class _MainPageState extends State<MainPage> {
                   ],
                 ),
               );
-              // } else {
-              //   return Container(
-              //     width: MediaQuery.of(context).size.width,
-              //     height: MediaQuery.of(context).size.height,
-              //     child: Column(
-              //       mainAxisAlignment: MainAxisAlignment.center,
-              //       crossAxisAlignment: CrossAxisAlignment.center,
-              //       children: <Widget>[
-              //         Text("Loading..."),
-              //         CircularProgressIndicator(
-              //           valueColor:
-              //               new AlwaysStoppedAnimation<Color>(Colors.black),
-              //         )
-              //       ],
-              //     ),
-              //   );
-              // }
             },
           ),
           Stack(
@@ -373,7 +331,6 @@ class _MainPageState extends State<MainPage> {
                         builder: (context) => MainHistory(),
                       ),
                     );
-                    // showHistoryBottomSheet(context);
                   },
                 ),
               ),
@@ -386,7 +343,6 @@ class _MainPageState extends State<MainPage> {
                       builder: (context) => MainHistory(),
                     ),
                   );
-                  // showHistoryBottomSheet(context);
                 },
               ),
             ],

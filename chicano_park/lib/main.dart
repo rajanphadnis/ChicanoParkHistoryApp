@@ -64,7 +64,7 @@ TODO
   - Instead of going to a new page, when you click audio tour it drops down a menu with the audio bar slider
 
 -when it presents the mural move the image down a little bit.
-Mural name up at top near back button
+-Mural name up at top near back button
 -Back button on Murals page
 -Circular artist photo next to artist name 
 

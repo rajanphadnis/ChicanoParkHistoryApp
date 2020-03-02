@@ -36,6 +36,7 @@ class _MuralPageState extends State<MuralPage>
 
   @override
   void initState() {
+    super.initState();
     _animationController = AnimationController(
         vsync: this, duration: Duration(milliseconds: fadeAnimDur));
     _animation = Tween(
@@ -63,8 +64,9 @@ class _MuralPageState extends State<MuralPage>
   @override
   void dispose() async {
     _animationController.dispose();
+    stop();
     super.dispose();
-    await audioPlayer.dispose();
+    // await audioPlayer.dispose();
   }
 
   void pause() async {
@@ -111,32 +113,36 @@ class _MuralPageState extends State<MuralPage>
             .snapshots(),
         builder: (context, snapshot) {
           // if (snapshot.connectionState == ConnectionState.done) {
-            // Do some basic error processing
-            if (!snapshot.hasData) {
-              return Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text("Can't connect to the internet. Retrying..."),
-                    CircularProgressIndicator(
-                      valueColor:
-                          new AlwaysStoppedAnimation<Color>(Colors.black),
-                    )
-                  ],
-                ),
-              );
-            }
-            if (snapshot == null || snapshot.data == null) {
-              return const Text("Something went seriously wrong! Sorry!");
-            }
-            if (snapshot.hasError) {
-              return const Text("error!");
-            }
+          // Do some basic error processing
+          if (!snapshot.hasData) {
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text("Can't connect to the internet. Retrying..."),
+                  CircularProgressIndicator(
+                    valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
+                  )
+                ],
+              ),
+            );
+          }
+          if (snapshot == null || snapshot.data == null) {
+            return const Text("Something went seriously wrong! Sorry!");
+          }
+          if (snapshot.hasError) {
+            return const Text("error!");
+          }
 
-            return Scaffold(
+          return WillPopScope(
+            onWillPop: () async {
+              stop();
+              return true;
+            },
+            child: Scaffold(
               body: CustomScrollView(
                 physics: BouncingScrollPhysics(),
                 // controller: sc,
@@ -144,9 +150,9 @@ class _MuralPageState extends State<MuralPage>
                   SliverAppBar(
                     centerTitle: true,
                     title: Text(
-                        testString(snapshot.data, "title"),
-                        style: TextStyle(color: Colors.white),
-                      ),
+                      testString(snapshot.data, "title"),
+                      style: TextStyle(color: Colors.white),
+                    ),
                     // textTheme: TextTheme(: TextStyle(color: Colors.white)),
                     backgroundColor: Colors.black,
                     expandedHeight: 256.0,
@@ -177,7 +183,7 @@ class _MuralPageState extends State<MuralPage>
                               CupertinoPageRoute(
                                 builder: (context) => ArtistPage(
                                     testString(snapshot.data, "author"),
-                                    widget._pc),
+                                    ),
                               ),
                             );
                           },
@@ -405,10 +411,14 @@ class _MuralPageState extends State<MuralPage>
                             Padding(
                               padding: const EdgeInsets.all(30),
                               child: RaisedButton.icon(
-                                icon: Icon(Icons.share),
+                                icon: Icon(IconData(0xf4ca,
+                                    fontFamily: CupertinoIcons.iconFont,
+                                    fontPackage:
+                                        CupertinoIcons.iconFontPackage)),
                                 label: Text("Share"),
                                 onPressed: () {
                                   // The message that will be shared. This can be a link, some text or contact or anything really
+                                  // TODO: change this value
                                   Share.share(
                                       testString(snapshot.data, "title"));
                                 },
@@ -439,7 +449,8 @@ class _MuralPageState extends State<MuralPage>
                   )
                 ],
               ),
-            );
+            ),
+          );
           // } else {
           //   return Container(
           //     width: MediaQuery.of(context).size.width,

@@ -152,7 +152,7 @@ Widget inte(String data) {
           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
         Text("Watch Interview"),
         IconButton(
-          icon: Icon(Icons.ondemand_video, color: Colors.redAccent),
+          icon: Icon(Icons.ondemand_video, color: Colors.black),
           highlightColor: Colors.grey,
           tooltip: "",
           onPressed: () {
