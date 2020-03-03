@@ -1,20 +1,12 @@
 part of mainlib;
 
 class MuralGallery extends StatefulWidget {
-  // final ScrollController sc;
   final PanelController _pc;
   MuralGallery(this._pc);
-  
-  // final PanelController _pc;
-  // MuralGallery(this._pc);
-  // We want a stateful widget because of all of theredrawing and repainting we are going to be doing. So, we create it (read: start it)
   _MuralGallery createState() => _MuralGallery();
 }
 
 class _MuralGallery extends State<MuralGallery> {
-  // final PanelController _pc;
-  // _MuralGallery(this._pc);
-  // GlobalKey _keyRed = GlobalKey();
   int gett = 7;
   String getMuralPic(AsyncSnapshot<QuerySnapshot> snapshot, String arg, index) {
     try {
@@ -47,25 +39,17 @@ class _MuralGallery extends State<MuralGallery> {
       return "error";
     }
   }
-  // int getPosW(BuildContext context2, RenderBox child){
-  //    RenderSliverStaggeredGrid renderBoxRed = context2.findRenderObject();
-  //   var positionRed = renderBoxRed.childCrossAxisPosition(child);
-  //   return positionRed.toInt();
-  // }
   @override
   Widget build(BuildContext context) {
     return new StreamBuilder(
-      // now add firebase integration. "subscribe" to the data from the firestore database
       stream: Firestore.instance.collection("Murals").snapshots(),
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        // if (snapshot.connectionState == ConnectionState.done) {
           if (!snapshot.hasData) {
             return Text("error");
           } else {
             return Scaffold(
               body: new CustomScrollView(
                 physics: BouncingScrollPhysics(),
-                // controller: widget.sc,
                 slivers: <Widget>[
                   SliverAppBar(
                     leading: IconButton(
@@ -75,7 +59,6 @@ class _MuralGallery extends State<MuralGallery> {
                           widget._pc.animatePanelToPosition(0);
                         }),
                     backgroundColor: Colors.black,
-                    // expandedHeight: 256.0,
                     floating: false,
                     pinned: true,
                     flexibleSpace: new FlexibleSpaceBar(

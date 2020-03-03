@@ -5,7 +5,6 @@ class MuralPage extends StatefulWidget {
   final PanelController pc;
   final bool fromGallery;
   MuralPage(this.found, this.pc, this.fromGallery);
-  // We want a stateful widget because of all of theredrawing and repainting we are going to be doing. So, we create it (read: start it)
   _MuralPageState createState() => _MuralPageState();
 }
 
@@ -65,10 +64,8 @@ class _MuralPageState extends State<MuralPage>
 
   @override
   void dispose() async {
-    // _animationController.dispose();
     stop();
     super.dispose();
-    // await audioPlayer.dispose();
   }
 
   void pause() async {
@@ -114,8 +111,6 @@ class _MuralPageState extends State<MuralPage>
             .document(widget.found)
             .snapshots(),
         builder: (context, snapshot) {
-          // if (snapshot.connectionState == ConnectionState.done) {
-          // Do some basic error processing
           if (!snapshot.hasData) {
             return Container(
               width: MediaQuery.of(context).size.width,
@@ -147,10 +142,10 @@ class _MuralPageState extends State<MuralPage>
             child: Scaffold(
               body: CustomScrollView(
                 physics: BouncingScrollPhysics(),
-                // controller: sc,
+                controller: sc,
                 slivers: <Widget>[
                   SliverAppBar(
-                    leading: widget.fromGallery ? IconButton(
+                    leading: !widget.fromGallery ? IconButton(
                         icon: Icon(Icons.keyboard_arrow_down,
                             color: Colors.white),
                         onPressed: () {
@@ -166,18 +161,11 @@ class _MuralPageState extends State<MuralPage>
                       testString(snapshot.data, "title"),
                       style: TextStyle(color: Colors.white),
                     ),
-                    // textTheme: TextTheme(: TextStyle(color: Colors.white)),
                     backgroundColor: Colors.black,
                     expandedHeight: 256.0,
                     floating: false,
                     pinned: true,
                     flexibleSpace: new FlexibleSpaceBar(
-                      // top = constraints.biggest.height;
-                      // centerTitle: true,
-                      // title: Text(
-                      //   testString(snapshot.data, "title"),
-                      //   style: TextStyle(color: Colors.white),
-                      // ),
                       background: FittedBox(
                         child: getImage(snapshot.data, "picURL", context),
                         fit: BoxFit.cover,
@@ -189,8 +177,6 @@ class _MuralPageState extends State<MuralPage>
                       children: [
                         InkWell(
                           onTap: () {
-                            // _pc.animatePanelToPosition(0);
-                            // Navigator.pop(context);
                             Navigator.push(
                               context,
                               CupertinoPageRoute(
@@ -231,7 +217,6 @@ class _MuralPageState extends State<MuralPage>
                                                 ? "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg"
                                                 : testUndString(
                                                     snapshot.data, "artistPic"))
-                                            // "https://programmingii-367d0.web.app/profile.jpg"
                                             ),
                                       ),
                                     ),
@@ -302,14 +287,6 @@ class _MuralPageState extends State<MuralPage>
                             ? FadeTransition(
                                 opacity: _animation,
                                 child:
-                                    // )
-                                    // AnimatedOpacity(
-                                    //     // If the widget is visible, animate to 0.0 (invisible).
-                                    //     // If the widget is hidden, animate to 1.0 (fully visible).
-                                    //     opacity: go ? 1.0 : 0.0,
-                                    //     duration: Duration(milliseconds: 1000),
-                                    //     // The green box must be a child of the AnimatedOpacity widget.
-                                    //     child:
                                     Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.75,
@@ -328,7 +305,6 @@ class _MuralPageState extends State<MuralPage>
                                                 icon: Icon(Icons.pause,
                                                     color: Colors.white),
                                                 onPressed: () {
-                                                  // pause();
                                                 }),
                                             playing
                                                 ? IconButton(
@@ -354,7 +330,6 @@ class _MuralPageState extends State<MuralPage>
                                                     icon: Icon(Icons.stop,
                                                         color: Colors.white),
                                                     onPressed: () {
-                                                      // stop();
                                                     }),
                                           ],
                                         ),
@@ -416,7 +391,6 @@ class _MuralPageState extends State<MuralPage>
                             style: TextStyle(fontSize: 18),
                           ),
                         ),
-                        // Just your average share button. and a tour button that collapses the modal bottom sheet
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -430,31 +404,12 @@ class _MuralPageState extends State<MuralPage>
                                         CupertinoIcons.iconFontPackage)),
                                 label: Text("Share"),
                                 onPressed: () {
-                                  // The message that will be shared. This can be a link, some text or contact or anything really
                                   // TODO: change this value
                                   Share.share(
                                       testString(snapshot.data, "title"));
                                 },
                               ),
                             ),
-                            // Padding(
-                            //   padding: const EdgeInsets.all(30),
-                            //   child: RaisedButton.icon(
-                            //     icon: Icon(Icons.explore),
-                            //     label: Text("All Murals"),
-                            //     onPressed: () {
-                            //       // _pc.animatePanelToPosition(0);
-                            //       widget.fromGallery ? Navigator.pop(context) : widget.pc.animatePanelToPosition(0);
-                            //       // Navigator.push(
-                            //       //   context,
-                            //       //   CupertinoPageRoute(
-                            //       //     builder: (context) => MuralGallery(),
-                            //       //   ),
-                            //       // );
-                            //       // widget._pc.animatePanelToPosition(1);
-                            //     },
-                            //   ),
-                            // ),
                           ],
                         ),
                       ],
@@ -464,22 +419,6 @@ class _MuralPageState extends State<MuralPage>
               ),
             ),
           );
-          // } else {
-          //   return Container(
-          //     width: MediaQuery.of(context).size.width,
-          //     height: MediaQuery.of(context).size.height,
-          //     child: Column(
-          //       mainAxisAlignment: MainAxisAlignment.center,
-          //       crossAxisAlignment: CrossAxisAlignment.center,
-          //       children: <Widget>[
-          //         Text("Loading..."),
-          //         CircularProgressIndicator(
-          //           valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
-          //         )
-          //       ],
-          //     ),
-          //   );
-          // }
         },
       ),
     );

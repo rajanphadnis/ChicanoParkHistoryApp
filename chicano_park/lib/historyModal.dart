@@ -212,8 +212,9 @@ class _MainHistoryState extends State<MainHistory>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        leading:
-            IconButton(icon: Icon(Icons.keyboard_arrow_down), onPressed: () {
+        leading: IconButton(
+            icon: Icon(Icons.keyboard_arrow_down),
+            onPressed: () {
               widget.pc.animatePanelToPosition(0);
             }),
         backgroundColor: Colors.black,
@@ -243,125 +244,123 @@ class _MainHistoryState extends State<MainHistory>
                   ),
                   Expanded(
                     child: GestureDetector(
-                        onVerticalDragUpdate:
-                            (DragUpdateDetails details) async {
-                          if (workingOnSomething) {
-                            // do nothing
-                          } else {
-                            if (details.delta.dy > 0) {
-                              setState(() {
-                                workingOnSomething = true;
-                                backItUpBoii = true;
-                                pompousAss == 1
-                                    ? pompousAss == 1
-                                    : pompousAss = pompousAss - 1;
-                                pompousAss == 1
-                                    ? setColor(1)
-                                    : (pompousAss == 2
-                                        ? setColor(2)
-                                        : (pompousAss == 3
-                                            ? setColor(3)
-                                            : pompousAss == 4
-                                                ? setColor(4)
-                                                : normal));
-                              });
-                              Future.delayed(const Duration(milliseconds: 300),
-                                  () {
-                                workingOnSomething = false;
-                              });
-                            } else if (details.delta.dy < 0) {
-                              setState(() {
-                                workingOnSomething = true;
-                                backItUpBoii = false;
-                                pompousAss == 4
-                                    ? pompousAss == 4
-                                    : pompousAss = pompousAss + 1;
-                                pompousAss == 1
-                                    ? setColor(1)
-                                    : (pompousAss == 2
-                                        ? setColor(2)
-                                        : (pompousAss == 3
-                                            ? setColor(3)
-                                            : pompousAss == 4
-                                                ? setColor(4)
-                                                : normal));
-                              });
-                              Future.delayed(const Duration(milliseconds: 300),
-                                  () {
-                                workingOnSomething = false;
-                              });
-                            }
+                      onVerticalDragUpdate: (DragUpdateDetails details) async {
+                        if (workingOnSomething) {
+                          // do nothing
+                        } else {
+                          if (details.delta.dy > 0) {
+                            setState(() {
+                              workingOnSomething = true;
+                              backItUpBoii = true;
+                              pompousAss == 1
+                                  ? pompousAss = 1
+                                  : pompousAss = pompousAss - 1;
+                              pompousAss == 1
+                                  ? setColor(1)
+                                  : pompousAss == 2
+                                      ? setColor(2)
+                                      : pompousAss == 3
+                                          ? setColor(3)
+                                          : pompousAss == 4
+                                              ? setColor(4)
+                                              : setColor(1);
+                            });
+                            Future.delayed(const Duration(milliseconds: 300),
+                                () {
+                              workingOnSomething = false;
+                            });
+                          } else if (details.delta.dy < 0) {
+                            setState(() {
+                              workingOnSomething = true;
+                              backItUpBoii = false;
+                              pompousAss == 4
+                                  ? pompousAss = 4
+                                  : pompousAss = pompousAss + 1;
+                              pompousAss == 1
+                                  ? setColor(1)
+                                  : pompousAss == 2
+                                      ? setColor(2)
+                                      : pompousAss == 3
+                                          ? setColor(3)
+                                          : pompousAss == 4
+                                              ? setColor(4)
+                                              : setColor(1);
+                            });
+                            Future.delayed(const Duration(milliseconds: 300),
+                                () {
+                              workingOnSomething = false;
+                            });
                           }
-                        },
-                        child: StreamBuilder(
-                            stream: Firestore.instance
-                                .collection("History")
-                                .document(pompousAss.toString())
-                                .snapshots(),
-                            builder: (context, snapshot) {
-                              return PageTransitionSwitcher(
-                                duration: const Duration(milliseconds: 500),
-                                reverse: backItUpBoii,
-                                transitionBuilder: (
-                                  Widget child,
-                                  Animation<double> animation,
-                                  Animation<double> secondaryAnimation,
-                                ) {
-                                  return SharedAxisTransition(
-                                    child: child,
-                                    animation: animation,
-                                    secondaryAnimation: secondaryAnimation,
-                                    transitionType:
-                                        SharedAxisTransitionType.vertical,
-                                  );
-                                },
-                                child: pompousAss == 1
-                                    ? part(
-                                        1,
-                                        bigPP,
-                                        testString(snapshot.data, "title"),
-                                        testString(snapshot.data, "subtitle"),
-                                        testString(snapshot.data, "summary"))
-                                    : (pompousAss == 2
-                                        ? part(
-                                            2,
-                                            bigPP,
-                                            testString(snapshot.data, "title"),
-                                            testString(
-                                                snapshot.data, "subtitle"),
-                                            testString(
-                                                snapshot.data, "summary"))
-                                        : (pompousAss == 3
-                                            ? part(
-                                                3,
-                                                bigPP,
-                                                testString(
-                                                    snapshot.data, "title"),
-                                                testString(
-                                                    snapshot.data, "subtitle"),
-                                                testString(
-                                                    snapshot.data, "summary"))
-                                            : pompousAss == 4
-                                                ? part(
-                                                    4,
-                                                    bigPP,
-                                                    testString(
-                                                        snapshot.data, "title"),
-                                                    testString(snapshot.data,
-                                                        "subtitle"),
-                                                    testString(snapshot.data,
-                                                        "summary"))
-                                                : part(
-                                                    1,
-                                                    bigPP,
-                                                    testString(
-                                                        snapshot.data, "title"),
-                                                    testString(snapshot.data,
-                                                        "subtitle"),
-                                                    testString(snapshot.data,
-                                                        "summary")))),
-                              );
-                            })),
+                        }
+                      },
+                      child: StreamBuilder(
+                          stream: Firestore.instance
+                              .collection("History")
+                              .document(pompousAss.toString())
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            return PageTransitionSwitcher(
+                              duration: const Duration(milliseconds: 500),
+                              reverse: backItUpBoii,
+                              transitionBuilder: (
+                                Widget child,
+                                Animation<double> animation,
+                                Animation<double> secondaryAnimation,
+                              ) {
+                                return SharedAxisTransition(
+                                  child: child,
+                                  animation: animation,
+                                  secondaryAnimation: secondaryAnimation,
+                                  transitionType:
+                                      SharedAxisTransitionType.vertical,
+                                );
+                              },
+                              child: pompousAss == 1
+                                  ? part(
+                                      1,
+                                      bigPP,
+                                      testString(snapshot.data, "title"),
+                                      testString(snapshot.data, "subtitle"),
+                                      testString(snapshot.data, "summary"))
+                                  : (pompousAss == 2
+                                      ? part(
+                                          2,
+                                          bigPP,
+                                          testString(snapshot.data, "title"),
+                                          testString(snapshot.data, "subtitle"),
+                                          testString(snapshot.data, "summary"))
+                                      : (pompousAss == 3
+                                          ? part(
+                                              3,
+                                              bigPP,
+                                              testString(
+                                                  snapshot.data, "title"),
+                                              testString(
+                                                  snapshot.data, "subtitle"),
+                                              testString(
+                                                  snapshot.data, "summary"))
+                                          : pompousAss == 4
+                                              ? part(
+                                                  4,
+                                                  bigPP,
+                                                  testString(
+                                                      snapshot.data, "title"),
+                                                  testString(snapshot.data,
+                                                      "subtitle"),
+                                                  testString(
+                                                      snapshot.data, "summary"))
+                                              : part(
+                                                  1,
+                                                  bigPP,
+                                                  testString(
+                                                      snapshot.data, "title"),
+                                                  testString(snapshot.data,
+                                                      "subtitle"),
+                                                  testString(snapshot.data,
+                                                      "summary")))),
+                            );
+                          }),
+                    ),
                   ),
                 ],
               ),

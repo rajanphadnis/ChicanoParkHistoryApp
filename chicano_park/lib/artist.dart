@@ -5,38 +5,6 @@ class ArtistPage extends StatelessWidget {
   // final PanelController _pc;
   ArtistPage(this.author);
   final List<String> itemsTHing = List();
-  // SliverGrid muralGrid() {
-  //   return SliverGrid(
-  //     gridDelegate:
-  //         SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-  //     delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-  //       return Container(
-  //         padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-  //         child: Column(
-  //           crossAxisAlignment: CrossAxisAlignment.start,
-  //           children: <Widget>[
-  //             Container(
-  //               height: 130.0,
-  //               width: double.infinity,
-  //               decoration: new BoxDecoration(
-  //                 image: DecorationImage(
-  //                   image: new NetworkImage(
-  //                       "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg"),
-  //                   fit: BoxFit.fill,
-  //                 ),
-  //               ),
-  //             ),
-  //             Text("hello there $index",
-  //                 style: Theme.of(context)
-  //                     .textTheme
-  //                     .title
-  //                     .merge(TextStyle(fontSize: 14.0)))
-  //           ],
-  //         ),
-  //       );
-  //     }, childCount: 8),
-  //   );
-  // }
 
   String loadImage(AsyncSnapshot<dynamic> snapshot) {
     try {
@@ -133,15 +101,6 @@ class ArtistPage extends StatelessWidget {
                             fontSize: 30.0,
                           ),
                         ),
-                        // IconButton(
-                        //   icon: Icon(IconData(0xf4ca,
-                        //       fontFamily: CupertinoIcons.iconFont,
-                        //       fontPackage: CupertinoIcons.iconFontPackage)),
-                        //   tooltip: 'Share',
-                        //   onPressed: () {
-                        //     Share.share(author);
-                        //   },
-                        // ),
                       ],
                     ),
                   ),
@@ -173,23 +132,6 @@ class ArtistPage extends StatelessWidget {
                           },
                         ),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(15),
-                      //   child: RaisedButton.icon(
-                      //     icon: Icon(Icons.explore),
-                      //     label: Text("All Murals"),
-                      //     onPressed: () {
-                      //       Navigator.pop(context);
-                      //       // Navigator.push(
-                      //       //   context,
-                      //       //   CupertinoPageRoute(
-                      //       //     builder: (context) => MuralGallery(),
-                      //       //   ),
-                      //       // );
-                      //       _pc.animatePanelToPosition(1);
-                      //     },
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),

@@ -33,7 +33,7 @@ class _CreditsPageState extends State<CreditsPage>
     "Mr. Hobbs",
   ];
   List<String> titles = [
-    "SOmeone put a title",
+    "Technical Lead",
     "Cheif Technical Consultant",
     "UI/UX",
     "Operations",
@@ -87,10 +87,6 @@ class _CreditsPageState extends State<CreditsPage>
                                     Future.delayed(
                                         const Duration(milliseconds: 1000), () {
                                       addUser();
-                                      // });
-                                      //   for (var i in names) {
-
-                                      // }
                                     });
                                   });
                                 });
@@ -127,15 +123,10 @@ class _CreditsPageState extends State<CreditsPage>
         backgroundColor: Colors.white,
       ),
       body: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           AnimatedOpacity(
-            // If the widget is visible, animate to 0.0 (invisible).
-            // If the widget is hidden, animate to 1.0 (fully visible).
             opacity: _main ? 1.0 : 0.0,
             duration: Duration(milliseconds: 1000),
-            // The green box must be a child of the AnimatedOpacity widget.
-            // child:
             child: Container(
               height: 300,
               decoration: BoxDecoration(
@@ -160,11 +151,8 @@ class _CreditsPageState extends State<CreditsPage>
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(left: 16, top: 32),
                     child: AnimatedOpacity(
-                      // If the widget is visible, animate to 0.0 (invisible).
-                      // If the widget is hidden, animate to 1.0 (fully visible).
                       opacity: _slideVisible ? 1.0 : 0.0,
                       duration: Duration(milliseconds: 1000),
-                      // The green box must be a child of the AnimatedOpacity widget.
                       child: Text(
                         'Chicano Park Explorer',
                         style: TextStyle(
@@ -176,11 +164,8 @@ class _CreditsPageState extends State<CreditsPage>
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(left: 16, top: 8),
                     child: AnimatedOpacity(
-                      // If the widget is visible, animate to 0.0 (invisible).
-                      // If the widget is hidden, animate to 1.0 (fully visible).
                       opacity: _fadeVisible ? 1.0 : 0.0,
                       duration: Duration(milliseconds: 1000),
-                      // The green box must be a child of the AnimatedOpacity widget.
                       child: Center(
                         child: Text(
                           "Presented by Pacific Ridge School and Chicano Park",
@@ -197,9 +182,6 @@ class _CreditsPageState extends State<CreditsPage>
                     onLongPress: () async {
                       if (await Vibration.hasVibrator()) {
                         Vibration.vibrate(duration: 100);
-                        // if (await Vibration.hasAmplitudeControl()) {
-                        //   Vibration.vibrate(amplitude: 128);
-                        // }
                       }
                       Util flameUtil = Util();
                       await flameUtil.fullScreen();

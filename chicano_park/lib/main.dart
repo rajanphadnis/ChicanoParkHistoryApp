@@ -34,43 +34,13 @@ part 'functions.dart';
 part 'shapesDrawing.dart';
 part 'mainScreen.dart';
 part 'historyModal.dart';
-part 'timeline.dart';
+// part 'timeline.dart';
 part 'infoPage.dart';
 part 'artist.dart';
 part 'muralGallery.dart';
 part 'credits.dart';
 part 'muralInfo.dart';
 part 'customTransition.dart';
-
-/*  
-TODO
-
--Change back arrow for murals page to a caret going down 
--Change animation for clicking on murals to be horizontal (right to left)
--and for going back (left to right)
--willpopscope no
-
--Make swipe gesture for mural gallery down instead of left to right
-
--"Card" shadowed outline on murals page photos(?)
--Non-whitespace gallery for photos
-
--More clear that you can move timeline
--Make it vertical
-
-
--Audio tour drop down menu
-  - Instead of going to a new page, when you click audio tour it drops down a menu with the audio bar slider
-
--when it presents the mural move the image down a little bit.
--Mural name up at top near back button
--Back button on Murals page
--Circular artist photo next to artist name 
-
--If mural page comes up from button, show an arrow going down (a caret)
--If the mural page comes from the murals tab, show a back button up top
-
-*/
 
 // Next, create a list of cameras so that we know which one is the "back" one
 // Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a camera feed to the user
@@ -87,7 +57,7 @@ double valueTHingy = 0.0;
 String textl = "quite literally nothing";
 double confidenceNumThing = 0.0;
 var jsonData =
-    '{ "All_The_Way_To_The_Bay" : "All_The_Way_To_The_Bay", "Colossus" : "Colossus", "Los_Grandes" : "Los_Grandes", "Cuauhtemoc_Aztec_Warrior" : "Cuauhtemoc_Aztec_Warrior", "Varrio_Si_Yonkes_No" : "varrio", "Mujer_Cosmica" : "mujer_cosmica", "Chicano_Pinto_union" : "pinto", "Ninos_del_Mundo" : "ninos" }';
+    '{ "All_The_Way_To_The_Bay" : "All_The_Way_To_The_Bay", "Colossus" : "Colossus", "Los_Grandes" : "Los_Grandes", "Cuauhtemoc_Aztec_Warrior" : "Cuauhtemoc_Aztec_Warrior", "Varrio_Si_Yonkes_No" : "Varrio_Si_Yonkes_No", "Mujer_Cosmica" : "mujer_cosmica", "Chicano_Pinto_union" : "pinto", "Ninos_del_Mundo" : "ninos" }';
 var parsedJson = json.decode(jsonData);
 String data = "no error";
 final double confidenceThresh = 0.2;
@@ -103,25 +73,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // onGenerateRoute: (settings) {
-      //   switch (settings.name) {
-      //     case '/gallery':
-      //       return PageTransition(
-      //           child: MuralGallery(), type: PageTransitionType.fade);
-      //       break;
-      //     case '/mural':
-      //     final ScreenArguments args = settings.arguments;
-      //       return PageTransition(
-      //           child: MuralPage(args.found), type: PageTransitionType.upToDown);
-      //       break;
-      //     case '/history':
-      //       return PageTransition(
-      //           child: MainHistory(), type: PageTransitionType.fade);
-      //       break;
-      //     default:
-      //       return null;
-      //   }
-      // },
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),
       ],

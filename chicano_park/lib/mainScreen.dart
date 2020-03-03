@@ -1,7 +1,6 @@
 part of mainlib;
 
 class _MainPageState extends State<MainPage> {
-  // Define a camera controller. This determines which camera we want to use and when
   bool dialVisible = true;
   CameraController controller;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -14,7 +13,6 @@ class _MainPageState extends State<MainPage> {
   FlutterTts flutterTts = FlutterTts();
   bool fade = true;
   bool dragg = true;
-  // bool talking = false;
   Future<void> go() async {
     WidgetsFlutterBinding.ensureInitialized();
     cameras = await availableCameras();
@@ -74,7 +72,6 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
-  // initialize camera when the app is initialized
   @override
   void initState() {
     super.initState();
@@ -91,14 +88,12 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
-  // Get rid of the camera controller and access to the camera when the app is closed
   @override
   void dispose() {
     controller?.dispose();
     super.dispose();
   }
 
-  //Display the camera
   Widget cameraPreview(size, controller) {
     return ClipRect(
       child: Container(
@@ -106,7 +101,6 @@ class _MainPageState extends State<MainPage> {
           scale: controller.value.aspectRatio / size.aspectRatio,
           child: Center(
             child: AspectRatio(
-              //The actual camera
               aspectRatio: controller.value.aspectRatio,
               child: CameraPreview(controller),
             ),
@@ -170,17 +164,6 @@ class _MainPageState extends State<MainPage> {
           found = parsedJson[label];
         });
         _pc.animatePanelToPosition(1);
-        // fade
-        //     ? Navigator.push(
-        //         context,
-        //         FadeRoute(page: MuralPage(found, _pc, false)),
-        //       )
-        //     : Navigator.push(
-        //         context,
-        //         CupertinoPageRoute(
-        //           builder: (context) => MuralPage(found, _pc, false),
-        //         ),
-        //       );
       } else {
         setState(() {
           processing = false;
@@ -196,24 +179,12 @@ class _MainPageState extends State<MainPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          //MURAL GALLERY/LIBRARY
           GestureDetector(
             onTap: () {
               setState(() {
                 selectedThing = 1;
               });
               _pc.animatePanelToPosition(1);
-              // fade
-              //     ? Navigator.push(
-              //         context,
-              //         FadeRoute(page: MuralGallery(_pc)),
-              //       )
-              //     : Navigator.push(
-              //         context,
-              //         CupertinoPageRoute(
-              //           builder: (context) => MuralGallery(_pc),
-              //         ),
-              //       );
             },
             child: Stack(
               alignment: Alignment.center,
@@ -228,17 +199,6 @@ class _MainPageState extends State<MainPage> {
                         selectedThing = 1;
                       });
                       _pc.animatePanelToPosition(1);
-                      // fade
-                      //     ? Navigator.push(
-                      //         context,
-                      //         FadeRoute(page: MuralGallery(_pc)),
-                      //       )
-                      //     : Navigator.push(
-                      //         context,
-                      //         CupertinoPageRoute(
-                      //           builder: (context) => MuralGallery(_pc),
-                      //         ),
-                      //       );
                     },
                   ),
                 ),
@@ -249,31 +209,17 @@ class _MainPageState extends State<MainPage> {
                       selectedThing = 1;
                     });
                     _pc.animatePanelToPosition(1);
-                    // fade
-                    //     ? Navigator.push(
-                    //         context,
-                    //         FadeRoute(page: MuralGallery(_pc)),
-                    //       )
-                    //     : Navigator.push(
-                    //         context,
-                    //         CupertinoPageRoute(
-                    //           builder: (context) => MuralGallery(_pc),
-                    //         ),
-                    //       );
                   },
                 ),
               ],
             ),
           ),
-          //The middle button that runs the model
-          //There are two circle avatars because then the user can touch any part of the button
           StreamBuilder(
             stream: Firestore.instance
                 .collection("Murals")
                 .document(found)
                 .snapshots(),
             builder: (context, snapshot) {
-              // Do some basic error processing
               if (!snapshot.hasData) {
                 return Padding(
                   padding: EdgeInsets.only(bottom: 40.0),
@@ -381,17 +327,6 @@ class _MainPageState extends State<MainPage> {
                       selectedThing = 3;
                     });
                     _pc.animatePanelToPosition(1);
-                    // fade
-                    //     ? Navigator.push(
-                    //         context,
-                    //         FadeRoute(page: MainHistory(_pc)),
-                    //       )
-                    //     : Navigator.push(
-                    //         context,
-                    //         CupertinoPageRoute(
-                    //           builder: (context) => MainHistory(_pc),
-                    //         ),
-                    //       );
                   },
                 ),
               ),
@@ -402,17 +337,6 @@ class _MainPageState extends State<MainPage> {
                     selectedThing = 3;
                   });
                   _pc.animatePanelToPosition(1);
-                  // fade
-                  //     ? Navigator.push(
-                  //         context,
-                  //         FadeRoute(page: MainHistory(_pc)),
-                  //       )
-                  //     : Navigator.push(
-                  //         context,
-                  //         CupertinoPageRoute(
-                  //           builder: (context) => MainHistory(_pc),
-                  //         ),
-                  //       );
                 },
               ),
             ],
@@ -422,13 +346,10 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-// OK, now for the meaty stuff. The main widget here (called "build") is the main homepage widget in the "MainPage" class.
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    // First, make sure that we have initialized the camera and the app (corner case: some devices run slower, so this makes sure that the camera is running before we show the camera to the user)
     if (!controller.value.isInitialized) {
-      // If its not initialized, we let the user know with the following helpful message
       return new GestureDetector(
         onTap: () {
           controller = CameraController(cameras[0], ResolutionPreset.ultraHigh);
@@ -445,7 +366,6 @@ class _MainPageState extends State<MainPage> {
             animation: "loop"),
       );
     }
-    // When the camera is initialized (Stateful widget, so it is constantly re-checking the state), show the main app ui
     return new WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
@@ -480,10 +400,7 @@ class _MainPageState extends State<MainPage> {
                 dragg = true;
               });
             }
-            // playTTS(context, "");
           },
-          // padding:
-          //     const EdgeInsets.only(top: 20.0, bottom: 0.0, right: 0, left: 0),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20.0),
             topRight: Radius.circular(20.0),
@@ -500,8 +417,5 @@ class _MainPageState extends State<MainPage> {
         ),
       ),
     );
-    //   ),
-    // ),
-    // );
   }
 }

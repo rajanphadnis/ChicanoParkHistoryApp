@@ -61,10 +61,6 @@ class _AudioPageState extends State<AudioPage> {
         return true;
       },
       child: Scaffold(
-        // appBar: new AppBar(
-        //   backgroundColor: Colors.black,
-        //   title: Text("Audio Tour: " + widget.name),
-        // ),
         body: Container(
           width: MediaQuery.of(context).size.width * 0.75,
           padding: EdgeInsets.only(
@@ -75,20 +71,6 @@ class _AudioPageState extends State<AudioPage> {
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              // Padding(
-              //   padding: EdgeInsets.only(top: 15),
-              //   child: FittedBox(
-              //     child: getImage(widget.pic, "picURL", context),
-              //     fit: BoxFit.fitHeight,
-              //   ),
-              // ),
-              // Padding(
-              //   padding: EdgeInsets.only(
-              //     bottom: 0,
-              //     top: 10,
-              //   ),
-              //   child: Text(testString(widget.pic, "audioDesc")),
-              // ),
               Padding(
                 padding: EdgeInsets.only(top: 10),
                 child: Row(

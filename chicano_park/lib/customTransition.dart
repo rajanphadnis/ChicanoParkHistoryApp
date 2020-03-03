@@ -1,6 +1,5 @@
 part of mainlib;
 
-
 class FadeRoute extends PageRouteBuilder {
   final Widget page;
   FadeRoute({this.page})

@@ -96,7 +96,6 @@ Widget getImage(DocumentSnapshot docs, String url, BuildContext context) {
   }
 }
 
-// This function could have been embedded in the build() widget, but its easier to see when its separated out here
 DocumentSnapshot getMuralData(String nameMatch) {
   DocumentSnapshot doc;
   Firestore.instance
@@ -105,8 +104,6 @@ DocumentSnapshot getMuralData(String nameMatch) {
       .get()
       .then((DocumentSnapshot ds) {
     doc = ds;
-
-    // use ds as a snapshot
   });
   debugPrint(doc.toString());
   return doc;
@@ -164,41 +161,6 @@ Widget inte(String data) {
   }
 }
 
-// Widget aud(
-//     String data, String name, BuildContext context, DocumentSnapshot pic) {
-//   if (data == "undefined" || data == null) {
-//     return Container();
-//   } else {
-//     return InkWell(
-//       onTap: () {
-//         Navigator.push(
-//           context,
-//           CupertinoPageRoute(
-//             builder: (context) => AudioPage(data, name, pic),
-//           ),
-//         );
-//       },
-//       child:
-//           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-//         Text("Audio Tour"),
-//         IconButton(
-//           icon: Icon(Icons.play_circle_outline, color: Colors.black),
-//           highlightColor: Colors.grey,
-//           tooltip: "",
-//           onPressed: () {
-//             Navigator.push(
-//               context,
-//               CupertinoPageRoute(
-//                 builder: (context) => AudioPage(data, name, pic),
-//               ),
-//             );
-//           },
-//         ),
-//       ]),
-//     );
-//   }
-// }
-
 Widget buildPara(String text) {
   var split = text.split('\\n').map((i) {
     debugPrint("halooo");
@@ -228,8 +190,6 @@ Widget buildTextP(int number) {
         .document(number.toString())
         .snapshots(),
     builder: (context, snapshot) {
-      // if (snapshot.connectionState == ConnectionState.done) {
-        // Do some basic error processing
         if (!snapshot.hasData) {
           return Container(
             width: MediaQuery.of(context).size.width,
@@ -255,22 +215,6 @@ Widget buildTextP(int number) {
         return buildPara(
           testString(snapshot.data, "para"),
         );
-      // } else {
-      //   return Container(
-      //     width: MediaQuery.of(context).size.width,
-      //     height: MediaQuery.of(context).size.height,
-      //     child: Column(
-      //       mainAxisAlignment: MainAxisAlignment.center,
-      //       crossAxisAlignment: CrossAxisAlignment.center,
-      //       children: <Widget>[
-      //         Text("Loading..."),
-      //         CircularProgressIndicator(
-      //           valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
-      //         )
-      //       ],
-      //     ),
-      //   );
-      // }
     },
   );
 }
