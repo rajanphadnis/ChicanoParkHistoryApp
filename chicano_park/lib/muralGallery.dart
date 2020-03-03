@@ -2,7 +2,8 @@ part of mainlib;
 
 class MuralGallery extends StatefulWidget {
   final PanelController _pc;
-  MuralGallery(this._pc);
+  final ScrollController sc;
+  MuralGallery(this._pc, this.sc);
   _MuralGallery createState() => _MuralGallery();
 }
 
@@ -49,6 +50,7 @@ class _MuralGallery extends State<MuralGallery> {
           } else {
             return Scaffold(
               body: new CustomScrollView(
+                controller: widget.sc,
                 physics: BouncingScrollPhysics(),
                 slivers: <Widget>[
                   SliverAppBar(

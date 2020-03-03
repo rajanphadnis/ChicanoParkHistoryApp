@@ -377,8 +377,8 @@ class _MainPageState extends State<MainPage> {
           backdropOpacity: 0.8,
           // Experiment with this
           // renderPanelSheet: false,
-          parallaxEnabled: false,
-          parallaxOffset: 0.6,
+          // parallaxEnabled: false,
+          // parallaxOffset: 0.6,
           // ----
           minHeight: 0,
           maxHeight: MediaQuery.of(context).size.height * 1,
@@ -406,8 +406,8 @@ class _MainPageState extends State<MainPage> {
             topRight: Radius.circular(20.0),
           ),
           panelBuilder: (ScrollController sc) => (selectedThing == 1)
-              ? MuralGallery(_pc)
-              : (selectedThing == 2) ? MuralPage(found, _pc, false) : (selectedThing == 3) ? MainHistory(_pc, sc) : MuralGallery(_pc),
+              ? MuralGallery(_pc, sc)
+              : (selectedThing == 2) ? MuralPage(found, _pc, false) : (selectedThing == 3) ? MainHistory(_pc, sc) : MuralGallery(_pc, sc),
           body: Stack(
             children: <Widget>[
               cameraPreview(size, controller),
