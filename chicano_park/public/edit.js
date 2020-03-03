@@ -220,7 +220,7 @@ function reset(lengthOfV) {
     console.log(lengthOfV);
     var i;
     for (i = 0; i < lengthOfV; i++) {
-        firestore.collection("Murals").doc(document.getElementsByClassName("centerTheThing")[i].value.toString()).set({
+        firestore.collection("Murals").doc(document.getElementsByClassName("centerTheThing")[i].innerHTML.toString()).set({
                 views: 0,
                 avg: 0,
             }, {
