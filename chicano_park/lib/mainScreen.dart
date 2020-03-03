@@ -407,7 +407,7 @@ class _MainPageState extends State<MainPage> {
           ),
           panelBuilder: (ScrollController sc) => (selectedThing == 1)
               ? MuralGallery(_pc, sc)
-              : (selectedThing == 2) ? MuralPage(found, _pc, false) : (selectedThing == 3) ? MainHistory(_pc, sc) : MuralGallery(_pc, sc),
+              : (selectedThing == 2) ? MuralPage(found, _pc, false, sc) : (selectedThing == 3) ? MainHistory(_pc, sc) : MuralGallery(_pc, sc),
           body: Stack(
             children: <Widget>[
               cameraPreview(size, controller),

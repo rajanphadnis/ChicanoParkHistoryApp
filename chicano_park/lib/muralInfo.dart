@@ -4,7 +4,8 @@ class MuralPage extends StatefulWidget {
   final String found;
   final PanelController pc;
   final bool fromGallery;
-  MuralPage(this.found, this.pc, this.fromGallery);
+  final ScrollController sc;
+  MuralPage(this.found, this.pc, this.fromGallery, this.sc);
   _MuralPageState createState() => _MuralPageState();
 }
 
@@ -19,7 +20,7 @@ class _MuralPageState extends State<MuralPage>
   bool playing = false;
   bool expanded = false;
   bool go = false;
-  ScrollController sc;
+  // ScrollController sc;
   AnimationController _animationController;
   Animation _animation;
   int fadeAnimDur = 1000;
@@ -142,7 +143,7 @@ class _MuralPageState extends State<MuralPage>
             child: Scaffold(
               body: CustomScrollView(
                 physics: BouncingScrollPhysics(),
-                controller: sc,
+                controller: widget.sc,
                 slivers: <Widget>[
                   SliverAppBar(
                     leading: !widget.fromGallery ? IconButton(
@@ -151,7 +152,7 @@ class _MuralPageState extends State<MuralPage>
                         onPressed: () {
                           widget.pc.animatePanelToPosition(0);
                         }) : IconButton(
-                        icon: Icon(Icons.keyboard_arrow_down,
+                        icon: Icon(Icons.arrow_back,
                             color: Colors.white),
                         onPressed: () {
                           Navigator.pop(context);

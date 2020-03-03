@@ -90,7 +90,7 @@ class _MuralGallery extends State<MuralGallery> {
                                 context,
                                 CupertinoPageRoute(
                                   builder: (context) =>
-                                      MuralPage(found, widget._pc, true),
+                                      MuralPage(found, widget._pc, true, widget.sc),
                                 ));
                           },
                           child: ClipRRect(
