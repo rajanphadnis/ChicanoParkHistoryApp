@@ -2,8 +2,8 @@ part of mainlib;
 
 class MuralGallery extends StatefulWidget {
   // final ScrollController sc;
-  // final PanelController _pc;
-  // MuralGallery(this.sc, this._pc);
+  final PanelController _pc;
+  MuralGallery(this._pc);
   
   // final PanelController _pc;
   // MuralGallery(this._pc);
@@ -105,7 +105,7 @@ class _MuralGallery extends State<MuralGallery> {
                                 context,
                                 CupertinoPageRoute(
                                   builder: (context) =>
-                                      MuralPage(found),
+                                      MuralPage(found, widget._pc, true),
                                 ));
                           },
                           child: ClipRRect(

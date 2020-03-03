@@ -1,9 +1,10 @@
 part of mainlib;
 
 class MuralPage extends StatefulWidget {
-  final found;
-  // final PanelController _pc;
-  MuralPage(this.found);
+  final String found;
+  final PanelController pc;
+  final bool fromGallery;
+  MuralPage(this.found, this.pc, this.fromGallery);
   // We want a stateful widget because of all of theredrawing and repainting we are going to be doing. So, we create it (read: start it)
   _MuralPageState createState() => _MuralPageState();
 }
@@ -425,24 +426,24 @@ class _MuralPageState extends State<MuralPage>
                                 },
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(30),
-                              child: RaisedButton.icon(
-                                icon: Icon(Icons.explore),
-                                label: Text("All Murals"),
-                                onPressed: () {
-                                  // _pc.animatePanelToPosition(0);
-                                  Navigator.pop(context);
-                                  // Navigator.push(
-                                  //   context,
-                                  //   CupertinoPageRoute(
-                                  //     builder: (context) => MuralGallery(),
-                                  //   ),
-                                  // );
-                                  // widget._pc.animatePanelToPosition(1);
-                                },
-                              ),
-                            ),
+                            // Padding(
+                            //   padding: const EdgeInsets.all(30),
+                            //   child: RaisedButton.icon(
+                            //     icon: Icon(Icons.explore),
+                            //     label: Text("All Murals"),
+                            //     onPressed: () {
+                            //       // _pc.animatePanelToPosition(0);
+                            //       widget.fromGallery ? Navigator.pop(context) : widget.pc.animatePanelToPosition(0);
+                            //       // Navigator.push(
+                            //       //   context,
+                            //       //   CupertinoPageRoute(
+                            //       //     builder: (context) => MuralGallery(),
+                            //       //   ),
+                            //       // );
+                            //       // widget._pc.animatePanelToPosition(1);
+                            //     },
+                            //   ),
+                            // ),
                           ],
                         ),
                       ],

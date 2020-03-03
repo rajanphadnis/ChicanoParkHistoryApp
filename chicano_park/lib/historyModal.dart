@@ -1,6 +1,9 @@
 part of mainlib;
 
 class MainHistory extends StatefulWidget {
+  final PanelController pc;
+  final ScrollController sc;
+  MainHistory(this.pc, this.sc);
   @override
   _MainHistoryState createState() {
     return _MainHistoryState();
@@ -25,9 +28,6 @@ class _MainHistoryState extends State<MainHistory>
         if (intTHing == 4) {
           if (await Vibration.hasVibrator()) {
             Vibration.vibrate(duration: 25);
-            // if (await Vibration.hasAmplitudeControl()) {
-            //   Vibration.vibrate(amplitude: 128);
-            // }
           }
           Navigator.push(
             context,
@@ -98,8 +98,8 @@ class _MainHistoryState extends State<MainHistory>
     );
   }
 
-  Widget Part(@required int bigPP, @required double size, String title,
-      String subtitle, String summary) {
+  Widget part(
+      int bigPP, double size, String title, String subtitle, String summary) {
     return InkWell(
       key: ValueKey<int>(bigPP),
       onTap: () {},
@@ -212,6 +212,10 @@ class _MainHistoryState extends State<MainHistory>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        leading:
+            IconButton(icon: Icon(Icons.keyboard_arrow_down), onPressed: () {
+              widget.pc.animatePanelToPosition(0);
+            }),
         backgroundColor: Colors.black,
         title: Text("History"),
       ),
@@ -234,242 +238,6 @@ class _MainHistoryState extends State<MainHistory>
                         lineCircleThingBuilder(2),
                         lineCircleThingBuilder(3),
                         lineCircleThingBuilder(4),
-                        // GestureDetector(
-                        //   onTap: () {
-                        //     setColor(1);
-                        //     setState(() {
-                        //       pompousAss = 1;
-                        //     });
-                        //   },
-                        //   child: Stack(
-                        //     children: <Widget>[
-                        //       // Do not remove. Does not work without this
-                        //       new Padding(
-                        //         padding: const EdgeInsets.only(left: 50.0),
-                        //         child: new Card(
-                        //           margin: new EdgeInsets.all(20.0),
-                        //           child: new Container(
-                        //             width: 0,
-                        //             height: 100,
-                        //             color: Colors.green,
-                        //           ),
-                        //         ),
-                        //       ),
-                        //       // ----
-                        //       new Positioned(
-                        //         top: 0.0,
-                        //         bottom: 0.0,
-                        //         left: 30.0,
-                        //         child: new Container(
-                        //           height: 100,
-                        //           width: 1.0,
-                        //           color: Colors.grey,
-                        //         ),
-                        //       ),
-                        //       new Positioned(
-                        //         top: 50.0,
-                        //         left: 15.0,
-                        //         child: new Container(
-                        //           height: 30.0,
-                        //           width: 30.0,
-                        //           decoration: new BoxDecoration(
-                        //             shape: BoxShape.circle,
-                        //             color: Colors.white,
-                        //           ),
-                        //           child: new Container(
-                        //             margin: new EdgeInsets.all(5.0),
-                        //             height: 25.0,
-                        //             width: 25.0,
-                        //             decoration: new BoxDecoration(
-                        //               shape: BoxShape.circle,
-                        //               color: one,
-                        //             ),
-                        //           ),
-                        //         ),
-                        //       )
-                        //     ],
-                        //   ),
-                        // ),
-                        // GestureDetector(
-                        //   onTap: () {
-                        //     setColor(2);
-                        //     setState(() {
-                        //       pompousAss = 2;
-                        //     });
-                        //   },
-                        //   child: Stack(
-                        //     children: <Widget>[
-                        //       // Do not remove. Does not work without this
-                        //       new Padding(
-                        //         padding: const EdgeInsets.only(left: 50.0),
-                        //         child: new Card(
-                        //           margin: new EdgeInsets.all(20.0),
-                        //           child: new Container(
-                        //             width: 0,
-                        //             height: 100,
-                        //             color: Colors.green,
-                        //           ),
-                        //         ),
-                        //       ),
-                        //       // ----
-                        //       new Positioned(
-                        //         top: 0.0,
-                        //         bottom: 0.0,
-                        //         left: 30.0,
-                        //         child: new Container(
-                        //           height: 100,
-                        //           width: 1.0,
-                        //           color: Colors.grey,
-                        //         ),
-                        //       ),
-                        //       new Positioned(
-                        //         top: 50.0,
-                        //         left: 15.0,
-                        //         child: new Container(
-                        //           height: 30.0,
-                        //           width: 30.0,
-                        //           decoration: new BoxDecoration(
-                        //             shape: BoxShape.circle,
-                        //             color: Colors.white,
-                        //           ),
-                        //           child: new Container(
-                        //             margin: new EdgeInsets.all(5.0),
-                        //             height: 25.0,
-                        //             width: 25.0,
-                        //             decoration: new BoxDecoration(
-                        //               shape: BoxShape.circle,
-                        //               color: two,
-                        //             ),
-                        //           ),
-                        //         ),
-                        //       )
-                        //     ],
-                        //   ),
-                        // ),
-                        // GestureDetector(
-                        //   onTap: () {
-                        //     setColor(3);
-                        //     setState(() {
-                        //       pompousAss = 3;
-                        //     });
-                        //   },
-                        //   child: Stack(
-                        //     children: <Widget>[
-                        //       // Do not remove. Does not work without this
-                        //       new Padding(
-                        //         padding: const EdgeInsets.only(left: 50.0),
-                        //         child: new Card(
-                        //           margin: new EdgeInsets.all(20.0),
-                        //           child: new Container(
-                        //             width: 0,
-                        //             height: 100,
-                        //             color: Colors.green,
-                        //           ),
-                        //         ),
-                        //       ),
-                        //       // ----
-                        //       new Positioned(
-                        //         top: 0.0,
-                        //         bottom: 0.0,
-                        //         left: 30.0,
-                        //         child: new Container(
-                        //           height: 100,
-                        //           width: 1.0,
-                        //           color: Colors.grey,
-                        //         ),
-                        //       ),
-                        //       new Positioned(
-                        //         top: 50.0,
-                        //         left: 15.0,
-                        //         child: new Container(
-                        //           height: 30.0,
-                        //           width: 30.0,
-                        //           decoration: new BoxDecoration(
-                        //             shape: BoxShape.circle,
-                        //             color: Colors.white,
-                        //           ),
-                        //           child: new Container(
-                        //             margin: new EdgeInsets.all(5.0),
-                        //             height: 25.0,
-                        //             width: 25.0,
-                        //             decoration: new BoxDecoration(
-                        //               shape: BoxShape.circle,
-                        //               color: three,
-                        //             ),
-                        //           ),
-                        //         ),
-                        //       )
-                        //     ],
-                        //   ),
-                        // ),
-                        //   GestureDetector(
-                        //     onLongPress: () async {
-                        //       if (await Vibration.hasVibrator()) {
-                        //         Vibration.vibrate(duration: 25);
-                        //         // if (await Vibration.hasAmplitudeControl()) {
-                        //         //   Vibration.vibrate(amplitude: 128);
-                        //         // }
-                        //       }
-                        //       Navigator.push(
-                        //         context,
-                        //         FadeRoute(page: CreditsPage()),
-                        //       );
-                        //     },
-                        //     onTap: () {
-                        //       setColor(4);
-                        //       setState(() {
-                        //         pompousAss = 4;
-                        //       });
-                        //     },
-                        //     child: Stack(
-                        //       children: <Widget>[
-                        //         // Do not remove. Does not work without this
-                        //         new Padding(
-                        //           padding: const EdgeInsets.only(left: 50.0),
-                        //           child: new Card(
-                        //             margin: new EdgeInsets.all(20.0),
-                        //             child: new Container(
-                        //               width: 0,
-                        //               height: 100,
-                        //               color: Colors.green,
-                        //             ),
-                        //           ),
-                        //         ),
-                        //         // ----
-                        //         new Positioned(
-                        //           top: 0.0,
-                        //           bottom: 0.0,
-                        //           left: 30.0,
-                        //           child: new Container(
-                        //             height: 100,
-                        //             width: 1.0,
-                        //             color: Colors.grey,
-                        //           ),
-                        //         ),
-                        //         new Positioned(
-                        //           top: 50.0,
-                        //           left: 15.0,
-                        //           child: new Container(
-                        //             height: 30.0,
-                        //             width: 30.0,
-                        //             decoration: new BoxDecoration(
-                        //               shape: BoxShape.circle,
-                        //               color: Colors.white,
-                        //             ),
-                        //             child: new Container(
-                        //               margin: new EdgeInsets.all(5.0),
-                        //               height: 25.0,
-                        //               width: 25.0,
-                        //               decoration: new BoxDecoration(
-                        //                 shape: BoxShape.circle,
-                        //                 color: four,
-                        //               ),
-                        //             ),
-                        //           ),
-                        //         )
-                        //       ],
-                        //     ),
-                        //   ),
                       ],
                     ),
                   ),
@@ -548,14 +316,14 @@ class _MainHistoryState extends State<MainHistory>
                                   );
                                 },
                                 child: pompousAss == 1
-                                    ? Part(
+                                    ? part(
                                         1,
                                         bigPP,
                                         testString(snapshot.data, "title"),
                                         testString(snapshot.data, "subtitle"),
                                         testString(snapshot.data, "summary"))
                                     : (pompousAss == 2
-                                        ? Part(
+                                        ? part(
                                             2,
                                             bigPP,
                                             testString(snapshot.data, "title"),
@@ -564,7 +332,7 @@ class _MainHistoryState extends State<MainHistory>
                                             testString(
                                                 snapshot.data, "summary"))
                                         : (pompousAss == 3
-                                            ? Part(
+                                            ? part(
                                                 3,
                                                 bigPP,
                                                 testString(
@@ -574,7 +342,7 @@ class _MainHistoryState extends State<MainHistory>
                                                 testString(
                                                     snapshot.data, "summary"))
                                             : pompousAss == 4
-                                                ? Part(
+                                                ? part(
                                                     4,
                                                     bigPP,
                                                     testString(
@@ -583,7 +351,7 @@ class _MainHistoryState extends State<MainHistory>
                                                         "subtitle"),
                                                     testString(snapshot.data,
                                                         "summary"))
-                                                : Part(
+                                                : part(
                                                     1,
                                                     bigPP,
                                                     testString(

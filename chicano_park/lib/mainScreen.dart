@@ -13,6 +13,7 @@ class _MainPageState extends State<MainPage> {
   PanelController _pc = new PanelController();
   FlutterTts flutterTts = FlutterTts();
   bool fade = true;
+  bool dragg = true;
   // bool talking = false;
   Future<void> go() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -165,17 +166,21 @@ class _MainPageState extends State<MainPage> {
         debugPrint("done thing");
         setState(() {
           processing = false;
+          selectedThing = 2;
+          found = parsedJson[label];
         });
-        fade ? Navigator.push(
-          context,
-          FadeRoute(page: MuralPage(found)),
-        ) : 
-        Navigator.push(
-          context,
-          CupertinoPageRoute(
-            builder: (context) => MuralPage(found),
-          ),
-        );
+        _pc.animatePanelToPosition(1);
+        // fade
+        //     ? Navigator.push(
+        //         context,
+        //         FadeRoute(page: MuralPage(found, _pc, false)),
+        //       )
+        //     : Navigator.push(
+        //         context,
+        //         CupertinoPageRoute(
+        //           builder: (context) => MuralPage(found, _pc, false),
+        //         ),
+        //       );
       } else {
         setState(() {
           processing = false;
@@ -194,16 +199,21 @@ class _MainPageState extends State<MainPage> {
           //MURAL GALLERY/LIBRARY
           GestureDetector(
             onTap: () {
-              fade ? Navigator.push(
-                context,
-                FadeRoute(page: MuralGallery()),
-              ) : 
-                Navigator.push(
-                context,
-                CupertinoPageRoute(
-                  builder: (context) => MuralGallery(),
-                ),
-              );
+              setState(() {
+                selectedThing = 1;
+              });
+              _pc.animatePanelToPosition(1);
+              // fade
+              //     ? Navigator.push(
+              //         context,
+              //         FadeRoute(page: MuralGallery(_pc)),
+              //       )
+              //     : Navigator.push(
+              //         context,
+              //         CupertinoPageRoute(
+              //           builder: (context) => MuralGallery(_pc),
+              //         ),
+              //       );
             },
             child: Stack(
               alignment: Alignment.center,
@@ -214,33 +224,42 @@ class _MainPageState extends State<MainPage> {
                   child: IconButton(
                     icon: Icon(Icons.list, color: Colors.white),
                     onPressed: () {
-                      fade ? Navigator.push(
-                        context,
-                        FadeRoute(page: MuralGallery()),
-                      ) :
-                        Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => MuralGallery(),
-                        ),
-                      );
+                      setState(() {
+                        selectedThing = 1;
+                      });
+                      _pc.animatePanelToPosition(1);
+                      // fade
+                      //     ? Navigator.push(
+                      //         context,
+                      //         FadeRoute(page: MuralGallery(_pc)),
+                      //       )
+                      //     : Navigator.push(
+                      //         context,
+                      //         CupertinoPageRoute(
+                      //           builder: (context) => MuralGallery(_pc),
+                      //         ),
+                      //       );
                     },
                   ),
                 ),
                 IconButton(
                   icon: Icon(Icons.list, color: Colors.black),
                   onPressed: () {
-                    fade ? Navigator.push(
-                      context,
-                      FadeRoute(page: MuralGallery()),
-                    ) :
-                    
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) => MuralGallery(),
-                      ),
-                    );
+                    setState(() {
+                      selectedThing = 1;
+                    });
+                    _pc.animatePanelToPosition(1);
+                    // fade
+                    //     ? Navigator.push(
+                    //         context,
+                    //         FadeRoute(page: MuralGallery(_pc)),
+                    //       )
+                    //     : Navigator.push(
+                    //         context,
+                    //         CupertinoPageRoute(
+                    //           builder: (context) => MuralGallery(_pc),
+                    //         ),
+                    //       );
                   },
                 ),
               ],
@@ -358,32 +377,42 @@ class _MainPageState extends State<MainPage> {
                 child: IconButton(
                   icon: Icon(Icons.list, color: Colors.white),
                   onPressed: () {
-                    fade ? Navigator.push(
-                      context,
-                      FadeRoute(page: MainHistory()),
-                    ) : 
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) => MainHistory(),
-                      ),
-                    );
+                    setState(() {
+                      selectedThing = 3;
+                    });
+                    _pc.animatePanelToPosition(1);
+                    // fade
+                    //     ? Navigator.push(
+                    //         context,
+                    //         FadeRoute(page: MainHistory(_pc)),
+                    //       )
+                    //     : Navigator.push(
+                    //         context,
+                    //         CupertinoPageRoute(
+                    //           builder: (context) => MainHistory(_pc),
+                    //         ),
+                    //       );
                   },
                 ),
               ),
               IconButton(
                 icon: Icon(Icons.explore, color: Colors.black),
                 onPressed: () {
-                  fade ? Navigator.push(
-                    context,
-                    FadeRoute(page: MainHistory()),
-                  ) : 
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => MainHistory(),
-                    ),
-                  );
+                  setState(() {
+                    selectedThing = 3;
+                  });
+                  _pc.animatePanelToPosition(1);
+                  // fade
+                  //     ? Navigator.push(
+                  //         context,
+                  //         FadeRoute(page: MainHistory(_pc)),
+                  //       )
+                  //     : Navigator.push(
+                  //         context,
+                  //         CupertinoPageRoute(
+                  //           builder: (context) => MainHistory(_pc),
+                  //         ),
+                  //       );
                 },
               ),
             ],
@@ -422,41 +451,53 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         key: _scaffoldKey,
-        body:
-            // SlidingUpPanel(
-            //   panelSnapping: true,
-            //   backdropEnabled: true,
-            //   backdropOpacity: 0.8,
-            //   // Experiment with this
-            //   // renderPanelSheet: false,
-            //   parallaxEnabled: true,
-            //   parallaxOffset: 0.6,
-            //   // ----
-            //   minHeight: 0,
-            //   maxHeight: MediaQuery.of(context).size.height * 1,
-            //   controller: _pc,
-            //   // onPanelClosed: () {
-            //   //   playTTS(context, "");
-            //   // },
-            //   // padding:
-            //   //     const EdgeInsets.only(top: 20.0, bottom: 0.0, right: 0, left: 0),
-            //   borderRadius: BorderRadius.only(
-            //     topLeft: Radius.circular(20.0),
-            //     topRight: Radius.circular(20.0),
-            //   ),
-            //   panelBuilder: (ScrollController sc) => (selectedThing == 1)
-            //       ? MuralGallery(sc, _pc)
-            //       : (selectedThing == 2) ? Container() : MainHistory(),
-            //   body:
-            Stack(
-          children: <Widget>[
-            //This is the camera
-
-            cameraPreview(size, controller),
-            theBottomButtonNavigation(),
-          ],
+        body: SlidingUpPanel(
+          panelSnapping: true,
+          backdropEnabled: true,
+          backdropOpacity: 0.8,
+          // Experiment with this
+          // renderPanelSheet: false,
+          parallaxEnabled: true,
+          parallaxOffset: 0.6,
+          // ----
+          minHeight: 0,
+          maxHeight: MediaQuery.of(context).size.height * 1,
+          controller: _pc,
+          isDraggable: dragg,
+          onPanelOpened: () {
+            if (selectedThing == 3) {
+              setState(() {
+                dragg = false;
+              });
+            }
+            else {
+              // do nothing
+            }
+          },
+          onPanelClosed: () {
+            if (selectedThing == 3) {
+              setState(() {
+                dragg = true;
+              });
+            }
+            // playTTS(context, "");
+          },
+          // padding:
+          //     const EdgeInsets.only(top: 20.0, bottom: 0.0, right: 0, left: 0),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          ),
+          panelBuilder: (ScrollController sc) => (selectedThing == 1)
+              ? MuralGallery(_pc)
+              : (selectedThing == 2) ? MuralPage(found, _pc, false) : (selectedThing == 3) ? MainHistory(_pc, sc) : MuralGallery(_pc),
+          body: Stack(
+            children: <Widget>[
+              cameraPreview(size, controller),
+              theBottomButtonNavigation(),
+            ],
+          ),
         ),
-        // ),
       ),
     );
     //   ),

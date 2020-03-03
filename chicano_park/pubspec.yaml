@@ -24,7 +24,6 @@ dependencies:
   firebase_analytics: ^5.0.2
   sliding_up_panel: ^1.0.0
   url_launcher: ^5.4.1
-  # Flare project: https://rive.app/a/rajap/files/recent/all
   flare_splash_screen: ^3.0.1
   flare_flutter: ^2.0.1
   cupertino_icons: ^0.1.2
@@ -34,7 +33,6 @@ dependencies:
   vibration: ^1.2.4
   animations: ^1.0.0+5
   flutter_staggered_grid_view: ^0.3.0
-  page_transition: ^1.1.5
   flutter_seekbar:
     git: https://github.com/LiuC520/flutter_seekbar.git
 
