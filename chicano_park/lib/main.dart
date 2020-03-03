@@ -1,4 +1,3 @@
-// First, you want to import all of the packages. Material is standard.
 library mainlib;
 
 import 'package:animations/animations.dart';
@@ -34,7 +33,6 @@ part 'functions.dart';
 part 'shapesDrawing.dart';
 part 'mainScreen.dart';
 part 'historyModal.dart';
-// part 'timeline.dart';
 part 'infoPage.dart';
 part 'artist.dart';
 part 'muralGallery.dart';
@@ -42,8 +40,6 @@ part 'credits.dart';
 part 'muralInfo.dart';
 part 'customTransition.dart';
 
-// Next, create a list of cameras so that we know which one is the "back" one
-// Start the app asynchronously because we want to make sure that the cameras are turned on and we have access to them before we show a camera feed to the user
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
@@ -51,13 +47,12 @@ Future<void> main() async {
 }
 
 final key = new GlobalKey<_MainPageState>();
-// This variable is a string that will contain a descriptor for the mural we found when scanned
-var found = "all_the_way";
+var found = "All_The_Way_To_The_Bay";
 double valueTHingy = 0.0;
 String textl = "quite literally nothing";
 double confidenceNumThing = 0.0;
 var jsonData =
-    '{ "All_The_Way_To_The_Bay" : "All_The_Way_To_The_Bay", "Colossus" : "Colossus", "Los_Grandes" : "Los_Grandes", "Cuauhtemoc_Aztec_Warrior" : "Cuauhtemoc_Aztec_Warrior", "Varrio_Si_Yonkes_No" : "Varrio_Si_Yonkes_No", "Mujer_Cosmica" : "mujer_cosmica", "Chicano_Pinto_union" : "pinto", "Ninos_del_Mundo" : "ninos" }';
+    '{ "All_The_Way_To_The_Bay" : "All_The_Way_To_The_Bay", "Colossus" : "Colossus", "Los_Grandes" : "Los_Grandes", "Cuauhtemoc_Aztec_Warrior" : "Cuauhtemoc_Aztec_Warrior", "Varrio_Si_Yonkes_No" : "Varrio_Si_Yonkes_No", "Mujer_Cosmica" : "Mujer_Cosmica", "Chicano_Pinto_union" : "Chicano_Pinto_union", "Ninos_del_Mundo" : "Ninos_del_Mundo" }';
 var parsedJson = json.decode(jsonData);
 String data = "no error";
 final double confidenceThresh = 0.2;
@@ -67,7 +62,6 @@ class ScreenArguments {
   final String found;
   ScreenArguments(this.found);
 }
-// Create the app class and basic Material design structure
 class MyApp extends StatelessWidget {
   final FirebaseAnalytics analytics = FirebaseAnalytics();
   @override
@@ -77,11 +71,9 @@ class MyApp extends StatelessWidget {
         FirebaseAnalyticsObserver(analytics: analytics),
       ],
       theme: ThemeData(
-        // We can end up changing a bunch of values in here: https://api.flutter.dev/flutter/material/Colors-class.html
         primarySwatch: Colors.blue,
         canvasColor: Colors.white,
       ),
-      // Tell the app that the homepage is MainPage()
       home: SplashScreen.navigate(
         name: 'assets/Chicano.flr',
         next: (_) => MainPage(),
@@ -93,6 +85,5 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatefulWidget {
-  // We want a stateful widget because of all of theredrawing and repainting we are going to be doing. So, we create it (read: start it)
   _MainPageState createState() => _MainPageState();
 }
