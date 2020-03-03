@@ -9,8 +9,10 @@ class _MainPageState extends State<MainPage> {
   var confidenceThing;
   static const platform = const MethodChannel('samples.flutter.dev/battery');
   var realData;
+  int selectedThing = 1;
   PanelController _pc = new PanelController();
   FlutterTts flutterTts = FlutterTts();
+  bool fade = true;
   // bool talking = false;
   Future<void> go() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -164,11 +166,14 @@ class _MainPageState extends State<MainPage> {
         setState(() {
           processing = false;
         });
-        // _pc.animatePanelToPosition(1);
+        fade ? Navigator.push(
+          context,
+          FadeRoute(page: MuralPage(found)),
+        ) : 
         Navigator.push(
           context,
           CupertinoPageRoute(
-            builder: (context) => MuralPage(found, _pc),
+            builder: (context) => MuralPage(found),
           ),
         );
       } else {
@@ -189,7 +194,16 @@ class _MainPageState extends State<MainPage> {
           //MURAL GALLERY/LIBRARY
           GestureDetector(
             onTap: () {
-              _pc.animatePanelToPosition(1);
+              fade ? Navigator.push(
+                context,
+                FadeRoute(page: MuralGallery()),
+              ) : 
+                Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => MuralGallery(),
+                ),
+              );
             },
             child: Stack(
               alignment: Alignment.center,
@@ -200,14 +214,33 @@ class _MainPageState extends State<MainPage> {
                   child: IconButton(
                     icon: Icon(Icons.list, color: Colors.white),
                     onPressed: () {
-                      _pc.animatePanelToPosition(1);
+                      fade ? Navigator.push(
+                        context,
+                        FadeRoute(page: MuralGallery()),
+                      ) :
+                        Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => MuralGallery(),
+                        ),
+                      );
                     },
                   ),
                 ),
                 IconButton(
                   icon: Icon(Icons.list, color: Colors.black),
                   onPressed: () {
-                    _pc.animatePanelToPosition(1);
+                    fade ? Navigator.push(
+                      context,
+                      FadeRoute(page: MuralGallery()),
+                    ) :
+                    
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => MuralGallery(),
+                      ),
+                    );
                   },
                 ),
               ],
@@ -325,6 +358,10 @@ class _MainPageState extends State<MainPage> {
                 child: IconButton(
                   icon: Icon(Icons.list, color: Colors.white),
                   onPressed: () {
+                    fade ? Navigator.push(
+                      context,
+                      FadeRoute(page: MainHistory()),
+                    ) : 
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
@@ -337,6 +374,10 @@ class _MainPageState extends State<MainPage> {
               IconButton(
                 icon: Icon(Icons.explore, color: Colors.black),
                 onPressed: () {
+                  fade ? Navigator.push(
+                    context,
+                    FadeRoute(page: MainHistory()),
+                  ) : 
                   Navigator.push(
                     context,
                     CupertinoPageRoute(
@@ -381,36 +422,41 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         key: _scaffoldKey,
-        body: SlidingUpPanel(
-          panelSnapping: true,
-          backdropEnabled: true,
-          backdropOpacity: 0.8,
-          // Experiment with this
-          // renderPanelSheet: false,
-          parallaxEnabled: true,
-          parallaxOffset: 0.6,
-          // ----
-          minHeight: 0,
-          maxHeight: MediaQuery.of(context).size.height * 1,
-          controller: _pc,
-          // onPanelClosed: () {
-          //   playTTS(context, "");
-          // },
-          // padding:
-          //     const EdgeInsets.only(top: 20.0, bottom: 0.0, right: 0, left: 0),
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
-          ),
-          panelBuilder: (ScrollController sc) => MuralGallery(sc, _pc),
-          body: Stack(
-            children: <Widget>[
-              //This is the camera
-              cameraPreview(size, controller),
-              theBottomButtonNavigation(),
-            ],
-          ),
+        body:
+            // SlidingUpPanel(
+            //   panelSnapping: true,
+            //   backdropEnabled: true,
+            //   backdropOpacity: 0.8,
+            //   // Experiment with this
+            //   // renderPanelSheet: false,
+            //   parallaxEnabled: true,
+            //   parallaxOffset: 0.6,
+            //   // ----
+            //   minHeight: 0,
+            //   maxHeight: MediaQuery.of(context).size.height * 1,
+            //   controller: _pc,
+            //   // onPanelClosed: () {
+            //   //   playTTS(context, "");
+            //   // },
+            //   // padding:
+            //   //     const EdgeInsets.only(top: 20.0, bottom: 0.0, right: 0, left: 0),
+            //   borderRadius: BorderRadius.only(
+            //     topLeft: Radius.circular(20.0),
+            //     topRight: Radius.circular(20.0),
+            //   ),
+            //   panelBuilder: (ScrollController sc) => (selectedThing == 1)
+            //       ? MuralGallery(sc, _pc)
+            //       : (selectedThing == 2) ? Container() : MainHistory(),
+            //   body:
+            Stack(
+          children: <Widget>[
+            //This is the camera
+
+            cameraPreview(size, controller),
+            theBottomButtonNavigation(),
+          ],
         ),
+        // ),
       ),
     );
     //   ),

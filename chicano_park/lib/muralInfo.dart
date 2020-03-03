@@ -2,8 +2,8 @@ part of mainlib;
 
 class MuralPage extends StatefulWidget {
   final found;
-  final PanelController _pc;
-  MuralPage(this.found, this._pc);
+  // final PanelController _pc;
+  MuralPage(this.found);
   // We want a stateful widget because of all of theredrawing and repainting we are going to be doing. So, we create it (read: start it)
   _MuralPageState createState() => _MuralPageState();
 }
@@ -43,6 +43,7 @@ class _MuralPageState extends State<MuralPage>
       begin: 0.0,
       end: 1.0,
     ).animate(_animationController);
+    _animationController.dispose();
   }
 
   void play() async {
@@ -63,7 +64,7 @@ class _MuralPageState extends State<MuralPage>
 
   @override
   void dispose() async {
-    _animationController.dispose();
+    // _animationController.dispose();
     stop();
     super.dispose();
     // await audioPlayer.dispose();
@@ -438,7 +439,7 @@ class _MuralPageState extends State<MuralPage>
                                   //     builder: (context) => MuralGallery(),
                                   //   ),
                                   // );
-                                  widget._pc.animatePanelToPosition(1);
+                                  // widget._pc.animatePanelToPosition(1);
                                 },
                               ),
                             ),

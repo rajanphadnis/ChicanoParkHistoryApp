@@ -12,6 +12,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_seekbar/flutter_seekbar.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -41,7 +42,6 @@ part 'muralGallery.dart';
 part 'credits.dart';
 part 'muralInfo.dart';
 part 'customTransition.dart';
-
 
 /*  
 TODO
@@ -88,19 +88,41 @@ double valueTHingy = 0.0;
 String textl = "quite literally nothing";
 double confidenceNumThing = 0.0;
 var jsonData =
-    '{ "All_The_Way_To_The_Bay" : "all_the_way", "Colossus" : "colossus", "Los_Grandes" : "grandes", "Cuauhtemoc_Aztec_Warrior" : "aztec_dude", "Varrio_Si_Yonkes_No" : "varrio", "Mujer_Cosmica" : "mujer_cosmica", "Chicano_Pinto_union" : "pinto", "Ninos_del_Mundo" : "ninos" }';
+    '{ "All_The_Way_To_The_Bay" : "All_The_Way_To_The_Bay", "Colossus" : "Colossus", "Los_Grandes" : "Los_Grandes", "Cuauhtemoc_Aztec_Warrior" : "Cuauhtemoc_Aztec_Warrior", "Varrio_Si_Yonkes_No" : "varrio", "Mujer_Cosmica" : "mujer_cosmica", "Chicano_Pinto_union" : "pinto", "Ninos_del_Mundo" : "ninos" }';
 var parsedJson = json.decode(jsonData);
 String data = "no error";
 final double confidenceThresh = 0.2;
 List<CameraDescription> cameras;
 bool processing = false;
-
+class ScreenArguments {
+  final String found;
+  ScreenArguments(this.found);
+}
 // Create the app class and basic Material design structure
 class MyApp extends StatelessWidget {
   final FirebaseAnalytics analytics = FirebaseAnalytics();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // onGenerateRoute: (settings) {
+      //   switch (settings.name) {
+      //     case '/gallery':
+      //       return PageTransition(
+      //           child: MuralGallery(), type: PageTransitionType.fade);
+      //       break;
+      //     case '/mural':
+      //     final ScreenArguments args = settings.arguments;
+      //       return PageTransition(
+      //           child: MuralPage(args.found), type: PageTransitionType.upToDown);
+      //       break;
+      //     case '/history':
+      //       return PageTransition(
+      //           child: MainHistory(), type: PageTransitionType.fade);
+      //       break;
+      //     default:
+      //       return null;
+      //   }
+      // },
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),
       ],

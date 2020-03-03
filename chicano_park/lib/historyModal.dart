@@ -7,46 +7,101 @@ class MainHistory extends StatefulWidget {
   }
 }
 
-// class Part1R extends StatefulWidget {
-//   final int pompousAss;
-//   Part1R(this.pompousAss);
-//   @override
-//   _Part1State createState() {
-//     return _Part1State();
-//   }
-// }
+class _MainHistoryState extends State<MainHistory>
+    with SingleTickerProviderStateMixin {
+  int pompousAss = 1;
+  bool backItUpBoii = false;
+  bool workingOnSomething = false;
+  Color selected = Colors.black;
+  Color normal = Colors.grey;
+  Color one = Colors.black;
+  Color two = Colors.grey;
+  Color three = Colors.grey;
+  Color four = Colors.grey;
+  double bigPP = 40.0;
+  Widget lineCircleThingBuilder(int intTHing) {
+    return GestureDetector(
+      onLongPress: () async {
+        if (intTHing == 4) {
+          if (await Vibration.hasVibrator()) {
+            Vibration.vibrate(duration: 25);
+            // if (await Vibration.hasAmplitudeControl()) {
+            //   Vibration.vibrate(amplitude: 128);
+            // }
+          }
+          Navigator.push(
+            context,
+            FadeRoute(page: CreditsPage()),
+          );
+        }
+      },
+      onTap: () {
+        setColor(intTHing);
+        setState(() {
+          pompousAss = intTHing;
+        });
+      },
+      child: Stack(
+        children: <Widget>[
+          // Do not remove. Does not work without this
+          new Padding(
+            padding: const EdgeInsets.only(left: 50.0),
+            child: new Card(
+              margin: new EdgeInsets.all(20.0),
+              child: new Container(
+                width: 0,
+                height: 100,
+                color: Colors.green,
+              ),
+            ),
+          ),
+          // ----
+          new Positioned(
+            top: 0.0,
+            bottom: 0.0,
+            left: 30.0,
+            child: new Container(
+              height: 100,
+              width: 1.0,
+              color: Colors.grey,
+            ),
+          ),
+          new Positioned(
+            top: 50.0,
+            left: 15.0,
+            child: new Container(
+              height: 30.0,
+              width: 30.0,
+              decoration: new BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+              ),
+              child: new Container(
+                margin: new EdgeInsets.all(5.0),
+                height: 25.0,
+                width: 25.0,
+                decoration: new BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: (intTHing == 1)
+                      ? one
+                      : (intTHing == 2)
+                          ? two
+                          : (intTHing == 3)
+                              ? three
+                              : (intTHing == 4) ? four : one,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 
-// class _Part1State extends State<Part1R> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//         children: <Widget>[
-//           Container(
-//             child: IconButton(
-//                 icon: Icon(Icons.keyboard_arrow_up, color: Colors.white),
-//                 onPressed: () {}),
-//           ),
-//           Part1(),
-//           Container(
-//             child: IconButton(
-//                 icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
-//                 onPressed: () {
-//                   setState(() {
-//                     // widget.pompousAss = 2;
-//                   });
-//                 }),
-//           ),
-//         ]);
-//   }
-// }
-
-class Part1 extends StatelessWidget {
-  final double bigPP;
-  Part1(this.bigPP);
-  @override
-  Widget build(BuildContext context) {
+  Widget Part(@required int bigPP, @required double size, String title,
+      String subtitle, String summary) {
     return InkWell(
+      key: ValueKey<int>(bigPP),
       onTap: () {},
       child: Container(
         padding: EdgeInsets.only(right: 70),
@@ -57,16 +112,31 @@ class Part1 extends StatelessWidget {
           children: <Widget>[
             Container(
               padding: EdgeInsets.all(20),
-              child: IconButton(
-                  icon: Icon(Icons.keyboard_arrow_up,
-                      color: Colors.white, size: bigPP),
-                  onPressed: () {}),
+              child: Opacity(
+                opacity: 0.4,
+                child: IconButton(
+                    enableFeedback: false,
+                    icon: Icon(Icons.keyboard_arrow_up,
+                        color: (bigPP == 1) ? Colors.white : Colors.grey,
+                        size: size),
+                    onPressed: () {}),
+              ),
             ),
             Column(children: <Widget>[
-              Text("1800s - 1972:", style: TextStyle(fontSize: 25)),
+              Text(title, style: TextStyle(fontSize: 25)),
               Padding(
                 padding: EdgeInsets.only(top: 10),
-                child: Text("The Takeover", style: TextStyle(fontSize: 20)),
+                child: Text(subtitle, style: TextStyle(fontSize: 20)),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 30, bottom: 0),
+                child: Center(
+                  child: Text(
+                    summary,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 20),
@@ -77,228 +147,34 @@ class Part1 extends StatelessWidget {
                   ),
                   onPressed: () {
                     Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) => InfoPage("The Takeover", 1),
-                      ),
-                    );
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => InfoPage(
+                            subtitle,
+                            bigPP,
+                          ),
+                        ));
                   },
                 ),
               ),
             ]),
             Container(
               padding: EdgeInsets.all(20),
-              child: IconButton(
-                  icon: Icon(Icons.keyboard_arrow_down,
-                      color: Colors.grey, size: bigPP),
-                  onPressed: () {}),
+              child: Opacity(
+                opacity: 0.4,
+                child: IconButton(
+                    enableFeedback: false,
+                    icon: Icon(Icons.keyboard_arrow_down,
+                        color: (bigPP == 4) ? Colors.white : Colors.grey,
+                        size: size),
+                    onPressed: () {}),
+              ),
             ),
           ],
         ),
       ),
     );
   }
-}
-
-class Part2 extends StatelessWidget {
-  final double bigPP;
-  Part2(this.bigPP);
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        padding: EdgeInsets.only(right: 70),
-        // width: 200,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(20),
-              child: IconButton(
-                  icon: Icon(Icons.keyboard_arrow_up,
-                      color: Colors.grey, size: bigPP),
-                  onPressed: () {}),
-            ),
-            Column(
-              children: <Widget>[
-                Text("1960 - 1983:", style: TextStyle(fontSize: 25)),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: 10,
-                    right: 0,
-                  ),
-                  child:
-                      Text("Murals Appeared", style: TextStyle(fontSize: 20)),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 20),
-                  child: MaterialButton(
-                    child: Text(
-                      "Learn More",
-                      style: TextStyle(color: Colors.lightBlue),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => InfoPage("Murals Appeared", 2),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Container(
-              padding: EdgeInsets.all(20),
-              child: IconButton(
-                  icon: Icon(Icons.keyboard_arrow_down,
-                      color: Colors.grey, size: bigPP),
-                  onPressed: () {}),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class Part3 extends StatelessWidget {
-  final double bigPP;
-  Part3(this.bigPP);
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        padding: EdgeInsets.only(right: 70),
-        // width: 200,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(20),
-              child: IconButton(
-                  icon: Icon(Icons.keyboard_arrow_up,
-                      color: Colors.grey, size: bigPP),
-                  onPressed: () {}),
-            ),
-            Column(
-              children: <Widget>[
-                Text("1986 - Present:", style: TextStyle(fontSize: 25)),
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Text("Restoration", style: TextStyle(fontSize: 20)),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 20),
-                  child: MaterialButton(
-                    child: Text(
-                      "Learn More",
-                      style: TextStyle(color: Colors.lightBlue),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => InfoPage("Restoration", 3),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Container(
-              padding: EdgeInsets.all(20),
-              child: IconButton(
-                  icon: Icon(Icons.keyboard_arrow_down,
-                      color: Colors.grey, size: bigPP),
-                  onPressed: () {}),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class Part4 extends StatelessWidget {
-  final double bigPP;
-  Part4(this.bigPP);
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        padding: EdgeInsets.only(right: 70),
-        // width: 200,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(20),
-              child: IconButton(
-                  icon: Icon(Icons.keyboard_arrow_up,
-                      color: Colors.grey, size: bigPP),
-                  onPressed: () {}),
-            ),
-            Column(
-              children: <Widget>[
-                Text("Present Day:", style: TextStyle(fontSize: 25)),
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Text("Current State", style: TextStyle(fontSize: 20)),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 20),
-                  child: MaterialButton(
-                    child: Text(
-                      "Learn More",
-                      style: TextStyle(color: Colors.lightBlue),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => InfoPage("Current State", 4),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Container(
-              padding: EdgeInsets.all(20),
-              child: IconButton(
-                  icon: Icon(Icons.keyboard_arrow_down,
-                      color: Colors.white, size: bigPP),
-                  onPressed: () {}),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _MainHistoryState extends State<MainHistory>
-    with SingleTickerProviderStateMixin {
-  int pompousAss = 1;
-  bool backItUpBoii = false;
-  bool workingOnSomething = false;
-  Color selected = Colors.blue;
-  Color normal = Colors.purple;
-  Color one = Colors.blue;
-  Color two = Colors.purple;
-  Color three = Colors.purple;
-  Color four = Colors.purple;
-  double bigPP = 40.0;
 
   void setColor(int index) {
     if (index == 1) {
@@ -343,374 +219,384 @@ class _MainHistoryState extends State<MainHistory>
         children: <Widget>[
           Container(
             height: MediaQuery.of(context).size.height * 0.9,
-            child: StreamBuilder(
-              // now add firebase integration. "subscribe" to the data from the firestore database
-              stream: Firestore.instance
-                  .collection("History")
-                  // get the document that has the title of the mural that was just scanned: "found"
-                  .document("index")
-                  .snapshots(),
-              builder: (context, snapshot) {
-                // if (snapshot.connectionState == ConnectionState.done) {
-                // Do some basic error processing
-                if (!snapshot.hasData) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    width: 70,
+                    // height: ,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("Getting Data..."),
-                        CircularProgressIndicator(
-                          valueColor:
-                              new AlwaysStoppedAnimation<Color>(Colors.black),
-                        )
+                        lineCircleThingBuilder(1),
+                        lineCircleThingBuilder(2),
+                        lineCircleThingBuilder(3),
+                        lineCircleThingBuilder(4),
+                        // GestureDetector(
+                        //   onTap: () {
+                        //     setColor(1);
+                        //     setState(() {
+                        //       pompousAss = 1;
+                        //     });
+                        //   },
+                        //   child: Stack(
+                        //     children: <Widget>[
+                        //       // Do not remove. Does not work without this
+                        //       new Padding(
+                        //         padding: const EdgeInsets.only(left: 50.0),
+                        //         child: new Card(
+                        //           margin: new EdgeInsets.all(20.0),
+                        //           child: new Container(
+                        //             width: 0,
+                        //             height: 100,
+                        //             color: Colors.green,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       // ----
+                        //       new Positioned(
+                        //         top: 0.0,
+                        //         bottom: 0.0,
+                        //         left: 30.0,
+                        //         child: new Container(
+                        //           height: 100,
+                        //           width: 1.0,
+                        //           color: Colors.grey,
+                        //         ),
+                        //       ),
+                        //       new Positioned(
+                        //         top: 50.0,
+                        //         left: 15.0,
+                        //         child: new Container(
+                        //           height: 30.0,
+                        //           width: 30.0,
+                        //           decoration: new BoxDecoration(
+                        //             shape: BoxShape.circle,
+                        //             color: Colors.white,
+                        //           ),
+                        //           child: new Container(
+                        //             margin: new EdgeInsets.all(5.0),
+                        //             height: 25.0,
+                        //             width: 25.0,
+                        //             decoration: new BoxDecoration(
+                        //               shape: BoxShape.circle,
+                        //               color: one,
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       )
+                        //     ],
+                        //   ),
+                        // ),
+                        // GestureDetector(
+                        //   onTap: () {
+                        //     setColor(2);
+                        //     setState(() {
+                        //       pompousAss = 2;
+                        //     });
+                        //   },
+                        //   child: Stack(
+                        //     children: <Widget>[
+                        //       // Do not remove. Does not work without this
+                        //       new Padding(
+                        //         padding: const EdgeInsets.only(left: 50.0),
+                        //         child: new Card(
+                        //           margin: new EdgeInsets.all(20.0),
+                        //           child: new Container(
+                        //             width: 0,
+                        //             height: 100,
+                        //             color: Colors.green,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       // ----
+                        //       new Positioned(
+                        //         top: 0.0,
+                        //         bottom: 0.0,
+                        //         left: 30.0,
+                        //         child: new Container(
+                        //           height: 100,
+                        //           width: 1.0,
+                        //           color: Colors.grey,
+                        //         ),
+                        //       ),
+                        //       new Positioned(
+                        //         top: 50.0,
+                        //         left: 15.0,
+                        //         child: new Container(
+                        //           height: 30.0,
+                        //           width: 30.0,
+                        //           decoration: new BoxDecoration(
+                        //             shape: BoxShape.circle,
+                        //             color: Colors.white,
+                        //           ),
+                        //           child: new Container(
+                        //             margin: new EdgeInsets.all(5.0),
+                        //             height: 25.0,
+                        //             width: 25.0,
+                        //             decoration: new BoxDecoration(
+                        //               shape: BoxShape.circle,
+                        //               color: two,
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       )
+                        //     ],
+                        //   ),
+                        // ),
+                        // GestureDetector(
+                        //   onTap: () {
+                        //     setColor(3);
+                        //     setState(() {
+                        //       pompousAss = 3;
+                        //     });
+                        //   },
+                        //   child: Stack(
+                        //     children: <Widget>[
+                        //       // Do not remove. Does not work without this
+                        //       new Padding(
+                        //         padding: const EdgeInsets.only(left: 50.0),
+                        //         child: new Card(
+                        //           margin: new EdgeInsets.all(20.0),
+                        //           child: new Container(
+                        //             width: 0,
+                        //             height: 100,
+                        //             color: Colors.green,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       // ----
+                        //       new Positioned(
+                        //         top: 0.0,
+                        //         bottom: 0.0,
+                        //         left: 30.0,
+                        //         child: new Container(
+                        //           height: 100,
+                        //           width: 1.0,
+                        //           color: Colors.grey,
+                        //         ),
+                        //       ),
+                        //       new Positioned(
+                        //         top: 50.0,
+                        //         left: 15.0,
+                        //         child: new Container(
+                        //           height: 30.0,
+                        //           width: 30.0,
+                        //           decoration: new BoxDecoration(
+                        //             shape: BoxShape.circle,
+                        //             color: Colors.white,
+                        //           ),
+                        //           child: new Container(
+                        //             margin: new EdgeInsets.all(5.0),
+                        //             height: 25.0,
+                        //             width: 25.0,
+                        //             decoration: new BoxDecoration(
+                        //               shape: BoxShape.circle,
+                        //               color: three,
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       )
+                        //     ],
+                        //   ),
+                        // ),
+                        //   GestureDetector(
+                        //     onLongPress: () async {
+                        //       if (await Vibration.hasVibrator()) {
+                        //         Vibration.vibrate(duration: 25);
+                        //         // if (await Vibration.hasAmplitudeControl()) {
+                        //         //   Vibration.vibrate(amplitude: 128);
+                        //         // }
+                        //       }
+                        //       Navigator.push(
+                        //         context,
+                        //         FadeRoute(page: CreditsPage()),
+                        //       );
+                        //     },
+                        //     onTap: () {
+                        //       setColor(4);
+                        //       setState(() {
+                        //         pompousAss = 4;
+                        //       });
+                        //     },
+                        //     child: Stack(
+                        //       children: <Widget>[
+                        //         // Do not remove. Does not work without this
+                        //         new Padding(
+                        //           padding: const EdgeInsets.only(left: 50.0),
+                        //           child: new Card(
+                        //             margin: new EdgeInsets.all(20.0),
+                        //             child: new Container(
+                        //               width: 0,
+                        //               height: 100,
+                        //               color: Colors.green,
+                        //             ),
+                        //           ),
+                        //         ),
+                        //         // ----
+                        //         new Positioned(
+                        //           top: 0.0,
+                        //           bottom: 0.0,
+                        //           left: 30.0,
+                        //           child: new Container(
+                        //             height: 100,
+                        //             width: 1.0,
+                        //             color: Colors.grey,
+                        //           ),
+                        //         ),
+                        //         new Positioned(
+                        //           top: 50.0,
+                        //           left: 15.0,
+                        //           child: new Container(
+                        //             height: 30.0,
+                        //             width: 30.0,
+                        //             decoration: new BoxDecoration(
+                        //               shape: BoxShape.circle,
+                        //               color: Colors.white,
+                        //             ),
+                        //             child: new Container(
+                        //               margin: new EdgeInsets.all(5.0),
+                        //               height: 25.0,
+                        //               width: 25.0,
+                        //               decoration: new BoxDecoration(
+                        //                 shape: BoxShape.circle,
+                        //                 color: four,
+                        //               ),
+                        //             ),
+                        //           ),
+                        //         )
+                        //       ],
+                        //     ),
+                        //   ),
                       ],
                     ),
-                  );
-                }
-                if (snapshot == null || snapshot.data == null) {
-                  return const Text("Something went seriously wrong! Sorry!");
-                }
-                if (snapshot.hasError) {
-                  return const Text("error!");
-                }
-                // If there is no error, continue building the widgets
-                return Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        width: 70,
-                        // height: ,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            GestureDetector(
-                              onTap: () {
-                                setColor(1);
-                                setState(() {
-                                  pompousAss = 1;
-                                });
-                              },
-                              child: Stack(
-                                children: <Widget>[
-                                  // Do not remove. Does not work without this
-                                  new Padding(
-                                    padding: const EdgeInsets.only(left: 50.0),
-                                    child: new Card(
-                                      margin: new EdgeInsets.all(20.0),
-                                      child: new Container(
-                                        width: 0,
-                                        height: 100,
-                                        color: Colors.green,
-                                      ),
-                                    ),
-                                  ),
-                                  // ----
-                                  new Positioned(
-                                    top: 0.0,
-                                    bottom: 0.0,
-                                    left: 30.0,
-                                    child: new Container(
-                                      height: 100,
-                                      width: 1.0,
-                                      color: Colors.purple,
-                                    ),
-                                  ),
-                                  new Positioned(
-                                    top: 50.0,
-                                    left: 15.0,
-                                    child: new Container(
-                                      height: 30.0,
-                                      width: 30.0,
-                                      decoration: new BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.white,
-                                      ),
-                                      child: new Container(
-                                        margin: new EdgeInsets.all(5.0),
-                                        height: 25.0,
-                                        width: 25.0,
-                                        decoration: new BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: one,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                setColor(2);
-                                setState(() {
-                                  pompousAss = 2;
-                                });
-                              },
-                              child: Stack(
-                                children: <Widget>[
-                                  // Do not remove. Does not work without this
-                                  new Padding(
-                                    padding: const EdgeInsets.only(left: 50.0),
-                                    child: new Card(
-                                      margin: new EdgeInsets.all(20.0),
-                                      child: new Container(
-                                        width: 0,
-                                        height: 100,
-                                        color: Colors.green,
-                                      ),
-                                    ),
-                                  ),
-                                  // ----
-                                  new Positioned(
-                                    top: 0.0,
-                                    bottom: 0.0,
-                                    left: 30.0,
-                                    child: new Container(
-                                      height: 100,
-                                      width: 1.0,
-                                      color: Colors.purple,
-                                    ),
-                                  ),
-                                  new Positioned(
-                                    top: 50.0,
-                                    left: 15.0,
-                                    child: new Container(
-                                      height: 30.0,
-                                      width: 30.0,
-                                      decoration: new BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.white,
-                                      ),
-                                      child: new Container(
-                                        margin: new EdgeInsets.all(5.0),
-                                        height: 25.0,
-                                        width: 25.0,
-                                        decoration: new BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: two,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                setColor(3);
-                                setState(() {
-                                  pompousAss = 3;
-                                });
-                              },
-                              child: Stack(
-                                children: <Widget>[
-                                  // Do not remove. Does not work without this
-                                  new Padding(
-                                    padding: const EdgeInsets.only(left: 50.0),
-                                    child: new Card(
-                                      margin: new EdgeInsets.all(20.0),
-                                      child: new Container(
-                                        width: 0,
-                                        height: 100,
-                                        color: Colors.green,
-                                      ),
-                                    ),
-                                  ),
-                                  // ----
-                                  new Positioned(
-                                    top: 0.0,
-                                    bottom: 0.0,
-                                    left: 30.0,
-                                    child: new Container(
-                                      height: 100,
-                                      width: 1.0,
-                                      color: Colors.purple,
-                                    ),
-                                  ),
-                                  new Positioned(
-                                    top: 50.0,
-                                    left: 15.0,
-                                    child: new Container(
-                                      height: 30.0,
-                                      width: 30.0,
-                                      decoration: new BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.white,
-                                      ),
-                                      child: new Container(
-                                        margin: new EdgeInsets.all(5.0),
-                                        height: 25.0,
-                                        width: 25.0,
-                                        decoration: new BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: three,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            GestureDetector(
-                              onLongPress: () async {
-                                if (await Vibration.hasVibrator()) {
-                                  Vibration.vibrate(duration: 25);
-                                  // if (await Vibration.hasAmplitudeControl()) {
-                                  //   Vibration.vibrate(amplitude: 128);
-                                  // }
-                                }
-                                Navigator.push(
-                                  context,
-                                  FadeRoute(page: CreditsPage()),
-                                );
-                              },
-                              onTap: () {
-                                setColor(4);
-                                setState(() {
-                                  pompousAss = 4;
-                                });
-                              },
-                              child: Stack(
-                                children: <Widget>[
-                                  // Do not remove. Does not work without this
-                                  new Padding(
-                                    padding: const EdgeInsets.only(left: 50.0),
-                                    child: new Card(
-                                      margin: new EdgeInsets.all(20.0),
-                                      child: new Container(
-                                        width: 0,
-                                        height: 100,
-                                        color: Colors.green,
-                                      ),
-                                    ),
-                                  ),
-                                  // ----
-                                  new Positioned(
-                                    top: 0.0,
-                                    bottom: 0.0,
-                                    left: 30.0,
-                                    child: new Container(
-                                      height: 100,
-                                      width: 1.0,
-                                      color: Colors.purple,
-                                    ),
-                                  ),
-                                  new Positioned(
-                                    top: 50.0,
-                                    left: 15.0,
-                                    child: new Container(
-                                      height: 30.0,
-                                      width: 30.0,
-                                      decoration: new BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.white,
-                                      ),
-                                      child: new Container(
-                                        margin: new EdgeInsets.all(5.0),
-                                        height: 25.0,
-                                        width: 25.0,
-                                        decoration: new BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: four,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onVerticalDragUpdate:
-                              (DragUpdateDetails details) async {
-                            if (workingOnSomething) {
-                              // do nothing
-                            } else {
-                              if (details.delta.dy > 0) {
-                                setState(() {
-                                  workingOnSomething = true;
-                                  backItUpBoii = true;
-                                  pompousAss == 1
-                                      ? pompousAss == 1
-                                      : pompousAss = pompousAss - 1;
-                                  pompousAss == 1
-                                      ? setColor(1)
-                                      : (pompousAss == 2
-                                          ? setColor(2)
-                                          : (pompousAss == 3
-                                              ? setColor(3)
-                                              : pompousAss == 4
-                                                  ? setColor(4)
-                                                  : normal));
-                                });
-                                Future.delayed(
-                                    const Duration(milliseconds: 750), () {
-                                  workingOnSomething = false;
-                                });
-                              } else if (details.delta.dy < 0) {
-                                setState(() {
-                                  workingOnSomething = true;
-                                  backItUpBoii = false;
-                                  pompousAss == 4
-                                      ? pompousAss == 4
-                                      : pompousAss = pompousAss + 1;
-                                  pompousAss == 1
-                                      ? setColor(1)
-                                      : (pompousAss == 2
-                                          ? setColor(2)
-                                          : (pompousAss == 3
-                                              ? setColor(3)
-                                              : pompousAss == 4
-                                                  ? setColor(4)
-                                                  : normal));
-                                });
-                                Future.delayed(
-                                    const Duration(milliseconds: 750), () {
-                                  workingOnSomething = false;
-                                });
-                              }
-                            }
-                          },
-                          child: new PageTransitionSwitcher(
-                            duration: const Duration(milliseconds: 2000),
-                            reverse: backItUpBoii,
-                            transitionBuilder: (
-                              Widget child,
-                              Animation<double> animation,
-                              Animation<double> secondaryAnimation,
-                            ) {
-                              return SharedAxisTransition(
-                                child: child,
-                                animation: animation,
-                                secondaryAnimation: secondaryAnimation,
-                                transitionType:
-                                    SharedAxisTransitionType.vertical,
-                              );
-                            },
-                            child: pompousAss == 1
-                                ? Part1(bigPP)
-                                : (pompousAss == 2
-                                    ? Part2(bigPP)
-                                    : (pompousAss == 3
-                                        ? Part3(bigPP)
-                                        : pompousAss == 4
-                                            ? Part4(bigPP)
-                                            : Part1(bigPP))),
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
-                );
-              },
+                  Expanded(
+                    child: GestureDetector(
+                        onVerticalDragUpdate:
+                            (DragUpdateDetails details) async {
+                          if (workingOnSomething) {
+                            // do nothing
+                          } else {
+                            if (details.delta.dy > 0) {
+                              setState(() {
+                                workingOnSomething = true;
+                                backItUpBoii = true;
+                                pompousAss == 1
+                                    ? pompousAss == 1
+                                    : pompousAss = pompousAss - 1;
+                                pompousAss == 1
+                                    ? setColor(1)
+                                    : (pompousAss == 2
+                                        ? setColor(2)
+                                        : (pompousAss == 3
+                                            ? setColor(3)
+                                            : pompousAss == 4
+                                                ? setColor(4)
+                                                : normal));
+                              });
+                              Future.delayed(const Duration(milliseconds: 300),
+                                  () {
+                                workingOnSomething = false;
+                              });
+                            } else if (details.delta.dy < 0) {
+                              setState(() {
+                                workingOnSomething = true;
+                                backItUpBoii = false;
+                                pompousAss == 4
+                                    ? pompousAss == 4
+                                    : pompousAss = pompousAss + 1;
+                                pompousAss == 1
+                                    ? setColor(1)
+                                    : (pompousAss == 2
+                                        ? setColor(2)
+                                        : (pompousAss == 3
+                                            ? setColor(3)
+                                            : pompousAss == 4
+                                                ? setColor(4)
+                                                : normal));
+                              });
+                              Future.delayed(const Duration(milliseconds: 300),
+                                  () {
+                                workingOnSomething = false;
+                              });
+                            }
+                          }
+                        },
+                        child: StreamBuilder(
+                            stream: Firestore.instance
+                                .collection("History")
+                                .document(pompousAss.toString())
+                                .snapshots(),
+                            builder: (context, snapshot) {
+                              return PageTransitionSwitcher(
+                                duration: const Duration(milliseconds: 500),
+                                reverse: backItUpBoii,
+                                transitionBuilder: (
+                                  Widget child,
+                                  Animation<double> animation,
+                                  Animation<double> secondaryAnimation,
+                                ) {
+                                  return SharedAxisTransition(
+                                    child: child,
+                                    animation: animation,
+                                    secondaryAnimation: secondaryAnimation,
+                                    transitionType:
+                                        SharedAxisTransitionType.vertical,
+                                  );
+                                },
+                                child: pompousAss == 1
+                                    ? Part(
+                                        1,
+                                        bigPP,
+                                        testString(snapshot.data, "title"),
+                                        testString(snapshot.data, "subtitle"),
+                                        testString(snapshot.data, "summary"))
+                                    : (pompousAss == 2
+                                        ? Part(
+                                            2,
+                                            bigPP,
+                                            testString(snapshot.data, "title"),
+                                            testString(
+                                                snapshot.data, "subtitle"),
+                                            testString(
+                                                snapshot.data, "summary"))
+                                        : (pompousAss == 3
+                                            ? Part(
+                                                3,
+                                                bigPP,
+                                                testString(
+                                                    snapshot.data, "title"),
+                                                testString(
+                                                    snapshot.data, "subtitle"),
+                                                testString(
+                                                    snapshot.data, "summary"))
+                                            : pompousAss == 4
+                                                ? Part(
+                                                    4,
+                                                    bigPP,
+                                                    testString(
+                                                        snapshot.data, "title"),
+                                                    testString(snapshot.data,
+                                                        "subtitle"),
+                                                    testString(snapshot.data,
+                                                        "summary"))
+                                                : Part(
+                                                    1,
+                                                    bigPP,
+                                                    testString(
+                                                        snapshot.data, "title"),
+                                                    testString(snapshot.data,
+                                                        "subtitle"),
+                                                    testString(snapshot.data,
+                                                        "summary")))),
+                              );
+                            })),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

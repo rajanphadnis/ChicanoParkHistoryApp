@@ -48,7 +48,7 @@ function expand() {
 var StringThing = '<h1 class="title">Edit Murals</h1></br>';
 firestore.collection("Murals/").get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {
-        StringThing = StringThing + '<div class="cardDiv mdc-card"><input disabled class="centerTheThing" value="' + doc.id + '"><p>Title:</p><input class="VT" value="' + doc.data().title +
+        StringThing = StringThing + '<div class="cardDiv mdc-card"><h3 class="centerTheThing">' + doc.id + '</h3><p>Title:</p><input class="VT" value="' + doc.data().title +
             '"><!--<a class="expand">Expand</a><div class="collapse"> --></br><p>Picture:</p><input class="VP" value="' + doc.data().picURL +
             '"></br><p>Description:</p><textarea rows="4" class="VD" wrap="soft">' + doc.data().desc +
             '</textarea></br><p>Author:</p><input class="VA" value="' + doc.data().author + '"></br><p>Artist Picture:</p><input class="ArtP" value="' + doc.data().artistPic +
@@ -70,7 +70,7 @@ document.getElementById("murals").innerHTML = StringThing;
 var ArtistString = '<h1 class="title">Edit Artists</h1>';
 firestore.collection("Artists/").get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {
-        ArtistString = ArtistString + '<div class="cardDiv mdc-card"><input disabled class="centerArt" value="' + doc.id + '"><p>Picture:</p><input class="ArtistPic" value="' + doc.data().picURL +
+        ArtistString = ArtistString + '<div class="cardDiv mdc-card"><h3 class="centerArt">' + doc.id + '</h3><p>Picture:</p><input class="ArtistPic" value="' + doc.data().picURL +
             '"></br><p>Description:</p><textarea rows="4" class="ArtistDesc" wrap="soft">' + doc.data().desc +
             '</textarea></div>';
         document.getElementById("artists").innerHTML = ArtistString;
@@ -86,8 +86,11 @@ document.getElementById("artists").innerHTML = ArtistString;
 var HistoryString = '<h1 class="title">Edit History</h1>';
 firestore.collection("History/").get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {
-        HistoryString = HistoryString + '<div class="cardDiv mdc-card"><input disabled class="centerHis" value="' + doc.id + '"></br><p>Paragraph:</p><textarea rows="10" class="paraHis" wrap="soft">' + doc.data().para +
-            '</textarea></div>';
+        HistoryString = HistoryString + '<div class="cardDiv mdc-card"><h3 class="centerHis">' + doc.id + '</h3></br><p>Paragraph:</p><textarea rows="10" class="paraHis" wrap="soft">' + doc.data().para +
+            '</textarea></br><p>Title:</p><input class="HT" value="' + doc.data().title +
+            '"></br><p>Subtitle:</p><input class="HST" value="' + doc.data().subtitle +
+            '"></br><p>Summary:</p><input class="HS" value="' + doc.data().summary +
+            '"></div>';
         document.getElementById("history").innerHTML = HistoryString;
 
     });
@@ -148,7 +151,7 @@ function updateV(lengthOfV) {
     console.log(lengthOfV);
     var i;
     for (i = 0; i < lengthOfV; i++) {
-        firestore.collection("Murals").doc(document.getElementsByClassName("centerTheThing")[i].value.toString()).set({
+        firestore.collection("Murals").doc(document.getElementsByClassName("centerTheThing")[i].innerHTML.toString()).set({
                 title: document.getElementsByClassName("VT")[i].value,
                 picURL: document.getElementsByClassName("VP")[i].value,
                 desc: document.getElementsByClassName("VD")[i].value,
@@ -174,7 +177,7 @@ function updateA(lengthOfA) {
     console.log(lengthOfA);
     var i;
     for (i = 0; i < lengthOfA; i++) {
-        firestore.collection("Artists").doc(document.getElementsByClassName("centerArt")[i].value.toString()).set({
+        firestore.collection("Artists").doc(document.getElementsByClassName("centerArt")[i].innerHTML.toString()).set({
                 picURL: document.getElementsByClassName("ArtistPic")[i].value,
                 desc: document.getElementsByClassName("ArtistDesc")[i].value,
 
@@ -195,9 +198,11 @@ function updateH(lengthOfH) {
     console.log(lengthOfH);
     var i;
     for (i = 0; i < lengthOfH; i++) {
-        firestore.collection("History").doc(document.getElementsByClassName("centerHis")[i].value.toString()).set({
+        firestore.collection("History").doc(document.getElementsByClassName("centerHis")[i].innerHTML.toString()).set({
                 para: document.getElementsByClassName("paraHis")[i].value,
-
+                title: document.getElementsByClassName("HT")[i].value,
+                subtitle: document.getElementsByClassName("HST")[i].value,
+                summary: document.getElementsByClassName("HS")[i].value,
             }, {
                 merge: true
             }).then(function () {

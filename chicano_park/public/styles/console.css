@@ -39,6 +39,7 @@ body {
 .centerTheThing {
   align-self: center;
   text-align: center;
+  width: fit-content;
 }
 .centerArt {
   align-self: center;
@@ -71,6 +72,7 @@ input:disabled {
   color: black;
   background-color: lightgrey;
   border: none;
+  width: auto;
 }
 p {
   color: black;
