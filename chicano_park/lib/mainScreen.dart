@@ -377,7 +377,7 @@ class _MainPageState extends State<MainPage> {
           backdropOpacity: 0.8,
           // Experiment with this
           // renderPanelSheet: false,
-          parallaxEnabled: true,
+          parallaxEnabled: false,
           parallaxOffset: 0.6,
           // ----
           minHeight: 0,
