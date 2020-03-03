@@ -150,6 +150,17 @@ class _MuralPageState extends State<MuralPage>
                 // controller: sc,
                 slivers: <Widget>[
                   SliverAppBar(
+                    leading: widget.fromGallery ? IconButton(
+                        icon: Icon(Icons.keyboard_arrow_down,
+                            color: Colors.white),
+                        onPressed: () {
+                          widget.pc.animatePanelToPosition(0);
+                        }) : IconButton(
+                        icon: Icon(Icons.keyboard_arrow_down,
+                            color: Colors.white),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        }),
                     centerTitle: true,
                     title: Text(
                       testString(snapshot.data, "title"),

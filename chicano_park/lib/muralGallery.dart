@@ -68,12 +68,12 @@ class _MuralGallery extends State<MuralGallery> {
                 // controller: widget.sc,
                 slivers: <Widget>[
                   SliverAppBar(
-                    // leading: IconButton(
-                    //     icon: Icon(Icons.keyboard_arrow_down,
-                    //         color: Colors.white),
-                    //     onPressed: () {
-                          // widget._pc.animatePanelToPosition(0);
-                    //     }),
+                    leading: IconButton(
+                        icon: Icon(Icons.keyboard_arrow_down,
+                            color: Colors.white),
+                        onPressed: () {
+                          widget._pc.animatePanelToPosition(0);
+                        }),
                     backgroundColor: Colors.black,
                     // expandedHeight: 256.0,
                     floating: false,
