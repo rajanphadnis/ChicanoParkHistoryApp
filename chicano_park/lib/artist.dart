@@ -128,7 +128,7 @@ class ArtistPage extends StatelessWidget {
                           onPressed: () {
                             // The message that will be shared. This can be a link, some text or contact or anything really
                             // TODO: change this value
-                            Share.share(author);
+                            Share.share(author + " is an artist whose work is in Chicano Park!");
                           },
                         ),
                       ),

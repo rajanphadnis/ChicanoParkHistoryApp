@@ -401,8 +401,11 @@ class _MuralPageState extends State<MuralPage>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.all(30),
+
+                              padding: const EdgeInsets.all(20),
                               child: RaisedButton.icon(
+                               
+                                highlightColor: Colors.white,
                                 icon: Icon(IconData(0xf4ca,
                                     fontFamily: CupertinoIcons.iconFont,
                                     fontPackage:
@@ -411,7 +414,7 @@ class _MuralPageState extends State<MuralPage>
                                 onPressed: () {
                                   // TODO: change this value
                                   Share.share(
-                                      testString(snapshot.data, "title"));
+                                      testString(snapshot.data, "title") + " is a cool mural in Chicano Park!");
                                 },
                               ),
                             ),
