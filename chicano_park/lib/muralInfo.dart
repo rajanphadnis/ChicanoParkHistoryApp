@@ -176,6 +176,9 @@ class _MuralPageState extends State<MuralPage>
                   SliverToBoxAdapter(
                     child: Column(
                       children: [
+                        Padding(
+                          padding: EdgeInsets.only(top:20),
+                          child: 
                         InkWell(
                           onTap: () {
                             Navigator.push(
@@ -197,13 +200,13 @@ class _MuralPageState extends State<MuralPage>
                                     width: 70.0,
                                     height: 70.0,
                                     decoration: new BoxDecoration(
-                                      boxShadow: [
-                                        new BoxShadow(
-                                          color: Colors.black26,
-                                          offset: new Offset(0.0, 2.0),
-                                          blurRadius: 25.0,
-                                        )
-                                      ],
+                                      // boxShadow: [
+                                      //   new BoxShadow(
+                                      //     color: Colors.black26,
+                                      //     offset: new Offset(0.0, 2.0),
+                                      //     blurRadius: 25.0,
+                                      //   )
+                                      // ],
                                       border: Border.all(
                                         color: Colors.white,
                                         width: 0,
@@ -284,7 +287,7 @@ class _MuralPageState extends State<MuralPage>
                             ],
                           ),
                         ),
-                        expanded
+                        ),expanded
                             ? FadeTransition(
                                 opacity: _animation,
                                 child:

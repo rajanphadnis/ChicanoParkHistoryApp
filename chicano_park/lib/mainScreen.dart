@@ -19,37 +19,38 @@ class _MainPageState extends State<MainPage> {
   }
 
   Future<bool> _onWillPop() async {
-    var vlose;
-    await showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text('Are you sure?'),
-        content: new Text('Do you want to exit the app?'),
-        actions: <Widget>[
-          new FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop(false);
-              setState(() {
-                vlose = false;
-              });
-              return false;
-            },
-            child: new Text('No'),
-          ),
-          new FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop(true);
-              setState(() {
-                vlose = true;
-              });
-              return true;
-            },
-            child: new Text('Yes'),
-          ),
-        ],
-      ),
-    );
-    return vlose;
+    // var vlose;
+    // await showDialog(
+    //   context: context,
+    //   builder: (context) => new AlertDialog(
+    //     title: new Text('Are you sure?'),
+    //     content: new Text('Do you want to exit the app?'),
+    //     actions: <Widget>[
+    //       new FlatButton(
+    //         onPressed: () {
+    //           Navigator.of(context).pop(false);
+    //           setState(() {
+    //             vlose = false;
+    //           });
+    //           return false;
+    //         },
+    //         child: new Text('No'),
+    //       ),
+    //       new FlatButton(
+    //         onPressed: () {
+    //           Navigator.of(context).pop(true);
+    //           setState(() {
+    //             vlose = true;
+    //           });
+    //           return true;
+    //         },
+    //         child: new Text('Yes'),
+    //       ),
+    //     ],
+    //   ),
+    // );
+    _pc.animatePanelToPosition(0);
+    return false;
   }
 
   Future<void> _getBatteryLevel(String path2) async {
