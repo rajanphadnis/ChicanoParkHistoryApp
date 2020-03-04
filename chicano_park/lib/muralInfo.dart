@@ -44,7 +44,6 @@ class _MuralPageState extends State<MuralPage>
       begin: 0.0,
       end: 1.0,
     ).animate(_animationController);
-    _animationController.dispose();
   }
 
   void play() async {
@@ -146,6 +145,8 @@ class _MuralPageState extends State<MuralPage>
                 controller: widget.sc,
                 slivers: <Widget>[
                   SliverAppBar(
+                    forceElevated: true,
+                    elevation: 20,
                     leading: !widget.fromGallery ? IconButton(
                         icon: Icon(Icons.keyboard_arrow_down,
                             color: Colors.white),
@@ -177,7 +178,7 @@ class _MuralPageState extends State<MuralPage>
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(top:20),
+                          padding: EdgeInsets.only(top:8, bottom: 8),
                           child: 
                         InkWell(
                           onTap: () {
@@ -196,7 +197,7 @@ class _MuralPageState extends State<MuralPage>
                             children: <Widget>[
                               Padding(
                                   child: Container(
-                                    padding: new EdgeInsets.only(top: 20),
+                                    padding: new EdgeInsets.only(top: 0),
                                     width: 70.0,
                                     height: 70.0,
                                     decoration: new BoxDecoration(
@@ -246,7 +247,7 @@ class _MuralPageState extends State<MuralPage>
                                             testUndString(snapshot.data,
                                                     "audioTour") ==
                                                 "undefined")
-                                        ? Container()
+                                        ? Container(height: 0)
                                         : InkWell(
                                             onTap: () {
                                               setState(() async {
@@ -385,7 +386,7 @@ class _MuralPageState extends State<MuralPage>
                             : Container(),
                         Padding(
                           padding: const EdgeInsets.only(
-                            top: 20,
+                            top: 0,
                             bottom: 15,
                             right: 15,
                             left: 15,

@@ -32,7 +32,7 @@ part 'audioTour.dart';
 part 'functions.dart';
 part 'shapesDrawing.dart';
 part 'mainScreen.dart';
-part 'historyModal.dart';
+// part 'historyModal.dart';
 part 'infoPage.dart';
 part 'artist.dart';
 part 'muralGallery.dart';
