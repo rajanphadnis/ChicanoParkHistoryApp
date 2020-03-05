@@ -23,7 +23,7 @@ class _MuralPageState extends State<MuralPage>
   // ScrollController sc;
   AnimationController _animationController;
   Animation _animation;
-  int fadeAnimDur = 1000;
+  int fadeAnimDur = 500;
   var top;
   void playTTS(BuildContext context, String talk) {
     if (talking == false && talk != "") {
@@ -201,13 +201,6 @@ class _MuralPageState extends State<MuralPage>
                                       width: 70.0,
                                       height: 70.0,
                                       decoration: new BoxDecoration(
-                                        // boxShadow: [
-                                        //   new BoxShadow(
-                                        //     color: Colors.black26,
-                                        //     offset: new Offset(0.0, 2.0),
-                                        //     blurRadius: 25.0,
-                                        //   )
-                                        // ],
                                         border: Border.all(
                                           color: Colors.white,
                                           width: 0,
@@ -294,6 +287,7 @@ class _MuralPageState extends State<MuralPage>
                             ? FadeTransition(
                                 opacity: _animation,
                                 child: Container(
+                                  padding: EdgeInsets.only(bottom: 20),
                                   width:
                                       MediaQuery.of(context).size.width * 0.75,
                                   child: Column(

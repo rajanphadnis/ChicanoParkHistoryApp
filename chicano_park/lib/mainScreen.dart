@@ -17,6 +17,7 @@ class _MainPageState extends State<MainPage> {
     WidgetsFlutterBinding.ensureInitialized();
     cameras = await availableCameras();
   }
+
   int pompousAss = 1;
   bool backItUpBoii = false;
   bool workingOnSomething = false;
@@ -27,6 +28,8 @@ class _MainPageState extends State<MainPage> {
   Color three = Colors.grey;
   Color four = Colors.grey;
   double bigPP = 40.0;
+  final int reactionDelay = 300;
+  int transitionSpeed = 500;
   Widget lineCircleThingBuilder(int intTHing) {
     return GestureDetector(
       onLongPress: () async {
@@ -181,14 +184,18 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  void setColor(int index) {
+  void setColor(int index) async {
     if (index == 1) {
       setState(() {
         one = selected;
         two = normal;
         three = normal;
         four = normal;
-        dragg = true;
+      });
+      await Future.delayed(Duration(milliseconds: reactionDelay), () {
+        setState(() {
+          dragg = true;
+        });
       });
     } else if (index == 2) {
       setState(() {
@@ -216,6 +223,7 @@ class _MainPageState extends State<MainPage> {
       });
     }
   }
+
   Widget mainHistory() {
     return Scaffold(
       appBar: new AppBar(
@@ -272,8 +280,8 @@ class _MainPageState extends State<MainPage> {
                                               ? setColor(4)
                                               : setColor(1);
                             });
-                            Future.delayed(const Duration(milliseconds: 300),
-                                () {
+                            Future.delayed(
+                                Duration(milliseconds: reactionDelay), () {
                               workingOnSomething = false;
                             });
                           } else if (details.delta.dy < 0) {
@@ -293,8 +301,8 @@ class _MainPageState extends State<MainPage> {
                                               ? setColor(4)
                                               : setColor(1);
                             });
-                            Future.delayed(const Duration(milliseconds: 300),
-                                () {
+                            Future.delayed(
+                                Duration(milliseconds: reactionDelay), () {
                               workingOnSomething = false;
                             });
                           }
@@ -307,7 +315,7 @@ class _MainPageState extends State<MainPage> {
                               .snapshots(),
                           builder: (context, snapshot) {
                             return PageTransitionSwitcher(
-                              duration: const Duration(milliseconds: 500),
+                              duration: Duration(milliseconds: transitionSpeed),
                               reverse: backItUpBoii,
                               transitionBuilder: (
                                 Widget child,
@@ -377,6 +385,7 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
+
   Future<bool> _onWillPop() async {
     // var vlose;
     // await showDialog(
@@ -749,8 +758,7 @@ class _MainPageState extends State<MainPage> {
               setState(() {
                 dragg = false;
               });
-            }
-            else {
+            } else {
               // do nothing
             }
           },
@@ -767,7 +775,11 @@ class _MainPageState extends State<MainPage> {
           ),
           panelBuilder: (ScrollController sc) => (selectedThing == 1)
               ? MuralGallery(_pc, sc)
-              : (selectedThing == 2) ? MuralPage(found, _pc, false, sc) : (selectedThing == 3) ? mainHistory() : MuralGallery(_pc, sc),
+              : (selectedThing == 2)
+                  ? MuralPage(found, _pc, false, sc)
+                  : (selectedThing == 3)
+                      ? mainHistory()
+                      : MuralGallery(_pc, sc),
           body: Stack(
             children: <Widget>[
               cameraPreview(size, controller),
