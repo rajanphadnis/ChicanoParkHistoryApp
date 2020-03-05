@@ -186,6 +186,7 @@ class _MuralPageState extends State<MuralPage>
                                 context,
                                 CupertinoPageRoute(
                                   builder: (context) => ArtistPage(
+                                    testString(snapshot.data, "authorFile"),
                                     testString(snapshot.data, "author"),
                                   ),
                                 ),

@@ -51,7 +51,7 @@ firestore.collection("Murals/").get().then(function (querySnapshot) {
         StringThing = StringThing + '<div class="cardDiv mdc-card"><h3 class="centerTheThing">' + doc.id + '</h3><p>Title:</p><input class="VT" value="' + doc.data().title +
             '"><!--<a class="expand">Expand</a><div class="collapse"> --></br><p>Picture:</p><input class="VP" value="' + doc.data().picURL +
             '"></br><p>Description:</p><textarea rows="4" class="VD" wrap="soft">' + doc.data().desc +
-            '</textarea></br><p>Author:</p><input class="VA" value="' + doc.data().author + '"></br><p>Artist Picture:</p><input class="ArtP" value="' + doc.data().artistPic +
+            '</textarea></br><p>Author:</p><input class="VA" value="' + doc.data().author + '"></br><p>Author File To Point To:</p><input class="AFile" value="' + doc.data().authorFile + '"></br><p>Artist Picture:</p><input class="ArtP" value="' + doc.data().artistPic +
             '"></br><p>Interview URL (YouTube link):</p><input class="ArtistInt" value="' + doc.data().interview +
             '"></br><p>Audio Tour:</p><input class="AudTour" value="' + doc.data().audioTour +
             '"></br><p>Audio Description:</p><textarea rows="4" class="AudDesc" wrap="soft">' + doc.data().audioDesc +
@@ -129,14 +129,6 @@ document.getElementById("reset").addEventListener("click", function () {
     }
 
 });
-// document.getElementById("expand").addEventListener("click", function () {
-//     if(expand == true) {
-//         expand();
-//     }
-//     else {
-//         collapse();
-//     }
-// });
 
 function openCity(cityName) {
     var i;
@@ -156,6 +148,7 @@ function updateV(lengthOfV) {
                 picURL: document.getElementsByClassName("VP")[i].value,
                 desc: document.getElementsByClassName("VD")[i].value,
                 author: document.getElementsByClassName("VA")[i].value,
+                authorFile: document.getElementsByClassName("AFile")[i].value,
                 artistPic: document.getElementsByClassName("ArtP")[i].value,
                 interview: document.getElementsByClassName("ArtistInt")[i].value,
                 audioTour: document.getElementsByClassName("AudTour")[i].value,

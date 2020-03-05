@@ -1,9 +1,10 @@
 part of mainlib;
 
 class ArtistPage extends StatelessWidget {
+  final String authorFile;
   final String author;
   // final PanelController _pc;
-  ArtistPage(this.author);
+  ArtistPage(this.authorFile, this.author);
   final List<String> itemsTHing = List();
 
   String loadImage(AsyncSnapshot<dynamic> snapshot) {
@@ -23,7 +24,7 @@ class ArtistPage extends StatelessWidget {
       stream: Firestore.instance
           .collection("Artists")
           // get the document that has the title of the mural that was just scanned: "found"
-          .document(author)
+          .document(authorFile)
           .snapshots(),
       builder: (context, snapshot) {
           // Do some basic error processing
