@@ -216,7 +216,7 @@ class _MainPageState extends State<MainPage> {
       });
     }
   }
-  Widget MainHistory() {
+  Widget mainHistory() {
     return Scaffold(
       appBar: new AppBar(
         leading: IconButton(
@@ -767,7 +767,7 @@ class _MainPageState extends State<MainPage> {
           ),
           panelBuilder: (ScrollController sc) => (selectedThing == 1)
               ? MuralGallery(_pc, sc)
-              : (selectedThing == 2) ? MuralPage(found, _pc, false, sc) : (selectedThing == 3) ? MainHistory() : MuralGallery(_pc, sc),
+              : (selectedThing == 2) ? MuralPage(found, _pc, false, sc) : (selectedThing == 3) ? mainHistory() : MuralGallery(_pc, sc),
           body: Stack(
             children: <Widget>[
               cameraPreview(size, controller),

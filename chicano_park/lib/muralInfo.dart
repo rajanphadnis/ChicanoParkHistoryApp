@@ -146,18 +146,19 @@ class _MuralPageState extends State<MuralPage>
                 slivers: <Widget>[
                   SliverAppBar(
                     forceElevated: true,
-                    elevation: 20,
-                    leading: !widget.fromGallery ? IconButton(
-                        icon: Icon(Icons.keyboard_arrow_down,
-                            color: Colors.white),
-                        onPressed: () {
-                          widget.pc.animatePanelToPosition(0);
-                        }) : IconButton(
-                        icon: Icon(Icons.arrow_back,
-                            color: Colors.white),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        }),
+                    elevation: 1,
+                    leading: !widget.fromGallery
+                        ? IconButton(
+                            icon: Icon(Icons.keyboard_arrow_down,
+                                color: Colors.white),
+                            onPressed: () {
+                              widget.pc.animatePanelToPosition(0);
+                            })
+                        : IconButton(
+                            icon: Icon(Icons.arrow_back, color: Colors.white),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            }),
                     centerTitle: true,
                     title: Text(
                       testString(snapshot.data, "title"),
@@ -178,121 +179,120 @@ class _MuralPageState extends State<MuralPage>
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(top:8, bottom: 8),
-                          child: 
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              CupertinoPageRoute(
-                                builder: (context) => ArtistPage(
+                          padding: EdgeInsets.only(top: 0, bottom: 0),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (context) => ArtistPage(
                                     testString(snapshot.data, "author"),
-                                    ),
-                              ),
-                            );
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: <Widget>[
-                              Padding(
-                                  child: Container(
-                                    padding: new EdgeInsets.only(top: 0),
-                                    width: 70.0,
-                                    height: 70.0,
-                                    decoration: new BoxDecoration(
-                                      // boxShadow: [
-                                      //   new BoxShadow(
-                                      //     color: Colors.black26,
-                                      //     offset: new Offset(0.0, 2.0),
-                                      //     blurRadius: 25.0,
-                                      //   )
-                                      // ],
-                                      border: Border.all(
-                                        color: Colors.white,
-                                        width: 0,
-                                      ),
-                                      shape: BoxShape.circle,
-                                      image: new DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: NetworkImage((testUndString(
-                                                        snapshot.data,
-                                                        "artistPic") ==
-                                                    "undefined"
-                                                ? "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg"
-                                                : testUndString(
-                                                    snapshot.data, "artistPic"))
-                                            ),
-                                      ),
-                                    ),
                                   ),
-                                  padding: EdgeInsets.only(
-                                      top: 10,
-                                      left: 10,
-                                      right: 10,
-                                      bottom: 10)),
-                              Container(
-                                height: 80,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      testString(snapshot.data, "author"),
-                                      style: TextStyle(fontSize: 18),
-                                    ),
-                                    (testUndString(snapshot.data,
-                                                    "audioTour") ==
-                                                null ||
-                                            testUndString(snapshot.data,
-                                                    "audioTour") ==
-                                                "undefined")
-                                        ? Container(height: 0)
-                                        : InkWell(
-                                            onTap: () {
-                                              setState(() async {
-                                                expanded
-                                                    ? closeAndPause()
-                                                    : openThing(snapshot);
-                                              });
-                                            },
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Text("Audio Tour"),
-                                                IconButton(
-                                                  icon: expanded
-                                                      ? Icon(
-                                                          Icons.arrow_drop_up)
-                                                      : Icon(Icons
-                                                          .arrow_drop_down),
-                                                  highlightColor: Colors.grey,
-                                                  tooltip: "",
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      expanded
-                                                          ? closeAndPause()
-                                                          : openThing(snapshot);
-                                                    });
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                    inte(testUndString(
-                                        snapshot.data, "interview")),
-                                  ],
                                 ),
-                              ),
-                            ],
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: <Widget>[
+                                Padding(
+                                    child: Container(
+                                      width: 70.0,
+                                      height: 70.0,
+                                      decoration: new BoxDecoration(
+                                        // boxShadow: [
+                                        //   new BoxShadow(
+                                        //     color: Colors.black26,
+                                        //     offset: new Offset(0.0, 2.0),
+                                        //     blurRadius: 25.0,
+                                        //   )
+                                        // ],
+                                        border: Border.all(
+                                          color: Colors.white,
+                                          width: 0,
+                                        ),
+                                        shape: BoxShape.circle,
+                                        image: new DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: NetworkImage((testUndString(
+                                                      snapshot.data,
+                                                      "artistPic") ==
+                                                  "undefined"
+                                              ? "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg"
+                                              : testUndString(
+                                                  snapshot.data, "artistPic"))),
+                                        ),
+                                      ),
+                                    ),
+                                    padding: EdgeInsets.only(
+                                        top: 10,
+                                        left: 10,
+                                        right: 10,
+                                        bottom: 10)),
+                                Container(
+                                  height: 80,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        testString(snapshot.data, "author"),
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                      (testUndString(snapshot.data,
+                                                      "audioTour") ==
+                                                  null ||
+                                              testUndString(snapshot.data,
+                                                      "audioTour") ==
+                                                  "undefined")
+                                          ? Container(height: 0)
+                                          : InkWell(
+                                              onTap: () {
+                                                setState(() async {
+                                                  expanded
+                                                      ? closeAndPause()
+                                                      : openThing(snapshot);
+                                                });
+                                              },
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  Text("Audio Tour"),
+                                                  IconButton(
+                                                    icon: expanded
+                                                        ? Icon(
+                                                            Icons.arrow_drop_up)
+                                                        : Icon(Icons
+                                                            .arrow_drop_down),
+                                                    highlightColor: Colors.grey,
+                                                    tooltip: "",
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        expanded
+                                                            ? closeAndPause()
+                                                            : openThing(
+                                                                snapshot);
+                                                      });
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                      inte(testUndString(
+                                          snapshot.data, "interview")),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        ),expanded
+                        expanded
                             ? FadeTransition(
                                 opacity: _animation,
-                                child:
-                                    Container(
+                                child: Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.75,
                                   child: Column(
@@ -309,8 +309,7 @@ class _MuralPageState extends State<MuralPage>
                                             IconButton(
                                                 icon: Icon(Icons.pause,
                                                     color: Colors.white),
-                                                onPressed: () {
-                                                }),
+                                                onPressed: () {}),
                                             playing
                                                 ? IconButton(
                                                     iconSize: 40,
@@ -334,8 +333,7 @@ class _MuralPageState extends State<MuralPage>
                                                 : IconButton(
                                                     icon: Icon(Icons.stop,
                                                         color: Colors.white),
-                                                    onPressed: () {
-                                                    }),
+                                                    onPressed: () {}),
                                           ],
                                         ),
                                       ),
@@ -384,6 +382,8 @@ class _MuralPageState extends State<MuralPage>
                                 ),
                               )
                             : Container(),
+                        // Expanded(child: buildPara(testString(snapshot.data, "desc"),),
+                        // ),
                         Padding(
                           padding: const EdgeInsets.only(
                             top: 0,
@@ -401,10 +401,8 @@ class _MuralPageState extends State<MuralPage>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Padding(
-
                               padding: const EdgeInsets.all(20),
                               child: RaisedButton.icon(
-                               
                                 highlightColor: Colors.white,
                                 icon: Icon(IconData(0xf4ca,
                                     fontFamily: CupertinoIcons.iconFont,
@@ -414,7 +412,8 @@ class _MuralPageState extends State<MuralPage>
                                 onPressed: () {
                                   // TODO: change this value
                                   Share.share(
-                                      testString(snapshot.data, "title") + " is a cool mural in Chicano Park!");
+                                      testString(snapshot.data, "title") +
+                                          " is a cool mural in Chicano Park!");
                                 },
                               ),
                             ),
@@ -422,7 +421,8 @@ class _MuralPageState extends State<MuralPage>
                         ),
                       ],
                     ),
-                  )
+                  ),
+                  // )
                 ],
               ),
             ),
