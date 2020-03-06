@@ -12,7 +12,7 @@ body {
   border-radius: 10px;
   margin-left: 10%;
   margin-right: 10%;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
   width: 80%;
   z-index: 99;
   background-color: white;
@@ -32,9 +32,10 @@ body {
   display: block;
 } */
 
-/* .collapse {
-  width: 100%;
-} */
+.go {
+  min-width: 100%;
+  display: none;
+}
 
 .centerTheThing {
   align-self: center;
@@ -59,6 +60,7 @@ body {
 }
 
 input {
+  min-width: 100%;
   color: black;
   background-color: white;
   border-color: black;
@@ -78,6 +80,7 @@ p {
   color: black;
 }
 textarea {
+  min-width: 100%;
   color: black;
   background-color: white;
   border-color: black;

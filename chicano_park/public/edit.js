@@ -1,6 +1,7 @@
 var firestore = firebase.firestore();
 var selected = true;
 var expand = false;
+var all = 0;
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         var docRef = firestore.collection("Authorization").doc(user.email);
@@ -36,27 +37,33 @@ firebase.auth().onAuthStateChanged(function (user) {
     }
 });
 
-function collapse() {
-    document.getElementsByClassName("collapse").style.display = "none";
-    document.getElementsByClassName("expand").innerHTML = "Expand";
+function col(i) {
+    console.log("trig");
+    if(window.getComputedStyle(document.getElementById("collapse" + i)).display === "block") {
+        document.getElementById("collapse" + i).style.display = "none";
+        document.getElementById("expand" + i).innerHTML = "Expand";
+    }
+    else {
+        document.getElementById("collapse" + i).style.display = "block";
+        document.getElementById("expand" + i).innerHTML = "Collapse";
+    }
 }
-function expand() {
-    document.getElementsByClassName("collapse").style.display = "block";
-    document.getElementsByClassName("expand").innerHTML = "Collapse";
-}
-
 var StringThing = '<h1 class="title">Edit Murals</h1></br>';
 firestore.collection("Murals/").get().then(function (querySnapshot) {
+    var i = 0;
     querySnapshot.forEach(function (doc) {
         StringThing = StringThing + '<div class="cardDiv mdc-card"><h3 class="centerTheThing">' + doc.id + '</h3><p>Title:</p><input class="VT" value="' + doc.data().title +
-            '"><!--<a class="expand">Expand</a><div class="collapse"> --></br><p>Picture:</p><input class="VP" value="' + doc.data().picURL +
+            '"><a id="expand' + i + '" onclick="col(' + i + ')">Expand</a><div class="go" id="collapse' + i + '"></br><p>Picture:</p><input class="VP" value="' + doc.data().picURL +
             '"></br><p>Description:</p><textarea rows="4" class="VD" wrap="soft">' + doc.data().desc +
             '</textarea></br><p>Author:</p><input class="VA" value="' + doc.data().author + '"></br><p>Author File To Point To:</p><input class="AFile" value="' + doc.data().authorFile + '"></br><p>Artist Picture:</p><input class="ArtP" value="' + doc.data().artistPic +
             '"></br><p>Interview URL (YouTube link):</p><input class="ArtistInt" value="' + doc.data().interview +
             '"></br><p>Audio Tour:</p><input class="AudTour" value="' + doc.data().audioTour +
             '"></br><p>Audio Description:</p><textarea rows="4" class="AudDesc" wrap="soft">' + doc.data().audioDesc +
-            '</textarea></br><p>Viewcount:</p><input disabled class="views" value="' + doc.data().views + '"></br><p>Average Confidence:</p><input disabled class="avg" value="' + doc.data().avg + '"><!--</div>--></div>';
+            '</textarea></br><p>Viewcount:</p><input disabled class="views" value="' + doc.data().views + '"></br><p>Average Confidence:</p><input disabled class="avg" value="' + doc.data().avg + '"></div></div>';
         document.getElementById("murals").innerHTML = StringThing;
+        i = i + 1;
+        all = all + 1;
+        console.log(i);
         // collapse();
 
     });
@@ -129,6 +136,10 @@ document.getElementById("reset").addEventListener("click", function () {
     }
 
 });
+// document.getElementsByClassName("expand").addEventListener("click", function() {
+
+// });
+
 
 function openCity(cityName) {
     var i;
