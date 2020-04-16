@@ -111,6 +111,8 @@ class _MuralPageState extends State<MuralPage>
             .document(widget.found)
             .snapshots(),
         builder: (context, snapshot) {
+          //If the program cannot connect to firebase,
+          //display a container saying so
           if (!snapshot.hasData) {
             return Container(
               width: MediaQuery.of(context).size.width,
@@ -134,11 +136,14 @@ class _MuralPageState extends State<MuralPage>
             return const Text("error!");
           }
 
+          //Using willPopScope as oppose to a container 
+          //Lets us exit the main container without closing the app
           return WillPopScope(
             onWillPop: () async {
               stop();
               return true;
             },
+            //The actual mural info page
             child: Scaffold(
               body: CustomScrollView(
                 physics: BouncingScrollPhysics(),
@@ -175,6 +180,8 @@ class _MuralPageState extends State<MuralPage>
                       ),
                     ),
                   ),
+
+                  //Go to author page button
                   SliverToBoxAdapter(
                     child: Column(
                       children: [
@@ -192,6 +199,7 @@ class _MuralPageState extends State<MuralPage>
                                 ),
                               );
                             },
+                            //The row of buttons below the bigger picture
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.end,
@@ -208,6 +216,7 @@ class _MuralPageState extends State<MuralPage>
                                         shape: BoxShape.circle,
                                         image: new DecorationImage(
                                           fit: BoxFit.cover,
+                                          //Show the artist's picture
                                           image: NetworkImage((testUndString(
                                                       snapshot.data,
                                                       "artistPic") ==
@@ -223,6 +232,7 @@ class _MuralPageState extends State<MuralPage>
                                         left: 10,
                                         right: 10,
                                         bottom: 10)),
+                                //Link to audio tour page
                                 Container(
                                   height: 80,
                                   child: Column(
@@ -284,6 +294,7 @@ class _MuralPageState extends State<MuralPage>
                           ),
                         ),
                         expanded
+                              //Audio player, which fades in on use. 
                             ? FadeTransition(
                                 opacity: _animation,
                                 child: Container(
@@ -379,6 +390,7 @@ class _MuralPageState extends State<MuralPage>
                             : Container(),
                         // Expanded(child: buildPara(testString(snapshot.data, "desc"),),
                         // ),
+                        //Mural description 
                         Padding(
                           padding: const EdgeInsets.only(
                             top: 0,
@@ -391,6 +403,8 @@ class _MuralPageState extends State<MuralPage>
                             style: TextStyle(fontSize: 18),
                           ),
                         ),
+
+                        //Share button
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,

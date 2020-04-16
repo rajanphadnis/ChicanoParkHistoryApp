@@ -34,7 +34,7 @@ class _CreditsPageState extends State<CreditsPage>
   ];
   List<String> titles = [
     "Technical Lead",
-    "Cheif Technical Consultant",
+    "Chief Technical Consultant",
     "UI/UX",
     "Operations",
     "Project Lead",
@@ -112,6 +112,8 @@ class _CreditsPageState extends State<CreditsPage>
     animateTHing();
   }
 
+//Build the actual credits page
+//(its super long and complicated so it has nice animations :) )
   @override
   Widget build(BuildContext context) {
     return Scaffold(

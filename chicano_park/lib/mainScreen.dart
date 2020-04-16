@@ -1,6 +1,8 @@
+// Add this file to the mainlib library
 part of mainlib;
-
+// Create a stateful widget to change on-the-fly
 class _MainPageState extends State<MainPage> {
+  // Initialize and set all the variables we need
   bool dialVisible = true;
   CameraController controller;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -13,45 +15,54 @@ class _MainPageState extends State<MainPage> {
   FlutterTts flutterTts = FlutterTts();
   bool fade = true;
   bool dragg = true;
+  // Make sure the cameras are initialized before continuing
   Future<void> go() async {
     WidgetsFlutterBinding.ensureInitialized();
     cameras = await availableCameras();
   }
-
-  int pompousAss = 1;
-  bool backItUpBoii = false;
-  bool workingOnSomething = false;
+  // Init more variables
+  int historyPageIndex = 1;
+  bool allowSwipeOnce = false;
+  bool swiping = false;
+  // Set some colors
   Color selected = Colors.black;
   Color normal = Colors.grey;
   Color one = Colors.black;
   Color two = Colors.grey;
   Color three = Colors.grey;
   Color four = Colors.grey;
-  double bigPP = 40.0;
+  double historyTimelineIndex = 40.0;
   final int reactionDelay = 300;
   int transitionSpeed = 500;
+  // Create the side timeline widget function
   Widget lineCircleThingBuilder(int intTHing) {
+    // Add a GestureDetector to detect swipes
     return GestureDetector(
+      // Trigger game if long-press on the 4th node
       onLongPress: () async {
         if (intTHing == 4) {
+          // Vibrate (haptic feedback)
           if (await Vibration.hasVibrator()) {
             Vibration.vibrate(duration: 25);
           }
+          // Navigate to CreditsPage
           Navigator.push(
             context,
             FadeRoute(page: CreditsPage()),
           );
         }
       },
+      // When user taps on timeline node, set the color of that node to "Active" and change the history index to that node's index. This will display the correct history text and trigger the animation
       onTap: () {
         setColor(intTHing);
         setState(() {
-          pompousAss = intTHing;
+          historyPageIndex = intTHing;
         });
       },
+      // Here are the nodes in the timeline view
       child: Stack(
         children: <Widget>[
-          // Do not remove. Does not work without this
+          // Do not remove. Does not work without this for some reason. It is an empty green container
           new Padding(
             padding: const EdgeInsets.only(left: 50.0),
             child: new Card(
@@ -63,7 +74,7 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
           ),
-          // ----
+          // Node background color/circle
           new Positioned(
             top: 0.0,
             bottom: 0.0,
@@ -74,9 +85,11 @@ class _MainPageState extends State<MainPage> {
               color: Colors.grey,
             ),
           ),
+// Node "active" color
           new Positioned(
             top: 50.0,
             left: 15.0,
+            // Node "active" color circle
             child: new Container(
               height: 30.0,
               width: 30.0,
@@ -84,6 +97,7 @@ class _MainPageState extends State<MainPage> {
                 shape: BoxShape.circle,
                 color: Colors.white,
               ),
+              // Node Text (depends on the node number - fed from the function)
               child: new Container(
                 margin: new EdgeInsets.all(5.0),
                 height: 25.0,
@@ -105,19 +119,23 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
-
+// This is the actual history content - the stuff that is shown on the right of the screen. It is a function because we want it to be dynamic
   Widget part(
-      int bigPP, double size, String title, String subtitle, String summary) {
+      int historyTimelineIndex, double size, String title, String subtitle, String summary) {
+        // First, make it "Tappable"
     return InkWell(
-      key: ValueKey<int>(bigPP),
+      key: ValueKey<int>(historyTimelineIndex),
       onTap: () {},
       child: Container(
+        // Add some padding to make it look nice
         padding: EdgeInsets.only(right: 70),
         // width: 200,
         child: Column(
+          // align things properly
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            // The top-most item is an icon that points up
             Container(
               padding: EdgeInsets.all(20),
               child: Opacity(
@@ -125,17 +143,22 @@ class _MainPageState extends State<MainPage> {
                 child: IconButton(
                     enableFeedback: false,
                     icon: Icon(Icons.keyboard_arrow_up,
-                        color: (bigPP == 1) ? Colors.white : Colors.grey,
+                    // Make the icon the same color as the background if there is no other page above it
+                        color: (historyTimelineIndex == 1) ? Colors.white : Colors.grey,
                         size: size),
                     onPressed: () {}),
               ),
             ),
+            // Add the "Text" part
             Column(children: <Widget>[
+              // add the title
               Text(title, style: TextStyle(fontSize: 25)),
+              // Add some padding and the subtitle under the Title
               Padding(
                 padding: EdgeInsets.only(top: 10),
                 child: Text(subtitle, style: TextStyle(fontSize: 20)),
               ),
+              // Add some more padding and the summary text
               Padding(
                 padding: EdgeInsets.only(top: 30, bottom: 0),
                 child: Center(
@@ -146,8 +169,10 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ),
               ),
+              // Add some more padding and a button to redirect to the correct InfoPage
               Padding(
                 padding: EdgeInsets.only(top: 20),
+                // Create the Button
                 child: MaterialButton(
                   child: Text(
                     "Learn More",
@@ -159,13 +184,14 @@ class _MainPageState extends State<MainPage> {
                         CupertinoPageRoute(
                           builder: (context) => InfoPage(
                             subtitle,
-                            bigPP,
+                            historyTimelineIndex,
                           ),
                         ));
                   },
                 ),
               ),
             ]),
+            // Add the bottom icon if there is a page below
             Container(
               padding: EdgeInsets.all(20),
               child: Opacity(
@@ -173,7 +199,7 @@ class _MainPageState extends State<MainPage> {
                 child: IconButton(
                     enableFeedback: false,
                     icon: Icon(Icons.keyboard_arrow_down,
-                        color: (bigPP == 4) ? Colors.white : Colors.grey,
+                        color: (historyTimelineIndex == 4) ? Colors.white : Colors.grey,
                         size: size),
                     onPressed: () {}),
               ),
@@ -183,7 +209,7 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
-
+// Create a function to easily set the color of a timeline Node to "Active"
   void setColor(int index) async {
     if (index == 1) {
       setState(() {
@@ -192,6 +218,7 @@ class _MainPageState extends State<MainPage> {
         three = normal;
         four = normal;
       });
+      // this prevents an edge case where the user tries to "Drag" a node instead of the swipe.
       await Future.delayed(Duration(milliseconds: reactionDelay), () {
         setState(() {
           dragg = true;
@@ -223,18 +250,22 @@ class _MainPageState extends State<MainPage> {
       });
     }
   }
-
+  //  Create the main widget
   Widget mainHistory() {
+    // Use a scaffold so that we can reference it later
     return Scaffold(
+      // Use an appbar at the top
       appBar: new AppBar(
         leading: IconButton(
             icon: Icon(Icons.keyboard_arrow_down),
             onPressed: () {
+              // If "minimized", animate the widget away.
               _pc.animatePanelToPosition(0);
             }),
         backgroundColor: Colors.black,
         title: Text("History"),
       ),
+      // This is the main content of this page
       body: Wrap(
         children: <Widget>[
           Container(
@@ -260,50 +291,50 @@ class _MainPageState extends State<MainPage> {
                   Expanded(
                     child: GestureDetector(
                       onVerticalDragUpdate: (DragUpdateDetails details) async {
-                        if (workingOnSomething) {
+                        if (swiping) {
                           // do nothing
                         } else {
                           if (details.delta.dy > 0) {
                             setState(() {
-                              workingOnSomething = true;
-                              backItUpBoii = true;
-                              pompousAss == 1
-                                  ? pompousAss = 1
-                                  : pompousAss = pompousAss - 1;
-                              pompousAss == 1
+                              swiping = true;
+                              allowSwipeOnce = true;
+                              historyPageIndex == 1
+                                  ? historyPageIndex = 1
+                                  : historyPageIndex = historyPageIndex - 1;
+                              historyPageIndex == 1
                                   ? setColor(1)
-                                  : pompousAss == 2
+                                  : historyPageIndex == 2
                                       ? setColor(2)
-                                      : pompousAss == 3
+                                      : historyPageIndex == 3
                                           ? setColor(3)
-                                          : pompousAss == 4
+                                          : historyPageIndex == 4
                                               ? setColor(4)
                                               : setColor(1);
                             });
                             Future.delayed(
                                 Duration(milliseconds: reactionDelay), () {
-                              workingOnSomething = false;
+                              swiping = false;
                             });
                           } else if (details.delta.dy < 0) {
                             setState(() {
-                              workingOnSomething = true;
-                              backItUpBoii = false;
-                              pompousAss == 4
-                                  ? pompousAss = 4
-                                  : pompousAss = pompousAss + 1;
-                              pompousAss == 1
+                              swiping = true;
+                              allowSwipeOnce = false;
+                              historyPageIndex == 4
+                                  ? historyPageIndex = 4
+                                  : historyPageIndex = historyPageIndex + 1;
+                              historyPageIndex == 1
                                   ? setColor(1)
-                                  : pompousAss == 2
+                                  : historyPageIndex == 2
                                       ? setColor(2)
-                                      : pompousAss == 3
+                                      : historyPageIndex == 3
                                           ? setColor(3)
-                                          : pompousAss == 4
+                                          : historyPageIndex == 4
                                               ? setColor(4)
                                               : setColor(1);
                             });
                             Future.delayed(
                                 Duration(milliseconds: reactionDelay), () {
-                              workingOnSomething = false;
+                              swiping = false;
                             });
                           }
                         }
@@ -311,12 +342,12 @@ class _MainPageState extends State<MainPage> {
                       child: StreamBuilder(
                           stream: Firestore.instance
                               .collection("History")
-                              .document(pompousAss.toString())
+                              .document(historyPageIndex.toString())
                               .snapshots(),
                           builder: (context, snapshot) {
                             return PageTransitionSwitcher(
                               duration: Duration(milliseconds: transitionSpeed),
-                              reverse: backItUpBoii,
+                              reverse: allowSwipeOnce,
                               transitionBuilder: (
                                 Widget child,
                                 Animation<double> animation,
@@ -330,34 +361,34 @@ class _MainPageState extends State<MainPage> {
                                       SharedAxisTransitionType.vertical,
                                 );
                               },
-                              child: pompousAss == 1
+                              child: historyPageIndex == 1
                                   ? part(
                                       1,
-                                      bigPP,
+                                      historyTimelineIndex,
                                       testString(snapshot.data, "title"),
                                       testString(snapshot.data, "subtitle"),
                                       testString(snapshot.data, "summary"))
-                                  : (pompousAss == 2
+                                  : (historyPageIndex == 2
                                       ? part(
                                           2,
-                                          bigPP,
+                                          historyTimelineIndex,
                                           testString(snapshot.data, "title"),
                                           testString(snapshot.data, "subtitle"),
                                           testString(snapshot.data, "summary"))
-                                      : (pompousAss == 3
+                                      : (historyPageIndex == 3
                                           ? part(
                                               3,
-                                              bigPP,
+                                              historyTimelineIndex,
                                               testString(
                                                   snapshot.data, "title"),
                                               testString(
                                                   snapshot.data, "subtitle"),
                                               testString(
                                                   snapshot.data, "summary"))
-                                          : pompousAss == 4
+                                          : historyPageIndex == 4
                                               ? part(
                                                   4,
-                                                  bigPP,
+                                                  historyTimelineIndex,
                                                   testString(
                                                       snapshot.data, "title"),
                                                   testString(snapshot.data,
@@ -366,7 +397,7 @@ class _MainPageState extends State<MainPage> {
                                                       snapshot.data, "summary"))
                                               : part(
                                                   1,
-                                                  bigPP,
+                                                  historyTimelineIndex,
                                                   testString(
                                                       snapshot.data, "title"),
                                                   testString(snapshot.data,
@@ -714,14 +745,18 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
-
+// Build the app
   @override
   Widget build(BuildContext context) {
+    // get the dimensionos of the device
     final size = MediaQuery.of(context).size;
+    // If the camera is not ready, show the "camera not ready" flar animation. Make it tappable so that the user can grant camera permissions
     if (!controller.value.isInitialized) {
+      // Make it tappable
       return new GestureDetector(
         onTap: () {
           controller = CameraController(cameras[0], ResolutionPreset.ultraHigh);
+          // Request camera permissions
           controller.initialize().then((_) {
             if (!mounted) {
               return;
@@ -729,17 +764,21 @@ class _MainPageState extends State<MainPage> {
             setState(() {});
           });
         },
+        // Add flare animation
         child: FlareActor("assets/Camera.flr",
             alignment: Alignment.center,
             fit: BoxFit.contain,
             animation: "loop"),
       );
     }
+    // Prevent Android users from using the back button to exit the app
     return new WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
+        // Set app background color
         backgroundColor: Theme.of(context).backgroundColor,
         key: _scaffoldKey,
+        // add the sliding panel and its properties
         body: SlidingUpPanel(
           panelSnapping: true,
           backdropEnabled: true,
